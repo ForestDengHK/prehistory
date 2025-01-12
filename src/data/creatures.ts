@@ -144,21 +144,7 @@ export const creatures: Creature[] = [
 
 export const searchCreatures = (searchQuery: string): SearchResult[] => {
   if (!searchQuery?.trim()) {
-    return [,
-  {
-    id: 'pterodactyl',
-    name: 'Pterodactyl',
-    scientificName: 'Pterodactylus antiquus',
-    period: 'Jurassic',
-    location: 'Europe (Germany)',
-    length: '1-1.5 meters',
-    weight: '2-3 kg',
-    diet: 'Carnivore',
-    image: '/images/pterodactyl.jpg',
-    description: 'One of the first flying reptiles ever discovered, Pterodactylus was a relatively small pterosaur from the Late Jurassic period. Known for its short tail and elongated fourth finger that supported its wing membrane, it was perfectly adapted for aerial life. Despite common misconceptions, it wasn't a dinosaur but rather belonged to a separate group of flying reptiles. It likely fed on fish and small marine creatures, using its sharp teeth and excellent vision to catch prey',
-    category: 'Flying Creatures',
-    subcategory: 'Pterosaurs'
-  }];
+    return [];
   }
 
   const query = searchQuery.toLowerCase().trim();
