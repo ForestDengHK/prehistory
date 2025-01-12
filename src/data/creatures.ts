@@ -111,12 +111,54 @@ export const creatures: Creature[] = [
     description: 'Velociraptor was a small but fierce predator, known for its agility and intelligence. It had a distinctive sickle-shaped claw on each foot and was likely covered in feathers. Recent discoveries suggest it hunted in packs and was a skilled predator.',
     category: 'Dinosaurs',
     subcategory: 'Theropods'
+  },
+  {
+    id: 'triceratops',
+    name: 'Triceratops',
+    scientificName: 'Triceratops horridus',
+    period: 'Late Cretaceous',
+    location: 'North America',
+    length: '8-9 meters',
+    weight: '6,000-12,000 kg',
+    diet: 'Herbivore',
+    image: '/images/triceratops.jpg',
+    description: 'Triceratops was one of the last non-avian dinosaurs to exist before the Cretaceous–Paleogene extinction. Known for its distinctive frill and three horns, it used these features for both defense and display.',
+    category: 'Dinosaurs',
+    subcategory: 'Ceratopsians'
+  },
+  {
+    id: 'pterodactyl',
+    name: 'Pterodactyl',
+    scientificName: 'Pterodactylus antiquus',
+    period: 'Jurassic',
+    location: 'Europe (Germany)',
+    length: '1-1.5 meters',
+    weight: '2-3 kg',
+    diet: 'Carnivore',
+    image: '/images/pterodactyl.jpg',
+    description: "One of the first flying reptiles ever discovered, Pterodactylus was a relatively small pterosaur from the Late Jurassic period. Known for its short tail and elongated fourth finger that supported its wing membrane, it was perfectly adapted for aerial life. Despite common misconceptions, it wasn't a dinosaur but rather belonged to a separate group of flying reptiles. It likely fed on fish and small marine creatures, using its sharp teeth and excellent vision to catch prey",
+    category: 'Flying Creatures',
+    subcategory: 'Pterosaurs'
   }
 ];
 
 export const searchCreatures = (searchQuery: string): SearchResult[] => {
   if (!searchQuery?.trim()) {
-    return [];
+    return [,
+  {
+    id: 'pterodactyl',
+    name: 'Pterodactyl',
+    scientificName: 'Pterodactylus antiquus',
+    period: 'Jurassic',
+    location: 'Europe (Germany)',
+    length: '1-1.5 meters',
+    weight: '2-3 kg',
+    diet: 'Carnivore',
+    image: '/images/pterodactyl.jpg',
+    description: 'One of the first flying reptiles ever discovered, Pterodactylus was a relatively small pterosaur from the Late Jurassic period. Known for its short tail and elongated fourth finger that supported its wing membrane, it was perfectly adapted for aerial life. Despite common misconceptions, it wasn't a dinosaur but rather belonged to a separate group of flying reptiles. It likely fed on fish and small marine creatures, using its sharp teeth and excellent vision to catch prey',
+    category: 'Flying Creatures',
+    subcategory: 'Pterosaurs'
+  }];
   }
 
   const query = searchQuery.toLowerCase().trim();

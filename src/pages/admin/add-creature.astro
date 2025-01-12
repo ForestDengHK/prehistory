@@ -1,101 +1,303 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { categories } from '../../data/categories';
+import { timelinePeriods } from '../../data/timeline';
 
 const title = 'Add New Creature';
+const diets = ['Carnivore', 'Herbivore', 'Omnivore'];
 ---
 
 <Layout title={title}>
-  <div class="container mx-auto px-4 py-8">
-    <h1 class="text-4xl font-bold mb-8 text-center">{title}</h1>
+  <div class="container">
+    <h1>{title}</h1>
     
-    <form id="add-creature-form" class="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-md">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div class="form-group">
-          <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Name</label>
-          <input type="text" id="name" name="name" required
-            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-        </div>
+    <form id="add-creature-form">
+      <!-- Basic Information -->
+      <section class="form-section">
+        <h2>Basic Information</h2>
+        <div class="form-grid">
+          <div class="form-field">
+            <label for="name">Name <span class="required">*</span></label>
+            <input type="text" id="name" name="name" required
+              placeholder="e.g. Tyrannosaurus Rex">
+          </div>
 
-        <div class="form-group">
-          <label for="scientificName" class="block text-sm font-medium text-gray-700 mb-1">Scientific Name</label>
-          <input type="text" id="scientificName" name="scientificName" required
-            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <div class="form-field">
+            <label for="scientificName">Scientific Name <span class="required">*</span></label>
+            <input type="text" id="scientificName" name="scientificName" required
+              placeholder="e.g. Tyrannosaurus rex">
+          </div>
         </div>
+      </section>
 
-        <div class="form-group">
-          <label for="period" class="block text-sm font-medium text-gray-700 mb-1">Period</label>
-          <input type="text" id="period" name="period" required
-            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-        </div>
+      <!-- Classification -->
+      <section class="form-section">
+        <h2>Classification</h2>
+        <div class="form-grid">
+          <div class="form-field">
+            <label for="period">Period <span class="required">*</span></label>
+            <select id="period" name="period" required>
+              <option value="">Select a period</option>
+              {timelinePeriods.map(period => (
+                <option value={period.name}>{period.name} ({period.period})</option>
+              ))}
+            </select>
+          </div>
 
-        <div class="form-group">
-          <label for="location" class="block text-sm font-medium text-gray-700 mb-1">Location</label>
-          <input type="text" id="location" name="location" required
-            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-        </div>
+          <div class="form-field">
+            <label for="location">Location <span class="required">*</span></label>
+            <input type="text" id="location" name="location" required
+              placeholder="e.g. North America">
+          </div>
 
-        <div class="form-group">
-          <label for="length" class="block text-sm font-medium text-gray-700 mb-1">Length</label>
-          <input type="text" id="length" name="length" required placeholder="e.g., 12-15 meters"
-            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-        </div>
+          <div class="form-field">
+            <label for="category">Category <span class="required">*</span></label>
+            <select id="category" name="category" required>
+              <option value="">Select a category</option>
+              {Object.keys(categories).map(category => (
+                <option value={category}>{category}</option>
+              ))}
+            </select>
+          </div>
 
-        <div class="form-group">
-          <label for="weight" class="block text-sm font-medium text-gray-700 mb-1">Weight</label>
-          <input type="text" id="weight" name="weight" required placeholder="e.g., 5-7 tons"
-            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+          <div class="form-field">
+            <label for="subcategory">Subcategory <span class="required">*</span></label>
+            <select id="subcategory" name="subcategory" required>
+              <option value="">Select a category first</option>
+            </select>
+          </div>
         </div>
+      </section>
 
-        <div class="form-group">
-          <label for="diet" class="block text-sm font-medium text-gray-700 mb-1">Diet</label>
-          <input type="text" id="diet" name="diet" required
-            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-        </div>
+      <!-- Physical Characteristics -->
+      <section class="form-section">
+        <h2>Physical Characteristics</h2>
+        <div class="form-grid">
+          <div class="form-field">
+            <label for="length">Length <span class="required">*</span></label>
+            <input type="text" id="length" name="length" required
+              placeholder="e.g. 12-15 meters">
+          </div>
 
-        <div class="form-group">
-          <label for="image" class="block text-sm font-medium text-gray-700 mb-1">Image Path</label>
-          <input type="text" id="image" name="image" required placeholder="/images/creature-name.jpg"
-            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-        </div>
+          <div class="form-field">
+            <label for="weight">Weight <span class="required">*</span></label>
+            <input type="text" id="weight" name="weight" required
+              placeholder="e.g. 5,000-7,000 kg">
+          </div>
 
-        <div class="form-group">
-          <label for="category" class="block text-sm font-medium text-gray-700 mb-1">Category</label>
-          <select id="category" name="category" required
-            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-            <option value="">Select a category</option>
-            {Object.keys(categories).map(category => (
-              <option value={category}>{category}</option>
-            ))}
-          </select>
+          <div class="form-field">
+            <label for="diet">Diet <span class="required">*</span></label>
+            <select id="diet" name="diet" required>
+              <option value="">Select a diet</option>
+              {diets.map(diet => (
+                <option value={diet}>{diet}</option>
+              ))}
+            </select>
+          </div>
         </div>
+      </section>
 
-        <div class="form-group">
-          <label for="subcategory" class="block text-sm font-medium text-gray-700 mb-1">Subcategory</label>
-          <select id="subcategory" name="subcategory" required
-            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-            <option value="">Select a category first</option>
-          </select>
+      <!-- Media -->
+      <section class="form-section">
+        <h2>Media</h2>
+        <div class="form-field">
+          <label for="image">Image Path <span class="required">*</span></label>
+          <div class="input-group">
+            <span class="input-prefix">/images/</span>
+            <input type="text" id="image" name="image" required
+              placeholder="creature-name.jpg">
+          </div>
+          <p class="help-text">Image should be placed in the public/images directory</p>
         </div>
+      </section>
+
+      <!-- Description -->
+      <section class="form-section">
+        <h2>Description</h2>
+        <div class="form-field">
+          <label for="description">Description <span class="required">*</span></label>
+          <textarea id="description" name="description" required rows="4"
+            placeholder="Provide a detailed description of the creature..."></textarea>
+        </div>
+      </section>
+
+      <div class="form-actions">
+        <button type="submit">Add Creature</button>
       </div>
 
-      <div class="form-group mt-6">
-        <label for="description" class="block text-sm font-medium text-gray-700 mb-1">Description</label>
-        <textarea id="description" name="description" required rows="4"
-          class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
-      </div>
-
-      <div class="mt-6">
-        <button type="submit"
-          class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
-          Add Creature
-        </button>
-      </div>
-
-      <div id="message" class="mt-4 p-4 rounded-md hidden"></div>
+      <div id="message" class="message hidden"></div>
     </form>
   </div>
 </Layout>
+
+<style>
+  .container {
+    max-width: 48rem;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--color-heading);
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  form {
+    background-color: var(--color-background);
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  }
+
+  .form-section {
+    margin-bottom: 2rem;
+  }
+
+  .form-section:last-child {
+    margin-bottom: 0;
+  }
+
+  h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-heading);
+    margin-bottom: 1rem;
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .form-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-text);
+  }
+
+  .required {
+    color: var(--color-error);
+  }
+
+  input, select, textarea {
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    background-color: var(--color-input);
+    color: var(--color-text);
+    font-size: 0.875rem;
+    transition: all 0.2s ease-in-out;
+  }
+
+  input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 2px var(--color-primary-alpha);
+  }
+
+  .input-group {
+    display: flex;
+    align-items: center;
+  }
+
+  .input-prefix {
+    padding: 0.75rem 1rem;
+    background-color: var(--color-background-alt);
+    border: 1px solid var(--color-border);
+    border-right: none;
+    border-radius: 0.5rem 0 0 0.5rem;
+    color: var(--color-text-muted);
+    font-size: 0.875rem;
+  }
+
+  .input-group input {
+    border-radius: 0 0.5rem 0.5rem 0;
+    flex: 1;
+  }
+
+  .help-text {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    margin-top: 0.25rem;
+  }
+
+  .form-actions {
+    margin-top: 2rem;
+  }
+
+  button {
+    width: 100%;
+    padding: 0.875rem 1.5rem;
+    background-color: var(--color-primary);
+    color: var(--color-primary-foreground);
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
+
+  button:hover {
+    background-color: var(--color-primary-dark);
+  }
+
+  .message {
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+  }
+
+  .message.success {
+    background-color: var(--color-success-background);
+    color: var(--color-success);
+    border: 1px solid var(--color-success-border);
+  }
+
+  .message.error {
+    background-color: var(--color-error-background);
+    color: var(--color-error);
+    border: 1px solid var(--color-error-border);
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  /* Dark mode support */
+  @media (prefers-color-scheme: dark) {
+    form {
+      background-color: var(--color-background-dark);
+    }
+
+    input, select, textarea {
+      background-color: var(--color-input-dark);
+      border-color: var(--color-border-dark);
+    }
+
+    .input-prefix {
+      background-color: var(--color-background-alt-dark);
+      border-color: var(--color-border-dark);
+    }
+  }
+</style>
 
 <script>
   import { categories } from '../../data/categories';
@@ -104,6 +306,7 @@ const title = 'Add New Creature';
   const categorySelect = document.getElementById('category') as HTMLSelectElement;
   const subcategorySelect = document.getElementById('subcategory') as HTMLSelectElement;
   const messageDiv = document.getElementById('message') as HTMLDivElement;
+  const imageInput = document.getElementById('image') as HTMLInputElement;
 
   // Update subcategories when category changes
   categorySelect.addEventListener('change', () => {
@@ -118,10 +321,16 @@ const title = 'Add New Creature';
   // Handle form submission
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
+    messageDiv.classList.add('hidden');
     
     try {
       const formData = new FormData(form);
       const data = Object.fromEntries(formData.entries());
+      
+      // Add /images/ prefix to image path if not present
+      if (!data.image.toString().startsWith('/images/')) {
+        data.image = `/images/${data.image}`;
+      }
       
       const response = await fetch('/api/creatures', {
         method: 'POST',
@@ -134,17 +343,18 @@ const title = 'Add New Creature';
       const result = await response.json();
       
       if (response.ok) {
-        messageDiv.textContent = 'Creature added successfully!';
-        messageDiv.className = 'mt-4 p-4 rounded-md bg-green-100 text-green-700';
+        messageDiv.textContent = '✅ Creature added successfully!';
+        messageDiv.className = 'message success';
         form.reset();
       } else {
         throw new Error(result.error || 'Failed to add creature');
       }
     } catch (error) {
-      messageDiv.textContent = error.message;
-      messageDiv.className = 'mt-4 p-4 rounded-md bg-red-100 text-red-700';
+      messageDiv.textContent = `❌ Error: ${error.message}`;
+      messageDiv.className = 'message error';
     }
     
     messageDiv.classList.remove('hidden');
+    messageDiv.scrollIntoView({ behavior: 'smooth' });
   });
 </script>
