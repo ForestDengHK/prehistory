@@ -96,7 +96,7 @@ export const creatures: Creature[] = [
     image: '/images/stegosaurus.jpg',
     description: 'Stegosaurus was a large herbivorous dinosaur known for its distinctive row of large bony plates along its back and spiked tail. These plates may have been used for display, temperature regulation, and defense. Despite its size, Stegosaurus had a relatively small brain.',
     category: 'Dinosaurs',
-    subcategory: 'Herbivores'
+    subcategory: 'Stegosaurs'
   },
   {
     id: 'velociraptor',
@@ -110,7 +110,7 @@ export const creatures: Creature[] = [
     image: '/images/velociraptor.jpg',
     description: 'Velociraptor was a small but fierce predator, known for its agility and intelligence. It had a distinctive sickle-shaped claw on each foot and was likely covered in feathers. Recent discoveries suggest it hunted in packs and was a skilled predator.',
     category: 'Dinosaurs',
-    subcategory: 'Carnivores'
+    subcategory: 'Theropods'
   }
 ];
 
