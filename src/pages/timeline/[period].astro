@@ -1,0 +1,152 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { timelinePeriods } from '../../data/timeline';
+import { creatures } from '../../data/creatures';
+
+// Get the period from URL params
+const { period: periodParam } = Astro.params;
+
+// Find the matching period
+const period = timelinePeriods.find(p => 
+  p.name.toLowerCase() === periodParam?.toLowerCase()
+);
+
+// Redirect to 404 if period not found
+if (!period) {
+  return Astro.redirect('/404');
+}
+
+// Filter creatures for this period
+const periodCreatures = creatures.filter(creature => 
+  creature.period && creature.period.toLowerCase().includes(period.name.toLowerCase())
+);
+---
+
+<Layout title={`${period.name} Period - Prehistoric World`}>
+  <div class="period-container">
+    <div class="period-hero" style={`background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(${period.image})`}>
+      <h1>{period.name} Period</h1>
+      <p class="period-time">{period.period}</p>
+    </div>
+
+    <div class="period-content">
+      <section class="period-info">
+        <h2>About this Period</h2>
+        <p>{period.description}</p>
+      </section>
+
+      <section class="period-creatures">
+        <h2>Creatures from this Period</h2>
+        {periodCreatures.length > 0 ? (
+          <div class="creatures-grid">
+            {periodCreatures.map(creature => (
+              <a href={`/creature/${creature.id}`} class="creature-card">
+                <div class="creature-image">
+                  <img src={creature.image} alt={creature.name} loading="lazy" />
+                </div>
+                <div class="creature-info">
+                  <h3>{creature.name}</h3>
+                  <p class="scientific-name">{creature.scientificName}</p>
+                </div>
+              </a>
+            ))}
+          </div>
+        ) : (
+          <p class="no-creatures">No creatures found from this period.</p>
+        )}
+      </section>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .period-container {
+    margin: -2rem;
+  }
+
+  .period-hero {
+    padding: 4rem 2rem;
+    text-align: center;
+    color: white;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .period-hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  .period-time {
+    font-size: 1.25rem;
+    opacity: 0.9;
+  }
+
+  .period-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  section {
+    margin-bottom: 3rem;
+  }
+
+  h2 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+  }
+
+  .creatures-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+
+  .creature-card {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .creature-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .creature-image {
+    height: 200px;
+    overflow: hidden;
+  }
+
+  .creature-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .creature-info {
+    padding: 1.5rem;
+  }
+
+  .creature-info h3 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+  }
+
+  .scientific-name {
+    color: var(--secondary-color);
+    font-style: italic;
+  }
+
+  .no-creatures {
+    text-align: center;
+    padding: 2rem;
+    background: #f8f8f8;
+    border-radius: 8px;
+    color: #666;
+  }
+</style>

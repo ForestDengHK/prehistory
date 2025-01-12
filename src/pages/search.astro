@@ -1,0 +1,206 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { searchCreatures } from '../data/creatures';
+
+export const prerender = false;
+const query = Astro.url.searchParams.get('q')?.trim() || '';
+const results = query ? searchCreatures(query) : [];
+---
+
+<Layout title="Search Prehistoric Creatures">
+  <div class="search-container">
+    <h1>Search Prehistoric Creatures</h1>
+    
+    <form method="GET" class="search-form">
+      <div class="search-input-wrapper">
+        <input 
+          type="text"
+          name="q"
+          value={query}
+          placeholder="Search creatures..."
+          required
+        />
+        <button type="submit">Search</button>
+      </div>
+    </form>
+
+    {query && (
+      <div class="results-info">
+        <p>Found {results.length} results for "{query}"</p>
+      </div>
+    )}
+
+    <div class="results-grid">
+      {results.map(creature => (
+        <div class="creature-card">
+          <img src={creature.image} alt={creature.name} loading="lazy" />
+          <div class="creature-info">
+            <h2>{creature.name}</h2>
+            <p class="scientific-name">{creature.scientificName}</p>
+            <p class="description">{creature.description}</p>
+            <div class="metadata">
+              <span class="tag">{creature.category}</span>
+              <span class="tag">{creature.subcategory}</span>
+            </div>
+            <a href={`/creature/${creature.id}`} class="learn-more">
+              Learn More →
+            </a>
+          </div>
+        </div>
+      ))}
+
+      {query && results.length === 0 && (
+        <div class="no-results">
+          <p>No results found for "{query}"</p>
+        </div>
+      )}
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .search-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  h1 {
+    text-align: center;
+    margin-bottom: 4rem;
+    font-size: 2.5rem;
+    color: #333;
+  }
+
+  .search-form {
+    margin-bottom: 3rem;
+  }
+
+  .search-input-wrapper {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  input {
+    flex: 1;
+    padding: 0.75rem;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+  }
+
+  button {
+    padding: 0.75rem 1.5rem;
+    background: #333;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+
+  button:hover {
+    background: #444;
+  }
+
+  .results-info {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #666;
+  }
+
+  .results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .creature-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.2s;
+    display: flex;
+    flex-direction: column;
+    background: white;
+  }
+
+  .creature-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+
+  .creature-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+
+  .creature-info {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  h2 {
+    margin: 0 0 0.5rem 0;
+    color: #333;
+    font-size: 1.5rem;
+  }
+
+  .scientific-name {
+    font-style: italic;
+    color: #666;
+    margin: 0 0 0.5rem 0;
+  }
+
+  .description {
+    margin: 0 0 1rem 0;
+    line-height: 1.4;
+    color: #444;
+    flex-grow: 1;
+  }
+
+  .metadata {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .tag {
+    background: #f0f0f0;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    color: #666;
+  }
+
+  .no-results {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 2rem;
+    background: #f8f8f8;
+    border-radius: 8px;
+    color: #666;
+  }
+
+  .learn-more {
+    display: inline-block;
+    padding: 0.75rem 1rem;
+    background: #f5f5f5;
+    color: #333;
+    text-decoration: none;
+    font-weight: 500;
+    border-radius: 4px;
+    text-align: center;
+    transition: all 0.2s;
+  }
+
+  .learn-more:hover {
+    background: #333;
+    color: white;
+  }
+</style>

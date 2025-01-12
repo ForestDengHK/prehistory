@@ -1,0 +1,65 @@
+---
+import Layout from '../layouts/Layout.astro';
+import TimelineBrowser from '../components/TimelineBrowser.astro';
+import FeaturedCreatures from '../components/FeaturedCreatures.astro';
+---
+
+<Layout title="Prehistoric World - Explore Ancient Life">
+	<div class="hero">
+		<h1>Welcome to Prehistoric World</h1>
+		<p>Discover the fascinating creatures that once roamed our planet</p>
+	</div>
+
+	<section class="featured">
+		<h2>Featured Creatures</h2>
+		<FeaturedCreatures />
+	</section>
+
+	<section class="timeline-section">
+		<h2>Explore by Timeline</h2>
+		<TimelineBrowser />
+	</section>
+</Layout>
+
+<style>
+	.hero {
+		text-align: center;
+		padding: 4rem 0;
+		background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('/images/hero-bg.jpg');
+		background-size: cover;
+		background-position: center;
+		color: white;
+		margin: -2rem -2rem 2rem -2rem;
+	}
+
+	.hero h1 {
+		font-size: 3rem;
+		margin-bottom: 1rem;
+	}
+
+	.hero p {
+		font-size: 1.25rem;
+		max-width: 600px;
+		margin: 0 auto;
+	}
+
+	section {
+		margin-bottom: 4rem;
+	}
+
+	h2 {
+		font-size: 2rem;
+		margin-bottom: 2rem;
+		color: var(--primary-color);
+	}
+
+	@media (max-width: 768px) {
+		.hero h1 {
+			font-size: 2rem;
+		}
+
+		.hero p {
+			font-size: 1rem;
+		}
+	}
+</style>

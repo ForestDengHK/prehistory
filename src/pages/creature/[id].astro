@@ -1,0 +1,152 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { creatures } from '../../data/creatures';
+
+const { id } = Astro.params;
+const creature = creatures.find(c => c.id === id);
+
+if (!creature) {
+  return Astro.redirect('/404');
+}
+---
+
+<Layout title={`${creature.name} - Prehistoric World`}>
+  <div class="creature-container">
+    <div class="creature-hero" style={`background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(${creature.image})`}>
+      <h1>{creature.name}</h1>
+      <p class="scientific-name">{creature.scientificName}</p>
+    </div>
+
+    <div class="creature-content">
+      <div class="creature-info">
+        <div class="info-grid">
+          <div class="info-item">
+            <h3>Period</h3>
+            <p>{creature.period}</p>
+          </div>
+          <div class="info-item">
+            <h3>Location</h3>
+            <p>{creature.location}</p>
+          </div>
+          <div class="info-item">
+            <h3>Length</h3>
+            <p>{creature.length}</p>
+          </div>
+          <div class="info-item">
+            <h3>Weight</h3>
+            <p>{creature.weight}</p>
+          </div>
+          <div class="info-item">
+            <h3>Diet</h3>
+            <p>{creature.diet}</p>
+          </div>
+          <div class="info-item">
+            <h3>Category</h3>
+            <p>
+              <a href={`/category/${creature.category.toLowerCase().replace(/\s+/g, '-')}`}>{creature.category}</a> - 
+              <a href={`/category/${creature.category.toLowerCase().replace(/\s+/g, '-')}/${creature.subcategory.toLowerCase().replace(/\s+/g, '-')}`}>{creature.subcategory}</a>
+            </p>
+          </div>
+        </div>
+
+        <div class="description">
+          <h2>About {creature.name}</h2>
+          <p>{creature.description}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .creature-container {
+    margin: -2rem;
+  }
+
+  .creature-hero {
+    padding: 6rem 2rem;
+    text-align: center;
+    color: white;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .creature-hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .scientific-name {
+    font-style: italic;
+    font-size: 1.5rem;
+    opacity: 0.9;
+  }
+
+  .creature-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  .info-item h3 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+  }
+
+  .info-item p {
+    color: var(--secondary-color);
+  }
+
+  .info-item a {
+    color: var(--accent-color);
+    text-decoration: none;
+  }
+
+  .info-item a:hover {
+    text-decoration: underline;
+  }
+
+  .description {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  .description h2 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+  }
+
+  .description p {
+    color: var(--secondary-color);
+    line-height: 1.6;
+  }
+
+  @media (max-width: 768px) {
+    .creature-hero h1 {
+      font-size: 2.5rem;
+    }
+
+    .scientific-name {
+      font-size: 1.2rem;
+    }
+
+    .info-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

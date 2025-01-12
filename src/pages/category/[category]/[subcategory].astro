@@ -1,0 +1,143 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import { categories } from '../../../data/categories';
+import { creatures } from '../../../data/creatures';
+
+const { category: categoryParam, subcategory: subcategoryParam } = Astro.params;
+const category = Object.entries(categories).find(([name]) => 
+  name.toLowerCase().replace(/\s+/g, '-') === categoryParam
+);
+
+if (!category) {
+  return Astro.redirect('/404');
+}
+
+const [categoryName, subcategories] = category;
+const subcategory = subcategories.find(sub => 
+  sub.toLowerCase().replace(/\s+/g, '-') === subcategoryParam
+);
+
+if (!subcategory) {
+  return Astro.redirect('/404');
+}
+
+const subcategoryCreatures = creatures.filter(creature => 
+  creature.category === categoryName &&
+  creature.subcategory === subcategory
+);
+---
+
+<Layout title={`${subcategory} - ${categoryName} - Prehistoric World`}>
+  <div class="subcategory-container">
+    <div class="subcategory-header">
+      <h1>{subcategory}</h1>
+      <p>Part of <a href={`/category/${categoryName.toLowerCase().replace(/\s+/g, '-')}`}>{categoryName}</a></p>
+    </div>
+
+    <div class="creatures-grid">
+      {subcategoryCreatures.map(creature => (
+        <a href={`/creature/${creature.id}`} class="creature-card">
+          <div class="creature-image">
+            <img src={creature.image} alt={creature.name} />
+          </div>
+          <div class="creature-info">
+            <h3>{creature.name}</h3>
+            <p class="scientific-name">{creature.scientificName}</p>
+            <p class="period">{creature.period}</p>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .subcategory-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  .subcategory-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .subcategory-header h1 {
+    color: var(--primary-color);
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .subcategory-header p {
+    color: var(--secondary-color);
+    font-size: 1.2rem;
+  }
+
+  .subcategory-header a {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  .creatures-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .creature-card {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .creature-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .creature-image {
+    height: 200px;
+    overflow: hidden;
+  }
+
+  .creature-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .creature-info {
+    padding: 1.5rem;
+  }
+
+  .creature-info h3 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+  }
+
+  .scientific-name {
+    color: var(--secondary-color);
+    font-style: italic;
+    margin-bottom: 0.5rem;
+  }
+
+  .period {
+    color: var(--accent-color);
+    font-weight: bold;
+  }
+
+  @media (max-width: 768px) {
+    .subcategory-header h1 {
+      font-size: 2rem;
+    }
+
+    .subcategory-header p {
+      font-size: 1rem;
+    }
+  }
+</style>
