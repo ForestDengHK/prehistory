@@ -12,9 +12,10 @@
   },
   "dependencies": {
     "@astrojs/vercel": "^6.1.4",
-    "astro": "^4.15.3"
+    "astro": "^4.15.3",
+    "sharp": "^0.32.6"
   },
   "engines": {
-    "node": ">=18.0.0"
+    "node": "18.x"
   }
 }

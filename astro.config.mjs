@@ -5,8 +5,7 @@ import vercel from '@astrojs/vercel/serverless';
 export default defineConfig({
   output: 'server',
   adapter: vercel({
-    analytics: true,
-    maxDuration: 60,
-    runtime: 'nodejs18.x'
+    webAnalytics: { enabled: true },
+    maxDuration: 60
   })
 });
