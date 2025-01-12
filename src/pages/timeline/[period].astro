@@ -16,10 +16,31 @@ if (!period) {
   return Astro.redirect('/404');
 }
 
+// Get the detailed description based on period name
+const getDetailedDescription = (periodName: string) => {
+  const descriptions: Record<string, string> = {
+    'Hadean': 'The Hadean eon represents Earth\'s earliest history, characterized by a molten surface, frequent meteorite impacts, and the formation of the first rocks and oceans. During this time, Earth\'s atmosphere was primarily composed of water vapor, carbon dioxide, and nitrogen, with no free oxygen. The Moon was also formed during this period, likely from a collision between Earth and a Mars-sized object.',
+    'Archean': 'The Archean eon saw the emergence of life on Earth, with the first prokaryotic cells appearing. This period was marked by the formation of the first continents, intense volcanic activity, and the development of photosynthetic bacteria (cyanobacteria). These bacteria began producing oxygen as a byproduct, gradually changing Earth\'s atmosphere. The oldest known fossils, stromatolites, date from this time.',
+    'Proterozoic': 'The Proterozoic eon was a time of crucial biological and geological transitions. It witnessed the rise of eukaryotic cells, sexual reproduction, and the first multicellular organisms. The Great Oxidation Event occurred early in this period, dramatically increasing atmospheric oxygen. The end of this eon saw the emergence of the first complex animals, including the mysterious Ediacaran biota. Several major glacial periods ("Snowball Earth" events) also occurred during this time.',
+    'Cambrian': 'The Cambrian period marked a profound change in life on Earth known as the "Cambrian Explosion." During this time, nearly all modern phyla of animals appeared in the fossil record. Complex organisms evolved mineralized shells, exoskeletons, and other hard parts, dramatically improving their preservation as fossils. The period saw the emergence of the first arthropods, chordates, and a variety of other animal forms. Notable creatures included trilobites, Anomalocaris, and the first vertebrates.',
+    'Ordovician': 'The Ordovician period saw a remarkable diversification of marine life, including the first vertebrates (fish), and the rise of the first animals to colonize the land (possibly arthropods). This period featured the Earth\'s first major mass extinction event, the Ordovician-Silurian extinction, which eliminated about 85% of marine species. The period was characterized by high sea levels, warm climates, and the formation of many marine limestone deposits.',
+    'Silurian': 'The Silurian period marked the first appearance of vascular plants and the emergence of jawed fish. This was a time of major geological and biological innovations, including the development of the first land plants, which began transforming the terrestrial environment. The period saw the evolution of advanced marine predators like eurypterids ("sea scorpions") and the first fish with jaws. The climate was generally warm and stable, with high sea levels creating many shallow marine environments.',
+    'Devonian': 'Known as the "Age of Fishes," the Devonian period saw a major diversification of fish, including the rise of sharks and both ray-finned and lobe-finned fish. This period marked the evolution of the first four-legged vertebrates (tetrapods) and the development of the first forests and complex land plants. These forests created new habitats and began significantly altering Earth\'s atmosphere. The period ended with a major extinction event that particularly affected marine life.',
+    'Carboniferous': 'The Carboniferous period was characterized by vast swamps and forests that would later form coal deposits. The high oxygen levels (up to 35% compared to today\'s 21%) allowed arthropods to grow to enormous sizes, including giant millipedes, dragonflies, and cockroaches. This period saw the diversification of early amphibians and the emergence of the first fully terrestrial vertebrates (early reptiles). The lush vegetation and high oxygen levels made this period unique in Earth\'s history.',
+    'Permian': 'The Permian period saw the diversification of early reptiles and the appearance of the first mammal-like reptiles (synapsids). This period featured the formation of the supercontinent Pangaea and extensive desert conditions in the interior. The period ended with the largest mass extinction in Earth\'s history, the "Great Dying," which eliminated about 95% of marine species and 70% of terrestrial vertebrate species.',
+    'Triassic': 'The Triassic period marked the recovery from the Permian extinction and saw the emergence of the first dinosaurs and mammals. The period began with a world dominated by synapsids but ended with dinosaurs becoming the dominant land animals. This time also saw the evolution of the first flying vertebrates (pterosaurs) and many new groups of marine reptiles. The period ended with another major extinction event that helped establish dinosaur dominance.',
+    'Jurassic': 'The Jurassic period was the golden age of dinosaurs, featuring the largest land animals ever to exist, including giant sauropods like Diplodocus and Brachiosaurus. This period saw the first appearance of birds, evolving from small theropod dinosaurs. The world was generally warm and humid, with no polar ice caps, and featured extensive shallow seas teeming with marine reptiles like ichthyosaurs and plesiosaurs. Primitive mammals remained small and mostly nocturnal.',
+    'Cretaceous': 'The Cretaceous period was the last and longest period of the dinosaur era, ending with the famous mass extinction that killed all non-avian dinosaurs. This period saw the first flowering plants (angiosperms), which rapidly diversified and transformed terrestrial ecosystems. The period featured some of the most famous dinosaurs, including Tyrannosaurus Rex and Triceratops. The extinction at the end was caused by an asteroid impact and massive volcanic eruptions, leading to the rise of mammals in the following era.'
+  };
+  return descriptions[periodName] || period.description;
+};
+
 // Filter creatures for this period
 const periodCreatures = creatures.filter(creature => 
   creature.period && creature.period.toLowerCase().includes(period.name.toLowerCase())
 );
+
+const detailedDescription = getDetailedDescription(period.name);
 ---
 
 <Layout title={`${period.name} Period - Prehistoric World`}>
@@ -32,7 +53,11 @@ const periodCreatures = creatures.filter(creature =>
     <div class="period-content">
       <section class="period-info">
         <h2>About this Period</h2>
-        <p>{period.description}</p>
+        <p class="brief-description">{period.description}</p>
+        <div class="detailed-description">
+          <h3>Detailed Overview</h3>
+          <p>{detailedDescription}</p>
+        </div>
       </section>
 
       <section class="period-creatures">
@@ -97,6 +122,30 @@ const periodCreatures = creatures.filter(creature =>
     margin-bottom: 1.5rem;
   }
 
+  .brief-description {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: var(--secondary-color);
+  }
+
+  .detailed-description {
+    background: #f8f8f8;
+    padding: 2rem;
+    border-radius: 8px;
+    margin-top: 2rem;
+  }
+
+  .detailed-description h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+  }
+
+  .detailed-description p {
+    line-height: 1.6;
+    color: var(--text-color);
+  }
+
   .creatures-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -148,5 +197,19 @@ const periodCreatures = creatures.filter(creature =>
     background: #f8f8f8;
     border-radius: 8px;
     color: #666;
+  }
+
+  @media (max-width: 768px) {
+    .period-hero h1 {
+      font-size: 2rem;
+    }
+
+    .period-hero p {
+      font-size: 1rem;
+    }
+
+    .detailed-description {
+      padding: 1.5rem;
+    }
   }
 </style>
