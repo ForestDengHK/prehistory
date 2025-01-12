@@ -5,7 +5,7 @@ import { categories } from '../data/categories';
 const categoryEntries = Object.entries(categories).map(([name, subcategories]) => ({
   name,
   subcategories,
-  image: `/public/images/categories/${name.toLowerCase().replace(/\s+/g, '-')}.jpg`,
+  image: `/images/categories/${name.toLowerCase().replace(/\s+/g, '-')}.jpg`,
   description: `Explore ${name} from prehistoric times.`
 }));
 ---
