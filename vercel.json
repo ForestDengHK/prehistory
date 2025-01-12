@@ -1,0 +1,7 @@
+{
+  "buildCommand": "npm run build",
+  "devCommand": "npm run dev",
+  "framework": "astro",
+  "installCommand": "npm install",
+  "regions": ["iad1"]
+} 
