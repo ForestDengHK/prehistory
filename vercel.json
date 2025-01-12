@@ -6,7 +6,7 @@
   "outputDirectory": "dist",
   "functions": {
     "api/*.js": {
-      "runtime": "nodejs20.x"
+      "runtime": "@vercel/node@20"
     }
   }
 } 
