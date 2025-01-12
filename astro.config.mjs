@@ -9,7 +9,13 @@ export default defineConfig({
   build: {
     format: 'directory'
   },
-  adapter: vercel(),
+  adapter: vercel({
+    analytics: true,
+    maxDuration: 60,
+    webAnalytics: {
+      enabled: true
+    }
+  }),
   server: {
     port: 4321,
   },
