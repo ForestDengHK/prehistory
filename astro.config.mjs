@@ -3,9 +3,14 @@ import vercel from '@astrojs/vercel/serverless';
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://prehistory.vercel.app',
+  base: '/',
   output: 'server',
-  adapter: vercel({
-    webAnalytics: { enabled: true },
-    maxDuration: 60
-  })
+  build: {
+    format: 'directory'
+  },
+  adapter: vercel(),
+  server: {
+    port: 4321,
+  },
 });
