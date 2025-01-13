@@ -70,17 +70,17 @@ export const creatures: Creature[] = [
     category: 'Dinosaurs',
     subcategory: 'Theropods'
   },
-  {
+    {
     id: 'raptorex',
     name: 'Raptorex',
     scientificName: 'Raptorex kriegsteini',
-    period: 'Late Cretaceous',
+    period: 'Cretaceous',
     location: 'Asia',
     length: '3 meters',
     weight: '60 kg',
     diet: 'Carnivore',
-    image: '/images/raptorex.jpg',
-    description: 'A small tyrannosaur that shows many of the features of its larger relatives like T. Rex.',
+    image: '/images//raptorex.jpg',
+    description: 'The Raptorex was a small but significant tyrannosaurid dinosaur that lived approximately 125 million years ago during the Early Cretaceous period. Measuring about 9 feet in length and weighing roughly 80 pounds, it showcased many of the key features seen in its larger relative, Tyrannosaurus rex, including a large skull, strong hind legs for speed, and small, two-fingered arms. Raptorex’s discovery provided critical insights into the evolutionary development of tyrannosaurs, demonstrating that their characteristic adaptations—such as powerful jaws and reduced arms—evolved in smaller ancestors before scaling up in size. This dinosaur represents an important link in the lineage of one of history’s most famous predators.',
     category: 'Dinosaurs',
     subcategory: 'Theropods'
   },
