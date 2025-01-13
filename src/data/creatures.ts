@@ -84,7 +84,7 @@ export const creatures: Creature[] = [
     category: 'Dinosaurs',
     subcategory: 'Theropods'
   },
-    {
+      {
     id: 'stegosaurus',
     name: 'Stegosaurus',
     scientificName: 'Stegosaurus stenops',
@@ -93,26 +93,26 @@ export const creatures: Creature[] = [
     length: '9 meters',
     weight: '5,000-7,000 kg',
     diet: 'Herbivore',
-    image: '/images//stegosaurus.jpg',
-    description: 'Stegosaurus was a large herbivorous dinosaur known for its distinctive row of large bony plates along its back and spiked tail. These plates may have been used for display, temperature regulation, and defense. Despite its size, Stegosaurus had a relatively small brain.',
+    image: '/images///stegosaurus.jpg',
+    description: 'The Stegosaurus is one of the most recognizable dinosaurs, known for its distinctive row of large, bony plates along its back and spiked tail, called the thagomizer, used for defense. This herbivorous dinosaur lived during the Late Jurassic period, around 155–150 million years ago. Measuring up to 30 feet in length and weighing about 5 tons, the Stegosaurus had a relatively small head and brain for its size, suggesting it relied more on instinct than complex behaviors. Its plates may have been used for thermoregulation, display, or intimidation. A gentle giant of its time, the Stegosaurus is a symbol of prehistoric diversity and mystery.',
     category: 'Dinosaurs',
     subcategory: 'Stegosaurs'
   },
-  {
+    {
     id: 'velociraptor',
     name: 'Velociraptor',
     scientificName: 'Velociraptor mongoliensis',
-    period: 'Late Cretaceous',
+    period: 'Cretaceous',
     location: 'Asia (Mongolia)',
     length: '2 meters',
     weight: '15-20 kg',
     diet: 'Carnivore',
-    image: '/images/velociraptor.jpg',
-    description: 'Velociraptor was a small but fierce predator, known for its agility and intelligence. It had a distinctive sickle-shaped claw on each foot and was likely covered in feathers. Recent discoveries suggest it hunted in packs and was a skilled predator.',
+    image: '/images//velociraptor.jpg',
+    description: 'The Velociraptor, often shortened to “raptor,” was a small, feathered carnivorous dinosaur that lived during the Late Cretaceous period, approximately 75–71 million years ago. Standing about 2 feet tall and measuring up to 7 feet in length, this agile predator weighed around 30 pounds, similar to a modern turkey. Its defining features included a curved, sickle-shaped claw on each foot, used for gripping and slashing prey, and a sharp, intelligent gaze that hinted at its advanced hunting strategies. Likely hunting in packs, the Velociraptor may have been both a skilled predator and scavenger. Its discovery revolutionized our understanding of dinosaurs as active, dynamic creatures closely related to birds.',
     category: 'Dinosaurs',
     subcategory: 'Theropods'
   },
-    {
+      {
     id: 'triceratops',
     name: 'Triceratops',
     scientificName: 'Triceratops horridus',
@@ -121,8 +121,8 @@ export const creatures: Creature[] = [
     length: '8-9 meters',
     weight: '6,000-12,000 kg',
     diet: 'Herbivore',
-    image: '/images//triceratops.jpg',
-    description: 'Triceratops was one of the last non-avian dinosaurs to exist before the Cretaceous–Paleogene extinction. Known for its distinctive frill and three horns, it used these features for both defense and display.',
+    image: '/images///triceratops.jpg',
+    description: 'The Triceratops, one of the most iconic dinosaurs, was a massive herbivore that roamed North America during the Late Cretaceous period, around 68–66 million years ago. Known for its three facial horns and a large, bony frill extending from the back of its skull, Triceratops reached lengths of up to 30 feet and weighed around 6–12 tons. These features likely served for defense against predators like Tyrannosaurus rex and possibly for display or mating rituals. Despite its intimidating appearance, Triceratops primarily fed on low-lying plants. Its combination of power, adaptability, and distinctiveness makes it a favorite symbol of prehistoric life.',
     category: 'Dinosaurs',
     subcategory: 'Ceratopsians'
   },
@@ -155,7 +155,7 @@ export const creatures: Creature[] = [
     category: 'Flying Creatures',
     subcategory: 'Early Birds'
   },
-  {
+    {
     id: 'dreadnoughtus',
     name: 'Dreadnoughtus',
     scientificName: 'Dreadnoughtus schrani',
@@ -164,8 +164,8 @@ export const creatures: Creature[] = [
     length: '26 meters',
     weight: '65,000 kg',
     diet: 'Herbivore',
-    image: '/images/dreadnoughtus.jpg',
-    description: 'One of the largest dinosaurs ever discovered, Dreadnoughtus was a massive titanosaur. Its name means \'fears nothing\' due to its enormous size. Despite being incomplete, the discovered skeleton is one of the most complete giant sauropod specimens ever found.',
+    image: '/images//dreadnoughtus.jpg',
+    description: 'The Dreadnoughtus, named for its “fear nothing” stature, is one of the largest known dinosaurs and a member of the titanosaur family. Living approximately 77 million years ago during the Late Cretaceous period, this colossal herbivore measured up to 85 feet in length and weighed an estimated 65 tons—more massive than most other land animals ever to exist. Its long neck allowed it to reach high vegetation, while its massive tail provided balance and potential defense. Despite its size, Dreadnoughtus was likely a slow-moving, peaceful giant. Its remarkably complete fossil remains have provided scientists invaluable insights into the biology of giant sauropods.',
     category: 'Dinosaurs',
     subcategory: 'Sauropods'
   }];
