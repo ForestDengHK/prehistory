@@ -141,19 +141,19 @@ export const creatures: Creature[] = [
     subcategory: 'Pterosaurs'
   }
 ,
-  {
+      {
     id: 'archaeopteryx',
     name: 'Archaeopteryx',
     scientificName: 'Archaeopteryx lithographica',
-    period: 'Triassic',
-    location: 'Canada, China, Australia',
-    length: '1 meter',
-    weight: '20 kg',
+    period: 'Jurassic',
+    location: 'Germany',
+    length: '0.5 meters',
+    weight: '0.5 to 1 kg',
     diet: 'Carnivore',
-    image: '/images/anomalocaris.jpg',
-    description: 'TBD',
-    category: 'Marine Creatures',
-    subcategory: 'Invertebrates'
+    image: '/images/archaeopteryx.jpg',
+    description: 'Archaeopteryx is a pivotal species in the study of evolution, often considered a transitional fossil between non-avian dinosaurs and modern birds. This small, crow-sized creature lived approximately 150 million years ago during the Late Jurassic period. It possessed a fascinating combination of both avian and reptilian features, such as feathers, wings, and a wishbone similar to birds, alongside teeth, clawed fingers, and a long, bony tail like dinosaurs. These characteristics make Archaeopteryx a key piece of evidence for understanding the evolution of flight and the relationship between dinosaurs and birds',
+    category: 'Flying Creatures',
+    subcategory: 'Early Birds'
   },
   {
     id: 'dreadnoughtus',

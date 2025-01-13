@@ -1,0 +1,714 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { categories } from '../../data/categories';
+import { timelinePeriods } from '../../data/timeline';
+import { creatures } from '../../data/creatures';
+
+const title = 'Edit Creature';
+const diets = ['Carnivore', 'Herbivore', 'Omnivore'];
+---
+
+<Layout title={title}>
+  <div class="container">
+    <h1>{title}</h1>
+
+    <!-- Creature Selection -->
+    <div class="creature-select-section">
+      <label for="creature-search">Search or Select Creature <span class="required">*</span></label>
+      <div class="search-container">
+        <select id="creature-dropdown" class="creature-dropdown">
+          <option value="">Select a creature</option>
+          {creatures.map(creature => (
+            <option value={creature.id}>{creature.name} ({creature.scientificName})</option>
+          ))}
+        </select>
+        <div class="search-box">
+          <input 
+            type="text" 
+            id="creature-search" 
+            placeholder="Or type to search creatures..."
+            autocomplete="off"
+          >
+          <div id="search-results" class="search-results hidden">
+            <!-- Results will be populated by JavaScript -->
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <form id="edit-creature-form" class="hidden">
+      <input type="hidden" id="creature-id" name="id">
+      
+      <!-- Basic Information -->
+      <section class="form-section">
+        <h2>Basic Information</h2>
+        <div class="form-grid">
+          <div class="form-field">
+            <label for="name">Name <span class="required">*</span></label>
+            <input type="text" id="name" name="name" required
+              placeholder="e.g. Tyrannosaurus Rex">
+          </div>
+
+          <div class="form-field">
+            <label for="scientificName">Scientific Name <span class="required">*</span></label>
+            <input type="text" id="scientificName" name="scientificName" required
+              placeholder="e.g. Tyrannosaurus rex">
+          </div>
+        </div>
+      </section>
+
+      <!-- Classification -->
+      <section class="form-section">
+        <h2>Classification</h2>
+        <div class="form-grid">
+          <div class="form-field">
+            <label for="period">Period <span class="required">*</span></label>
+            <select id="period" name="period" required>
+              <option value="">Select a period</option>
+              {timelinePeriods.map(period => (
+                <option value={period.name}>{period.name} ({period.period})</option>
+              ))}
+            </select>
+          </div>
+
+          <div class="form-field">
+            <label for="location">Location <span class="required">*</span></label>
+            <input type="text" id="location" name="location" required
+              placeholder="e.g. North America">
+          </div>
+
+          <div class="form-field">
+            <label for="category">Category <span class="required">*</span></label>
+            <select id="category" name="category" required>
+              <option value="">Select a category</option>
+              {Object.keys(categories).map(category => (
+                <option value={category}>{category}</option>
+              ))}
+            </select>
+          </div>
+
+          <div class="form-field">
+            <label for="subcategory">Subcategory <span class="required">*</span></label>
+            <select id="subcategory" name="subcategory" required>
+              <option value="">Select a category first</option>
+            </select>
+          </div>
+        </div>
+      </section>
+
+      <!-- Physical Characteristics -->
+      <section class="form-section">
+        <h2>Physical Characteristics</h2>
+        <div class="form-grid">
+          <div class="form-field">
+            <label for="length">Length <span class="required">*</span></label>
+            <input type="text" id="length" name="length" required
+              placeholder="e.g. 12-15 meters">
+          </div>
+
+          <div class="form-field">
+            <label for="weight">Weight <span class="required">*</span></label>
+            <input type="text" id="weight" name="weight" required
+              placeholder="e.g. 5,000-7,000 kg">
+          </div>
+
+          <div class="form-field">
+            <label for="diet">Diet <span class="required">*</span></label>
+            <select id="diet" name="diet" required>
+              <option value="">Select a diet</option>
+              {diets.map(diet => (
+                <option value={diet}>{diet}</option>
+              ))}
+            </select>
+          </div>
+        </div>
+      </section>
+
+      <!-- Media -->
+      <section class="form-section">
+        <h2>Media</h2>
+        <div class="form-field">
+          <label>Image <span class="required">*</span></label>
+          
+          <div class="current-image">
+            <h3>Current Image</h3>
+            <img id="current-image-preview" src="" alt="Current creature image">
+          </div>
+
+          <div class="image-input-tabs">
+            <button type="button" class="tab-button active" data-tab="existing">Keep/Change Path</button>
+            <button type="button" class="tab-button" data-tab="upload">Upload New Image</button>
+          </div>
+
+          <div class="tab-content" id="existing-image">
+            <div class="input-group">
+              <span class="input-prefix">/images/</span>
+              <input type="text" id="image" name="image"
+                placeholder="creature-name.jpg">
+            </div>
+            <p class="help-text">Specify the name of an existing image in the public/images directory</p>
+          </div>
+
+          <div class="tab-content hidden" id="upload-image">
+            <input type="file" id="imageFile" name="imageFile" accept="image/*"
+              class="file-input">
+            <p class="help-text">Upload a new image (JPG, PNG). The file will be saved to the public/images directory</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Description -->
+      <section class="form-section">
+        <h2>Description</h2>
+        <div class="form-field">
+          <label for="description">Description <span class="required">*</span></label>
+          <textarea id="description" name="description" required rows="4"
+            placeholder="Provide a detailed description of the creature..."></textarea>
+        </div>
+      </section>
+
+      <div class="form-actions">
+        <button type="submit">Update Creature</button>
+      </div>
+
+      <div id="message" class="message hidden"></div>
+    </form>
+  </div>
+</Layout>
+
+<style>
+  /* Reuse styles from add-creature.astro */
+  .container {
+    max-width: 48rem;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--color-heading);
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .creature-select-section {
+    margin-bottom: 2rem;
+  }
+
+  .search-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .creature-dropdown {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    background-color: var(--color-input);
+    color: var(--color-text);
+    font-size: 0.875rem;
+    transition: all 0.2s ease-in-out;
+  }
+
+  .creature-dropdown:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 2px var(--color-primary-alpha);
+  }
+
+  .search-box {
+    position: relative;
+  }
+
+  .search-results {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: var(--color-background);
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    max-height: 16rem;
+    overflow-y: auto;
+    z-index: 50;
+  }
+
+  .search-result-item {
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
+
+  .search-result-item:hover {
+    background-color: var(--color-background-alt);
+  }
+
+  .search-result-item:not(:last-child) {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .current-image {
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    background-color: var(--color-background-alt);
+  }
+
+  .current-image h3 {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+
+  .current-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+  }
+
+  /* Inherit rest of the styles from add-creature.astro */
+  form {
+    background-color: var(--color-background);
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  }
+
+  .form-section {
+    margin-bottom: 2rem;
+  }
+
+  .form-section:last-child {
+    margin-bottom: 0;
+  }
+
+  h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-heading);
+    margin-bottom: 1rem;
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .form-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-text);
+  }
+
+  .required {
+    color: var(--color-error);
+  }
+
+  input, select, textarea {
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    background-color: var(--color-input);
+    color: var(--color-text);
+    font-size: 0.875rem;
+    transition: all 0.2s ease-in-out;
+  }
+
+  input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 2px var(--color-primary-alpha);
+  }
+
+  .input-group {
+    display: flex;
+    align-items: center;
+  }
+
+  .input-prefix {
+    padding: 0.75rem 1rem;
+    background-color: var(--color-background-alt);
+    border: 1px solid var(--color-border);
+    border-right: none;
+    border-radius: 0.5rem 0 0 0.5rem;
+    color: var(--color-text-muted);
+    font-size: 0.875rem;
+  }
+
+  .input-group input {
+    border-radius: 0 0.5rem 0.5rem 0;
+    flex: 1;
+  }
+
+  .help-text {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    margin-top: 0.25rem;
+  }
+
+  .form-actions {
+    margin-top: 2rem;
+  }
+
+  button {
+    width: 100%;
+    padding: 0.875rem 1.5rem;
+    background-color: var(--color-primary);
+    color: var(--color-primary-foreground);
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
+
+  button:hover {
+    background-color: var(--color-primary-dark);
+  }
+
+  .message {
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+  }
+
+  .message.success {
+    background-color: var(--color-success-background);
+    color: var(--color-success);
+    border: 1px solid var(--color-success-border);
+  }
+
+  .message.error {
+    background-color: var(--color-error-background);
+    color: var(--color-error);
+    border: 1px solid var(--color-error-border);
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .image-input-tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .tab-button {
+    flex: 1;
+    padding: 0.5rem;
+    background-color: var(--color-background-alt);
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    color: var(--color-text);
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+  }
+
+  .tab-button.active {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+    color: var(--color-primary-foreground);
+  }
+
+  .tab-content.hidden {
+    display: none;
+  }
+
+  .file-input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px dashed var(--color-border);
+    border-radius: 0.5rem;
+    background-color: var(--color-background-alt);
+    cursor: pointer;
+  }
+
+  .file-input:hover {
+    border-color: var(--color-primary);
+  }
+
+  /* Dark mode support */
+  @media (prefers-color-scheme: dark) {
+    form {
+      background-color: var(--color-background-dark);
+    }
+
+    input, select, textarea {
+      background-color: var(--color-input-dark);
+      border-color: var(--color-border-dark);
+    }
+
+    .input-prefix {
+      background-color: var(--color-background-alt-dark);
+      border-color: var(--color-border-dark);
+    }
+
+    .tab-button {
+      background-color: var(--color-background-alt-dark);
+      border-color: var(--color-border-dark);
+    }
+
+    .file-input {
+      background-color: var(--color-background-alt-dark);
+      border-color: var(--color-border-dark);
+    }
+
+    .search-results {
+      background-color: var(--color-background-dark);
+      border-color: var(--color-border-dark);
+    }
+
+    .search-result-item:hover {
+      background-color: var(--color-background-alt-dark);
+    }
+
+    .current-image {
+      background-color: var(--color-background-alt-dark);
+      border-color: var(--color-border-dark);
+    }
+
+    .creature-dropdown {
+      background-color: var(--color-input-dark);
+      border-color: var(--color-border-dark);
+    }
+  }
+</style>
+
+<script>
+  import { categories } from '../../data/categories';
+  import { creatures } from '../../data/creatures';
+
+  const form = document.getElementById('edit-creature-form') as HTMLFormElement;
+  const searchInput = document.getElementById('creature-search') as HTMLInputElement;
+  const searchResults = document.getElementById('search-results') as HTMLDivElement;
+  const creatureDropdown = document.getElementById('creature-dropdown') as HTMLSelectElement;
+  const categorySelect = document.getElementById('category') as HTMLSelectElement;
+  const subcategorySelect = document.getElementById('subcategory') as HTMLSelectElement;
+  const messageDiv = document.getElementById('message') as HTMLDivElement;
+  const imageInput = document.getElementById('image') as HTMLInputElement;
+  const imageFileInput = document.getElementById('imageFile') as HTMLInputElement;
+  const currentImagePreview = document.getElementById('current-image-preview') as HTMLImageElement;
+  const tabButtons = document.querySelectorAll('.tab-button');
+  const tabContents = document.querySelectorAll('.tab-content');
+
+  // Function to populate form with creature data
+  const populateForm = (creature: any) => {
+    form.classList.remove('hidden');
+    searchResults.classList.add('hidden');
+    
+    // Set form values
+    (document.getElementById('creature-id') as HTMLInputElement).value = creature.id;
+    (document.getElementById('name') as HTMLInputElement).value = creature.name;
+    (document.getElementById('scientificName') as HTMLInputElement).value = creature.scientificName;
+    (document.getElementById('period') as HTMLSelectElement).value = creature.period;
+    (document.getElementById('location') as HTMLInputElement).value = creature.location;
+    (document.getElementById('category') as HTMLSelectElement).value = creature.category;
+    (document.getElementById('length') as HTMLInputElement).value = creature.length;
+    (document.getElementById('weight') as HTMLInputElement).value = creature.weight;
+    (document.getElementById('diet') as HTMLSelectElement).value = creature.diet;
+    (document.getElementById('description') as HTMLTextAreaElement).value = creature.description;
+    
+    // Update subcategories and set value
+    const subcategories = categories[creature.category] || [];
+    subcategorySelect.innerHTML = subcategories
+      .map(sub => `<option value="${sub}">${sub}</option>`)
+      .join('');
+    subcategorySelect.value = creature.subcategory;
+
+    // Set image and preview
+    const imagePath = creature.image.startsWith('/images/') 
+      ? creature.image.slice(7) 
+      : creature.image;
+    imageInput.value = imagePath;
+    currentImagePreview.src = creature.image;
+  };
+
+  // Handle dropdown selection
+  creatureDropdown.addEventListener('change', () => {
+    const creatureId = creatureDropdown.value;
+    if (!creatureId) {
+      form.classList.add('hidden');
+      return;
+    }
+
+    const creature = creatures.find(c => c.id === creatureId);
+    if (creature) {
+      searchInput.value = ''; // Clear search input
+      populateForm(creature);
+    }
+  });
+
+  // Search functionality
+  searchInput.addEventListener('input', () => {
+    const query = searchInput.value.toLowerCase();
+    const results = creatures.filter(creature => 
+      creature.name.toLowerCase().includes(query) || 
+      creature.scientificName.toLowerCase().includes(query)
+    );
+
+    searchResults.innerHTML = results
+      .map(creature => `
+        <div class="search-result-item" data-id="${creature.id}">
+          <strong>${creature.name}</strong><br>
+          <small>${creature.scientificName}</small>
+        </div>
+      `)
+      .join('');
+
+    searchResults.classList.toggle('hidden', query === '');
+    
+    // Clear dropdown selection when searching
+    creatureDropdown.value = '';
+  });
+
+  // Handle search result selection
+  searchResults.addEventListener('click', (e) => {
+    const resultItem = (e.target as HTMLElement).closest('.search-result-item');
+    if (!resultItem) return;
+
+    const creatureId = resultItem.getAttribute('data-id');
+    const creature = creatures.find(c => c.id === creatureId);
+    if (!creature) return;
+
+    searchInput.value = creature.name;
+    creatureDropdown.value = creature.id; // Update dropdown selection
+    populateForm(creature);
+  });
+
+  // Handle image input tab switching
+  tabButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const tab = button.getAttribute('data-tab');
+      
+      // Update button states
+      tabButtons.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+      
+      // Update content visibility
+      tabContents.forEach(content => content.classList.add('hidden'));
+      document.getElementById(`${tab}-image`)?.classList.remove('hidden');
+      
+      // Update input requirements
+      if (tab === 'existing') {
+        imageInput.required = true;
+        imageFileInput.required = false;
+      } else {
+        imageInput.required = false;
+        imageFileInput.required = true;
+      }
+    });
+  });
+
+  // Update subcategories when category changes
+  categorySelect.addEventListener('change', () => {
+    const category = categorySelect.value;
+    const subcategories = categories[category] || [];
+    
+    subcategorySelect.innerHTML = subcategories.length 
+      ? subcategories.map(sub => `<option value="${sub}">${sub}</option>`).join('')
+      : '<option value="">Select a category first</option>';
+  });
+
+  // Handle form submission
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    // Disable the submit button to prevent double submission
+    const submitButton = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+    submitButton.disabled = true;
+    submitButton.textContent = 'Updating Creature...';
+    
+    try {
+      const formData = new FormData(form);
+      const creatureId = formData.get('id') as string;
+      const imageFile = imageFileInput.files?.[0];
+      
+      // Handle image upload if a file was selected
+      if (imageFile) {
+        const fileName = imageFile.name;
+        formData.set('image', fileName);
+        
+        // Upload the image first
+        const imageFormData = new FormData();
+        imageFormData.append('image', imageFile);
+        
+        const uploadResponse = await fetch('/api/upload-image', {
+          method: 'POST',
+          body: imageFormData
+        });
+        
+        if (!uploadResponse.ok) {
+          throw new Error('Failed to upload image');
+        }
+      }
+      
+      // Add /images/ prefix to image path if not present
+      let imagePath = formData.get('image') as string;
+      if (!imagePath.startsWith('/images/')) {
+        imagePath = `/images/${imagePath}`;
+        formData.set('image', imagePath);
+      }
+      
+      // Submit the creature data
+      const response = await fetch(`/api/creatures/${creatureId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(Object.fromEntries(formData)),
+      });
+      
+      const result = await response.json();
+      
+      if (response.ok) {
+        messageDiv.textContent = '✅ Creature updated successfully! Redirecting...';
+        messageDiv.className = 'message success';
+        
+        // Wait 2 seconds then redirect to the creature's page
+        setTimeout(() => {
+          window.location.href = `/creatures/${result.creature.id}`;
+        }, 2000);
+      } else {
+        throw new Error(result.error || 'Failed to update creature');
+      }
+    } catch (error) {
+      messageDiv.textContent = `❌ Error: ${error.message}`;
+      messageDiv.className = 'message error';
+      // Re-enable the submit button on error
+      submitButton.disabled = false;
+      submitButton.textContent = 'Update Creature';
+    }
+    
+    messageDiv.classList.remove('hidden');
+    messageDiv.scrollIntoView({ behavior: 'smooth' });
+  });
+
+  // Close search results when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!searchResults.contains(e.target as Node) && e.target !== searchInput) {
+      searchResults.classList.add('hidden');
+    }
+  });
+</script> 
