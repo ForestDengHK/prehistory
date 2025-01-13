@@ -140,7 +140,35 @@ export const creatures: Creature[] = [
     category: 'Flying Creatures',
     subcategory: 'Pterosaurs'
   }
-];
+,
+  {
+    id: 'archaeopteryx',
+    name: 'Archaeopteryx',
+    scientificName: 'Archaeopteryx lithographica',
+    period: 'Triassic',
+    location: 'Canada, China, Australia',
+    length: '1 meter',
+    weight: '20 kg',
+    diet: 'Carnivore',
+    image: '/images/anomalocaris.jpg',
+    description: 'TBD',
+    category: 'Marine Creatures',
+    subcategory: 'Invertebrates'
+  },
+  {
+    id: 'dreadnoughtus',
+    name: 'Dreadnoughtus',
+    scientificName: 'Dreadnoughtus schrani',
+    period: 'Cretaceous',
+    location: 'South America (Argentina)',
+    length: '26 meters',
+    weight: '65,000 kg',
+    diet: 'Herbivore',
+    image: '/images/dreadnoughtus.jpg',
+    description: 'One of the largest dinosaurs ever discovered, Dreadnoughtus was a massive titanosaur. Its name means \'fears nothing\' due to its enormous size. Despite being incomplete, the discovered skeleton is one of the most complete giant sauropod specimens ever found.',
+    category: 'Dinosaurs',
+    subcategory: 'Sauropods'
+  }];
 
 export const searchCreatures = (searchQuery: string): SearchResult[] => {
   if (!searchQuery?.trim()) {

@@ -101,13 +101,27 @@ const diets = ['Carnivore', 'Herbivore', 'Omnivore'];
       <section class="form-section">
         <h2>Media</h2>
         <div class="form-field">
-          <label for="image">Image Path <span class="required">*</span></label>
-          <div class="input-group">
-            <span class="input-prefix">/images/</span>
-            <input type="text" id="image" name="image" required
-              placeholder="creature-name.jpg">
+          <label>Image <span class="required">*</span></label>
+          
+          <div class="image-input-tabs">
+            <button type="button" class="tab-button active" data-tab="existing">Use Existing Image</button>
+            <button type="button" class="tab-button" data-tab="upload">Upload New Image</button>
           </div>
-          <p class="help-text">Image should be placed in the public/images directory</p>
+
+          <div class="tab-content" id="existing-image">
+            <div class="input-group">
+              <span class="input-prefix">/images/</span>
+              <input type="text" id="image" name="image"
+                placeholder="creature-name.jpg">
+            </div>
+            <p class="help-text">Specify the name of an existing image in the public/images directory</p>
+          </div>
+
+          <div class="tab-content hidden" id="upload-image">
+            <input type="file" id="imageFile" name="imageFile" accept="image/*"
+              class="file-input">
+            <p class="help-text">Upload a new image (JPG, PNG). The file will be saved to the public/images directory</p>
+          </div>
         </div>
       </section>
 
@@ -281,6 +295,47 @@ const diets = ['Carnivore', 'Herbivore', 'Omnivore'];
     display: none;
   }
 
+  .image-input-tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .tab-button {
+    flex: 1;
+    padding: 0.5rem;
+    background-color: var(--color-background-alt);
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    color: var(--color-text);
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+  }
+
+  .tab-button.active {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+    color: var(--color-primary-foreground);
+  }
+
+  .tab-content.hidden {
+    display: none;
+  }
+
+  .file-input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px dashed var(--color-border);
+    border-radius: 0.5rem;
+    background-color: var(--color-background-alt);
+    cursor: pointer;
+  }
+
+  .file-input:hover {
+    border-color: var(--color-primary);
+  }
+
   /* Dark mode support */
   @media (prefers-color-scheme: dark) {
     form {
@@ -296,6 +351,16 @@ const diets = ['Carnivore', 'Herbivore', 'Omnivore'];
       background-color: var(--color-background-alt-dark);
       border-color: var(--color-border-dark);
     }
+
+    .tab-button {
+      background-color: var(--color-background-alt-dark);
+      border-color: var(--color-border-dark);
+    }
+
+    .file-input {
+      background-color: var(--color-background-alt-dark);
+      border-color: var(--color-border-dark);
+    }
   }
 </style>
 
@@ -307,6 +372,33 @@ const diets = ['Carnivore', 'Herbivore', 'Omnivore'];
   const subcategorySelect = document.getElementById('subcategory') as HTMLSelectElement;
   const messageDiv = document.getElementById('message') as HTMLDivElement;
   const imageInput = document.getElementById('image') as HTMLInputElement;
+  const imageFileInput = document.getElementById('imageFile') as HTMLInputElement;
+  const tabButtons = document.querySelectorAll('.tab-button');
+  const tabContents = document.querySelectorAll('.tab-content');
+
+  // Handle image input tab switching
+  tabButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const tab = button.getAttribute('data-tab');
+      
+      // Update button states
+      tabButtons.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+      
+      // Update content visibility
+      tabContents.forEach(content => content.classList.add('hidden'));
+      document.getElementById(`${tab}-image`)?.classList.remove('hidden');
+      
+      // Update input requirements
+      if (tab === 'existing') {
+        imageInput.required = true;
+        imageFileInput.required = false;
+      } else {
+        imageInput.required = false;
+        imageFileInput.required = true;
+      }
+    });
+  });
 
   // Update subcategories when category changes
   categorySelect.addEventListener('change', () => {
@@ -321,37 +413,70 @@ const diets = ['Carnivore', 'Herbivore', 'Omnivore'];
   // Handle form submission
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    messageDiv.classList.add('hidden');
+    
+    // Disable the submit button to prevent double submission
+    const submitButton = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+    submitButton.disabled = true;
+    submitButton.textContent = 'Adding Creature...';
     
     try {
       const formData = new FormData(form);
-      const data = Object.fromEntries(formData.entries());
+      const imageFile = imageFileInput.files?.[0];
       
-      // Add /images/ prefix to image path if not present
-      if (!data.image.toString().startsWith('/images/')) {
-        data.image = `/images/${data.image}`;
+      // Handle image upload if a file was selected
+      if (imageFile) {
+        const fileName = imageFile.name;
+        formData.set('image', fileName);
+        
+        // Upload the image first
+        const imageFormData = new FormData();
+        imageFormData.append('image', imageFile);
+        
+        const uploadResponse = await fetch('/api/upload-image', {
+          method: 'POST',
+          body: imageFormData
+        });
+        
+        if (!uploadResponse.ok) {
+          throw new Error('Failed to upload image');
+        }
       }
       
+      // Add /images/ prefix to image path if not present
+      let imagePath = formData.get('image') as string;
+      if (!imagePath.startsWith('/images/')) {
+        imagePath = `/images/${imagePath}`;
+        formData.set('image', imagePath);
+      }
+      
+      // Submit the creature data
       const response = await fetch('/api/creatures', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify(Object.fromEntries(formData)),
       });
       
       const result = await response.json();
       
       if (response.ok) {
-        messageDiv.textContent = '✅ Creature added successfully!';
+        messageDiv.textContent = '✅ Creature added successfully! Redirecting...';
         messageDiv.className = 'message success';
-        form.reset();
+        
+        // Wait 2 seconds then redirect to the creature's page
+        setTimeout(() => {
+          window.location.href = `/creatures/${result.creature.id}`;
+        }, 2000);
       } else {
         throw new Error(result.error || 'Failed to add creature');
       }
     } catch (error) {
       messageDiv.textContent = `❌ Error: ${error.message}`;
       messageDiv.className = 'message error';
+      // Re-enable the submit button on error
+      submitButton.disabled = false;
+      submitButton.textContent = 'Add Creature';
     }
     
     messageDiv.classList.remove('hidden');

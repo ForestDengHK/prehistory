@@ -40,14 +40,13 @@ export const POST: APIRoute = async ({ request }) => {
 
     // Read the current creatures file
     const creaturesFilePath = path.join(process.cwd(), 'src', 'data', 'creatures.ts');
-    const fileContent = await fs.readFile(creaturesFilePath, 'utf-8');
+    let fileContent = await fs.readFile(creaturesFilePath, 'utf-8');
 
-    // Extract the creatures array content
-    const startMarker = 'export const creatures: Creature[] = [';
-    const endMarker = '];';
-    const startIndex = fileContent.indexOf(startMarker) + startMarker.length;
-    const endIndex = fileContent.lastIndexOf(endMarker);
-    const creaturesContent = fileContent.substring(startIndex, endIndex);
+    // Find the end of the creatures array
+    const arrayStartMarker = 'export const creatures: Creature[] = [';
+    const arrayEndMarker = '];';
+    const arrayStartIndex = fileContent.indexOf(arrayStartMarker) + arrayStartMarker.length;
+    const arrayEndIndex = fileContent.indexOf(arrayEndMarker, arrayStartIndex);
 
     // Create the new creature entry
     const newCreatureEntry = `  {
@@ -60,18 +59,19 @@ export const POST: APIRoute = async ({ request }) => {
     weight: '${newCreature.weight}',
     diet: '${newCreature.diet}',
     image: '${newCreature.image}',
-    description: '${newCreature.description}',
+    description: '${newCreature.description.replace(/'/g, "\\'")}',
     category: '${newCreature.category}',
     subcategory: '${newCreature.subcategory}'
   }`;
 
-    // Combine the content
-    const updatedContent = creaturesContent 
-      ? `${creaturesContent},\n${newCreatureEntry}`
-      : newCreatureEntry;
-
-    // Create the new file content
-    const newFileContent = `${fileContent.substring(0, startIndex)}${updatedContent}${fileContent.substring(endIndex)}`;
+    // Insert the new creature at the end of the array
+    const hasExistingCreatures = fileContent.slice(arrayStartIndex, arrayEndIndex).trim().length > 0;
+    const insertContent = hasExistingCreatures ? `,\n${newCreatureEntry}` : newCreatureEntry;
+    
+    const newFileContent = 
+      fileContent.slice(0, arrayEndIndex) + 
+      (hasExistingCreatures ? insertContent : insertContent + '\n') + 
+      fileContent.slice(arrayEndIndex);
 
     // Write the updated content back to the file
     await fs.writeFile(creaturesFilePath, newFileContent, 'utf-8');
