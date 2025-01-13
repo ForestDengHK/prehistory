@@ -112,16 +112,16 @@ export const creatures: Creature[] = [
     category: 'Dinosaurs',
     subcategory: 'Theropods'
   },
-  {
+    {
     id: 'triceratops',
     name: 'Triceratops',
     scientificName: 'Triceratops horridus',
-    period: 'Late Cretaceous',
+    period: 'Cretaceous',
     location: 'North America',
     length: '8-9 meters',
     weight: '6,000-12,000 kg',
     diet: 'Herbivore',
-    image: '/images/triceratops.jpg',
+    image: '/images//triceratops.jpg',
     description: 'Triceratops was one of the last non-avian dinosaurs to exist before the Cretaceous–Paleogene extinction. Known for its distinctive frill and three horns, it used these features for both defense and display.',
     category: 'Dinosaurs',
     subcategory: 'Ceratopsians'
