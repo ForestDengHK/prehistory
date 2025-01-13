@@ -28,45 +28,45 @@ export interface SearchResult extends Creature {
 }
 
 export const creatures: Creature[] = [
-  {
+    {
     id: 'tyrannosaurus-rex',
     name: 'Tyrannosaurus Rex',
     scientificName: 'Tyrannosaurus rex',
-    period: 'Late Cretaceous',
+    period: 'Cretaceous',
     location: 'North America',
     length: '12-15 meters',
     weight: '7,000-8,000 kg',
     diet: 'Carnivore',
-    image: '/images/t-rex.jpg',
-    description: 'One of the largest land carnivores of all time, known for its powerful jaws and tiny arms.',
+    image: '/images//t-rex.jpg',
+    description: 'The Tyrannosaurus rex, or T. rex, is one of the most iconic dinosaurs in history. Standing up to 20 feet tall and spanning 40 feet in length, this apex predator dominated the late Cretaceous period about 68–66 million years ago. Known for its massive skull, serrated teeth, and powerful jaw capable of crushing bones, the T. rex was a highly efficient hunter and scavenger. Despite its tiny, seemingly disproportionate arms, each limb was incredibly strong and likely aided in gripping prey. Its keen sense of smell and vision further established it as one of nature’s most formidable carnivores.',
     category: 'Dinosaurs',
     subcategory: 'Theropods'
   },
-  {
+    {
     id: 'megalodon',
     name: 'Megalodon',
     scientificName: 'Otodus megalodon',
-    period: 'Miocene-Pliocene',
+    period: 'Cretaceous',
     location: 'Global Oceans',
     length: '15-18 meters',
     weight: '70,000 kg',
     diet: 'Carnivore',
-    image: '/images/megalodon.jpg',
-    description: 'The largest shark that ever lived, preying on whales and other marine mammals.',
+    image: '/images//megalodon.jpg',
+    description: 'The Megalodon (Otodus megalodon) was the largest shark to ever roam Earth’s oceans, dominating marine ecosystems approximately 23 to 3.6 million years ago. Measuring up to 60 feet in length, this prehistoric predator had massive, serrated teeth up to 7 inches long—ideal for tearing through large prey like whales. Its immense jaw could exert a bite force of over 40,000 pounds, making it one of the most powerful biters in history. Likely a top apex predator, the Megalodon relied on its speed and strength to hunt, patrolling warm waters worldwide. Though extinct, its legacy endures as a symbol of oceanic might and mystery.',
     category: 'Marine Creatures',
     subcategory: 'Prehistoric Fish'
   },
-  {
+    {
     id: 'nanotyrannus',
     name: 'Nanotyrannus',
     scientificName: 'Nanotyrannus lancensis',
-    period: 'Late Cretaceous',
+    period: 'Cretaceous',
     location: 'North America',
     length: '5-6 meters',
     weight: '1,000 kg',
     diet: 'Carnivore',
-    image: '/images/nanotyrannus.jpg',
-    description: 'A smaller relative of T. Rex, though some scientists debate whether it was a separate species or a juvenile T. Rex.',
+    image: '/images//nanotyrannus.jpg',
+    description: 'The Nanotyrannus is a controversial genus of small tyrannosaurid, with debates ongoing about whether it is a distinct species or a juvenile Tyrannosaurus rex. Estimated to reach lengths of around 17–20 feet, this predator lived during the late Cretaceous period. With a more slender build and proportionally longer arms compared to T. rex, it may have been an agile and fast hunter, preying on smaller dinosaurs and scavenging. Its lighter skull structure suggests adaptations for speed and precision rather than brute force. While its true identity remains debated, Nanotyrannus represents a fascinating chapter in the study of dinosaur evolution and diversity.',
     category: 'Dinosaurs',
     subcategory: 'Theropods'
   },
@@ -84,16 +84,16 @@ export const creatures: Creature[] = [
     category: 'Dinosaurs',
     subcategory: 'Theropods'
   },
-  {
+    {
     id: 'stegosaurus',
     name: 'Stegosaurus',
     scientificName: 'Stegosaurus stenops',
-    period: 'Late Jurassic',
+    period: 'Jurassic',
     location: 'North America',
     length: '9 meters',
     weight: '5,000-7,000 kg',
     diet: 'Herbivore',
-    image: '/images/stegosaurus.jpg',
+    image: '/images//stegosaurus.jpg',
     description: 'Stegosaurus was a large herbivorous dinosaur known for its distinctive row of large bony plates along its back and spiked tail. These plates may have been used for display, temperature regulation, and defense. Despite its size, Stegosaurus had a relatively small brain.',
     category: 'Dinosaurs',
     subcategory: 'Stegosaurs'
