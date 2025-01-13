@@ -5,6 +5,15 @@ import { searchCreatures } from '../data/creatures';
 export const prerender = false;
 const query = Astro.url.searchParams.get('q')?.trim() || '';
 const results = query ? searchCreatures(query) : [];
+
+function truncateDescription(description: string) {
+  // Split by sentence endings (., !, ?)
+  const sentences = description.match(/[^.!?]+[.!?]+/g) || [description];
+  // Take first 2 sentences, or whole description if it's shorter
+  const truncated = sentences.slice(0, 2).join(' ');
+  // Add ellipsis if we truncated
+  return truncated.length < description.length ? truncated + ' ...' : truncated;
+}
 ---
 
 <Layout title="Search Prehistoric Creatures">
@@ -37,7 +46,7 @@ const results = query ? searchCreatures(query) : [];
           <div class="creature-info">
             <h2>{creature.name}</h2>
             <p class="scientific-name">{creature.scientificName}</p>
-            <p class="description">{creature.description}</p>
+            <p class="description">{truncateDescription(creature.description)}</p>
             <div class="metadata">
               <span class="tag">{creature.category}</span>
               <span class="tag">{creature.subcategory}</span>
