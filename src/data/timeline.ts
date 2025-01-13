@@ -24,7 +24,7 @@ export const timelinePeriods = [
     name: 'Cambrian',
     period: '541-485 million years ago',
     description: 'Explosion of complex life forms',
-    image: 'https://images.unsplash.com/photo-1582559934353-2e47140e7501?w=800',
+    image: 'https://images.unsplash.com/photo-1629654297299-c8506221ca97?w=800',
     creatures: ['Trilobites', 'Anomalocaris']
   },
   {
@@ -52,7 +52,7 @@ export const timelinePeriods = [
     name: 'Carboniferous',
     period: '359-299 million years ago',
     description: 'Giant insects and early reptiles',
-    image: 'https://images.unsplash.com/photo-1477951233099-d2c5fbd878ee?w=800',
+    image: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800',
     creatures: ['Meganeura', 'Early reptiles']
   },
   {
@@ -73,14 +73,14 @@ export const timelinePeriods = [
     name: 'Jurassic',
     period: '201-145 million years ago',
     description: 'Age of giant dinosaurs',
-    image: 'https://images.unsplash.com/photo-1534423861386-85a16f5d13fd?w=800',
+    image: 'https://images.unsplash.com/photo-1519074069444-1ba4fff66d16?w=800',
     creatures: ['Diplodocus', 'Allosaurus']
   },
   {
     name: 'Cretaceous',
     period: '145-66 million years ago',
     description: 'Last period of non-avian dinosaurs',
-    image: 'https://images.unsplash.com/photo-1601315488950-3b5047998b38?w=800',
+    image: 'https://images.unsplash.com/photo-1612686635542-2244ed9f8ddc?w=800',
     creatures: ['Tyrannosaurus Rex', 'Triceratops']
   }
 ];
