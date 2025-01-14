@@ -12,12 +12,14 @@
   },
   "dependencies": {
     "@astrojs/vercel": "^8.0.1",
-    "astro": "^5.1.5"
+    "astro": "^5.1.5",
+    "marked": "^15.0.6"
   },
   "engines": {
     "node": ">=20.0.0"
   },
   "devDependencies": {
+    "@types/marked": "^5.0.2",
     "@types/node": "^22.10.5"
   }
 }

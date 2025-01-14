@@ -51,7 +51,7 @@ if (!creature) {
 
         <div class="description">
           <h2>About {creature.name}</h2>
-          <p>{creature.description}</p>
+          <div class="description-content" set:html={creature.description} />
         </div>
       </div>
     </div>
@@ -131,9 +131,13 @@ if (!creature) {
     font-size: 1.8rem;
   }
 
-  .description p {
+  .description-content {
     color: var(--secondary-color);
     line-height: 1.6;
+  }
+
+  .description-content p {
+    margin-bottom: 1rem;
   }
 
   @media (max-width: 768px) {
