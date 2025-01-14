@@ -196,6 +196,20 @@ export const creatures: Creature[] = [
     description: '**Stromatolite bacteria** represent some of Earth\'s earliest life forms, dating back over 3.5 billion years. These ancient microorganisms, primarily cyanobacteria, played a critical role in shaping Earth\'s biosphere. By forming layered, rock-like structures called stromatolites, they created microbial mats that trapped sediment and secreted calcium carbonate, gradually building these formations over time.\n <br> <br> Stromatolite bacteria were also pivotal in the evolution of the planet\'s atmosphere through photosynthesis, producing oxygen that eventually led to the Great Oxidation Event. Though much less common today, modern stromatolites still exist in specific environments, such as Shark Bay in Australia, offering a glimpse into Earth\'s primordial past and the origins of life.',
     category: 'Microorganisms',
     subcategory: 'Bacteria'
+  },
+  {
+    id: 'morganucodon',
+    name: 'Morganucodon',
+    scientificName: 'Morganucodon watsoni',
+    period: 'Jurassic',
+    location: 'Europe and China',
+    length: '10-12 cm (including tail)',
+    weight: '20-30 grams',
+    diet: 'Omnivore',
+    image: '/images/Morganucodon.jpg',
+    description: 'The Morganucodon is an early mammal-like creature that lived during the Late Triassic to Early Jurassic period, approximately 205–195 million years ago. About the size of a modern shrew, it measured around 4 inches long and weighed only a few ounces. Morganucodon is notable for its transitional features between reptiles and mammals, including differentiated teeth (incisors, canines, and molars) and a jaw structure that incorporated both reptilian and mammalian elements. <br><br>\n\nIt likely fed on insects and small invertebrates, using its sharp teeth and nocturnal habits to avoid predators. Morganucodon represents a pivotal step in mammalian evolution, showcasing traits that would later define true mammals, such as improved hearing and a more advanced jaw joint. Its fossils provide key insights into how early mammals emerged and adapted in a dinosaur-dominated world.',
+    category: 'Early Mammals',
+    subcategory: 'Prehistoric Mammals'
   }];
 
 export const searchCreatures = (searchQuery: string): SearchResult[] => {
