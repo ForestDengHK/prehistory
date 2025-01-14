@@ -59,7 +59,7 @@ export const POST: APIRoute = async ({ request }) => {
     weight: '${newCreature.weight}',
     diet: '${newCreature.diet}',
     image: '${newCreature.image}',
-    description: '${newCreature.description.replace(/'/g, "\\'")}',
+    description: '${newCreature.description.replace(/'/g, "\\'").replace(/"/g, '\\"').replace(/\n/g, '\\n').replace(/\r/g, '\\r').replace(/\t/g, '\\t')}',
     category: '${newCreature.category}',
     subcategory: '${newCreature.subcategory}'
   }`;

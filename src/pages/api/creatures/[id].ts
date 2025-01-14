@@ -92,7 +92,7 @@ export const PUT: APIRoute = async ({ params, request }) => {
     weight: '${updatedCreature.weight}',
     diet: '${updatedCreature.diet}',
     image: '${updatedCreature.image}',
-    description: '${updatedCreature.description.replace(/'/g, "\\'")}',
+    description: '${updatedCreature.description.replace(/'/g, "\\'").replace(/"/g, '\\"').replace(/\n/g, '\\n').replace(/\r/g, '\\r').replace(/\t/g, '\\t')}',
     category: '${updatedCreature.category}',
     subcategory: '${updatedCreature.subcategory}'
   }`;
