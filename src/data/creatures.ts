@@ -182,6 +182,20 @@ export const creatures: Creature[] = [
     description: 'Spinosaurus, a massive Cretaceous theropod measuring up to 59 feet long and weighing as much as 20 tons, is renowned for its long, crocodile-like snout, conical teeth suited for fish-catching, and distinctive sail-like structure on its back formed by elongated neural spines, which is thought to have played a role in thermoregulation, display, or stability while swimming, as evidence suggests this semi-aquatic dinosaur, with its robust forelimbs, small hindlimbs, and powerful tail, likely spent significant time in water hunting fish, making it one of the most unusual and debated dinosaurs in paleontology.',
     category: 'Dinosaurs',
     subcategory: 'Theropods'
+  },
+      {
+    id: 'stromatolite-bacteria',
+    name: 'Stromatolite Bacteria',
+    scientificName: 'Cyanobacteria (Stromatolite-forming species)',
+    period: 'Archean',
+    location: 'Shallow marine environments',
+    length: 'Microscopic (1-2 µm)',
+    weight: 'Not applicable',
+    diet: 'Omnivore',
+    image: '/images///Stromatolite.jpg',
+    description: 'Stromatolite bacteria represent some of Earth\'s earliest life forms, dating back over 3.5 billion years. These ancient microorganisms, primarily cyanobacteria, played a critical role in shaping Earth\'s biosphere. By forming layered, rock-like structures called stromatolites, they created microbial mats that trapped sediment and secreted calcium carbonate, gradually building these formations over time.\n\n\n Stromatolite bacteria were also pivotal in the evolution of the planet\'s atmosphere through photosynthesis, producing oxygen that eventually led to the Great Oxidation Event. Though much less common today, modern stromatolites still exist in specific environments, such as Shark Bay in Australia, offering a glimpse into Earth\'s primordial past and the origins of life.',
+    category: 'Microorganisms',
+    subcategory: 'Bacteria'
   }];
 
 export const searchCreatures = (searchQuery: string): SearchResult[] => {
