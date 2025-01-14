@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { creatures } from '../../data/creatures';
+import { marked } from 'marked';
 
 const { id } = Astro.params;
 const creature = creatures.find(c => c.id === id);
@@ -8,6 +9,9 @@ const creature = creatures.find(c => c.id === id);
 if (!creature) {
   return Astro.redirect('/404');
 }
+
+// Process both Markdown and HTML in the description
+const formattedDescription = marked(creature.description);
 ---
 
 <Layout title={`${creature.name} - Prehistoric World`}>
@@ -51,7 +55,7 @@ if (!creature) {
 
         <div class="description">
           <h2>About {creature.name}</h2>
-          <div class="description-content" set:html={creature.description} />
+          <div class="markdown-content" set:html={formattedDescription} />
         </div>
       </div>
     </div>
@@ -131,13 +135,73 @@ if (!creature) {
     font-size: 1.8rem;
   }
 
-  .description-content {
+  .markdown-content {
     color: var(--secondary-color);
     line-height: 1.6;
   }
 
-  .description-content p {
+  .markdown-content p {
     margin-bottom: 1rem;
+  }
+
+  .markdown-content p:last-child {
+    margin-bottom: 0;
+  }
+
+  .markdown-content strong {
+    color: var(--primary-color);
+    font-weight: 600;
+  }
+
+  .markdown-content em {
+    font-style: italic;
+  }
+
+  .markdown-content ul,
+  .markdown-content ol {
+    margin: 1rem 0;
+    padding-left: 2rem;
+  }
+
+  .markdown-content li {
+    margin-bottom: 0.5rem;
+  }
+
+  .markdown-content a {
+    color: var(--accent-color);
+    text-decoration: none;
+  }
+
+  .markdown-content a:hover {
+    text-decoration: underline;
+  }
+
+  .markdown-content blockquote {
+    border-left: 4px solid var(--accent-color);
+    margin: 1rem 0;
+    padding-left: 1rem;
+    color: var(--secondary-color);
+    font-style: italic;
+  }
+
+  .markdown-content code {
+    background: var(--background-color);
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    font-size: 0.9em;
+  }
+
+  .markdown-content pre {
+    background: var(--background-color);
+    padding: 1rem;
+    border-radius: 4px;
+    overflow-x: auto;
+    margin: 1rem 0;
+  }
+
+  .markdown-content pre code {
+    background: none;
+    padding: 0;
   }
 
   @media (max-width: 768px) {
