@@ -4,17 +4,75 @@ interface Props {
 }
 
 const { title } = Astro.props;
+const baseUrl = 'https://www.xinhao.eu';
+const defaultDescription = 'Explore the fascinating world of prehistoric life with Xinhao\'s Prehistoric World. Discover dinosaurs, ancient creatures, and the evolution of life on Earth through detailed timelines and interactive features.';
+const defaultImage = `${baseUrl}/images/hero-bg.jpg`;
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content="Explore the fascinating world of prehistoric creatures" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
+		
+		<!-- Primary Meta Tags -->
 		<title>{title}</title>
+		<meta name="title" content={title} />
+		<meta name="description" content={defaultDescription} />
+		<meta name="author" content="Xinhao" />
+		<meta name="keywords" content="prehistoric life, dinosaurs, fossils, paleontology, ancient creatures, evolution, Earth history, Jurassic, Cretaceous, prehistoric timeline, prehistoric animals, prehistoric world" />
+		
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={baseUrl} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={defaultDescription} />
+		<meta property="og:image" content={defaultImage} />
+		
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:url" content={baseUrl} />
+		<meta property="twitter:title" content={title} />
+		<meta property="twitter:description" content={defaultDescription} />
+		<meta property="twitter:image" content={defaultImage} />
+		
+		<!-- Additional SEO Tags -->
+		<meta name="robots" content="index, follow" />
+		<meta name="language" content="English" />
+		<link rel="canonical" href={baseUrl} />
+		
+		<!-- Structured Data -->
+		<script type="application/ld+json">
+			{
+				"@context": "https://schema.org",
+				"@type": "EducationalWebsite",
+				"name": "Xinhao's Prehistoric World",
+				"description": ${JSON.stringify(defaultDescription)},
+				"url": ${JSON.stringify(baseUrl)},
+				"author": {
+					"@type": "Person",
+					"name": "Xinhao",
+					"description": "11-year-old paleontology enthusiast"
+				},
+				"about": {
+					"@type": "Thing",
+					"name": "Prehistoric Life",
+					"description": "Comprehensive information about prehistoric creatures and geological time periods"
+				},
+				"audience": {
+					"@type": "Audience",
+					"audienceType": "Students, educators, and prehistoric life enthusiasts"
+				},
+				"teaches": [
+					"Prehistoric creatures",
+					"Geological time periods",
+					"Evolution of life on Earth",
+					"Paleontology"
+				]
+			}
+		</script>
 	</head>
 	<body>
 		<header class="main-header">
