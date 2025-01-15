@@ -24,7 +24,7 @@ export const timelinePeriods = [
     name: 'Cambrian',
     period: '541-485 million years ago',
     description: 'Explosion of complex life forms',
-    image: 'https://images.unsplash.com/photo-1629654297299-c8506221ca97?w=800',
+    image: 'https://images.unsplash.com/photo-1501949997128-2fdb9f6428f1?w=800',
     creatures: ['Trilobites', 'Anomalocaris']
   },
   {
