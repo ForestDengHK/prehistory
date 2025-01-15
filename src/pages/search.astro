@@ -2,16 +2,12 @@
 import Layout from '../layouts/Layout.astro';
 import { searchCreatures } from '../data/creatures';
 
-export const prerender = false;
 const query = Astro.url.searchParams.get('q')?.trim() || '';
 const results = query ? searchCreatures(query) : [];
 
 function truncateDescription(description: string) {
-  // Split by sentence endings (., !, ?)
   const sentences = description.match(/[^.!?]+[.!?]+/g) || [description];
-  // Take first 2 sentences, or whole description if it's shorter
   const truncated = sentences.slice(0, 2).join(' ');
-  // Add ellipsis if we truncated
   return truncated.length < description.length ? truncated + ' ...' : truncated;
 }
 ---
@@ -67,9 +63,13 @@ function truncateDescription(description: string) {
   </div>
 </Layout>
 
+<style is:global>
+  /* Add any global styles here */
+</style>
+
 <style>
   .search-container {
-    max-width: 1200px;
+    width: 100%;
     margin: 0 auto;
     padding: 2rem;
   }
@@ -124,6 +124,8 @@ function truncateDescription(description: string) {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 2rem;
+    width: 100%;
+    margin-top: 2rem;
   }
 
   .creature-card {
@@ -211,5 +213,19 @@ function truncateDescription(description: string) {
   .learn-more:hover {
     background: #333;
     color: white;
+  }
+
+  @media (max-width: 768px) {
+    .search-container {
+        padding: 1rem;
+    }
+
+    .search-input-wrapper {
+        flex-direction: column;
+    }
+
+    button {
+        width: 100%;
+    }
   }
 </style>
