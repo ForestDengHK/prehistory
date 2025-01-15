@@ -1,24 +1,26 @@
 ---
-const featuredCreatures = [
-	{
-		name: 'Tyrannosaurus Rex',
-		period: 'Cretaceous',
-		image: '/images/t-rex.jpg',
-		description: 'One of the largest land carnivores of all time'
-	},
-	{
-		name: 'Stegosaurus',
-		period: 'Jurassic',
-		image: '/images/stegosaurus.jpg',
-		description: 'Known for its distinctive row of plates along its back'
-	},
-	{
-		name: 'Velociraptor',
-		period: 'Cretaceous',
-		image: '/images/velociraptor.jpg',
-		description: 'A swift and intelligent predator'
-	}
-];
+import { creatures } from '../data/creatures';
+
+// Function to get random creatures
+function getRandomCreatures(count: number) {
+	const shuffled = [...creatures].sort(() => 0.5 - Math.random());
+	return shuffled.slice(0, count);
+}
+
+// Function to truncate description by word count
+function truncateDescription(description: string) {
+	const words = description.split(' ');
+	if (words.length <= 20) return description;
+	return words.slice(0, 20).join(' ') + ' ...';
+}
+
+const featuredCreatures = getRandomCreatures(3).map(creature => ({
+	name: creature.name,
+	period: creature.period,
+	image: creature.image,
+	description: truncateDescription(creature.description),
+	id: creature.id
+}));
 ---
 
 <div class="creatures-grid">
@@ -31,7 +33,7 @@ const featuredCreatures = [
 				<h3>{creature.name}</h3>
 				<p class="period">{creature.period}</p>
 				<p class="description">{creature.description}</p>
-				<a href={`/creature/${creature.name.toLowerCase().replace(' ', '-')}`} class="learn-more">
+				<a href={`/creature/${creature.id}`} class="learn-more">
 					Learn More
 				</a>
 			</div>
