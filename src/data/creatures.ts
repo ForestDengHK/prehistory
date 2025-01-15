@@ -183,7 +183,7 @@ export const creatures: Creature[] = [
     category: 'Dinosaurs',
     subcategory: 'Theropods'
   },
-        {
+            {
     id: 'stromatolite-bacteria',
     name: 'Stromatolite Bacteria',
     scientificName: 'Cyanobacteria (Stromatolite-forming species)',
@@ -192,7 +192,7 @@ export const creatures: Creature[] = [
     length: 'Microscopic (1-2 µm)',
     weight: 'Not applicable',
     diet: 'Omnivore',
-    image: '/images/micro-orgnisims.jpg',
+    image: '/images///micro-orgnisims.jpg',
     description: '**Stromatolite bacteria** represent some of Earth\'s earliest life forms, dating back over 3.5 billion years. These ancient microorganisms, primarily cyanobacteria, played a critical role in shaping Earth\'s biosphere. By forming layered, rock-like structures called stromatolites, they created microbial mats that trapped sediment and secreted calcium carbonate, gradually building these formations over time.\n <br> <br> Stromatolite bacteria were also pivotal in the evolution of the planet\'s atmosphere through photosynthesis, producing oxygen that eventually led to the Great Oxidation Event. Though much less common today, modern stromatolites still exist in specific environments, such as Shark Bay in Australia, offering a glimpse into Earth\'s primordial past and the origins of life.',
     category: 'Microorganisms',
     subcategory: 'Bacteria'

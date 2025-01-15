@@ -7,11 +7,45 @@ function getRandomCreatures(count: number) {
 	return shuffled.slice(0, count);
 }
 
-// Function to truncate description by word count
+// Function to truncate description while preserving HTML/markdown tags
 function truncateDescription(description: string) {
-	const words = description.split(' ');
+	// Create a temporary div to parse HTML content
+	const tempText = description.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+	const words = tempText.split(' ');
+	
 	if (words.length <= 20) return description;
-	return words.slice(0, 20).join(' ') + ' ...';
+	
+	let count = 0;
+	let result = [];
+	let inTag = false;
+	let currentTag = '';
+	
+	for (const word of words) {
+		if (count >= 20 && !inTag) break;
+		
+		// Check for opening tags
+		if (word.includes('<') && !word.includes('</')) {
+			inTag = true;
+			currentTag = word.substring(word.indexOf('<')+1, word.indexOf('>'));
+		}
+		
+		result.push(word);
+		
+		// Check for closing tags
+		if (word.includes('</')) {
+			inTag = false;
+			currentTag = '';
+		}
+		
+		if (!inTag && !word.includes('>')) count++;
+	}
+	
+	// Close any open tags
+	if (inTag) {
+		result.push(`</${currentTag}>`);
+	}
+	
+	return result.join(' ') + ' ...';
 }
 
 const featuredCreatures = getRandomCreatures(3).map(creature => ({
@@ -32,7 +66,7 @@ const featuredCreatures = getRandomCreatures(3).map(creature => ({
 			<div class="creature-info">
 				<h3>{creature.name}</h3>
 				<p class="period">{creature.period}</p>
-				<p class="description">{creature.description}</p>
+				<p class="description" set:html={creature.description}></p>
 				<a href={`/creature/${creature.id}`} class="learn-more">
 					Learn More
 				</a>
@@ -54,6 +88,9 @@ const featuredCreatures = getRandomCreatures(3).map(creature => ({
 		overflow: hidden;
 		box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 		transition: transform 0.3s ease;
+		display: flex;
+		flex-direction: column;
+		height: 100%;
 	}
 
 	.creature-card:hover {
@@ -73,6 +110,9 @@ const featuredCreatures = getRandomCreatures(3).map(creature => ({
 
 	.creature-info {
 		padding: 1.5rem;
+		display: flex;
+		flex-direction: column;
+		flex-grow: 1;
 	}
 
 	h3 {
@@ -88,6 +128,7 @@ const featuredCreatures = getRandomCreatures(3).map(creature => ({
 
 	.description {
 		margin-bottom: 1.5rem;
+		flex-grow: 1;
 	}
 
 	.learn-more {
@@ -98,6 +139,7 @@ const featuredCreatures = getRandomCreatures(3).map(creature => ({
 		text-decoration: none;
 		border-radius: 4px;
 		transition: background 0.3s ease;
+		align-self: flex-start;
 	}
 
 	.learn-more:hover {

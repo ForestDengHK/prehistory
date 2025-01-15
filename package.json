@@ -13,7 +13,8 @@
   "dependencies": {
     "@astrojs/vercel": "^8.0.1",
     "astro": "^5.1.5",
-    "marked": "^15.0.6"
+    "marked": "^15.0.6",
+    "node-html-parser": "^7.0.1"
   },
   "engines": {
     "node": ">=20.0.0"
