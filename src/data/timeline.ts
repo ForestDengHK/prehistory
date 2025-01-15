@@ -82,5 +82,26 @@ export const timelinePeriods = [
     description: 'Last period of non-avian dinosaurs',
     image: 'https://images.unsplash.com/photo-1612686635542-2244ed9f8ddc?w=800',
     creatures: ['Tyrannosaurus Rex', 'Triceratops']
+  },
+  {
+    name: 'Paleogene',
+    period: '66-23 million years ago',
+    description: 'Rise of mammals after dinosaur extinction',
+    image: 'https://images.unsplash.com/photo-1564324738080-bbbf8d6b4887?w=800',
+    creatures: ['Early primates', 'Primitive whales']
+  },
+  {
+    name: 'Neogene',
+    period: '23-2.6 million years ago',
+    description: 'Modern mammals and grasslands emerge',
+    image: 'https://images.unsplash.com/photo-1511497584788-876760111969?w=800',
+    creatures: ['Early horses', 'Mastodons']
+  },
+  {
+    name: 'Quaternary',
+    period: '2.6 million years ago - present',
+    description: 'Ice ages and human evolution',
+    image: 'https://images.unsplash.com/photo-1516466723877-e4ec1d736c8a?w=800',
+    creatures: ['Woolly mammoths', 'Early humans']
   }
 ];
