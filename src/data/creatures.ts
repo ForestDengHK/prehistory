@@ -31,7 +31,7 @@ export interface SearchResult extends Creature {
 }
 
 export const creatures: Creature[] = [
-                {
+                                  {
     id: 'tyrannosaurus-rex',
     name: 'Tyrannosaurus Rex',
     scientificName: 'Tyrannosaurus rex',
@@ -40,7 +40,7 @@ export const creatures: Creature[] = [
     length: '12-15 meters',
     weight: '7,000-8,000 kg',
     diet: 'Carnivore',
-    image: '/images////t-rex.jpg',
+    image: '/images/t-rex.jpg',
     description: 'The Tyrannosaurus rex, or T. rex, is one of the most iconic dinosaurs in history. Standing up to 20 feet tall and spanning 40 feet in length, this apex predator dominated the late Cretaceous period about 68–66 million years ago. Known for its massive skull, serrated teeth, and powerful jaw capable of crushing bones, the T. rex was a highly efficient hunter and scavenger. Despite its tiny, seemingly disproportionate arms, each limb was incredibly strong and likely aided in gripping prey. Its keen sense of smell and vision further established it as one of nature’s most formidable carnivores.',
     category: 'Dinosaurs',
     subcategory: 'Theropods',
@@ -55,7 +55,7 @@ export const creatures: Creature[] = [
     length: '15-18 meters',
     weight: '70,000 kg',
     diet: 'Carnivore',
-    image: '/images//megalodon.jpg',
+    image: '/images/megalodon.jpg',
     description: 'The Megalodon (Otodus megalodon) was the largest shark to ever roam Earth’s oceans, dominating marine ecosystems approximately 23 to 3.6 million years ago. Measuring up to 60 feet in length, this prehistoric predator had massive, serrated teeth up to 7 inches long—ideal for tearing through large prey like whales. Its immense jaw could exert a bite force of over 40,000 pounds, making it one of the most powerful biters in history. Likely a top apex predator, the Megalodon relied on its speed and strength to hunt, patrolling warm waters worldwide. Though extinct, its legacy endures as a symbol of oceanic might and mystery.',
     category: 'Marine Creatures',
     subcategory: 'Prehistoric Sharks',

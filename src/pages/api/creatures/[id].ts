@@ -21,8 +21,7 @@ export const PUT: APIRoute = async ({ params, request }) => {
       'image',
       'description',
       'category',
-      'subcategory',
-      'family'
+      'subcategory'
     ];
 
     const isValid = requiredFields.every(field => 
@@ -48,7 +47,8 @@ export const PUT: APIRoute = async ({ params, request }) => {
     // Create the updated creature
     const updatedCreature: Creature = {
       ...data,
-      id: creatureId // Keep the original ID
+      id: creatureId, // Keep the original ID
+      family: data.family || '' // Use blank if family is not provided
     };
 
     // Read the current creatures file
