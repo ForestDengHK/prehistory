@@ -21,7 +21,8 @@ export const PUT: APIRoute = async ({ params, request }) => {
       'image',
       'description',
       'category',
-      'subcategory'
+      'subcategory',
+      'family'
     ];
 
     const isValid = requiredFields.every(field => 
@@ -94,7 +95,8 @@ export const PUT: APIRoute = async ({ params, request }) => {
     image: '${updatedCreature.image}',
     description: '${updatedCreature.description.replace(/'/g, "\\'").replace(/"/g, '\\"').replace(/\n/g, '\\n').replace(/\r/g, '\\r').replace(/\t/g, '\\t')}',
     category: '${updatedCreature.category}',
-    subcategory: '${updatedCreature.subcategory}'
+    subcategory: '${updatedCreature.subcategory}',
+    family: '${updatedCreature.family}'
   }`;
 
     // Replace only the specific creature entry

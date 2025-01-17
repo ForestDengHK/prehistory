@@ -16,7 +16,8 @@ function validateCreature(data: any): data is Creature {
     'image',
     'description',
     'category',
-    'subcategory'
+    'subcategory',
+    'family'
   ];
 
   return requiredFields.every(field => typeof data[field] === 'string' && data[field].trim() !== '');

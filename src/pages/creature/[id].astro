@@ -51,6 +51,10 @@ const formattedDescription = marked(creature.description);
               <a href={`/category/${creature.category.toLowerCase().replace(/\s+/g, '-')}/${creature.subcategory.toLowerCase().replace(/\s+/g, '-')}`}>{creature.subcategory}</a>
             </p>
           </div>
+          <div class="info-item">
+            <h3>Family</h3>
+            <p>{creature.family}</p>
+          </div>
         </div>
 
         <div class="description">

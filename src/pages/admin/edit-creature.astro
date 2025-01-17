@@ -167,6 +167,12 @@ const diets = ['Carnivore', 'Herbivore', 'Omnivore'];
         </div>
       </section>
 
+      <div class="form-field">
+        <label for="family">Family <span class="required">*</span></label>
+        <input type="text" id="family" name="family" required
+          placeholder="e.g. Tyrannosauridae">
+      </div>
+
       <div class="form-actions">
         <button type="submit">Update Creature</button>
       </div>
@@ -529,6 +535,7 @@ const diets = ['Carnivore', 'Herbivore', 'Omnivore'];
     (document.getElementById('weight') as HTMLInputElement).value = creature.weight;
     (document.getElementById('diet') as HTMLSelectElement).value = creature.diet;
     (document.getElementById('description') as HTMLTextAreaElement).value = creature.description;
+    (document.getElementById('family') as HTMLInputElement).value = creature.family;
     
     // Update subcategories and set value
     const subcategories = categories[creature.category] || [];
