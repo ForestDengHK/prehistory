@@ -64,6 +64,12 @@ function createPagination(total, pageSize, currentPage) {
 }
 
 const pagination = createPagination(totalResults, pageSize, page);
+
+// Prepare the complete data for client-side
+const allCreaturesData = creatures.map(creature => ({
+  ...creature,
+  truncatedDescription: truncateDescription(creature.description)
+}));
 ---
 
 <Layout title="Search Prehistoric Creatures">
@@ -105,33 +111,50 @@ const pagination = createPagination(totalResults, pageSize, page);
     </div>
 
     <div id="pagination" class="pagination">
-      {pagination.map(page => (
-        <a href={`?q=${query}&page=${page.number}`} class={page.isCurrent ? 'current' : ''}>
-          {page.number}
-        </a>
-      ))}
+      {pagination.length > 1 && (
+        <>
+          <a href="#" class="nav-link prev" data-page={Math.max(1, page - 1)} disabled={page === 1}>
+            Previous
+          </a>
+          {pagination.map(pageItem => 
+            pageItem.isCurrent 
+              ? <span class="current">{pageItem.number}</span>
+              : <a href="#" data-page={pageItem.number}>{pageItem.number}</a>
+          )}
+          <a href="#" class="nav-link next" data-page={Math.min(pagination.length, page + 1)} disabled={page === pagination.length}>
+            Next
+          </a>
+        </>
+      )}
     </div>
+
+    <!-- Template for client-side rendering -->
+    <template id="creature-template">
+      <div class="creature-card">
+        <img loading="lazy" />
+        <div class="creature-info">
+          <h2></h2>
+          <p class="scientific-name"></p>
+          <p class="description"></p>
+          <div class="metadata">
+            <span class="tag"></span>
+            <span class="tag"></span>
+          </div>
+          <a class="learn-more">Learn More →</a>
+        </div>
+      </div>
+    </template>
   </div>
 </Layout>
 
-<script>
-  // Get all creatures data from the server-side rendered content
-  const allCreatures = Array.from(document.querySelectorAll('.creature-card')).map(card => ({
-    element: card.outerHTML,
-    searchText: (
-      card.textContent +
-      card.querySelector('.scientific-name')?.textContent +
-      card.querySelector('.tag')?.textContent
-    ).toLowerCase()
-  }));
-
-  const pageSize = 18;
+<script define:vars={{ allCreaturesData, pageSize }}>
   let currentPage = 1;
   
   const searchInput = document.getElementById('search-input');
   const resultsGrid = document.getElementById('results-grid');
   const resultsInfo = document.getElementById('results-info');
   const paginationContainer = document.getElementById('pagination');
+  const template = document.getElementById('creature-template');
 
   function debounce(func, wait) {
     let timeout;
@@ -141,15 +164,41 @@ const pagination = createPagination(totalResults, pageSize, page);
     };
   }
 
+  function createCreatureCard(creature) {
+    const clone = template.content.cloneNode(true);
+    const card = clone.querySelector('.creature-card');
+    
+    const img = card.querySelector('img');
+    img.src = creature.image;
+    img.alt = creature.name;
+    
+    card.querySelector('h2').textContent = creature.name;
+    card.querySelector('.scientific-name').textContent = creature.scientificName;
+    card.querySelector('.description').innerHTML = creature.truncatedDescription;
+    
+    const tags = card.querySelectorAll('.tag');
+    tags[0].textContent = creature.category;
+    tags[1].textContent = creature.subcategory;
+    
+    const link = card.querySelector('.learn-more');
+    link.href = `/creature/${creature.id}`;
+    
+    return card;
+  }
+
   function filterAndDisplayResults() {
     const query = searchInput.value.toLowerCase().trim();
     let filteredResults;
 
     if (query === '') {
-      filteredResults = allCreatures;
+      filteredResults = allCreaturesData;
     } else {
-      filteredResults = allCreatures.filter(item => 
-        item.searchText.includes(query)
+      filteredResults = allCreaturesData.filter(creature => 
+        creature.name.toLowerCase().includes(query) ||
+        creature.scientificName.toLowerCase().includes(query) ||
+        creature.description.toLowerCase().includes(query) ||
+        creature.category.toLowerCase().includes(query) ||
+        creature.subcategory.toLowerCase().includes(query)
       );
     }
 
@@ -165,21 +214,38 @@ const pagination = createPagination(totalResults, pageSize, page);
     const end = start + pageSize;
     const pageResults = filteredResults.slice(start, end);
     
-    resultsGrid.innerHTML = pageResults.map(item => item.element).join('');
+    // Clear existing content
+    resultsGrid.innerHTML = '';
+    
+    // Add new cards
+    pageResults.forEach(creature => {
+      resultsGrid.appendChild(createCreatureCard(creature));
+    });
 
     // Update pagination
     const totalPages = Math.ceil(filteredResults.length / pageSize);
-    const paginationHTML = Array.from({ length: totalPages }, (_, i) => i + 1)
-      .map(num => `
-        <a href="#" class="${num === currentPage ? 'current' : ''}" data-page="${num}">
-          ${num}
+    if (totalPages > 1) {
+      const paginationHTML = `
+        <a href="#" class="nav-link prev" data-page="${Math.max(1, currentPage - 1)}" ${currentPage === 1 ? 'disabled' : ''}>
+          Previous
         </a>
-      `).join('');
-    
-    paginationContainer.innerHTML = paginationHTML;
+        ${Array.from({ length: totalPages }, (_, i) => i + 1)
+          .map(num => 
+            num === currentPage 
+              ? `<span class="current">${num}</span>`
+              : `<a href="#" data-page="${num}">${num}</a>`
+          ).join('')}
+        <a href="#" class="nav-link next" data-page="${Math.min(totalPages, currentPage + 1)}" ${currentPage === totalPages ? 'disabled' : ''}>
+          Next
+        </a>
+      `;
+      paginationContainer.innerHTML = paginationHTML;
+    } else {
+      paginationContainer.innerHTML = '';
+    }
 
     // Add click handlers to pagination
-    paginationContainer.querySelectorAll('a').forEach(link => {
+    paginationContainer.querySelectorAll('a:not([disabled])').forEach(link => {
       link.addEventListener('click', (e) => {
         e.preventDefault();
         currentPage = parseInt(link.dataset.page);
@@ -365,20 +431,60 @@ const pagination = createPagination(totalResults, pageSize, page);
   .pagination {
     display: flex;
     justify-content: center;
+    align-items: center;
     margin-top: 2rem;
+    gap: 0.75rem;
+    flex-wrap: wrap;
   }
 
-  .pagination a {
-    margin: 0 0.5rem;
+  .pagination a,
+  .pagination span {
     padding: 0.5rem 1rem;
     background: #f0f0f0;
     border-radius: 4px;
     text-decoration: none;
     color: #333;
+    min-width: 2.5rem;
+    text-align: center;
+    transition: background-color 0.2s;
   }
 
-  .pagination a.current {
+  .pagination a[disabled] {
+    opacity: 0.5;
+    cursor: default;
+    pointer-events: none;
+  }
+
+  .pagination .current {
     background: #333;
     color: white;
+  }
+
+  .pagination a:hover:not([disabled]) {
+    background: #e0e0e0;
+  }
+
+  .pagination .nav-link {
+    background: none;
+    border: 1px solid #f0f0f0;
+  }
+
+  .pagination .nav-link:hover:not([disabled]) {
+    background: #f0f0f0;
+  }
+
+  @media (max-width: 768px) {
+    .pagination {
+      gap: 0.5rem;
+    }
+
+    .pagination a {
+      padding: 0.4rem 0.8rem;
+      min-width: 2rem;
+    }
+
+    .pagination .nav-link {
+      padding: 0.4rem 0.8rem;
+    }
   }
 </style>
