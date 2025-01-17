@@ -57,6 +57,12 @@ const featuredCreatures = getRandomCreatures(3).map(creature => ({
 }));
 ---
 
+<div class="creatures-header">
+	<h2>Featured Creatures</h2>
+	<button id="refresh-button" aria-label="Refresh Featured Creatures">
+		<img src="/images/refresh.jpg" alt="Refresh" width="24" height="24" />
+	</button>
+</div>
 <div class="creatures-grid">
 	{featuredCreatures.map(creature => (
 		<div class="creature-card">
@@ -76,6 +82,35 @@ const featuredCreatures = getRandomCreatures(3).map(creature => ({
 </div>
 
 <style>
+	.creatures-header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		margin-bottom: 1rem;
+	}
+
+	#refresh-button {
+		background: none;
+		border: none;
+		font-size: 1.5rem;
+		cursor: pointer;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 0.5rem;
+		border-radius: 50%;
+		transition: background-color 0.3s ease;
+	}
+
+	#refresh-button:hover {
+		background-color: rgba(0, 0, 0, 0.1);
+	}
+
+	#refresh-button svg {
+		width: 24px;
+		height: 24px;
+	}
+
 	.creatures-grid {
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -146,3 +181,9 @@ const featuredCreatures = getRandomCreatures(3).map(creature => ({
 		background: var(--accent-color);
 	}
 </style>
+
+<script>
+	document.getElementById('refresh-button').addEventListener('click', () => {
+		location.reload();
+	});
+</script>

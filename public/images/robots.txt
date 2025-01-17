@@ -1,0 +1,9 @@
+# www.xinhao.eu robots.txt
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://www.xinhao.eu/sitemap.xml
+
+# Admin pages
+Disallow: /admin/ 
