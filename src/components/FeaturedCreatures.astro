@@ -81,6 +81,59 @@ const featuredCreatures = getRandomCreatures(3).map(creature => ({
 	))}
 </div>
 
+<!-- Template for client-side rendering -->
+<template id="creature-template">
+	<div class="creature-card">
+		<div class="creature-image">
+			<img />
+		</div>
+		<div class="creature-info">
+			<h3></h3>
+			<p class="period"></p>
+			<p class="description"></p>
+			<a class="learn-more">Learn More</a>
+		</div>
+	</div>
+</template>
+
+<script>
+	const template = document.getElementById('creature-template');
+
+	function createCreatureCard(creature) {
+		const clone = template.content.cloneNode(true);
+		const card = clone.querySelector('.creature-card');
+		
+		const img = card.querySelector('img');
+		img.src = creature.image;
+		img.alt = creature.name;
+		
+		card.querySelector('h3').textContent = creature.name;
+		card.querySelector('.period').textContent = creature.period;
+		card.querySelector('.description').innerHTML = creature.description;
+		
+		const link = card.querySelector('.learn-more');
+		link.href = `/creature/${creature.id}`;
+		
+		return card;
+	}
+
+	document.getElementById('refresh-button').addEventListener('click', async () => {
+		try {
+			const response = await fetch('/api/random-creatures');
+			const newCreatures = await response.json();
+			
+			const creaturesGrid = document.querySelector('.creatures-grid');
+			creaturesGrid.innerHTML = '';
+			
+			newCreatures.forEach(creature => {
+				creaturesGrid.appendChild(createCreatureCard(creature));
+			});
+		} catch (error) {
+			console.error('Error refreshing creatures:', error);
+		}
+	});
+</script>
+
 <style>
 	.creatures-header {
 		display: flex;
@@ -181,9 +234,3 @@ const featuredCreatures = getRandomCreatures(3).map(creature => ({
 		background: var(--accent-color);
 	}
 </style>
-
-<script>
-	document.getElementById('refresh-button').addEventListener('click', () => {
-		location.reload();
-	});
-</script>
