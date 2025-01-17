@@ -1,72 +1,206 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { searchCreatures } from '../data/creatures';
+import { creatures, searchCreatures } from '../data/creatures';
+
+// Function to truncate description while preserving HTML/markdown tags
+function truncateDescription(description: string) {
+  const tempText = description.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+  const words = tempText.split(' ');
+
+  if (words.length <= 20) return description;
+
+  let count = 0;
+  let result = [];
+  let inTag = false;
+  let currentTag = '';
+
+  for (const word of words) {
+    if (count >= 20 && !inTag) break;
+
+    // Check for opening tags
+    if (word.includes('<') && !word.includes('</')) {
+      inTag = true;
+      currentTag = word.substring(word.indexOf('<') + 1, word.indexOf('>'));
+    }
+
+    result.push(word);
+
+    // Check for closing tags
+    if (word.includes('</')) {
+      inTag = false;
+      currentTag = '';
+    }
+
+    if (!inTag && !word.includes('>')) count++;
+  }
+
+  // Close any open tags
+  if (inTag) {
+    result.push(`</${currentTag}>`);
+  }
+
+  return result.join(' ') + ' ...';
+}
 
 const query = Astro.url.searchParams.get('q')?.trim() || '';
-const results = query ? searchCreatures(query) : [];
+const page = parseInt(Astro.url.searchParams.get('page') || '1', 10);
+const pageSize = 18;
 
-function truncateDescription(description: string) {
-  const sentences = description.match(/[^.!?]+[.!?]+/g) || [description];
-  const truncated = sentences.slice(0, 2).join(' ');
-  return truncated.length < description.length ? truncated + ' ...' : truncated;
+// Initial server-side results
+let initialResults = query ? searchCreatures(query) : creatures;
+const totalResults = initialResults.length;
+const initialPageResults = initialResults.slice((page - 1) * pageSize, page * pageSize);
+
+function createPagination(total, pageSize, currentPage) {
+  const totalPages = Math.ceil(total / pageSize);
+  const pages = [];
+  for (let i = 1; i <= totalPages; i++) {
+    pages.push({
+      number: i,
+      isCurrent: i === currentPage,
+    });
+  }
+  return pages;
 }
+
+const pagination = createPagination(totalResults, pageSize, page);
 ---
 
 <Layout title="Search Prehistoric Creatures">
   <div class="search-container">
     <h1>Search Prehistoric Creatures</h1>
-    
-    <form method="GET" class="search-form">
+    <div class="search-form">
       <div class="search-input-wrapper">
         <input 
           type="text"
-          name="q"
+          id="search-input"
           value={query}
           placeholder="Search creatures..."
-          required
         />
-        <button type="submit">Search</button>
       </div>
-    </form>
+    </div>
 
-    {query && (
-      <div class="results-info">
-        <p>Found {results.length} results for "{query}"</p>
-      </div>
-    )}
+    <div id="results-info" class="results-info">
+      {query && <p>Found {totalResults} results for "{query}"</p>}
+    </div>
 
-    <div class="results-grid">
-      {results.map(creature => (
+    <div id="results-grid" class="results-grid">
+      {initialPageResults.map(creature => (
         <div class="creature-card">
           <img src={creature.image} alt={creature.name} loading="lazy" />
           <div class="creature-info">
             <h2>{creature.name}</h2>
             <p class="scientific-name">{creature.scientificName}</p>
-            <p class="description">{truncateDescription(creature.description)}</p>
+            <p class="description" set:html={truncateDescription(creature.description)}></p>
             <div class="metadata">
               <span class="tag">{creature.category}</span>
               <span class="tag">{creature.subcategory}</span>
             </div>
-            <p class="family">Family: {creature.family}</p>
             <a href={`/creature/${creature.id}`} class="learn-more">
               Learn More →
             </a>
           </div>
         </div>
       ))}
+    </div>
 
-      {query && results.length === 0 && (
-        <div class="no-results">
-          <p>No results found for "{query}"</p>
-        </div>
-      )}
+    <div id="pagination" class="pagination">
+      {pagination.map(page => (
+        <a href={`?q=${query}&page=${page.number}`} class={page.isCurrent ? 'current' : ''}>
+          {page.number}
+        </a>
+      ))}
     </div>
   </div>
 </Layout>
 
-<style is:global>
-  /* Add any global styles here */
-</style>
+<script>
+  // Get all creatures data from the server-side rendered content
+  const allCreatures = Array.from(document.querySelectorAll('.creature-card')).map(card => ({
+    element: card.outerHTML,
+    searchText: (
+      card.textContent +
+      card.querySelector('.scientific-name')?.textContent +
+      card.querySelector('.tag')?.textContent
+    ).toLowerCase()
+  }));
+
+  const pageSize = 18;
+  let currentPage = 1;
+  
+  const searchInput = document.getElementById('search-input');
+  const resultsGrid = document.getElementById('results-grid');
+  const resultsInfo = document.getElementById('results-info');
+  const paginationContainer = document.getElementById('pagination');
+
+  function debounce(func, wait) {
+    let timeout;
+    return function(...args) {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => func.apply(this, args), wait);
+    };
+  }
+
+  function filterAndDisplayResults() {
+    const query = searchInput.value.toLowerCase().trim();
+    let filteredResults;
+
+    if (query === '') {
+      filteredResults = allCreatures;
+    } else {
+      filteredResults = allCreatures.filter(item => 
+        item.searchText.includes(query)
+      );
+    }
+
+    // Update results count
+    if (query) {
+      resultsInfo.innerHTML = `<p>Found ${filteredResults.length} results for "${query}"</p>`;
+    } else {
+      resultsInfo.innerHTML = '';
+    }
+
+    // Display current page
+    const start = (currentPage - 1) * pageSize;
+    const end = start + pageSize;
+    const pageResults = filteredResults.slice(start, end);
+    
+    resultsGrid.innerHTML = pageResults.map(item => item.element).join('');
+
+    // Update pagination
+    const totalPages = Math.ceil(filteredResults.length / pageSize);
+    const paginationHTML = Array.from({ length: totalPages }, (_, i) => i + 1)
+      .map(num => `
+        <a href="#" class="${num === currentPage ? 'current' : ''}" data-page="${num}">
+          ${num}
+        </a>
+      `).join('');
+    
+    paginationContainer.innerHTML = paginationHTML;
+
+    // Add click handlers to pagination
+    paginationContainer.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        currentPage = parseInt(link.dataset.page);
+        filterAndDisplayResults();
+        window.scrollTo(0, 0);
+      });
+    });
+  }
+
+  // Debounced search handler
+  const debouncedSearch = debounce(() => {
+    currentPage = 1; // Reset to first page on new search
+    filterAndDisplayResults();
+  }, 300);
+
+  // Add event listener for input
+  searchInput.addEventListener('input', debouncedSearch);
+
+  // Initial display
+  filterAndDisplayResults();
+</script>
 
 <style>
   .search-container {
@@ -201,19 +335,17 @@ function truncateDescription(description: string) {
 
   .learn-more {
     display: inline-block;
-    padding: 0.75rem 1rem;
-    background: #f5f5f5;
-    color: #333;
+    padding: 0.5rem 1rem;
+    background: var(--primary-color);
+    color: white;
     text-decoration: none;
-    font-weight: 500;
     border-radius: 4px;
-    text-align: center;
-    transition: all 0.2s;
+    transition: background 0.3s ease;
+    align-self: flex-start;
   }
 
   .learn-more:hover {
-    background: #333;
-    color: white;
+    background: var(--accent-color);
   }
 
   @media (max-width: 768px) {
@@ -228,5 +360,25 @@ function truncateDescription(description: string) {
     button {
         width: 100%;
     }
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+
+  .pagination a {
+    margin: 0 0.5rem;
+    padding: 0.5rem 1rem;
+    background: #f0f0f0;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #333;
+  }
+
+  .pagination a.current {
+    background: #333;
+    color: white;
   }
 </style>
