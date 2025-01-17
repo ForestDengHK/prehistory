@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@astrojs/vercel": "^8.0.1",
+    "@vercel/analytics": "^1.4.1",
     "astro": "^5.1.5",
     "marked": "^15.0.6",
     "node-html-parser": "^7.0.1"
