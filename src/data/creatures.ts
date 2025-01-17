@@ -286,7 +286,7 @@ export const creatures: Creature[] = [
     subcategory: 'Invertebrates',
     family: 'Anomalocarisidae'
   },
-        {
+            {
     id: 'liopleurodon-ferox',
     name: 'Liopleurodon ferox',
     scientificName: 'Liopleurodon ferox',
@@ -295,7 +295,7 @@ export const creatures: Creature[] = [
     length: '4.9 – 7 m',
     weight: '1,000 – 1,700 kg',
     diet: 'Carnivore',
-    image: '/images/liopleurodon.jpg',
+    image: '/images/liopleurdon.jpg',
     description: 'Liopleurodon, a massive marine reptile from the Middle Jurassic period, was a formidable predator that could grow up to 25 meters in length, belonging to the family Pliosauridae, a group of short-necked, large-headed plesiosaurs; its powerful, crocodile-like jaws, lined with sharp teeth, were well-suited for capturing and consuming large prey, including fish, marine reptiles, and possibly even smaller dinosaurs, while its streamlined body, with robust flippers and a tail adapted for propulsion, allowed it to swiftly dominate the seas of ancient Europe.\n Liopleurodon\'s impressive size and strength, combined with its acute sensory adaptations, made it one of the ocean\'s apex predators during the Jurassic, hunting in deep, coastal waters where it would have likely competed with other large marine reptiles like the long-necked Elasmosaurus and the giant fish Ichthyosaurs.\n Its fossils, often found in what is now the United Kingdom, reveal an animal that was not only a top predator but also highly adapted to a fully aquatic lifestyle, capable of fast, powerful movements in pursuit of its prey.',
     category: 'Marine Creatures',
     subcategory: 'Marine Reptiles',
@@ -331,7 +331,7 @@ export const creatures: Creature[] = [
     subcategory: 'Prehistoric Sharks',
     family: 'Sarcoprionidae'
   },
-    {
+      {
     id: 'dunkleosteus-terrelli',
     name: 'dunkleosteus terrelli',
     scientificName: 'dunkleosteus terrelli',
@@ -341,7 +341,7 @@ export const creatures: Creature[] = [
     weight: '950–1,200 kg',
     diet: 'Carnivore',
     image: '/images/dunkleosteus.jpg',
-    description: 'unkleosteus, one of the largest and most fearsome placoderm fish to ever exist, lived during the Late Devonian period, around 358 to 382 million years ago, and is often considered one of the first true apex predators in Earth\'s oceans. Growing up to 10 meters (33 feet) in length and weighing several tons, Dunkleosteus was a heavily armored fish with a robust, bony head shield made of thick, fused plates, providing it with unparalleled protection against predators and rivals. Unlike modern fish with teeth, Dunkleosteus had a pair of formidable, razor-sharp bony plates that formed a beak-like structure capable of slicing through the flesh and bone of its prey, including other large fish, cephalopods, and possibly even smaller placoderms. This prehistoric predator\'s jaw was capable of delivering one of the most powerful bites of any known vertebrate, with estimates suggesting forces between 1 and 4 tons, allowing it to quickly incapacitate or kill large prey. Its streamlined, torpedo-shaped body, combined with its large, powerful pectoral fins, suggests it was highly efficient in swift, aggressive hunting, able to ambush and overpower its prey in the shallow, warm waters of the Devonian seas. Dunkleosteus remains a symbol of the ancient fish world, showcasing the incredible adaptations that early vertebrates developed as they evolved into the dominant predators of their time.',
+    description: 'Dunkleosteus, one of the largest and most fearsome placoderm fish to ever exist, lived during the Late Devonian period, around 358 to 382 million years ago, and is often considered one of the first true apex predators in Earth\'s oceans. Growing up to 10 meters (33 feet) in length and weighing several tons, Dunkleosteus was a heavily armored fish with a robust, bony head shield made of thick, fused plates, providing it with unparalleled protection against predators and rivals. Unlike modern fish with teeth, Dunkleosteus had a pair of formidable, razor-sharp bony plates that formed a beak-like structure capable of slicing through the flesh and bone of its prey, including other large fish, cephalopods, and possibly even smaller placoderms. This prehistoric predator\'s jaw was capable of delivering one of the most powerful bites of any known vertebrate, with estimates suggesting forces between 1 and 4 tons, allowing it to quickly incapacitate or kill large prey. Its streamlined, torpedo-shaped body, combined with its large, powerful pectoral fins, suggests it was highly efficient in swift, aggressive hunting, able to ambush and overpower its prey in the shallow, warm waters of the Devonian seas. Dunkleosteus remains a symbol of the ancient fish world, showcasing the incredible adaptations that early vertebrates developed as they evolved into the dominant predators of their time.',
     category: 'Marine Creatures',
     subcategory: 'Prehistoric Fish',
     family: 'Dunkleosteidae'
@@ -376,7 +376,7 @@ export const creatures: Creature[] = [
     subcategory: 'Marine Reptiles',
     family: 'Ichthyosauridae'
   },
-    {
+      {
     id: 'pinosaurus-maroccanus',
     name: 'Spinosaurus maroccanus',
     scientificName: 'Spinosaurus maroccanus',
@@ -391,7 +391,7 @@ export const creatures: Creature[] = [
     subcategory: 'Theropods',
     family: 'Spinosauridae'
   },
-  {
+      {
     id: 'carcharodontosaurus-saharicus',
     name: 'Carcharodontosaurus saharicus',
     scientificName: 'Carcharodontosaurus saharicus',
@@ -400,11 +400,83 @@ export const creatures: Creature[] = [
     length: '12-13 meters',
     weight: '6,000 – 15,000 kg',
     diet: 'Carnivore',
-    image: '/images/char.jpg',
+    image: '/images/carcharadontosaurus.jpg',
     description: 'Carcharodontosaurus, a massive and fearsome theropod dinosaur from the mid-Cretaceous period, roamed what is now North Africa around 100 million years ago, and was one of the largest carnivores of its time, growing up to 13 meters (43 feet) in length and weighing over 7 tons. Its name, meaning \"shark-toothed lizard,\" reflects its most distinctive feature: a set of long, serrated teeth resembling those of a great white shark, which were perfectly suited for slicing through the flesh of its prey, including large herbivorous dinosaurs like Apatosaurus and Camarasaurus. Carcharodontosaurus had a robust, yet relatively lightweight, body built for speed and power, with long hind limbs for swift running and a large, muscular tail for balance, helping it maintain agility as it chased down prey in the open landscapes of ancient Africa. Its skull, elongated and narrow, was equipped with large, forward-facing eyes that would have given it excellent binocular vision, critical for spotting prey from a distance. Additionally, the dinosaur’s large nasal passages suggest that it may have had a keen sense of smell. Carcharodontosaurus\' hunting style is thought to have involved ambushing or outpacing slower prey, using its powerful bite to incapacitate victims quickly. As one of the top predators of the Cretaceous ecosystem, it competed with other giant theropods like Spinosaurus and Tyrannosaurus for dominance in the food chain, although it lived in different parts of the world. Fossils of Carcharodontosaurus have been found in what is now Morocco and Algeria, offering important insights into the diversity and evolutionary paths of large theropods during the Cretaceous period.',
     category: 'Dinosaurs',
     subcategory: 'Theropods',
     family: 'Carcharodontosauridae'
+  },
+    {
+    id: 'ceratosaurus-nasicornis',
+    name: 'Ceratosaurus nasicornis',
+    scientificName: 'Ceratosaurus nasicornis',
+    period: 'Jurassic',
+    location: 'North America, Europe, Asia, and Africa',
+    length: '6-8 meters',
+    weight: '980 kg',
+    diet: 'Carnivore',
+    image: '/images/Ceratosaurus.jpg',
+    description: 'The Ceratosaurus was a medium-sized theropod that lived approximately 150 to 145 million years ago, during the Late Jurassic period. It had a unique, toothless, and possibly horn-like structure on its snout, which may have been a display feature used for mating rituals or to establish dominance within its species. With a length of about 4 to 5 meters (13 to 16 feet), it was relatively smaller than some of its contemporaries, like Allosaurus, but still a powerful predator. Its body was characterized by a long, muscular tail, a lightweight, aerodynamic build, and powerful hind legs, enabling it to run swiftly in pursuit of smaller prey. The Ceratosaurus had a relatively large head with sharp teeth in its jaws, making it capable of slicing through the flesh of its prey, which likely included fish, small dinosaurs, and possibly scavenged carcasses. Fossils suggest that it lived in what is now North America and parts of Europe, thriving in diverse ecosystems ranging from coastal areas to floodplains.',
+    category: 'Dinosaurs',
+    subcategory: 'Theropods',
+    family: ''
+  },
+  {
+    id: 'ceratosaurus-dentisulcatus',
+    name: 'Ceratosaurus dentisulcatus',
+    scientificName: 'Ceratosaurus dentisulcatus',
+    period: 'Jurassic',
+    location: 'North America, Europe, Asia, and Africa',
+    length: '3.5-4 meters',
+    weight: '980 kg',
+    diet: 'Carnivore',
+    image: '/images/ceratosaurus2.png',
+    description: 'Ceratosaurus dentisulcatus and Ceratosaurus nasicornis exhibit distinct differences in their physical characteristics and likely ecological roles, with C. nasicornis featuring a prominent, horn-like structure on its nose, which may have been used for display or combat, and a more robust, larger body measuring up to 8 meters in length, suggesting it could have been a versatile predator capable of both hunting and scavenging; in contrast, C. dentisulcatus was generally smaller, around 3.5 to 4 meters long, with more specialized, serrated teeth likely adapted for a diet focused on smaller, more agile prey, and a less pronounced nasal feature, indicating it may have been a more nimble and precise predator, occupying a slightly different ecological niche.',
+    category: 'Dinosaurs',
+    subcategory: 'Theropods'
+  },
+    {
+    id: 'allosaurus-fragilis',
+    name: 'Allosaurus fragilis',
+    scientificName: 'Allosaurus fragilis',
+    period: 'Jurassic',
+    location: 'North America',
+    length: '7-10 meters',
+    weight: '20,000 kg',
+    diet: 'Carnivore',
+    image: '/images/allosaurus.jpg',
+    description: 'The Allosaurus, one of the most fearsome predators of the Late Jurassic period (around 155 to 150 million years ago), was a large theropod dinosaur distinguished by its strong, muscular body, large skull, and sharp, serrated teeth, which were perfectly designed for slicing through the flesh of its prey. Growing up to 12 meters (39 feet) in length and weighing up to 2.5 tons, it was built for both strength and agility, with long, powerful hind limbs that allowed it to move quickly and deliver devastating attacks, while its shorter forelimbs, though not as robust as its hind legs, were still equipped with three sharp claws that may have been used for grasping or holding onto prey. Allosaurus had a relatively lightweight, flexible skeleton, making it a more nimble predator compared to other contemporaries like Brachiosaurus or Stegosaurus. Its teeth and jaws were designed for cutting rather than crushing, suggesting it may have scavenged or actively hunted smaller herbivorous dinosaurs like Stegosaurus, Apatosaurus, and even young sauropods. The structure of its skull, with large fenestrae (openings), reduced the weight while providing space for powerful jaw muscles. Evidence also suggests Allosaurus may have hunted in packs, coordinating strategies to take down larger prey, although some studies suggest it may have also hunted alone, relying on ambush tactics. Fossilized remains have been found in North America, particularly in the Morrison Formation, indicating that Allosaurus was widespread and an apex predator in its ecosystem. Its speed, combined with keen senses, made it a formidable and versatile hunter, capable of taking on a wide range of prey.',
+    category: 'Dinosaurs',
+    subcategory: 'Theropods',
+    family: ''
+  },
+  {
+    id: 'cryolophosaurus-ellioti',
+    name: 'Cryolophosaurus ellioti',
+    scientificName: 'Cryolophosaurus ellioti',
+    period: 'Jurassic',
+    location: 'Antartica',
+    length: '6–7 m',
+    weight: '460 – 500 kg',
+    diet: 'Carnivore',
+    image: '/images/cryolophosaurus.jpg',
+    description: 'Cryolophosaurus is an early theropod dinosaur from the Early Jurassic period, approximately 194 million years ago, known for its distinctive, fan-shaped crest on its head, which may have been used for display or species recognition, similar to modern-day crested birds. Growing up to 6 meters (20 feet) in length, Cryolophosaurus was one of the first large carnivores to inhabit what is now Antarctica, providing significant insight into the evolution of dinosaurs in polar regions. Its slender, yet powerful build, with long legs and a lightweight frame, suggests that it was a fast, agile predator, likely hunting small to medium-sized prey, such as early herbivorous dinosaurs and possibly scavenging from larger carcasses. Unlike many other theropods, Cryolophosaurus had an unusual combination of primitive and more advanced features, with a skull that showed both characteristics of earlier dinosaurs like Coelophysis and later theropods, making it an important link in the evolutionary chain. Fossils of Cryolophosaurus were discovered in the Queen Alexandra Range of Antarctica in the 1990s, marking it as one of the earliest known dinosaurs from the southern hemisphere and providing evidence that dinosaurs were able to adapt to even the colder, more isolated climates of the early Mesozoic.',
+    category: 'Dinosaurs',
+    subcategory: 'Theropods'
+  },
+  {
+    id: 'argentinosaurus-huinculensis',
+    name: 'Argentinosaurus huinculensis',
+    scientificName: 'Argentinosaurus huinculensis',
+    period: 'Cretaceous',
+    location: 'South America',
+    length: '30–35 m ',
+    weight: '50,000 – 100,000 kg',
+    diet: 'Herbivore',
+    image: '/images/argintinasauarus.jpeg',
+    description: 'Argentinosaurus was one of the largest known land animals to have ever existed, a massive sauropod dinosaur from the Late Cretaceous period, approximately 94 to 97 million years ago, that roamed what is now South America. Estimated to have reached lengths of up to 35 meters (115 feet) and weighed as much as 100 tons, Argentinosaurus was an herbivorous giant, with a long neck and tail, which allowed it to browse on high vegetation while also reaching the ground for lower-growing plants. Its enormous size not only made it a formidable presence in its ecosystem but likely also helped deter predators like Giganotosaurus and other theropods. Despite its size, its long, graceful neck would have enabled it to feed across vast areas without needing to move constantly, and its thick, pillar-like legs supported its massive body. Fossil evidence of Argentinosaurus is limited to incomplete skeletons, mostly from vertebrae and limb bones, found in the Neuquén Province of Argentina, leading to its name. Because of its immense proportions, it is often cited as one of the heaviest and longest sauropods, alongside other giants like Patagotitan and Dreadnoughtus. As an herbivore, it would have likely lived in herds, and its size may have helped it maintain a largely solitary lifestyle, avoiding predators by sheer magnitude and perhaps using its tail for defense. The discovery of Argentinosaurus was pivotal in understanding the diversity and size range of Late Cretaceous sauropods, underscoring the extreme evolutionary paths that some herbivorous dinosaurs took to dominate the Mesozoic landscapes.',
+    category: 'Dinosaurs',
+    subcategory: 'Sauropods'
   }];
 
 export const searchCreatures = (searchQuery: string): SearchResult[] => {
