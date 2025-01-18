@@ -391,7 +391,7 @@ export const creatures: Creature[] = [
     subcategory: 'Theropods',
     family: 'Spinosauridae'
   },
-      {
+            {
     id: 'carcharodontosaurus-saharicus',
     name: 'Carcharodontosaurus saharicus',
     scientificName: 'Carcharodontosaurus saharicus',
@@ -400,7 +400,7 @@ export const creatures: Creature[] = [
     length: '12-13 meters',
     weight: '6,000 – 15,000 kg',
     diet: 'Carnivore',
-    image: '/images/carcharadontosaurus.jpg',
+    image: '/images/jur.jpg',
     description: 'Carcharodontosaurus, a massive and fearsome theropod dinosaur from the mid-Cretaceous period, roamed what is now North Africa around 100 million years ago, and was one of the largest carnivores of its time, growing up to 13 meters (43 feet) in length and weighing over 7 tons. Its name, meaning \"shark-toothed lizard,\" reflects its most distinctive feature: a set of long, serrated teeth resembling those of a great white shark, which were perfectly suited for slicing through the flesh of its prey, including large herbivorous dinosaurs like Apatosaurus and Camarasaurus. Carcharodontosaurus had a robust, yet relatively lightweight, body built for speed and power, with long hind limbs for swift running and a large, muscular tail for balance, helping it maintain agility as it chased down prey in the open landscapes of ancient Africa. Its skull, elongated and narrow, was equipped with large, forward-facing eyes that would have given it excellent binocular vision, critical for spotting prey from a distance. Additionally, the dinosaur’s large nasal passages suggest that it may have had a keen sense of smell. Carcharodontosaurus\' hunting style is thought to have involved ambushing or outpacing slower prey, using its powerful bite to incapacitate victims quickly. As one of the top predators of the Cretaceous ecosystem, it competed with other giant theropods like Spinosaurus and Tyrannosaurus for dominance in the food chain, although it lived in different parts of the world. Fossils of Carcharodontosaurus have been found in what is now Morocco and Algeria, offering important insights into the diversity and evolutionary paths of large theropods during the Cretaceous period.',
     category: 'Dinosaurs',
     subcategory: 'Theropods',
@@ -477,6 +477,35 @@ export const creatures: Creature[] = [
     description: 'Argentinosaurus was one of the largest known land animals to have ever existed, a massive sauropod dinosaur from the Late Cretaceous period, approximately 94 to 97 million years ago, that roamed what is now South America. Estimated to have reached lengths of up to 35 meters (115 feet) and weighed as much as 100 tons, Argentinosaurus was an herbivorous giant, with a long neck and tail, which allowed it to browse on high vegetation while also reaching the ground for lower-growing plants. Its enormous size not only made it a formidable presence in its ecosystem but likely also helped deter predators like Giganotosaurus and other theropods. Despite its size, its long, graceful neck would have enabled it to feed across vast areas without needing to move constantly, and its thick, pillar-like legs supported its massive body. Fossil evidence of Argentinosaurus is limited to incomplete skeletons, mostly from vertebrae and limb bones, found in the Neuquén Province of Argentina, leading to its name. Because of its immense proportions, it is often cited as one of the heaviest and longest sauropods, alongside other giants like Patagotitan and Dreadnoughtus. As an herbivore, it would have likely lived in herds, and its size may have helped it maintain a largely solitary lifestyle, avoiding predators by sheer magnitude and perhaps using its tail for defense. The discovery of Argentinosaurus was pivotal in understanding the diversity and size range of Late Cretaceous sauropods, underscoring the extreme evolutionary paths that some herbivorous dinosaurs took to dominate the Mesozoic landscapes.',
     category: 'Dinosaurs',
     subcategory: 'Sauropods'
+  },
+  {
+    id: 'quetzalcoatlus-northropi',
+    name: 'Quetzalcoatlus northropi',
+    scientificName: 'Quetzalcoatlus northropi',
+    period: 'Cretaceous',
+    location: 'North America',
+    length: '10 – 11 m',
+    weight: '200 – 250 kg',
+    diet: 'Carnivore',
+    image: '/images/quetzal.jpeg',
+    description: 'Quetzalcoatlus, one of the largest pterosaurs to ever live, boasted an extraordinary wingspan of up to 36 feet and a body length of around 10 to 12 feet, with a lightweight structure designed for flight, featuring a long, toothless beak likely used for snatching small prey like fish, amphibians, and potentially small dinosaurs; its long, slender legs suggest it may have been capable of walking bipedally, possibly even running on land, while its soaring ability allowed it to glide for vast distances in search of food or to avoid predators, occupying a unique ecological niche alongside some of the most famous dinosaurs of the Late Cretaceous, such as Tyrannosaurus rex and Triceratops, before going extinct in the mass extinction event that wiped out the dinosaurs around 66 million years ago.',
+    category: 'Flying Creatures',
+    subcategory: 'Pterosaurs'
+  },
+      {
+    id: 'brachiosaurus-altithorax',
+    name: 'Brachiosaurus altithorax',
+    scientificName: 'Brachiosaurus altithorax',
+    period: 'Jurassic',
+    location: 'North America',
+    length: '18 – 22 m',
+    weight: '28,300-46,900 kg',
+    diet: 'Herbivore',
+    image: '/images/Brachiosaurus.jpg',
+    description: 'Brachiosaurus, a towering herbivorous dinosaur from the Late Jurassic period, is known for its distinctively long neck, which was longer than its tail, and its unique body structure, with front legs that were significantly longer than the hind legs, giving it an upright, giraffe-like posture; this adaptation allowed it to reach and feed on vegetation high up in trees, well beyond the reach of most other herbivores of its time, and it grew to an enormous size, with estimates placing its length at around 80 feet and its weight at up to 80 tons, making it one of the largest and heaviest dinosaurs to roam the Earth, while its fossils have been found in what are now North America and Africa, providing vital clues about the ecological roles of massive sauropods during the Jurassic, before it, like many other dinosaurs, became extinct at the end of the Mesozoic Era around 66 million years ago.',
+    category: 'Dinosaurs',
+    subcategory: 'Sauropods',
+    family: ''
   }];
 
 export const searchCreatures = (searchQuery: string): SearchResult[] => {
