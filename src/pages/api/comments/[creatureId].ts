@@ -1,5 +1,11 @@
 import type { APIRoute } from 'astro';
 import { put, list } from '@vercel/blob';
+import 'dotenv/config';
+
+// Verify Blob token is configured
+if (!process.env.BLOB_READ_WRITE_TOKEN) {
+    console.error('BLOB_READ_WRITE_TOKEN is not configured. Comments will not work locally.');
+}
 
 interface Comment {
     id: string;
@@ -12,14 +18,25 @@ interface Comment {
 // Read comments from Blob
 async function readComments(creatureId: string): Promise<Comment[]> {
     try {
+        if (!process.env.BLOB_READ_WRITE_TOKEN) {
+            console.error('BLOB_READ_WRITE_TOKEN is not configured');
+            return [];
+        }
+
         // List all blobs to find our file
         const { blobs } = await list();
         const commentBlob = blobs.find(blob => blob.pathname === `comments/${creatureId}.json`);
         
-        if (!commentBlob) return [];
+        if (!commentBlob) {
+            console.log(`No comments found for creature: ${creatureId}`);
+            return [];
+        }
         
         const response = await fetch(commentBlob.url);
-        if (!response.ok) return [];
+        if (!response.ok) {
+            console.error(`Failed to fetch comments: ${response.statusText}`);
+            return [];
+        }
         
         const text = await response.text();
         const comments = JSON.parse(text);
@@ -32,7 +49,8 @@ async function readComments(creatureId: string): Promise<Comment[]> {
             createdAt: comment.createdAt || new Date().toISOString(),
             email: comment.email
         }));
-    } catch {
+    } catch (error) {
+        console.error('Error reading comments:', error);
         return [];
     }
 }
