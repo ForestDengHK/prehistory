@@ -22,7 +22,16 @@ async function readComments(creatureId: string): Promise<Comment[]> {
         if (!response.ok) return [];
         
         const text = await response.text();
-        return JSON.parse(text);
+        const comments = JSON.parse(text);
+        
+        // Ensure each comment has a unique ID and is properly typed
+        return comments.map((comment: Partial<Comment>) => ({
+            id: comment.id || Date.now().toString(),
+            name: comment.name || 'Anonymous',
+            comment: comment.comment || '',
+            createdAt: comment.createdAt || new Date().toISOString(),
+            email: comment.email
+        }));
     } catch {
         return [];
     }
