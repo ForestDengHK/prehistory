@@ -1,6 +1,5 @@
 import type { APIRoute } from 'astro';
-import fs from 'fs/promises';
-import path from 'path';
+import { put, list, del } from '@vercel/blob';
 
 interface Comment {
     id: string;
@@ -10,37 +9,25 @@ interface Comment {
     email?: string;
 }
 
-const COMMENTS_DIR = 'public/comments';
-
-// Ensure comments directory exists
-async function ensureCommentsDir() {
-    try {
-        await fs.access(COMMENTS_DIR);
-    } catch {
-        await fs.mkdir(COMMENTS_DIR, { recursive: true });
-    }
-}
-
-// Get comments file path
-function getCommentsFilePath(creatureId: string) {
-    return path.join(COMMENTS_DIR, `${creatureId}.json`);
-}
-
-// Read comments from file
+// Read comments from Blob
 async function readComments(creatureId: string): Promise<Comment[]> {
     try {
-        const filePath = getCommentsFilePath(creatureId);
-        const data = await fs.readFile(filePath, 'utf-8');
-        return JSON.parse(data);
+        const response = await fetch(`${process.env.BLOB_URL}/comments/${creatureId}.json`);
+        if (!response.ok) return [];
+        const text = await response.text();
+        return JSON.parse(text);
     } catch {
         return [];
     }
 }
 
-// Write comments to file
+// Write comments to Blob
 async function writeComments(creatureId: string, comments: Comment[]) {
-    const filePath = getCommentsFilePath(creatureId);
-    await fs.writeFile(filePath, JSON.stringify(comments, null, 2));
+    const json = JSON.stringify(comments, null, 2);
+    await put(`comments/${creatureId}.json`, json, {
+        contentType: 'application/json',
+        access: 'public'
+    });
 }
 
 // Validate CAPTCHA token
@@ -70,7 +57,6 @@ export const GET: APIRoute = async ({ params }) => {
         });
     }
 
-    await ensureCommentsDir();
     const comments = await readComments(creatureId);
 
     return new Response(JSON.stringify(comments), {
@@ -107,7 +93,6 @@ export const POST: APIRoute = async ({ request, params }) => {
             });
         }
 
-        await ensureCommentsDir();
         const comments = await readComments(creatureId);
 
         const newComment: Comment = {
