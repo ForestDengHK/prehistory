@@ -1,0 +1,345 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const title = 'Add New Fact';
+const categories = ['discovery', 'evolution', 'environment', 'dinosaur'];
+---
+
+<Layout title={title}>
+  <div class="container">
+    <h1>{title}</h1>
+    
+    <form id="add-fact-form">
+      <!-- Basic Information -->
+      <section class="form-section">
+        <h2>Basic Information</h2>
+        <div class="form-grid">
+          <div class="form-field">
+            <label for="title">Title <span class="required">*</span></label>
+            <input type="text" id="title" name="title" required
+              placeholder="e.g. The Great Dying">
+          </div>
+
+          <div class="form-field">
+            <label for="category">Category <span class="required">*</span></label>
+            <input 
+              type="text" 
+              id="category" 
+              name="category" 
+              required
+              list="category-options"
+              placeholder="Select or type a category"
+            >
+            <datalist id="category-options">
+              {categories.map(category => (
+                <option value={category}>{category}</option>
+              ))}
+            </datalist>
+          </div>
+        </div>
+      </section>
+
+      <!-- Fact Content -->
+      <section class="form-section">
+        <h2>Fact Content</h2>
+        <div class="form-field">
+          <label for="fact">Fact Description <span class="required">*</span></label>
+          <textarea id="fact" name="fact" required rows="4"
+            placeholder="Enter the interesting fact..."></textarea>
+          <p class="help-text">Provide a clear and engaging description of the prehistoric fact.</p>
+        </div>
+      </section>
+
+      <!-- Image -->
+      <section class="form-section">
+        <h2>Image</h2>
+        <div class="image-input-tabs">
+          <button type="button" class="tab-button active" data-tab="existing-image">Use Existing Image</button>
+          <button type="button" class="tab-button" data-tab="upload-image">Upload New Image</button>
+        </div>
+
+        <div class="tab-content" id="existing-image">
+          <div class="input-group">
+            <span class="input-prefix">/images/facts/</span>
+            <input type="text" id="image" name="image"
+              placeholder="fact-name.jpg">
+          </div>
+          <p class="help-text">Specify the name of an existing image in the public/images/facts directory</p>
+        </div>
+
+        <div class="tab-content hidden" id="upload-image">
+          <input type="file" id="imageFile" name="imageFile" accept="image/*"
+            class="file-input">
+          <p class="help-text">Upload a new image (JPG, PNG). The file will be saved to the public/images/facts directory</p>
+        </div>
+      </section>
+
+      <div class="form-actions">
+        <button type="submit">Add Fact</button>
+      </div>
+
+      <div id="message" class="message hidden"></div>
+    </form>
+  </div>
+</Layout>
+
+<style>
+  .container {
+    max-width: 48rem;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  form {
+    background-color: white;
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  }
+
+  .form-section {
+    margin-bottom: 2rem;
+  }
+
+  .form-section:last-child {
+    margin-bottom: 0;
+  }
+
+  h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .form-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-color);
+  }
+
+  .required {
+    color: var(--accent-color);
+  }
+
+  input, select, textarea {
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--background-color);
+    border-radius: 0.5rem;
+    background-color: white;
+    color: var(--text-color);
+    font-size: 0.875rem;
+    transition: all 0.2s ease-in-out;
+  }
+
+  input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px var(--primary-color-alpha);
+  }
+
+  .input-group {
+    display: flex;
+    align-items: center;
+  }
+
+  .input-prefix {
+    padding: 0.75rem 1rem;
+    background-color: var(--background-color);
+    border: 1px solid var(--background-color);
+    border-right: none;
+    border-radius: 0.5rem 0 0 0.5rem;
+    color: var(--secondary-color);
+    font-size: 0.875rem;
+  }
+
+  .input-group input {
+    border-radius: 0 0.5rem 0.5rem 0;
+    flex: 1;
+  }
+
+  .help-text {
+    font-size: 0.75rem;
+    color: var(--secondary-color);
+    margin-top: 0.25rem;
+  }
+
+  .form-actions {
+    margin-top: 2rem;
+  }
+
+  button[type="submit"] {
+    width: 100%;
+    padding: 0.875rem 1.5rem;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
+
+  button[type="submit"]:hover {
+    background-color: var(--accent-color);
+  }
+
+  .message {
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+  }
+
+  .message.success {
+    background-color: #f0fdf4;
+    color: #15803d;
+    border: 1px solid #bbf7d0;
+  }
+
+  .message.error {
+    background-color: #fef2f2;
+    color: #b91c1c;
+    border: 1px solid #fecaca;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .image-input-tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .tab-button {
+    padding: 0.5rem 1rem;
+    background: none;
+    border: 1px solid var(--primary-color);
+    border-radius: 0.5rem;
+    color: var(--primary-color);
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+  }
+
+  .tab-button.active {
+    background: var(--primary-color);
+    color: white;
+  }
+
+  .tab-content {
+    margin-top: 1rem;
+  }
+
+  .file-input {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px dashed var(--background-color);
+    border-radius: 0.5rem;
+  }
+</style>
+
+<script>
+  const form = document.getElementById('add-fact-form') as HTMLFormElement;
+  const message = document.getElementById('message');
+  const tabButtons = document.querySelectorAll('.tab-button');
+  const tabContents = document.querySelectorAll('.tab-content');
+
+  // Handle tab switching
+  tabButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const tabId = button.getAttribute('data-tab');
+      
+      // Update active states
+      tabButtons.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+      
+      // Show/hide content
+      tabContents.forEach(content => {
+        content.classList.toggle('hidden', content.id !== tabId);
+      });
+    });
+  });
+
+  // Handle form submission
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    try {
+      const formData = new FormData(form);
+      const imageFile = formData.get('imageFile') as File;
+      
+      // Handle image upload if a new file is selected
+      if (imageFile.size > 0) {
+        const imageFormData = new FormData();
+        imageFormData.append('file', imageFile);
+        
+        // Upload image first
+        const uploadResponse = await fetch('/api/upload', {
+          method: 'POST',
+          body: imageFormData
+        });
+        
+        if (!uploadResponse.ok) throw new Error('Image upload failed');
+        
+        const { filename } = await uploadResponse.json();
+        formData.set('image', filename);
+      }
+      
+      // Submit fact data
+      const response = await fetch('/api/facts', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(Object.fromEntries(formData))
+      });
+      
+      if (!response.ok) throw new Error('Failed to add fact');
+      
+      // Show success message
+      if (message) {
+        message.textContent = 'Fact added successfully!';
+        message.className = 'message success';
+      }
+      
+      // Reset form
+      form.reset();
+      
+    } catch (error) {
+      // Show error message
+      if (message) {
+        message.textContent = error instanceof Error ? error.message : 'An error occurred';
+        message.className = 'message error';
+      }
+    }
+  });
+</script> 
