@@ -5,11 +5,11 @@ import { getRandomFacts } from '../data/facts';
 // Get up to 10 random facts
 const facts = getRandomFacts(10);
 
-// Calculate number of indicators needed
-const getInitialCardsPerView = () => {
+// Calculate number of indicators needed based on screen size
+function getInitialCardsPerView() {
   // Default to desktop view (3 cards)
   return 3;
-};
+}
 
 const numberOfIndicators = Math.ceil(facts.length / getInitialCardsPerView());
 ---
@@ -49,9 +49,9 @@ const numberOfIndicators = Math.ceil(facts.length / getInitialCardsPerView());
   </div>
 
   <div class="carousel-indicators">
-    {Array.from({ length: numberOfIndicators }).map((_, index) => (
+    {Array.from({ length: facts.length }).map((_, index) => (
       <button 
-        class="indicator" 
+        class="indicator"
         data-index={index} 
         aria-label={`Go to slide ${index + 1}`}
       />
@@ -194,6 +194,11 @@ const numberOfIndicators = Math.ceil(facts.length / getInitialCardsPerView());
     opacity: 0.3;
     cursor: pointer;
     transition: opacity 0.3s ease;
+    display: none; /* Hide by default */
+  }
+
+  .indicator.visible {
+    display: block;
   }
 
   .indicator.active {
@@ -237,31 +242,41 @@ const numberOfIndicators = Math.ceil(facts.length / getInitialCardsPerView());
     return Math.max(0, Math.ceil(cards.length / cardsPerView) - 1);
   }
 
-  // Initialize first indicator
+  function updateIndicatorVisibility() {
+    const maxIndex = getMaxIndex();
+    indicators.forEach((indicator, index) => {
+      // Show indicator if it's within the current slide range
+      indicator.classList.toggle('visible', index <= maxIndex);
+    });
+  }
+
+  // Initialize visibility and active state
+  updateIndicatorVisibility();
   indicators[0]?.classList.add('active');
 
   function updateCarousel(newIndex: number) {
-    const cardsPerView = getCardsPerView();
     const maxIndex = getMaxIndex();
-    
-    // Ensure newIndex is within bounds
     newIndex = Math.max(0, Math.min(newIndex, maxIndex));
     
-    // Calculate the translation percentage
-    const translateX = (newIndex * 100);
-    
-    // Update track position
+    const translateX = newIndex * 100;
     if (track) {
       track.style.transform = `translateX(-${translateX}%)`;
     }
 
-    // Update indicators
+    // Update active state
     indicators.forEach((indicator, index) => {
       indicator.classList.toggle('active', index === newIndex);
     });
 
     currentIndex = newIndex;
   }
+
+  // Add click handlers for indicators
+  indicators.forEach((indicator, index) => {
+    indicator.addEventListener('click', () => {
+      updateCarousel(index);
+    });
+  });
 
   // Add click handlers for navigation buttons
   document.getElementById('prev-fact')?.addEventListener('click', () => {
@@ -276,13 +291,6 @@ const numberOfIndicators = Math.ceil(facts.length / getInitialCardsPerView());
     updateCarousel(newIndex);
   });
 
-  // Add click handlers for indicators
-  indicators.forEach((indicator, index) => {
-    indicator.addEventListener('click', () => {
-      updateCarousel(index);
-    });
-  });
-
   // Auto-advance carousel every 5 seconds
   setInterval(() => {
     const maxIndex = getMaxIndex();
@@ -290,12 +298,13 @@ const numberOfIndicators = Math.ceil(facts.length / getInitialCardsPerView());
     updateCarousel(newIndex);
   }, 5000);
 
-  // Handle window resize
+  // Update resize handler
   let resizeTimer: number;
   window.addEventListener('resize', () => {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(() => {
-      // Recalculate indicators
+      // Update indicator visibility and carousel position
+      updateIndicatorVisibility();
       const maxIndex = getMaxIndex();
       currentIndex = Math.min(currentIndex, maxIndex);
       updateCarousel(currentIndex);
