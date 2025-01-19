@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import TimelineBrowser from '../components/TimelineBrowser.astro';
 import FeaturedCreatures from '../components/FeaturedCreatures.astro';
+import DidYouKnow from '../components/DidYouKnow.astro';
 ---
 
 <Layout title="Prehistoric World - Explore Ancient Life">
@@ -15,10 +15,7 @@ import FeaturedCreatures from '../components/FeaturedCreatures.astro';
 		<FeaturedCreatures />
 	</section>
 
-	<section class="timeline-section">
-		<h2>Explore by Timeline</h2>
-		<TimelineBrowser />
-	</section>
+	<DidYouKnow />
 </Layout>
 
 <style>
@@ -56,10 +53,6 @@ import FeaturedCreatures from '../components/FeaturedCreatures.astro';
 	@media (max-width: 768px) {
 		.hero h1 {
 			font-size: 2rem;
-		}
-
-		.hero p {
-			font-size: 1rem;
 		}
 	}
 </style>

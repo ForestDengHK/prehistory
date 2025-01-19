@@ -1,0 +1,335 @@
+---
+import type { PrehistoricFact } from '../data/facts';
+import { getRandomFacts } from '../data/facts';
+
+// Get up to 10 random facts
+const facts = getRandomFacts(10);
+
+// Calculate number of indicators needed
+const getInitialCardsPerView = () => {
+  // Default to desktop view (3 cards)
+  return 3;
+};
+
+const numberOfIndicators = Math.ceil(facts.length / getInitialCardsPerView());
+---
+
+<section class="did-you-know">
+  <div class="section-header">
+    <h2>Did You Know?</h2>
+    <div class="carousel-controls">
+      <button id="prev-fact" aria-label="Previous fact">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M15 18l-6-6 6-6"/>
+        </svg>
+      </button>
+      <button id="next-fact" aria-label="Next fact">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 18l6-6-6-6"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="facts-carousel">
+    <div class="facts-track">
+      {facts.map(fact => (
+        <div class="fact-card" data-category={fact.category}>
+          <div class="fact-image">
+            <img src={fact.image} alt={fact.title} loading="lazy" />
+            <div class="category-badge">{fact.category}</div>
+          </div>
+          <div class="fact-content">
+            <h3>{fact.title}</h3>
+            <p>{fact.fact}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <div class="carousel-indicators">
+    {Array.from({ length: numberOfIndicators }).map((_, index) => (
+      <button 
+        class="indicator" 
+        data-index={index} 
+        aria-label={`Go to slide ${index + 1}`}
+      />
+    ))}
+  </div>
+</section>
+
+<style>
+  .did-you-know {
+    padding: 2rem 0;
+    position: relative;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+  }
+
+  .section-header h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: var(--primary-color);
+  }
+
+  .carousel-controls {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .carousel-controls button {
+    background: none;
+    border: 2px solid var(--primary-color);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--primary-color);
+    transition: all 0.3s ease;
+  }
+
+  .carousel-controls button:hover {
+    background: var(--primary-color);
+    color: white;
+  }
+
+  .facts-carousel {
+    overflow: hidden;
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .facts-track {
+    display: flex;
+    transition: transform 0.5s ease;
+    gap: 1rem;
+  }
+
+  .fact-card {
+    flex: 0 0 calc(33.333% - 1rem);
+    min-width: 300px;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .fact-image {
+    position: relative;
+    overflow: hidden;
+    padding-top: 66.67%; /* 3:2 aspect ratio */
+    width: 100%;
+  }
+
+  .fact-image img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .fact-image:hover img {
+    transform: scale(1.05);
+  }
+
+  .category-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: var(--accent-color);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    text-transform: capitalize;
+  }
+
+  .fact-content {
+    padding: 1.5rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .fact-content h3 {
+    color: var(--primary-color);
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+  }
+
+  .fact-content p {
+    color: var(--secondary-color);
+    line-height: 1.6;
+    flex: 1;
+  }
+
+  .carousel-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: none;
+    background: var(--secondary-color);
+    opacity: 0.3;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+  }
+
+  .indicator.active {
+    opacity: 1;
+    background: var(--accent-color);
+  }
+
+  @media (max-width: 1200px) {
+    .fact-card {
+      flex: 0 0 calc(50% - 1rem);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .fact-card {
+      flex: 0 0 calc(100% - 1rem);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .fact-image {
+      padding-top: 75%; /* 4:3 aspect ratio for mobile */
+    }
+  }
+</style>
+
+<script>
+  let currentIndex = 0;
+  const track = document.querySelector('.facts-track') as HTMLElement;
+  const cards = document.querySelectorAll('.fact-card');
+  const indicators = document.querySelectorAll('.indicator');
+
+  function getCardsPerView() {
+    if (window.innerWidth > 1200) return 3;
+    if (window.innerWidth > 768) return 2;
+    return 1;
+  }
+
+  function getMaxIndex() {
+    const cardsPerView = getCardsPerView();
+    return Math.max(0, Math.ceil(cards.length / cardsPerView) - 1);
+  }
+
+  // Initialize first indicator
+  indicators[0]?.classList.add('active');
+
+  function updateCarousel(newIndex: number) {
+    const cardsPerView = getCardsPerView();
+    const maxIndex = getMaxIndex();
+    
+    // Ensure newIndex is within bounds
+    newIndex = Math.max(0, Math.min(newIndex, maxIndex));
+    
+    // Calculate the translation percentage
+    const translateX = (newIndex * 100);
+    
+    // Update track position
+    if (track) {
+      track.style.transform = `translateX(-${translateX}%)`;
+    }
+
+    // Update indicators
+    indicators.forEach((indicator, index) => {
+      indicator.classList.toggle('active', index === newIndex);
+    });
+
+    currentIndex = newIndex;
+  }
+
+  // Add click handlers for navigation buttons
+  document.getElementById('prev-fact')?.addEventListener('click', () => {
+    const maxIndex = getMaxIndex();
+    const newIndex = (currentIndex - 1 + maxIndex + 1) % (maxIndex + 1);
+    updateCarousel(newIndex);
+  });
+
+  document.getElementById('next-fact')?.addEventListener('click', () => {
+    const maxIndex = getMaxIndex();
+    const newIndex = (currentIndex + 1) % (maxIndex + 1);
+    updateCarousel(newIndex);
+  });
+
+  // Add click handlers for indicators
+  indicators.forEach((indicator, index) => {
+    indicator.addEventListener('click', () => {
+      updateCarousel(index);
+    });
+  });
+
+  // Auto-advance carousel every 5 seconds
+  setInterval(() => {
+    const maxIndex = getMaxIndex();
+    const newIndex = (currentIndex + 1) % (maxIndex + 1);
+    updateCarousel(newIndex);
+  }, 5000);
+
+  // Handle window resize
+  let resizeTimer: number;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      // Recalculate indicators
+      const maxIndex = getMaxIndex();
+      currentIndex = Math.min(currentIndex, maxIndex);
+      updateCarousel(currentIndex);
+    }, 250);
+  });
+
+  // Add touch support for mobile
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  track?.addEventListener('touchstart', (e) => {
+    touchStartX = e.touches[0].clientX;
+  });
+
+  track?.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].clientX;
+    handleSwipe();
+  });
+
+  function handleSwipe() {
+    const swipeThreshold = 50;
+    const diff = touchStartX - touchEndX;
+    const maxIndex = getMaxIndex();
+
+    if (Math.abs(diff) > swipeThreshold) {
+      if (diff > 0) {
+        // Swipe left
+        const newIndex = (currentIndex + 1) % (maxIndex + 1);
+        updateCarousel(newIndex);
+      } else {
+        // Swipe right
+        const newIndex = (currentIndex - 1 + maxIndex + 1) % (maxIndex + 1);
+        updateCarousel(newIndex);
+      }
+    }
+  }
+</script> 
