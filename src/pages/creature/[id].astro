@@ -28,7 +28,7 @@ const formattedDescription = marked(creature.description);
         <div class="info-grid">
           <div class="info-item">
             <h3>Period</h3>
-            <p>{creature.period}</p>
+            <p><a href={`/timeline/${creature.period.split(' ')[0].toLowerCase()}`}>{creature.period}</a></p>
           </div>
           <div class="info-item">
             <h3>Location</h3>
@@ -121,6 +121,16 @@ const formattedDescription = marked(creature.description);
 
   .info-item p {
     color: var(--secondary-color);
+  }
+
+  .info-item p a {
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .info-item p a:hover {
+    color: var(--primary-color);
   }
 
   .info-item a {
