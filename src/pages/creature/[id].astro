@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import { creatures } from '../../data/creatures';
 import { marked } from 'marked';
+import CommentButton from '../../components/CommentButton.astro';
 
 const { id } = Astro.params;
 const creature = creatures.find(c => c.id === id);
@@ -63,6 +64,8 @@ const formattedDescription = marked(creature.description);
         </div>
       </div>
     </div>
+
+    <CommentButton creatureId={creature.id} />
   </div>
 </Layout>
 
