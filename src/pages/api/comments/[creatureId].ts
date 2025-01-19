@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import { put, list } from '@vercel/blob';
+import { put, list, del } from '@vercel/blob';
 import 'dotenv/config';
 
 // Verify Blob token is configured
@@ -23,16 +23,23 @@ async function readComments(creatureId: string): Promise<Comment[]> {
             return [];
         }
 
-        // List all blobs to find our file
         const { blobs } = await list();
-        const commentBlob = blobs.find(blob => blob.pathname === `comments/${creatureId}.json`);
-        
-        if (!commentBlob) {
-            console.log(`No comments found for creature: ${creatureId}`);
+        // Find all files for this creature
+        const creatureBlobs = blobs.filter(blob => 
+            blob.pathname.startsWith(`comments/${creatureId}`) &&
+            blob.pathname.endsWith('.json')
+        );
+
+        if (creatureBlobs.length === 0) {
             return [];
         }
+
+        // Get the most recent file based on uploadedAt timestamp
+        const latestBlob = creatureBlobs.reduce((latest, current) => {
+            return !latest || current.uploadedAt > latest.uploadedAt ? current : latest;
+        });
         
-        const response = await fetch(commentBlob.url);
+        const response = await fetch(latestBlob.url);
         if (!response.ok) {
             console.error(`Failed to fetch comments: ${response.statusText}`);
             return [];
@@ -40,15 +47,15 @@ async function readComments(creatureId: string): Promise<Comment[]> {
         
         const text = await response.text();
         const comments = JSON.parse(text);
-        
-        // Ensure each comment has a unique ID and is properly typed
-        return comments.map((comment: Partial<Comment>) => ({
-            id: comment.id || Date.now().toString(),
-            name: comment.name || 'Anonymous',
-            comment: comment.comment || '',
-            createdAt: comment.createdAt || new Date().toISOString(),
-            email: comment.email
-        }));
+
+        // If this isn't the standard filename, migrate the comments
+        if (latestBlob.pathname !== `comments/${creatureId}.json`) {
+            await writeComments(creatureId, comments);
+            // Delete the old file
+            await del(latestBlob.pathname);
+        }
+
+        return comments;
     } catch (error) {
         console.error('Error reading comments:', error);
         return [];
@@ -57,11 +64,17 @@ async function readComments(creatureId: string): Promise<Comment[]> {
 
 // Write comments to Blob
 async function writeComments(creatureId: string, comments: Comment[]) {
-    const json = JSON.stringify(comments, null, 2);
-    await put(`comments/${creatureId}.json`, json, {
-        contentType: 'application/json',
-        access: 'public'
-    });
+    try {
+        const pathname = `comments/${creatureId}.json`;
+        const json = JSON.stringify(comments, null, 2);
+        await put(pathname, json, {
+            contentType: 'application/json',
+            access: 'public'
+        });
+    } catch (error) {
+        console.error('Error writing comments:', error);
+        throw error;
+    }
 }
 
 // Validate CAPTCHA token
@@ -92,7 +105,6 @@ export const GET: APIRoute = async ({ params }) => {
     }
 
     const comments = await readComments(creatureId);
-
     return new Response(JSON.stringify(comments), {
         status: 200,
         headers: { 'Content-Type': 'application/json' }
