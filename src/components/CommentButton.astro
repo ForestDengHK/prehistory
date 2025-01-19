@@ -34,6 +34,19 @@ const { creatureId } = Astro.props;
                 <label for="comment">Comment <span class="required">*</span></label>
                 <textarea id="comment" name="comment" placeholder="Share your thoughts..." required></textarea>
             </div>
+            <div class="form-group captcha-group">
+                <label for="captcha">Verify you're human <span class="required">*</span></label>
+                <div class="captcha-container">
+                    <span id="captcha-question" class="captcha-question"></span>
+                    <input type="number" id="captcha" name="captcha" required placeholder="Enter the answer" min="0" max="100">
+                    <input type="hidden" id="captcha-token" name="captcha-token">
+                    <button type="button" id="refresh-captcha" class="refresh-captcha" aria-label="New Question">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.3"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
             <button type="submit" class="submit-button">Post Comment</button>
         </form>
     </div>
@@ -65,15 +78,44 @@ const { creatureId } = Astro.props;
         }
     });
 
-    // Handle form submission
+    // CAPTCHA functionality
+    function generateCaptcha() {
+        const num1 = Math.floor(Math.random() * 10) + 1;
+        const num2 = Math.floor(Math.random() * 10) + 1;
+        const answer = num1 + num2;
+        const token = btoa(`${Date.now()}-${answer}`);
+        
+        document.getElementById('captcha-question').textContent = `What is ${num1} + ${num2}?`;
+        document.getElementById('captcha-token').value = token;
+        document.getElementById('captcha').value = '';
+        return answer;
+    }
+
+    let currentCaptchaAnswer = generateCaptcha();
+    
+    document.getElementById('refresh-captcha').addEventListener('click', () => {
+        currentCaptchaAnswer = generateCaptcha();
+    });
+
+    // Update form submission
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
         
         const formData = new FormData(form);
+        const captchaAnswer = parseInt(formData.get('captcha'));
+        
+        if (captchaAnswer !== currentCaptchaAnswer) {
+            alert('Incorrect CAPTCHA answer. Please try again.');
+            currentCaptchaAnswer = generateCaptcha();
+            return;
+        }
+
         const data = {
             name: formData.get('name'),
             email: formData.get('email') || undefined,
-            comment: formData.get('comment')
+            comment: formData.get('comment'),
+            captchaToken: formData.get('captcha-token'),
+            captchaAnswer: captchaAnswer
         };
 
         try {
@@ -301,5 +343,57 @@ const { creatureId } = Astro.props;
         font-size: 0.9em;
         font-weight: normal;
         margin-left: 0.2rem;
+    }
+
+    .captcha-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .captcha-container {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .captcha-question {
+        font-size: 1rem;
+        color: var(--text-color);
+        background: #f5f5f5;
+        padding: 0.75rem 1rem;
+        border-radius: 4px;
+        flex: 1;
+    }
+
+    .captcha-container input {
+        width: 100px;
+    }
+
+    .refresh-captcha {
+        background: none;
+        border: none;
+        color: var(--primary-color);
+        cursor: pointer;
+        padding: 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.2s ease;
+    }
+
+    .refresh-captcha:hover {
+        transform: rotate(180deg);
+        color: var(--accent-color);
+    }
+
+    @media (max-width: 768px) {
+        .captcha-container {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 0.5rem;
+        }
+
+        .captcha-container input {
+            width: 100%;
+        }
     }
 </style> 

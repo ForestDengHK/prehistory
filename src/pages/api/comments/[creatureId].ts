@@ -43,6 +43,24 @@ async function writeComments(creatureId: string, comments: Comment[]) {
     await fs.writeFile(filePath, JSON.stringify(comments, null, 2));
 }
 
+// Validate CAPTCHA token
+function validateCaptcha(token: string, answer: number): boolean {
+    try {
+        const decoded = atob(token);
+        const [timestamp, correctAnswer] = decoded.split('-');
+        const timeElapsed = Date.now() - parseInt(timestamp);
+        
+        // Token expires after 5 minutes
+        if (timeElapsed > 5 * 60 * 1000) {
+            return false;
+        }
+
+        return parseInt(correctAnswer) === answer;
+    } catch {
+        return false;
+    }
+}
+
 export const GET: APIRoute = async ({ params }) => {
     const { creatureId } = params;
     if (!creatureId) {
@@ -72,10 +90,18 @@ export const POST: APIRoute = async ({ request, params }) => {
 
     try {
         const body = await request.json();
-        const { name, comment, email } = body;
+        const { name, comment, email, captchaToken, captchaAnswer } = body;
 
-        if (!name || !comment) {
-            return new Response(JSON.stringify({ error: 'Name and comment are required' }), {
+        if (!name || !comment || !captchaToken || !captchaAnswer) {
+            return new Response(JSON.stringify({ error: 'Required fields are missing' }), {
+                status: 400,
+                headers: { 'Content-Type': 'application/json' }
+            });
+        }
+
+        // Validate CAPTCHA
+        if (!validateCaptcha(captchaToken, captchaAnswer)) {
+            return new Response(JSON.stringify({ error: 'Invalid or expired CAPTCHA' }), {
                 status: 400,
                 headers: { 'Content-Type': 'application/json' }
             });
