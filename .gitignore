@@ -22,4 +22,8 @@ pnpm-debug.log*
 # vercel
 .vercel 
 
+# Admin files
+src/pages/admin/*
+
+
 /docs/*
