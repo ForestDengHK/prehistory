@@ -3,7 +3,7 @@ import vercel from '@astrojs/vercel/serverless';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://prehistory.vercel.app',
+  site: 'https://www.xinhao.eu',
   base: '/',
   output: 'server',
   build: {

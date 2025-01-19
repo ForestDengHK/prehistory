@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import { put, list, del } from '@vercel/blob';
+import { put, list } from '@vercel/blob';
 
 interface Comment {
     id: string;
@@ -12,8 +12,15 @@ interface Comment {
 // Read comments from Blob
 async function readComments(creatureId: string): Promise<Comment[]> {
     try {
-        const response = await fetch(`${process.env.BLOB_URL}/comments/${creatureId}.json`);
+        // List all blobs to find our file
+        const { blobs } = await list();
+        const commentBlob = blobs.find(blob => blob.pathname === `comments/${creatureId}.json`);
+        
+        if (!commentBlob) return [];
+        
+        const response = await fetch(commentBlob.url);
         if (!response.ok) return [];
+        
         const text = await response.text();
         return JSON.parse(text);
     } catch {
