@@ -492,7 +492,7 @@ export const creatures: Creature[] = [
     category: 'Flying Creatures',
     subcategory: 'Pterosaurs'
   },
-      {
+        {
     id: 'brachiosaurus-altithorax',
     name: 'Brachiosaurus altithorax',
     scientificName: 'Brachiosaurus altithorax',
@@ -505,7 +505,35 @@ export const creatures: Creature[] = [
     description: 'Brachiosaurus, a towering herbivorous dinosaur from the Late Jurassic period, is known for its distinctively long neck, which was longer than its tail, and its unique body structure, with front legs that were significantly longer than the hind legs, giving it an upright, giraffe-like posture; this adaptation allowed it to reach and feed on vegetation high up in trees, well beyond the reach of most other herbivores of its time, and it grew to an enormous size, with estimates placing its length at around 80 feet and its weight at up to 80 tons, making it one of the largest and heaviest dinosaurs to roam the Earth, while its fossils have been found in what are now North America and Africa, providing vital clues about the ecological roles of massive sauropods during the Jurassic, before it, like many other dinosaurs, became extinct at the end of the Mesozoic Era around 66 million years ago.',
     category: 'Dinosaurs',
     subcategory: 'Sauropods',
-    family: ''
+    family: 'Brachiosauridae'
+  },
+  {
+    id: '-livyatan-melvillei',
+    name: ' Livyatan melvillei',
+    scientificName: ' Livyatan melvillei',
+    period: 'Neogene',
+    location: 'South America',
+    length: '13-16 meters',
+    weight: '57,000 kg',
+    diet: 'Carnivore',
+    image: '/images/livyatan.jpg',
+    description: '\nChatGPT\nLivyatan is an extinct genus of gigantic predatory whale that inhabited the oceans during the Miocene epoch, approximately 12 to 13 million years ago. It was a member of the family Physeteridae, closely related to modern sperm whales, and could reach lengths of 13 to 17 meters, making it one of the largest marine predators of its time. Livyatan had an incredibly powerful bite, with teeth that could exceed 36 centimeters in length, enabling it to prey on large marine mammals such as seals, dolphins, and even other whales. Fossil evidence suggests it had a robust and muscular body, capable of deep diving to hunt in the open ocean, and its sheer size and predatory capabilities positioned it as a dominant force in the ancient marine ecosystem, rivaling other apex predators like the giant shark Carcharocles megalodon. The genus is named after the biblical Leviathan, reflecting its immense power and size.',
+    category: 'Marine Creatures',
+    subcategory: 'Prehistoric Whales'
+  },
+  {
+    id: 'carcharocles-megalodon',
+    name: 'carcharocles megalodon',
+    scientificName: 'carcharocles megalodon',
+    period: 'Neogene',
+    location: 'every continent except Antarctica',
+    length: ' 15-18 meters',
+    weight: '50,000-70,000',
+    diet: 'Carnivore',
+    image: '/images/megalodon2.jpg',
+    description: 'Carcharocles megalodon was an enormous prehistoric shark that roamed the oceans from approximately 23 to 3.6 million years ago, during the Cenozoic Era, and is considered the largest shark to ever exist, reaching lengths of up to 18 meters (59 feet) or more, and possibly weighing as much as 50 to 70 tons; with its massive, serrated teeth—some of which exceeded 18 centimeters (7 inches)—and a powerful bite force, megalodon was a dominant apex predator capable of preying on large marine mammals, including whales and dolphins, making it a fearsome force in the ancient oceans that rivaled even the largest marine predators like Livyatan.',
+    category: 'Marine Creatures',
+    subcategory: 'Prehistoric Sharks'
   }];
 
 export const searchCreatures = (searchQuery: string): SearchResult[] => {
