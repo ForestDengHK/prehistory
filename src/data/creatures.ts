@@ -464,7 +464,7 @@ export const creatures: Creature[] = [
     category: 'Dinosaurs',
     subcategory: 'Theropods'
   },
-  {
+    {
     id: 'argentinosaurus-huinculensis',
     name: 'Argentinosaurus huinculensis',
     scientificName: 'Argentinosaurus huinculensis',
@@ -476,7 +476,8 @@ export const creatures: Creature[] = [
     image: '/images/argintinasauarus.jpeg',
     description: 'Argentinosaurus was one of the largest known land animals to have ever existed, a massive sauropod dinosaur from the Late Cretaceous period, approximately 94 to 97 million years ago, that roamed what is now South America. Estimated to have reached lengths of up to 35 meters (115 feet) and weighed as much as 100 tons, Argentinosaurus was an herbivorous giant, with a long neck and tail, which allowed it to browse on high vegetation while also reaching the ground for lower-growing plants. Its enormous size not only made it a formidable presence in its ecosystem but likely also helped deter predators like Giganotosaurus and other theropods. Despite its size, its long, graceful neck would have enabled it to feed across vast areas without needing to move constantly, and its thick, pillar-like legs supported its massive body. Fossil evidence of Argentinosaurus is limited to incomplete skeletons, mostly from vertebrae and limb bones, found in the Neuquén Province of Argentina, leading to its name. Because of its immense proportions, it is often cited as one of the heaviest and longest sauropods, alongside other giants like Patagotitan and Dreadnoughtus. As an herbivore, it would have likely lived in herds, and its size may have helped it maintain a largely solitary lifestyle, avoiding predators by sheer magnitude and perhaps using its tail for defense. The discovery of Argentinosaurus was pivotal in understanding the diversity and size range of Late Cretaceous sauropods, underscoring the extreme evolutionary paths that some herbivorous dinosaurs took to dominate the Mesozoic landscapes.',
     category: 'Dinosaurs',
-    subcategory: 'Sauropods'
+    subcategory: 'Sauropods',
+    family: 'Titanosauridae'
   },
   {
     id: 'quetzalcoatlus-northropi',
@@ -607,6 +608,111 @@ export const creatures: Creature[] = [
     category: 'Dinosaurs',
     subcategory: 'Ornithopods',
     family: 'Troodontidae'
+  },
+    {
+    id: 'mapusaurus-roseae',
+    name: 'mapusaurus roseae',
+    scientificName: 'mapusaurus roseae',
+    period: 'Cretaceous',
+    location: 'South America',
+    length: '11-12',
+    weight: '3,000-6,000 kg',
+    diet: 'Carnivore',
+    image: '/images/mapusaurus.jpg',
+    description: 'Mapusaurus was a formidable and massive carnivorous theropod that roamed what is now Argentina around 95 million years ago, during the Late Cretaceous period. It is believed to have reached lengths of up to 33 feet (10 meters) and weighed between 3 to 5 tons, making it one of the largest theropods of its time. Distinguished by its long, slender body, sharp teeth, and powerful jaws, Mapusaurus was an apex predator in its environment, preying on large herbivorous dinosaurs. What sets Mapusaurus apart from many other large theropods is evidence suggesting it may have exhibited social behaviors, with fossilized remains of multiple individuals found in close proximity to each other, hinting that it might have hunted in packs, much like modern-day wolves. This behavior would have provided significant advantages in taking down large prey, such as sauropods, which were abundant in the region. Its discovery has offered important insights into the social dynamics and hunting strategies of Cretaceous theropods.',
+    category: 'Dinosaurs',
+    subcategory: 'Theropods',
+    family: 'Carcharodontosauridae'
+  },
+    {
+    id: 'acrocanthosaurus-atokensis',
+    name: 'Acrocanthosaurus atokensis',
+    scientificName: 'Acrocanthosaurus atokensis',
+    period: 'Cretaceous',
+    location: 'North America',
+    length: '11–11.5 m',
+    weight: '4,400 – 6,600 kg',
+    diet: 'Carnivore',
+    image: '/images/acrocanthosaurus.jpeg',
+    description: '\nChatGPT\nAcrocanthosaurus was a large, predatory theropod dinosaur that lived during the Early Cretaceous period, approximately 125 to 113 million years ago, in what is now North America. Known for its distinctive, high neural spines along its back, which likely supported a sail-like structure or possibly a ridge of muscles, Acrocanthosaurus reached lengths of around 35 feet (10.5 meters) and weighed between 3 to 5 tons. Its powerful build, with robust limbs and a large head equipped with sharp teeth, suggests that it was a top predator in its ecosystem, preying on large herbivorous dinosaurs such as the sauropods and ornithischians that coexisted with it. Despite its impressive size, Acrocanthosaurus was likely a fast and agile hunter, using its keen senses to ambush prey. Fossil evidence indicates that it had strong arms and hands with three large claws, though it is debated whether it used them in predation or for other functions. Its fossils have been found in multiple locations across North America, providing valuable insight into the biodiversity of the Cretaceous period and the role Acrocanthosaurus played in its ecosystem. Additionally, the unique structure of its neural spines has intrigued paleontologists, who continue to study their potential function in temperature regulation, display, or even as an aid in locomotion.',
+    category: 'Dinosaurs',
+    subcategory: 'Theropods',
+    family: 'Carcharodontosauridae'
+  },
+    {
+    id: 'tyrannotitan-chubutensis',
+    name: 'Tyrannotitan chubutensis',
+    scientificName: 'Tyrannotitan chubutensis',
+    period: 'Cretaceous',
+    location: 'South America',
+    length: '12.2-13 meters',
+    weight: '4,900 – 7,000 kg',
+    diet: 'Carnivore',
+    image: '/images/tyrannotitan.jpg',
+    description: 'Tyrannotitan is a genus of large, predatory theropod dinosaur that lived during the Early Cretaceous period, approximately 110 to 100 million years ago, in what is now Argentina. Closely related to the more famous Carcharodontosaurus, Tyrannotitan was a member of the Carcharodontosauridae family, and it likely reached lengths of around 40 feet (12 meters) and weighed up to 8 tons, making it one of the largest carnivores of its time. This massive predator had a long, powerful body, large jaws filled with serrated teeth, and robust limbs, all of which suggest it was well adapted for hunting large prey, possibly including sauropods and other herbivores that dominated the landscape of South America during the Early Cretaceous. Its fossils were discovered in the Neuquén Basin, which was home to a diverse range of dinosaurs, indicating that Tyrannotitan likely played a dominant role in the ecosystem as an apex predator. The discovery of Tyrannotitan was significant because it filled in a gap in the fossil record of large theropods in South America, helping to better understand the distribution and evolution of giant predatory dinosaurs. The relatively incomplete fossil evidence available includes parts of the skull, vertebrae, and limb bones, which have provided important insights into its size and anatomy, but much of its behavior and ecological role remains speculative. Tyrannotitan’s exact relationship to other giant theropods like Carcharodontosaurus and Giganotosaurus continues to be a subject of ongoing research in the field of paleontology.',
+    category: 'Dinosaurs',
+    subcategory: 'Theropods',
+    family: 'Carcharodontosauridae'
+  },
+    {
+    id: 'baryonyx-walkeri',
+    name: 'Baryonyx walkeri',
+    scientificName: 'Baryonyx walkeri',
+    period: 'Cretaceous',
+    location: 'Europe',
+    length: '7.5 – 10 m',
+    weight: '1,200 – 1,700 kg',
+    diet: 'Carnivore',
+    image: '/images/baryonyx.png',
+    description: 'Baryonyx was a large, carnivorous theropod dinosaur that lived during the Early Cretaceous period, around 130 to 125 million years ago, in what is now Europe, specifically the United Kingdom and Spain. Recognizable by its long, crocodile-like snout, Baryonyx grew to lengths of up to 30 feet (9 meters) and likely weighed between 1.5 to 2 tons. It belonged to the spinosaurid family, which is known for its semi-aquatic adaptations, and Baryonyx is one of the best-known and earliest members of this group. Its long, slender jaws were filled with conical teeth, ideal for catching slippery prey like fish, which was likely a significant part of its diet. Fossil evidence suggests that Baryonyx had a varied diet, also feeding on small dinosaurs and possibly even large prey, such as the herbivorous Iguanodon, as indicated by its fossilized remains found in the stomach cavity of one individual.\n\nThe most striking feature of Baryonyx was its large, hook-shaped claw on the first digit of each hand, which could have been used for grasping prey or possibly for defense. Despite its relatively slender build compared to some other theropods, Baryonyx was a powerful predator, capable of swift movement on land and possibly adept at swimming or wading in water, much like modern-day crocodiles. Its semi-aquatic lifestyle is further supported by its long, muscular tail, which would have aided in swimming, as well as the structure of its teeth, well-suited for grasping rather than slicing, indicating a feeding behavior more in line with fish-eating animals.\n\nThe discovery of Baryonyx in the 1980s was significant because it provided crucial evidence for the hypothesis that spinosaurids were not solely land-based predators but had adaptations for a more aquatic or semi-aquatic lifestyle. As one of the first dinosaur fossils to show such features, Baryonyx helped reshape our understanding of the diversity of theropod feeding behaviors and habitats during the Early Cretaceous period.',
+    category: 'Dinosaurs',
+    subcategory: 'Theropods',
+    family: 'Spinosauridae'
+  },
+    {
+    id: 'suchomimus-tenerensis',
+    name: 'Suchomimus tenerensis',
+    scientificName: 'Suchomimus tenerensis',
+    period: 'Cretaceous',
+    location: 'Africa',
+    length: '9-12 meters',
+    weight: '2,500-3,800 kg',
+    diet: 'Carnivore',
+    image: '/images/suchominus.jpg',
+    description: 'Suchomimus was a large, predatory theropod dinosaur that lived during the Early Cretaceous period, approximately 125 to 112 million years ago, in what is now northern Africa, specifically in modern-day Niger. A member of the spinosaurid family, closely related to Baryonyx, Suchomimus was distinguished by its long, narrow, crocodile-like snout, which was filled with conical teeth suited for grasping fish, suggesting it had a diet primarily focused on aquatic prey. Estimated to reach lengths of up to 33 feet (10 meters) and weighing around 2 to 3 tons, Suchomimus was a relatively large and robust predator, although not as massive as some of its spinosaurid relatives like Spinosaurus. Its body was built for speed and agility, with long, powerful hind limbs and a long tail that likely aided in both swimming and balance while running.\n\nThe long, narrow skull of Suchomimus was one of its most distinctive features, and it is thought to have been adapted for a specialized feeding strategy, possibly stalking fish in shallow waters, much like modern-day herons or crocodiles. Fossil evidence, including partial skeletons and teeth, indicates that Suchomimus had a relatively flexible neck, which would have been advantageous in maneuvering its head to capture slippery, fast-moving prey. While fish were likely a primary component of its diet, it is possible that Suchomimus also hunted small dinosaurs and other terrestrial prey, given its relatively robust forelimbs with large claws, which might have been used for grasping or tearing at prey.\n\nThe discovery of Suchomimus was significant for paleontologists, as it helped to further clarify the ecological diversity of the spinosaurid group, which is now understood to include both semi-aquatic and terrestrial hunters. The fossil evidence also provided important insights into the anatomical adaptations of these large theropods, particularly the evolution of their elongated snouts, which set them apart from other theropods and allowed them to exploit a unique ecological niche, primarily focused on aquatic environments.',
+    category: 'Dinosaurs',
+    subcategory: 'Theropods',
+    family: 'Spinosauridae'
+  },
+    {
+    id: 'irritator-challengeri',
+    name: 'Irritator challengeri',
+    scientificName: 'Irritator challengeri',
+    period: 'Cretaceous',
+    location: 'South America',
+    length: '7.5 meters',
+    weight: '1,000 kg',
+    diet: 'Carnivore',
+    image: '/images/irritator.jpeg',
+    description: 'Irritator was a medium-sized, predatory theropod dinosaur that lived during the Early Cretaceous period, approximately 110 to 100 million years ago, in what is now Brazil. Belonging to the spinosaurid family, Irritator shared many features with other members of this group, such as its long, narrow, crocodile-like snout filled with conical teeth, which suggests it was adapted for a diet focused primarily on fish. However, unlike some of its larger relatives like Spinosaurus or Suchomimus, Irritator was relatively small, reaching lengths of about 26 feet (8 meters) and weighing around 1 to 2 tons, making it one of the smaller spinosaurids.\n\nThe most distinctive characteristic of Irritator is its unusually elongated skull, with a length that comprises a large portion of its overall body length. Its teeth were conical and curved, ideal for capturing slippery fish, but it also likely had the versatility to hunt smaller dinosaurs and other terrestrial prey when aquatic food sources were scarce. The name \"Irritator\" was given because the paleontologists who first described it found the fossil in a somewhat frustrating condition—part of the skull had been damaged by collectors, hence the name, which refers to their irritation with the incomplete specimen.\n\nFossil evidence suggests that Irritator had a relatively light and agile build, with long, slender limbs and a long tail that would have aided in balance and possibly even swimming. Like other spinosaurids, it is believed to have been semi-aquatic, capable of hunting in both water and on land, similar to modern-day crocodiles and herons. The specific role of Irritator in its ecosystem is still debated, as it may have been a specialized fish-eater in coastal environments or a more generalized predator that fed on a range of prey.\n\nIrritator’s fossil discovery, particularly its partial skull and vertebrae, has been important in understanding the diversity within the spinosaurid family. It has also shed light on the evolutionary adaptations that allowed spinosaurids to exploit a variety of niches, from strictly terrestrial hunting to semi-aquatic lifestyles. While not as famous as Spinosaurus or Baryonyx, Irritator adds valuable information about the ecological roles and evolutionary history of these intriguing theropods.',
+    category: 'Dinosaurs',
+    subcategory: 'Theropods',
+    family: 'Spinosauridae'
+  },
+      {
+    id: 'siamosaurus-suteethorni',
+    name: 'Siamosaurus suteethorni',
+    scientificName: 'Siamosaurus suteethorni',
+    period: 'Cretaceous',
+    location: 'Aisa',
+    length: '9.1-9.5 meters',
+    weight: '2,000-3,000 kg',
+    diet: 'Carnivore',
+    image: '/images/sia.jpg',
+    description: 'Siamosaurus was a large, carnivorous theropod dinosaur that lived during the Early Cretaceous period, approximately 125 to 112 million years ago, in what is now Thailand. It was a member of the spinosaurid family, closely related to other fish-eating theropods like Baryonyx and Suchomimus. Siamosaurus was characterized by its elongated, crocodile-like snout, which was filled with conical teeth, well-suited for grasping slippery prey such as fish. It likely reached lengths of about 30 feet (9 meters) and weighed between 2 to 3 tons, placing it among the larger spinosaurids.\n\nThe fossil evidence for Siamosaurus is limited but includes partial skulls and vertebrae that have helped scientists infer its overall anatomy and lifestyle. Based on its long, narrow snout and conical teeth, it is believed that Siamosaurus had a diet primarily focused on fish, similar to other spinosaurids. The presence of spinosaurid characteristics such as a long, muscular tail suggests that it may have been a semi-aquatic predator, capable of swimming to catch prey in shallow waters or along riverbanks. This ecological niche would have been advantageous in the coastal or riverine environments it inhabited, allowing it to hunt both in water and on land.\n\nLike other spinosaurids, Siamosaurus likely had a relatively lightweight, agile body, with long, powerful hind limbs designed for movement on land, although its body structure suggests it could have been just as adept in the water. Its fossilized remains were found alongside those of other dinosaurs, providing valuable insights into the types of ecosystems these large theropods inhabited. The exact role of Siamosaurus in its ecosystem remains speculative, but it is considered an apex predator in its environment, likely preying on both aquatic and terrestrial animals.\n\nSiamosaurus adds an important piece to the puzzle of spinosaurid evolution and their adaptation to different environmental niches. While it is not as well-known as other spinosaurids like Spinosaurus, the discovery of Siamosaurus contributes to our understanding of the diversity and ecological roles of these fascinating, fish-eating theropods during the Early Cretaceous.',
+    category: 'Dinosaurs',
+    subcategory: 'Theropods',
+    family: 'Spinosauridae'
   }];
 
 export const searchCreatures = (searchQuery: string): SearchResult[] => {
