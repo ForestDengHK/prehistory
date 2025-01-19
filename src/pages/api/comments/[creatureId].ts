@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import { put, list } from '@vercel/blob';
+import { put, list, del } from '@vercel/blob';
 import 'dotenv/config';
 
 // Verify Blob token is configured
@@ -23,12 +23,12 @@ async function readComments(creatureId: string): Promise<Comment[]> {
             return [];
         }
 
-        // List all blobs to find our file
+        // Use a consistent filename pattern for each creature
+        const pathname = `comments/${creatureId}.json`;
         const { blobs } = await list();
-        const commentBlob = blobs.find(blob => blob.pathname === `comments/${creatureId}.json`);
+        const commentBlob = blobs.find(blob => blob.pathname === pathname);
         
         if (!commentBlob) {
-            console.log(`No comments found for creature: ${creatureId}`);
             return [];
         }
         
@@ -39,16 +39,7 @@ async function readComments(creatureId: string): Promise<Comment[]> {
         }
         
         const text = await response.text();
-        const comments = JSON.parse(text);
-        
-        // Ensure each comment has a unique ID and is properly typed
-        return comments.map((comment: Partial<Comment>) => ({
-            id: comment.id || Date.now().toString(),
-            name: comment.name || 'Anonymous',
-            comment: comment.comment || '',
-            createdAt: comment.createdAt || new Date().toISOString(),
-            email: comment.email
-        }));
+        return JSON.parse(text);
     } catch (error) {
         console.error('Error reading comments:', error);
         return [];
@@ -57,8 +48,10 @@ async function readComments(creatureId: string): Promise<Comment[]> {
 
 // Write comments to Blob
 async function writeComments(creatureId: string, comments: Comment[]) {
+    // Use a consistent filename pattern
+    const pathname = `comments/${creatureId}.json`;
     const json = JSON.stringify(comments, null, 2);
-    await put(`comments/${creatureId}.json`, json, {
+    await put(pathname, json, {
         contentType: 'application/json',
         access: 'public'
     });
@@ -82,6 +75,44 @@ function validateCaptcha(token: string, answer: number): boolean {
     }
 }
 
+// Cleanup duplicate files and consolidate comments
+async function cleanupDuplicateFiles(creatureId: string) {
+    try {
+        const { blobs } = await list();
+        const creatureBlobs = blobs.filter(blob => 
+            blob.pathname.startsWith(`comments/`) && 
+            blob.pathname.includes(creatureId) &&
+            blob.pathname !== `comments/${creatureId}.json`
+        );
+
+        // Read all comments from duplicate files
+        const allComments: Comment[] = [];
+        for (const blob of creatureBlobs) {
+            try {
+                const response = await fetch(blob.url);
+                if (response.ok) {
+                    const comments = await response.json();
+                    allComments.push(...comments);
+                }
+                // Delete the duplicate file
+                await del(blob.pathname);
+            } catch (error) {
+                console.error(`Error processing file ${blob.pathname}:`, error);
+            }
+        }
+
+        // If we found any comments in duplicate files, merge them
+        if (allComments.length > 0) {
+            const existingComments = await readComments(creatureId);
+            const mergedComments = [...existingComments, ...allComments]
+                .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+            await writeComments(creatureId, mergedComments);
+        }
+    } catch (error) {
+        console.error('Error during cleanup:', error);
+    }
+}
+
 export const GET: APIRoute = async ({ params }) => {
     const { creatureId } = params;
     if (!creatureId) {
@@ -91,6 +122,8 @@ export const GET: APIRoute = async ({ params }) => {
         });
     }
 
+    // Run cleanup when fetching comments
+    await cleanupDuplicateFiles(creatureId);
     const comments = await readComments(creatureId);
 
     return new Response(JSON.stringify(comments), {
