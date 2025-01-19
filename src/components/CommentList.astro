@@ -1,0 +1,146 @@
+---
+interface Props {
+    creatureId: string;
+}
+
+interface Comment {
+    id: string;
+    name: string;
+    comment: string;
+    createdAt: string;
+    email?: string;
+}
+
+const { creatureId } = Astro.props;
+
+// Fetch comments from API
+let comments: Comment[] = [];
+try {
+    const response = await fetch(`${Astro.url.origin}/api/comments/${creatureId}`);
+    if (response.ok) {
+        comments = await response.json();
+    }
+} catch (error) {
+    console.error('Error fetching comments:', error);
+}
+
+function formatDate(dateString: string): string {
+    const date = new Date(dateString);
+    return new Intl.DateTimeFormat('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+    }).format(date);
+}
+---
+
+<div class="comments-section">
+    <h2>Comments ({comments.length})</h2>
+    <div class="comments-list">
+        {comments.length > 0 ? (
+            comments.map(comment => (
+                <div class="comment">
+                    <div class="comment-header">
+                        <span class="commenter-name">{comment.name}</span>
+                        <span class="comment-date">{formatDate(comment.createdAt)}</span>
+                    </div>
+                    <p class="comment-text">{comment.comment}</p>
+                </div>
+            ))
+        ) : (
+            <div class="no-comments">
+                No comments yet. Be the first to share your thoughts!
+            </div>
+        )}
+    </div>
+</div>
+
+<style is:global>
+    .comments-section {
+        margin-top: 3rem;
+        background: white;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .comments-section h2 {
+        color: var(--primary-color);
+        margin-bottom: 2rem;
+        font-size: 1.5rem;
+        font-weight: 500;
+    }
+
+    .comments-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .comment {
+        padding: 1.25rem;
+        border: 1px solid #eee;
+        border-radius: 6px;
+        transition: transform 0.2s ease;
+        font-size: 0.95rem;
+        background-color: #fafafa;
+    }
+
+    .comment:hover {
+        transform: translateX(4px);
+        border-left: 3px solid var(--accent-color);
+    }
+
+    .comment-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0.5rem;
+    }
+
+    .commenter-name {
+        font-weight: 600;
+        color: var(--primary-color);
+        font-size: 0.95rem;
+    }
+
+    .comment-date {
+        color: #666;
+        font-size: 0.85rem;
+    }
+
+    .comment-text {
+        color: var(--secondary-color);
+        line-height: 1.5;
+        margin: 0;
+        font-size: 0.95rem;
+    }
+
+    .no-comments {
+        text-align: center;
+        padding: 2rem;
+        color: #666;
+        font-style: italic;
+        background: #fafafa;
+        border-radius: 6px;
+        border: 1px dashed #ddd;
+    }
+
+    @media (max-width: 768px) {
+        .comments-section {
+            padding: 1.25rem;
+        }
+
+        .comment {
+            padding: 1rem;
+        }
+
+        .comment-header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.25rem;
+        }
+    }
+</style> 
