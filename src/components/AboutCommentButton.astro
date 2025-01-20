@@ -24,7 +24,8 @@
             </div>
             <div class="form-group">
                 <label for="comment">Message <span class="required">*</span></label>
-                <textarea id="comment" name="comment" placeholder="Share your thoughts..." required></textarea>
+                <textarea id="comment" name="comment" placeholder="Share your thoughts... Markdown and HTML are supported" required></textarea>
+                <small class="format-hint">You can use Markdown and HTML formatting (e.g., **bold**, *italic*, [links](url), etc.)</small>
             </div>
             <div class="form-group captcha-group">
                 <label for="captcha">Verify you're human <span class="required">*</span></label>
@@ -387,5 +388,13 @@
         .captcha-container input {
             width: 100%;
         }
+    }
+
+    .format-hint {
+        display: block;
+        margin-top: 0.5rem;
+        color: #666;
+        font-size: 0.85rem;
+        font-style: italic;
     }
 </style> 
