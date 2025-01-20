@@ -1,5 +1,5 @@
 // List of allowed IP addresses
-const ALLOWED_IPS = ['127.0.0.1', 'localhost', '::1']; // Add your IP address here
+const ALLOWED_IPS = ['127.0.0.1', 'localhost', '169.155.239.98', '::1']; // Add your IP address here
 
 // Basic auth credentials
 const ADMIN_USERNAME = import.meta.env.ADMIN_USERNAME;

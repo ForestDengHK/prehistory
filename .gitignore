@@ -27,3 +27,5 @@ src/pages/admin/comments.astro
 
 
 /docs/*
+
+.env.development
