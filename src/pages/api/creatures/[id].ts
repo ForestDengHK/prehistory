@@ -21,7 +21,8 @@ export const PUT: APIRoute = async ({ params, request }) => {
       'image',
       'description',
       'category',
-      'subcategory'
+      'subcategory',
+      'family'
     ];
 
     const isValid = requiredFields.every(field => 
