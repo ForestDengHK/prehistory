@@ -1,5 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import AboutCommentButton from '../components/AboutCommentButton.astro';
+import AboutCommentList from '../components/AboutCommentList.astro';
 
 const title = 'About Prehistoric World';
 ---
@@ -45,7 +47,11 @@ const title = 'About Prehistoric World';
         </div>
       </div>
     </section>
+
+    <AboutCommentList />
   </div>
+
+  <AboutCommentButton />
 </Layout>
 
 <style>

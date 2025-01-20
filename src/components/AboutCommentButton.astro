@@ -1,0 +1,391 @@
+<div class="comment-container">
+    <button id="comment-button" class="comment-button" aria-label="Add Comment">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+        </svg>
+    </button>
+</div>
+
+<!-- Comment Modal -->
+<div id="comment-modal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Leave a Message</h2>
+            <button id="close-modal" class="close-button" aria-label="Close">×</button>
+        </div>
+        <form id="comment-form">
+            <div class="form-group">
+                <label for="name">Name <span class="required">*</span></label>
+                <input type="text" id="name" name="name" placeholder="Your name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email <span class="optional">(optional)</span></label>
+                <input type="email" id="email" name="email" placeholder="Your email address">
+            </div>
+            <div class="form-group">
+                <label for="comment">Message <span class="required">*</span></label>
+                <textarea id="comment" name="comment" placeholder="Share your thoughts..." required></textarea>
+            </div>
+            <div class="form-group captcha-group">
+                <label for="captcha">Verify you're human <span class="required">*</span></label>
+                <div class="captcha-container">
+                    <span id="captcha-question" class="captcha-question"></span>
+                    <input type="number" id="captcha" name="captcha" required placeholder="Enter the answer" min="0" max="100">
+                    <input type="hidden" id="captcha-token" name="captcha-token">
+                    <button type="button" id="refresh-captcha" class="refresh-captcha" aria-label="New Question">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.3"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <button type="submit" class="submit-button">Post Message</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    const commentButton = document.getElementById('comment-button');
+    const modal = document.getElementById('comment-modal');
+    const closeButton = document.getElementById('close-modal');
+    const form = document.getElementById('comment-form');
+
+    // Open modal
+    commentButton.addEventListener('click', () => {
+        modal.classList.add('show');
+        document.body.style.overflow = 'hidden';
+    });
+
+    // Close modal
+    closeButton.addEventListener('click', () => {
+        modal.classList.remove('show');
+        document.body.style.overflow = '';
+    });
+
+    // Close modal when clicking outside
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.classList.remove('show');
+            document.body.style.overflow = '';
+        }
+    });
+
+    // CAPTCHA functionality
+    function generateCaptcha() {
+        const num1 = Math.floor(Math.random() * 10) + 1;
+        const num2 = Math.floor(Math.random() * 10) + 1;
+        const answer = num1 + num2;
+        const token = btoa(`${Date.now()}-${answer}`);
+        
+        document.getElementById('captcha-question').textContent = `What is ${num1} + ${num2}?`;
+        document.getElementById('captcha-token').value = token;
+        document.getElementById('captcha').value = '';
+        return answer;
+    }
+
+    let currentCaptchaAnswer = generateCaptcha();
+    
+    document.getElementById('refresh-captcha').addEventListener('click', () => {
+        currentCaptchaAnswer = generateCaptcha();
+    });
+
+    // Update form submission
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const formData = new FormData(form);
+        const captchaAnswer = parseInt(formData.get('captcha'));
+        
+        if (captchaAnswer !== currentCaptchaAnswer) {
+            alert('Incorrect CAPTCHA answer. Please try again.');
+            currentCaptchaAnswer = generateCaptcha();
+            return;
+        }
+
+        const data = {
+            name: formData.get('name'),
+            email: formData.get('email') || undefined,
+            comment: formData.get('comment'),
+            captchaToken: formData.get('captcha-token'),
+            captchaAnswer: captchaAnswer
+        };
+
+        try {
+            const response = await fetch('/api/comments/about', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to submit message');
+            }
+
+            // Clear form
+            form.reset();
+            
+            // Close modal
+            modal.classList.remove('show');
+            document.body.style.overflow = '';
+
+            // Refresh only the comments section
+            const commentsResponse = await fetch('/api/comments/about');
+            if (commentsResponse.ok) {
+                const comments = await commentsResponse.json();
+                const commentsList = document.querySelector('.comments-list');
+                if (commentsList) {
+                    if (comments && comments.length > 0) {
+                        commentsList.innerHTML = comments.map(comment => {
+                            const date = new Date(comment.createdAt);
+                            const formattedDate = new Intl.DateTimeFormat('en-US', {
+                                year: 'numeric',
+                                month: 'long',
+                                day: 'numeric',
+                                hour: '2-digit',
+                                minute: '2-digit'
+                            }).format(date);
+
+                            return `
+                                <div class="comment">
+                                    <div class="comment-header">
+                                        <span class="commenter-name">${comment.name}</span>
+                                        <span class="comment-date">${formattedDate}</span>
+                                    </div>
+                                    <p class="comment-text">${comment.comment}</p>
+                                </div>`;
+                        }).join('');
+                    } else {
+                        commentsList.innerHTML = `
+                            <div class="no-comments">
+                                No messages yet. Be the first to share your thoughts!
+                            </div>`;
+                    }
+
+                    // Update comment count
+                    const commentsTitle = document.querySelector('.comments-section h2');
+                    if (commentsTitle) {
+                        commentsTitle.textContent = `Messages (${comments ? comments.length : 0})`;
+                    }
+                }
+            }
+        } catch (error) {
+            console.error('Error submitting message:', error);
+            alert('Failed to submit message. Please try again.');
+        }
+    });
+</script>
+
+<style>
+    .comment-container {
+        position: fixed;
+        right: 2rem;
+        bottom: 2rem;
+        z-index: 100;
+    }
+
+    .comment-button {
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 3.5rem;
+        height: 3.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+
+    .comment-button:hover {
+        background-color: var(--accent-color);
+        transform: translateY(-2px);
+    }
+
+    .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .modal.show {
+        display: flex;
+        opacity: 1;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .modal-content {
+        background-color: white;
+        border-radius: 8px;
+        width: 90%;
+        max-width: 500px;
+        padding: 2rem;
+        position: relative;
+        transform: translateY(20px);
+        transition: transform 0.3s ease;
+    }
+
+    .modal.show .modal-content {
+        transform: translateY(0);
+    }
+
+    .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1.5rem;
+    }
+
+    .modal-header h2 {
+        margin: 0;
+        color: var(--text-color);
+        font-size: 1.5rem;
+    }
+
+    .close-button {
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: #666;
+        padding: 0.5rem;
+    }
+
+    .close-button:hover {
+        color: var(--primary-color);
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: var(--text-color);
+        font-weight: 500;
+    }
+
+    input, textarea {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 1rem;
+        transition: border-color 0.3s ease;
+    }
+
+    textarea {
+        min-height: 120px;
+        resize: vertical;
+    }
+
+    input:focus, textarea:focus {
+        outline: none;
+        border-color: var(--primary-color);
+    }
+
+    .submit-button {
+        width: 100%;
+        padding: 0.75rem;
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-size: 1rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .submit-button:hover {
+        background-color: var(--accent-color);
+        transform: translateY(-2px);
+    }
+
+    @media (max-width: 768px) {
+        .comment-container {
+            right: 1rem;
+            bottom: 1rem;
+        }
+
+        .modal-content {
+            padding: 1.5rem;
+        }
+    }
+
+    .required {
+        color: var(--accent-color);
+        margin-left: 0.2rem;
+    }
+
+    .optional {
+        color: #666;
+        font-size: 0.9em;
+        font-weight: normal;
+        margin-left: 0.2rem;
+    }
+
+    .captcha-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .captcha-container {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .captcha-question {
+        font-size: 1rem;
+        color: var(--text-color);
+        background: #f5f5f5;
+        padding: 0.75rem 1rem;
+        border-radius: 4px;
+        flex: 1;
+    }
+
+    .captcha-container input {
+        width: 100px;
+    }
+
+    .refresh-captcha {
+        background: none;
+        border: none;
+        color: var(--primary-color);
+        cursor: pointer;
+        padding: 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.2s ease;
+    }
+
+    .refresh-captcha:hover {
+        transform: rotate(180deg);
+        color: var(--accent-color);
+    }
+
+    @media (max-width: 768px) {
+        .captcha-container {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 0.5rem;
+        }
+
+        .captcha-container input {
+            width: 100%;
+        }
+    }
+</style> 
