@@ -720,6 +720,36 @@ export const creatures: Creature[] = [
     category: 'Dinosaurs',
     subcategory: 'Theropods',
     family: 'Spinosauridae'
+  },
+    {
+    id: 'oxalaia-quilombensis',
+    name: 'Oxalaia quilombensis',
+    scientificName: 'Oxalaia quilombensis',
+    period: 'Cretaceous',
+    location: 'South America',
+    length: ' 12 to 14 meters ',
+    weight: '4,000-7,000 kg',
+    diet: 'Carnivore',
+    image: '/images/spinosaurus.png',
+    description: 'Certainly! Oxalaia was a relatively recently discovered genus of spinosaurid dinosaur, named in 2011 from fossils found in the Alcântara Formation of northeastern Brazil. The partial remains, including parts of the skull, suggest that Oxalaia was a massive predator, with an estimated length of up to 12-14 meters, making it one of the largest known spinosaurids, possibly rivaling or exceeding Spinosaurus in size. Like other members of the Spinosauridae family, it likely had a long, narrow skull with conical teeth, ideal for catching fish, which indicates that it might have had a semi-aquatic lifestyle, feeding in rivers, lakes, or coastal environments.\n\nThe spinosaurid family, including Oxalaia, is distinguished by their elongated, sail-like structures on their backs, though it is unclear if Oxalaia had such a sail, as the fossil evidence does not preserve this feature. However, it’s possible that it had a similar structure, used either for thermoregulation or display. Oxalaia likely coexisted with other large predators in the region, including theropods and crocodile-like reptiles, and would have been a top predator in its ecosystem, hunting both large terrestrial prey and aquatic animals.\n\nDespite its impressive size and specialized features, much about its behavior, ecology, and exact place in the evolutionary tree of spinosaurids remains speculative, as the fossil record for this particular dinosaur is still limited. Nonetheless, Oxalaia offers a fascinating glimpse into the diverse and unique predatory strategies of Cretaceous theropods.',
+    category: 'Dinosaurs',
+    subcategory: 'Theropods',
+    family: 'Spinosauridae'
+  },
+  {
+    id: 'ichthyovenator-laosensis',
+    name: 'Ichthyovenator laosensis',
+    scientificName: 'Ichthyovenator laosensis',
+    period: 'Cretaceous',
+    location: 'Asia',
+    length: ' 9 meters',
+    weight: '2,000 kg',
+    diet: 'Carnivore',
+    image: '/images/Ichthyovenator.jpeg',
+    description: 'Ichthyovenator is a genus of spinosaurid dinosaur from the Early Cretaceous period, around 125 million years ago, that was discovered in what is now northeastern Thailand. The genus name, Ichthyovenator, translates to “fish hunter,” reflecting its presumed diet and semi-aquatic lifestyle, much like other spinosaurids known for hunting aquatic prey. The fossils of Ichthyovenator are relatively well-preserved, consisting primarily of a partial skeleton that includes parts of the skull, spine, and limbs, but unfortunately no complete skull or tail remains.\n\nThe dinosaur was estimated to be around 30 feet (9 meters) long, and it likely had a slender, elongated body with long, curved teeth adapted for catching fish. Its teeth resemble those of other spinosaurids, indicating that it was specialized in preying on fish and other aquatic organisms. The long, crocodile-like snout of Ichthyovenator would have been ideal for snapping up fish, while its body was likely adapted for a partially aquatic lifestyle, possibly wading in shallow water or swimming, similar to modern-day crocodiles or herons.\n\nOne of the most distinctive features of Ichthyovenator was its sail-like structure, a characteristic common to many spinosaurids. The sail consisted of elongated neural spines extending from the back, though whether this structure was used for thermoregulation, mating displays, or other purposes remains unclear. The fossil evidence suggests that the sail was less pronounced than in some other spinosaurids, such as Spinosaurus, but it still suggests that Ichthyovenator might have had some form of display or functional adaptation associated with it.\n\nWhile Ichthyovenator was not as large as some of its relatives, such as Spinosaurus, it was still a formidable predator of its time, occupying a niche as a fish-eating theropod in the ancient river and coastal ecosystems of what is now Southeast Asia. Its discovery provided valuable insight into the diversity of spinosaurids and their specialized adaptations for an aquatic or semi-aquatic lifestyle, confirming that the group was more widespread and varied than previously thought.',
+    category: 'Dinosaurs',
+    subcategory: 'Theropods',
+    family: 'Spinosauridae'
   }];
 
 export const searchCreatures = (searchQuery: string): SearchResult[] => {
