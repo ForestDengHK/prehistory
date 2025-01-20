@@ -1,0 +1,186 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { creatures } from '../../data/creatures';
+import { prehistoricFacts } from '../../data/facts';
+
+const title = "Admin Dashboard";
+const description = "Central administration dashboard for Prehistoric World";
+
+// Calculate stats
+const totalCreatures = creatures.length;
+const totalFacts = prehistoricFacts.length;
+---
+
+<Layout title={title} description={description}>
+  <div class="admin-dashboard">
+    <h1>Admin Dashboard</h1>
+    
+    <div class="dashboard-grid">
+      <!-- Creature Management -->
+      <section class="dashboard-section">
+        <h2>Creature Management</h2>
+        <div class="card-grid">
+          <a href="/admin/add-creature" class="dashboard-card">
+            <h3>Add New Creature</h3>
+            <p>Create a new prehistoric creature profile</p>
+          </a>
+          <a href="/admin/edit-creature" class="dashboard-card">
+            <h3>Edit Creature</h3>
+            <p>Modify existing creature profiles</p>
+          </a>
+        </div>
+      </section>
+
+      <!-- Facts Management -->
+      <section class="dashboard-section">
+        <h2>Facts Management</h2>
+        <div class="card-grid">
+          <a href="/admin/add-facts" class="dashboard-card">
+            <h3>Add New Facts</h3>
+            <p>Create new "Did You Know?" facts</p>
+          </a>
+          <a href="/admin/edit-facts" class="dashboard-card">
+            <h3>Edit Facts</h3>
+            <p>Modify existing facts</p>
+          </a>
+        </div>
+      </section>
+
+      <!-- Comment Management -->
+      <section class="dashboard-section">
+        <h2>Comment Management</h2>
+        <div class="card-grid">
+          <a href="/admin/comments" class="dashboard-card">
+            <h3>Manage Comments</h3>
+            <p>Review and moderate user comments</p>
+          </a>
+        </div>
+      </section>
+
+      <!-- Analytics & Stats -->
+      <section class="dashboard-section">
+        <h2>Quick Stats</h2>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <h3>Total Creatures</h3>
+            <p class="stat-number">{totalCreatures}</p>
+          </div>
+          <div class="stat-card">
+            <h3>Total Facts</h3>
+            <p class="stat-number">{totalFacts}</p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .admin-dashboard {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .dashboard-grid {
+    display: grid;
+    gap: 2rem;
+  }
+
+  .dashboard-section {
+    background: white;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  .dashboard-section h2 {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--background-color);
+  }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+  }
+
+  .dashboard-card {
+    background: var(--background-color);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+  }
+
+  .dashboard-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    background: var(--primary-color);
+    color: white;
+  }
+
+  .dashboard-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .dashboard-card p {
+    font-size: 0.9rem;
+    opacity: 0.8;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+
+  .stat-card {
+    background: var(--background-color);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    text-align: center;
+  }
+
+  .stat-card h3 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: var(--secondary-color);
+  }
+
+  .stat-number {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--primary-color);
+  }
+
+  @media (max-width: 768px) {
+    .admin-dashboard {
+      padding: 1rem;
+    }
+
+    h1 {
+      font-size: 2rem;
+    }
+
+    .dashboard-section {
+      padding: 1.5rem;
+    }
+
+    .card-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style> 

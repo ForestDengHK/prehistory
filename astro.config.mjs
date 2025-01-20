@@ -30,8 +30,6 @@ export default defineConfig({
     port: 4321,
   },
   vite: {
-    define: {
-      'process.env.BLOB_READ_WRITE_TOKEN': JSON.stringify(process.env.BLOB_READ_WRITE_TOKEN)
-    }
+    envPrefix: ['PUBLIC_', 'BLOB_']
   }
 });
