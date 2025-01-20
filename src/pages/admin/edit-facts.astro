@@ -8,6 +8,7 @@ const categories = ['discovery', 'evolution', 'environment', 'dinosaur'];
 
 <Layout title={title}>
   <div class="container">
+    <a href="/admin" class="back-link">← Back to Admin</a>
     <h1>{title}</h1>
     
     <!-- Fact Selection -->
@@ -121,6 +122,18 @@ const categories = ['discovery', 'evolution', 'environment', 'dinosaur'];
     max-width: 48rem;
     margin: 0 auto;
     padding: 2rem 1rem;
+  }
+
+  .back-link {
+    display: inline-block;
+    color: var(--text-color);
+    text-decoration: none;
+    margin-bottom: 1rem;
+    transition: color 0.2s ease-in-out;
+  }
+
+  .back-link:hover {
+    color: var(--primary-color);
   }
 
   h1 {
