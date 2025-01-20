@@ -419,7 +419,7 @@ export const creatures: Creature[] = [
     description: 'The Ceratosaurus was a medium-sized theropod that lived approximately 150 to 145 million years ago, during the Late Jurassic period. It had a unique, toothless, and possibly horn-like structure on its snout, which may have been a display feature used for mating rituals or to establish dominance within its species. With a length of about 4 to 5 meters (13 to 16 feet), it was relatively smaller than some of its contemporaries, like Allosaurus, but still a powerful predator. Its body was characterized by a long, muscular tail, a lightweight, aerodynamic build, and powerful hind legs, enabling it to run swiftly in pursuit of smaller prey. The Ceratosaurus had a relatively large head with sharp teeth in its jaws, making it capable of slicing through the flesh of its prey, which likely included fish, small dinosaurs, and possibly scavenged carcasses. Fossils suggest that it lived in what is now North America and parts of Europe, thriving in diverse ecosystems ranging from coastal areas to floodplains.',
     category: 'Dinosaurs',
     subcategory: 'Theropods',
-    family: ''
+    family: 'Ceratosauridae'
   },
   {
     id: 'ceratosaurus-dentisulcatus',
@@ -433,7 +433,8 @@ export const creatures: Creature[] = [
     image: '/images/ceratosaurus2.png',
     description: 'Ceratosaurus dentisulcatus and Ceratosaurus nasicornis exhibit distinct differences in their physical characteristics and likely ecological roles, with C. nasicornis featuring a prominent, horn-like structure on its nose, which may have been used for display or combat, and a more robust, larger body measuring up to 8 meters in length, suggesting it could have been a versatile predator capable of both hunting and scavenging; in contrast, C. dentisulcatus was generally smaller, around 3.5 to 4 meters long, with more specialized, serrated teeth likely adapted for a diet focused on smaller, more agile prey, and a less pronounced nasal feature, indicating it may have been a more nimble and precise predator, occupying a slightly different ecological niche.',
     category: 'Dinosaurs',
-    subcategory: 'Theropods'
+    subcategory: 'Theropods',
+    family: 'Ceratosauridae'
   },
     {
     id: 'allosaurus-fragilis',
@@ -448,7 +449,7 @@ export const creatures: Creature[] = [
     description: 'The Allosaurus, one of the most fearsome predators of the Late Jurassic period (around 155 to 150 million years ago), was a large theropod dinosaur distinguished by its strong, muscular body, large skull, and sharp, serrated teeth, which were perfectly designed for slicing through the flesh of its prey. Growing up to 12 meters (39 feet) in length and weighing up to 2.5 tons, it was built for both strength and agility, with long, powerful hind limbs that allowed it to move quickly and deliver devastating attacks, while its shorter forelimbs, though not as robust as its hind legs, were still equipped with three sharp claws that may have been used for grasping or holding onto prey. Allosaurus had a relatively lightweight, flexible skeleton, making it a more nimble predator compared to other contemporaries like Brachiosaurus or Stegosaurus. Its teeth and jaws were designed for cutting rather than crushing, suggesting it may have scavenged or actively hunted smaller herbivorous dinosaurs like Stegosaurus, Apatosaurus, and even young sauropods. The structure of its skull, with large fenestrae (openings), reduced the weight while providing space for powerful jaw muscles. Evidence also suggests Allosaurus may have hunted in packs, coordinating strategies to take down larger prey, although some studies suggest it may have also hunted alone, relying on ambush tactics. Fossilized remains have been found in North America, particularly in the Morrison Formation, indicating that Allosaurus was widespread and an apex predator in its ecosystem. Its speed, combined with keen senses, made it a formidable and versatile hunter, capable of taking on a wide range of prey.',
     category: 'Dinosaurs',
     subcategory: 'Theropods',
-    family: ''
+    family: 'Allosauridae'
   },
   {
     id: 'cryolophosaurus-ellioti',
@@ -462,7 +463,8 @@ export const creatures: Creature[] = [
     image: '/images/cryolophosaurus.jpg',
     description: 'Cryolophosaurus is an early theropod dinosaur from the Early Jurassic period, approximately 194 million years ago, known for its distinctive, fan-shaped crest on its head, which may have been used for display or species recognition, similar to modern-day crested birds. Growing up to 6 meters (20 feet) in length, Cryolophosaurus was one of the first large carnivores to inhabit what is now Antarctica, providing significant insight into the evolution of dinosaurs in polar regions. Its slender, yet powerful build, with long legs and a lightweight frame, suggests that it was a fast, agile predator, likely hunting small to medium-sized prey, such as early herbivorous dinosaurs and possibly scavenging from larger carcasses. Unlike many other theropods, Cryolophosaurus had an unusual combination of primitive and more advanced features, with a skull that showed both characteristics of earlier dinosaurs like Coelophysis and later theropods, making it an important link in the evolutionary chain. Fossils of Cryolophosaurus were discovered in the Queen Alexandra Range of Antarctica in the 1990s, marking it as one of the earliest known dinosaurs from the southern hemisphere and providing evidence that dinosaurs were able to adapt to even the colder, more isolated climates of the early Mesozoic.',
     category: 'Dinosaurs',
-    subcategory: 'Theropods'
+    subcategory: 'Theropods',
+    family: 'Theropoda'
   },
     {
     id: 'argentinosaurus-huinculensis',
@@ -491,7 +493,8 @@ export const creatures: Creature[] = [
     image: '/images/quetzal.jpeg',
     description: 'Quetzalcoatlus, one of the largest pterosaurs to ever live, boasted an extraordinary wingspan of up to 36 feet and a body length of around 10 to 12 feet, with a lightweight structure designed for flight, featuring a long, toothless beak likely used for snatching small prey like fish, amphibians, and potentially small dinosaurs; its long, slender legs suggest it may have been capable of walking bipedally, possibly even running on land, while its soaring ability allowed it to glide for vast distances in search of food or to avoid predators, occupying a unique ecological niche alongside some of the most famous dinosaurs of the Late Cretaceous, such as Tyrannosaurus rex and Triceratops, before going extinct in the mass extinction event that wiped out the dinosaurs around 66 million years ago.',
     category: 'Flying Creatures',
-    subcategory: 'Pterosaurs'
+    subcategory: 'Pterosaurs',
+    family: 'Azhdarchidae'
   },
         {
     id: 'brachiosaurus-altithorax',
@@ -518,9 +521,10 @@ export const creatures: Creature[] = [
     weight: '57,000 kg',
     diet: 'Carnivore',
     image: '/images/livyatan.jpg',
-    description: '\nChatGPT\nLivyatan is an extinct genus of gigantic predatory whale that inhabited the oceans during the Miocene epoch, approximately 12 to 13 million years ago. It was a member of the family Physeteridae, closely related to modern sperm whales, and could reach lengths of 13 to 17 meters, making it one of the largest marine predators of its time. Livyatan had an incredibly powerful bite, with teeth that could exceed 36 centimeters in length, enabling it to prey on large marine mammals such as seals, dolphins, and even other whales. Fossil evidence suggests it had a robust and muscular body, capable of deep diving to hunt in the open ocean, and its sheer size and predatory capabilities positioned it as a dominant force in the ancient marine ecosystem, rivaling other apex predators like the giant shark Carcharocles megalodon. The genus is named after the biblical Leviathan, reflecting its immense power and size.',
+    description: 'Livyatan is an extinct genus of gigantic predatory whale that inhabited the oceans during the Miocene epoch, approximately 12 to 13 million years ago. It was a member of the family Physeteridae, closely related to modern sperm whales, and could reach lengths of 13 to 17 meters, making it one of the largest marine predators of its time. Livyatan had an incredibly powerful bite, with teeth that could exceed 36 centimeters in length, enabling it to prey on large marine mammals such as seals, dolphins, and even other whales. Fossil evidence suggests it had a robust and muscular body, capable of deep diving to hunt in the open ocean, and its sheer size and predatory capabilities positioned it as a dominant force in the ancient marine ecosystem, rivaling other apex predators like the giant shark Carcharocles megalodon. The genus is named after the biblical Leviathan, reflecting its immense power and size.',
     category: 'Marine Creatures',
-    subcategory: 'Prehistoric Whales'
+    subcategory: 'Prehistoric Whales',
+    family: 'Physeteridae'
   },
   {
     id: 'carcharocles-megalodon',
@@ -534,7 +538,8 @@ export const creatures: Creature[] = [
     image: '/images/megalodon2.jpg',
     description: 'Carcharocles megalodon was an enormous prehistoric shark that roamed the oceans from approximately 23 to 3.6 million years ago, during the Cenozoic Era, and is considered the largest shark to ever exist, reaching lengths of up to 18 meters (59 feet) or more, and possibly weighing as much as 50 to 70 tons; with its massive, serrated teeth—some of which exceeded 18 centimeters (7 inches)—and a powerful bite force, megalodon was a dominant apex predator capable of preying on large marine mammals, including whales and dolphins, making it a fearsome force in the ancient oceans that rivaled even the largest marine predators like Livyatan.',
     category: 'Marine Creatures',
-    subcategory: 'Prehistoric Sharks'
+    subcategory: 'Prehistoric Sharks',
+    family: 'Carcharhinidae'
   },
   {
     id: 'basilosaurus-cetoides',
@@ -548,7 +553,8 @@ export const creatures: Creature[] = [
     image: '/images/Basilosaurus.jpeg',
     description: 'Basilosaurus cetoides, an extinct genus of large, predatory cetaceans that lived during the late Eocene epoch around 40 to 34 million years ago, is notable for its elongated, serpentine body, which reached lengths of up to 18 meters, a characteristic that sets it apart from modern whales, and its well-developed, yet vestigial hind limbs, suggesting a transitional form between land-dwelling ancestors and fully aquatic organisms; it is believed to have inhabited warm, shallow seas and preyed on smaller marine animals, such as fish and other marine vertebrates, using its sharp teeth and powerful jaws, while also being one of the first cetaceans to exhibit fully developed tail flukes for propulsion in the water, signaling a significant step in the evolutionary path of modern whales.',
     category: 'Marine Creatures',
-    subcategory: 'Prehistoric Whales'
+    subcategory: 'Prehistoric Whales',
+    family: 'Basilosauridae'
   },
   {
     id: 'basilosaurus-isis',
@@ -562,7 +568,8 @@ export const creatures: Creature[] = [
     image: '/images/basilosaurus_andrey-atuchin.jpg',
     description: 'Basilosaurus isis is an extinct species of large, carnivorous cetacean from the late Eocene, approximately 40 to 34 million years ago, and it represents a slightly smaller, more robust relative of Basilosaurus cetoides, with individuals reaching lengths of about 16 meters; it shared many physical traits with its close relatives, such as the elongated body, vestigial hind limbs, and powerful jaws, but B. isis is particularly notable for its adaptations to a fully aquatic lifestyle, with fossil evidence suggesting it had an even more streamlined body and specialized teeth, likely used for grasping and processing fish and smaller marine vertebrates; it inhabited the warm, shallow seas of the Tethys Ocean, and its existence provides crucial insights into the early evolution of fully aquatic cetaceans, representing a transitional phase between land-dwelling ancestors and modern whales, with its anatomy showcasing an increasingly advanced specialization for life in the water.',
     category: 'Marine Creatures',
-    subcategory: 'Prehistoric Whales'
+    subcategory: 'Prehistoric Whales',
+    family: 'Basilosauridae'
   },
       {
     id: 'parahelicoprion-clerci',
@@ -634,7 +641,7 @@ export const creatures: Creature[] = [
     weight: '4,400 – 6,600 kg',
     diet: 'Carnivore',
     image: '/images/acrocanthosaurus.jpeg',
-    description: '\nChatGPT\nAcrocanthosaurus was a large, predatory theropod dinosaur that lived during the Early Cretaceous period, approximately 125 to 113 million years ago, in what is now North America. Known for its distinctive, high neural spines along its back, which likely supported a sail-like structure or possibly a ridge of muscles, Acrocanthosaurus reached lengths of around 35 feet (10.5 meters) and weighed between 3 to 5 tons. Its powerful build, with robust limbs and a large head equipped with sharp teeth, suggests that it was a top predator in its ecosystem, preying on large herbivorous dinosaurs such as the sauropods and ornithischians that coexisted with it. Despite its impressive size, Acrocanthosaurus was likely a fast and agile hunter, using its keen senses to ambush prey. Fossil evidence indicates that it had strong arms and hands with three large claws, though it is debated whether it used them in predation or for other functions. Its fossils have been found in multiple locations across North America, providing valuable insight into the biodiversity of the Cretaceous period and the role Acrocanthosaurus played in its ecosystem. Additionally, the unique structure of its neural spines has intrigued paleontologists, who continue to study their potential function in temperature regulation, display, or even as an aid in locomotion.',
+    description: 'Acrocanthosaurus was a large, predatory theropod dinosaur that lived during the Early Cretaceous period, approximately 125 to 113 million years ago, in what is now North America. Known for its distinctive, high neural spines along its back, which likely supported a sail-like structure or possibly a ridge of muscles, Acrocanthosaurus reached lengths of around 35 feet (10.5 meters) and weighed between 3 to 5 tons. Its powerful build, with robust limbs and a large head equipped with sharp teeth, suggests that it was a top predator in its ecosystem, preying on large herbivorous dinosaurs such as the sauropods and ornithischians that coexisted with it. Despite its impressive size, Acrocanthosaurus was likely a fast and agile hunter, using its keen senses to ambush prey. Fossil evidence indicates that it had strong arms and hands with three large claws, though it is debated whether it used them in predation or for other functions. Its fossils have been found in multiple locations across North America, providing valuable insight into the biodiversity of the Cretaceous period and the role Acrocanthosaurus played in its ecosystem. Additionally, the unique structure of its neural spines has intrigued paleontologists, who continue to study their potential function in temperature regulation, display, or even as an aid in locomotion.',
     category: 'Dinosaurs',
     subcategory: 'Theropods',
     family: 'Carcharodontosauridae'
