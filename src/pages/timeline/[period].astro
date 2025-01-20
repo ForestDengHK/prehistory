@@ -44,9 +44,61 @@ const periodCreatures = creatures.filter(creature =>
 );
 
 const detailedDescription = getDetailedDescription(period.name);
+
+// Create SEO description
+const seoDescription = `Explore the ${period.name} Period (${period.period}). Discover the climate, environment, and ${periodCreatures.length} fascinating creatures that lived during this time, including ${periodCreatures.slice(0, 3).map(c => c.name).join(', ')}.`;
+
+// Create structured data for the period
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": `${period.name} Period - Prehistoric Timeline`,
+  "description": seoDescription,
+  "image": period.image,
+  "author": {
+    "@type": "Person",
+    "name": "Xinhao"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Prehistoric World",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.xinhao.eu/images/logo.png"
+    }
+  },
+  "datePublished": "2024-01-01T00:00:00Z",
+  "dateModified": new Date().toISOString(),
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": `https://www.xinhao.eu/timeline/${period.name.toLowerCase()}`
+  },
+  "about": {
+    "@type": "Thing",
+    "name": `${period.name} Period`,
+    "description": detailedDescription,
+    "temporal": period.period
+  },
+  "keywords": [
+    period.name,
+    "prehistoric period",
+    "geological timeline",
+    "prehistoric creatures",
+    "ancient Earth",
+    "evolution",
+    ...periodCreatures.map(c => c.name)
+  ].join(", ")
+};
 ---
 
-<Layout title={`${period.name} Period - Prehistoric World`}>
+<Layout 
+  title={`${period.name} Period`}
+  description={seoDescription}
+  image={period.image}
+  type="article"
+>
+  <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+  
   <div class="period-container">
     <div class="period-hero" style={`background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(${period.image})`}>
       <h1>{period.name} Period</h1>

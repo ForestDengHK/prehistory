@@ -2,9 +2,17 @@
 import Layout from '../layouts/Layout.astro';
 import FeaturedCreatures from '../components/FeaturedCreatures.astro';
 import DidYouKnow from '../components/DidYouKnow.astro';
+
+const title = "Explore the Prehistoric World";
+const description = "Journey through time and discover fascinating prehistoric creatures, from mighty dinosaurs to ancient life forms. Explore interactive timelines, detailed creature profiles, and amazing prehistoric facts.";
 ---
 
-<Layout title="Prehistoric World - Explore Ancient Life">
+<Layout 
+	title={title}
+	description={description}
+	image="/images/hero-bg.jpg"
+	type="website"
+>
 	<div class="hero">
 		<h1>Welcome to Prehistoric World</h1>
 		<p>Discover the fascinating creatures that once roamed our planet</p>

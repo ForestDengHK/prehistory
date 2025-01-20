@@ -14,9 +14,56 @@ if (!creature) {
 
 // Process both Markdown and HTML in the description
 const formattedDescription = marked(creature.description);
+
+// Create SEO description
+const seoDescription = `Learn about ${creature.name} (${creature.scientificName}), a ${creature.diet.toLowerCase()} creature from the ${creature.period}. Discover its habitat in ${creature.location}, measuring ${creature.length} in length and weighing ${creature.weight}.`;
+
+// Create structured data for the creature
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": `${creature.name} - Prehistoric Creature Profile`,
+  "description": seoDescription,
+  "image": creature.image,
+  "author": {
+    "@type": "Person",
+    "name": "Xinhao"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Prehistoric World",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.xinhao.eu/images/logo.png"
+    }
+  },
+  "datePublished": "2024-01-01T00:00:00Z",
+  "dateModified": new Date().toISOString(),
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": `https://www.xinhao.eu/creature/${creature.id}`
+  },
+  "keywords": [
+    creature.name,
+    creature.scientificName,
+    creature.period,
+    creature.category,
+    creature.subcategory,
+    "prehistoric creatures",
+    "dinosaurs",
+    "ancient life"
+  ].join(", ")
+};
 ---
 
-<Layout title={`${creature.name} - Prehistoric World`}>
+<Layout 
+  title={creature.name}
+  description={seoDescription}
+  image={creature.image}
+  type="article"
+>
+  <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+  
   <div class="creature-container">
     <div class="creature-hero" style={`background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(${creature.image})`}>
       <h1>{creature.name}</h1>
