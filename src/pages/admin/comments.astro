@@ -1,0 +1,299 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { list } from '@vercel/blob';
+
+let allComments: Comment[] = [];
+let error: string | null = null;
+
+interface Comment {
+    id: string;
+    name: string;
+    comment: string;
+    createdAt: string;
+    email?: string;
+    creatureId?: string;
+}
+
+try {
+    // Check if we have the blob token
+    const blobToken = import.meta.env.BLOB_READ_WRITE_TOKEN;
+    if (!blobToken) {
+        throw new Error('Blob storage token not configured. Please check your environment variables.');
+    }
+
+    // Fetch all comment files
+    const { blobs } = await list({ token: blobToken });
+    const commentBlobs = blobs.filter(blob => 
+        blob.pathname.startsWith('comments/') && 
+        blob.pathname.endsWith('.json')
+    );
+
+    // Group blobs by creature ID
+    const blobsByCreature = commentBlobs.reduce((acc, blob) => {
+        const creatureId = blob.pathname
+            .replace('comments/', '')
+            .replace('.json', '');
+        if (!acc[creatureId]) {
+            acc[creatureId] = [];
+        }
+        acc[creatureId].push(blob);
+        return acc;
+    }, {} as Record<string, typeof blobs>);
+
+    // Fetch and parse comments from the latest file for each creature
+    for (const [creatureId, creatureBlobs] of Object.entries(blobsByCreature)) {
+        try {
+            const latestBlob = creatureBlobs.reduce((latest, current) => {
+                return !latest || current.uploadedAt > latest.uploadedAt ? current : latest;
+            });
+
+            const response = await fetch(latestBlob.url);
+            if (response.ok) {
+                const comments: Comment[] = await response.json();
+                comments.forEach(comment => {
+                    comment.creatureId = creatureId;
+                });
+                allComments.push(...comments);
+            }
+        } catch (error) {
+            console.error(`Error fetching comments for creature ${creatureId}:`, error);
+        }
+    }
+
+    // Sort comments by date
+    allComments.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+} catch (e) {
+    error = e instanceof Error ? e.message : 'An unknown error occurred';
+    console.error('Error loading comments:', e);
+}
+---
+
+<Layout title="Manage Comments">
+    <div class="container">
+        <a href="/admin" class="back-link">← Back to Admin</a>
+        <h1>Manage Comments</h1>
+        
+        {error ? (
+            <div class="error-message">
+                <h2>Error Loading Comments</h2>
+                <p>{error}</p>
+                <p class="help-text">Please ensure your environment variables are properly configured and try again.</p>
+            </div>
+        ) : (
+            <div class="comments-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th><input type="checkbox" id="select-all" /></th>
+                            <th>Creature</th>
+                            <th>Name</th>
+                            <th>Comment</th>
+                            <th>Date</th>
+                            <th>Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {allComments.map(comment => (
+                            <tr>
+                                <td>
+                                    <input 
+                                        type="checkbox" 
+                                        class="comment-checkbox" 
+                                        data-id={comment.id}
+                                        data-creature-id={comment.creatureId}
+                                    />
+                                </td>
+                                <td>{comment.creatureId}</td>
+                                <td>{comment.name}</td>
+                                <td class="comment-text">{comment.comment}</td>
+                                <td>{new Date(comment.createdAt).toLocaleString()}</td>
+                                <td>{comment.email || '-'}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        )}
+        
+        {!error && (
+            <div class="actions">
+                <button id="delete-selected" class="delete-button" disabled>Delete Selected</button>
+            </div>
+        )}
+    </div>
+</Layout>
+
+<style>
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem 1rem;
+    }
+
+    .back-link {
+        display: inline-block;
+        color: var(--text-color);
+        text-decoration: none;
+        margin-bottom: 1rem;
+        transition: color 0.2s ease-in-out;
+    }
+
+    .back-link:hover {
+        color: var(--primary-color);
+    }
+
+    h1 {
+        font-size: 2rem;
+        font-weight: 600;
+        color: var(--primary-color);
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    .error-message {
+        background: #fff3f3;
+        border: 1px solid #dc3545;
+        padding: 2rem;
+        border-radius: 8px;
+        margin-bottom: 2rem;
+    }
+
+    .error-message h2 {
+        color: #dc3545;
+        margin-bottom: 1rem;
+    }
+
+    .help-text {
+        margin-top: 1rem;
+        color: #666;
+        font-size: 0.9rem;
+    }
+
+    .comments-table {
+        overflow-x: auto;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 1rem;
+        text-align: left;
+        border-bottom: 1px solid #eee;
+    }
+
+    th {
+        background: #f5f5f5;
+        font-weight: 600;
+    }
+
+    .comment-text {
+        max-width: 300px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .actions {
+        margin-top: 1rem;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .delete-button {
+        background-color: #dc3545;
+        color: white;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        cursor: pointer;
+        opacity: 0.7;
+        transition: opacity 0.2s;
+    }
+
+    .delete-button:not(:disabled) {
+        opacity: 1;
+    }
+
+    .delete-button:disabled {
+        cursor: not-allowed;
+    }
+
+    @media (max-width: 768px) {
+        .comment-text {
+            max-width: 150px;
+        }
+    }
+</style>
+
+<script>
+    const selectAllCheckbox = document.getElementById('select-all') as HTMLInputElement;
+    const commentCheckboxes = document.querySelectorAll('.comment-checkbox') as NodeListOf<HTMLInputElement>;
+    const deleteButton = document.getElementById('delete-selected') as HTMLButtonElement;
+
+    // Handle select all
+    selectAllCheckbox?.addEventListener('change', () => {
+        commentCheckboxes.forEach(checkbox => {
+            checkbox.checked = selectAllCheckbox.checked;
+        });
+        updateDeleteButton();
+    });
+
+    // Handle individual checkboxes
+    commentCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', () => {
+            const allChecked = Array.from(commentCheckboxes).every(cb => cb.checked);
+            if (selectAllCheckbox) {
+                selectAllCheckbox.checked = allChecked;
+            }
+            updateDeleteButton();
+        });
+    });
+
+    // Update delete button state
+    function updateDeleteButton() {
+        const anyChecked = Array.from(commentCheckboxes).some(cb => cb.checked);
+        if (deleteButton) {
+            deleteButton.disabled = !anyChecked;
+        }
+    }
+
+    // Handle delete
+    deleteButton?.addEventListener('click', async () => {
+        if (!confirm('Are you sure you want to delete the selected comments?')) {
+            return;
+        }
+
+        const selectedComments = Array.from(commentCheckboxes)
+            .filter(cb => cb.checked)
+            .map(cb => ({
+                id: cb.dataset.id,
+                creatureId: cb.dataset.creatureId
+            }));
+
+        try {
+            const response = await fetch('/api/admin/delete-comments', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ comments: selectedComments })
+            });
+
+            if (response.ok) {
+                // Refresh the page to show updated comments
+                window.location.reload();
+            } else {
+                const error = await response.json();
+                alert(`Failed to delete comments: ${error.message}`);
+            }
+        } catch (error) {
+            alert('Failed to delete comments. Please try again.');
+        }
+    });
+</script> 

@@ -23,8 +23,6 @@ pnpm-debug.log*
 .vercel 
 
 # Admin files
-src/pages/admin/comments.astro
-
 
 /docs/*
 
