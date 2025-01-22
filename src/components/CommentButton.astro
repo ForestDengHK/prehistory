@@ -7,7 +7,7 @@ const { creatureId } = Astro.props;
 ---
 
 <div class="comment-container">
-    <button id="comment-button" class="comment-button" aria-label="Add Comment">
+    <button id={`comment-button-${creatureId}`} class="comment-button" aria-label="Add Comment">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
         </svg>
@@ -15,33 +15,40 @@ const { creatureId } = Astro.props;
 </div>
 
 <!-- Comment Modal -->
-<div id="comment-modal" class="modal">
+<div id={`comment-modal-${creatureId}`} class="modal">
     <div class="modal-content">
         <div class="modal-header">
             <h2>Add Comment</h2>
-            <button id="close-modal" class="close-button" aria-label="Close">×</button>
+            <button id={`close-modal-${creatureId}`} class="close-button" aria-label="Close">×</button>
         </div>
-        <form id="comment-form">
+        <form id={`comment-form-${creatureId}`}>
             <div class="form-group">
-                <label for="name">Name <span class="required">*</span></label>
-                <input type="text" id="name" name="name" placeholder="Your name" required>
+                <label for={`name-${creatureId}`}>Name <span class="required">*</span></label>
+                <input type="text" id={`name-${creatureId}`} name="name" placeholder="Your name" required>
             </div>
             <div class="form-group">
-                <label for="email">Email <span class="optional">(optional)</span></label>
-                <input type="email" id="email" name="email" placeholder="Your email address">
+                <label for={`emoji-input-${creatureId}`}>Choose an emoji</label>
+                <div class="emoji-picker-container">
+                    <input type="text" id={`emoji-input-${creatureId}`} readonly placeholder="Click to select emoji" value="👤">
+                    <emoji-picker id={`emoji-picker-${creatureId}`} class="light"></emoji-picker>
+                </div>
             </div>
             <div class="form-group">
-                <label for="comment">Comment <span class="required">*</span></label>
-                <textarea id="comment" name="comment" placeholder="Share your thoughts... Markdown and HTML are supported" required></textarea>
+                <label for={`email-${creatureId}`}>Email <span class="optional">(optional)</span></label>
+                <input type="email" id={`email-${creatureId}`} name="email" placeholder="Your email address">
+            </div>
+            <div class="form-group">
+                <label for={`comment-${creatureId}`}>Comment <span class="required">*</span></label>
+                <textarea id={`comment-${creatureId}`} name="comment" placeholder="Share your thoughts... Markdown and HTML are supported" required></textarea>
                 <small class="format-hint">You can use Markdown and HTML formatting (e.g., **bold**, *italic*, [links](url), etc.)</small>
             </div>
             <div class="form-group captcha-group">
-                <label for="captcha">Verify you're human <span class="required">*</span></label>
+                <label for={`captcha-${creatureId}`}>Verify you're human <span class="required">*</span></label>
                 <div class="captcha-container">
-                    <span id="captcha-question" class="captcha-question"></span>
-                    <input type="number" id="captcha" name="captcha" required placeholder="Enter the answer" min="0" max="100">
-                    <input type="hidden" id="captcha-token" name="captcha-token">
-                    <button type="button" id="refresh-captcha" class="refresh-captcha" aria-label="New Question">
+                    <span id={`captcha-question-${creatureId}`} class="captcha-question"></span>
+                    <input type="number" id={`captcha-${creatureId}`} name="captcha" required placeholder="Enter the answer" min="0" max="100">
+                    <input type="hidden" id={`captcha-token-${creatureId}`} name="captcha-token">
+                    <button type="button" id={`refresh-captcha-${creatureId}`} class="refresh-captcha" aria-label="New Question">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.3"/>
                         </svg>
@@ -53,11 +60,39 @@ const { creatureId } = Astro.props;
     </div>
 </div>
 
+<script>
+    import 'emoji-picker-element';
+</script>
+
 <script define:vars={{ creatureId }}>
-    const commentButton = document.getElementById('comment-button');
-    const modal = document.getElementById('comment-modal');
-    const closeButton = document.getElementById('close-modal');
-    const form = document.getElementById('comment-form');
+    const commentButton = document.getElementById(`comment-button-${creatureId}`);
+    const modal = document.getElementById(`comment-modal-${creatureId}`);
+    const closeButton = document.getElementById(`close-modal-${creatureId}`);
+    const form = document.getElementById(`comment-form-${creatureId}`);
+    const emojiInput = document.getElementById(`emoji-input-${creatureId}`);
+    const emojiPicker = document.getElementById(`emoji-picker-${creatureId}`);
+    const captchaQuestion = document.getElementById(`captcha-question-${creatureId}`);
+    const captchaInput = document.getElementById(`captcha-${creatureId}`);
+    const captchaToken = document.getElementById(`captcha-token-${creatureId}`);
+    const refreshCaptcha = document.getElementById(`refresh-captcha-${creatureId}`);
+
+    // Initialize emoji picker
+    emojiPicker.classList.add('hidden');
+    
+    emojiInput.addEventListener('click', () => {
+        emojiPicker.classList.toggle('hidden');
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!emojiPicker.contains(e.target) && e.target !== emojiInput) {
+            emojiPicker.classList.add('hidden');
+        }
+    });
+
+    emojiPicker.addEventListener('emoji-click', (event) => {
+        emojiInput.value = event.detail.unicode;
+        emojiPicker.classList.add('hidden');
+    });
 
     // Open modal
     commentButton.addEventListener('click', () => {
@@ -79,44 +114,36 @@ const { creatureId } = Astro.props;
         }
     });
 
-    // CAPTCHA functionality
+    // Generate CAPTCHA
     function generateCaptcha() {
         const num1 = Math.floor(Math.random() * 10) + 1;
         const num2 = Math.floor(Math.random() * 10) + 1;
         const answer = num1 + num2;
         const token = btoa(`${Date.now()}-${answer}`);
         
-        document.getElementById('captcha-question').textContent = `What is ${num1} + ${num2}?`;
-        document.getElementById('captcha-token').value = token;
-        document.getElementById('captcha').value = '';
-        return answer;
+        captchaQuestion.textContent = `What is ${num1} + ${num2}?`;
+        captchaToken.value = token;
+        captchaInput.value = '';
     }
 
-    let currentCaptchaAnswer = generateCaptcha();
-    
-    document.getElementById('refresh-captcha').addEventListener('click', () => {
-        currentCaptchaAnswer = generateCaptcha();
-    });
+    // Initialize CAPTCHA
+    generateCaptcha();
 
-    // Update form submission
+    // Refresh CAPTCHA
+    refreshCaptcha.addEventListener('click', generateCaptcha);
+
+    // Handle form submission
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        
-        const formData = new FormData(form);
-        const captchaAnswer = parseInt(formData.get('captcha'));
-        
-        if (captchaAnswer !== currentCaptchaAnswer) {
-            alert('Incorrect CAPTCHA answer. Please try again.');
-            currentCaptchaAnswer = generateCaptcha();
-            return;
-        }
 
+        const formData = new FormData(form);
         const data = {
             name: formData.get('name'),
-            email: formData.get('email') || undefined,
+            email: formData.get('email'),
             comment: formData.get('comment'),
-            captchaToken: formData.get('captcha-token'),
-            captchaAnswer: captchaAnswer
+            emoji: emojiInput.value,
+            captchaToken: captchaToken.value,
+            captchaAnswer: parseInt(formData.get('captcha'))
         };
 
         try {
@@ -134,6 +161,7 @@ const { creatureId } = Astro.props;
 
             // Clear form
             form.reset();
+            emojiInput.value = '👤'; // Reset emoji to default
             
             // Close modal
             modal.classList.remove('show');
@@ -159,7 +187,7 @@ const { creatureId } = Astro.props;
                             return `
                                 <div class="comment">
                                     <div class="comment-header">
-                                        <span class="commenter-name">${comment.name}</span>
+                                        <span class="commenter-name"><span class="commenter-emoji">${comment.emoji || '👤'}</span> ${comment.name}</span>
                                         <span class="comment-date">${formattedDate}</span>
                                     </div>
                                     <p class="comment-text">${comment.comment}</p>
@@ -404,5 +432,54 @@ const { creatureId } = Astro.props;
         color: #666;
         font-size: 0.85rem;
         font-style: italic;
+    }
+
+    .emoji-picker-container {
+        position: relative;
+        width: 100%;
+    }
+
+    #emoji-input {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 1rem;
+        cursor: pointer;
+        background-color: white;
+    }
+
+    #emoji-input:focus {
+        outline: none;
+        border-color: var(--primary-color);
+    }
+
+    emoji-picker {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        z-index: 1000;
+        width: 100%;
+        max-width: 352px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    emoji-picker.hidden {
+        display: none;
+    }
+
+    .commenter-emoji {
+        font-size: 1rem;
+        vertical-align: middle;
+        margin-right: 0.2rem;
+    }
+
+    .commenter-name {
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+        font-weight: 500;
     }
 </style> 

@@ -13,6 +13,7 @@ interface Comment {
     comment: string;
     createdAt: string;
     email?: string;
+    emoji?: string;
 }
 
 // Read comments from Blob
@@ -99,10 +100,18 @@ export const GET: APIRoute = async () => {
 export const POST: APIRoute = async ({ request }) => {
     try {
         const body = await request.json();
-        const { name, comment, email, captchaToken, captchaAnswer } = body;
+        const { name, comment, email, emoji, captchaToken, captchaAnswer } = body;
 
         if (!name || !comment || !captchaToken || !captchaAnswer) {
             return new Response(JSON.stringify({ error: 'Required fields are missing' }), {
+                status: 400,
+                headers: { 'Content-Type': 'application/json' }
+            });
+        }
+
+        // Validate email if provided
+        if (email && !email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+            return new Response(JSON.stringify({ error: 'Invalid email format' }), {
                 status: 400,
                 headers: { 'Content-Type': 'application/json' }
             });
@@ -123,6 +132,7 @@ export const POST: APIRoute = async ({ request }) => {
             name,
             comment,
             email,
+            emoji: emoji || '👤',
             createdAt: new Date().toISOString()
         };
 

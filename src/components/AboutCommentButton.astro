@@ -19,6 +19,13 @@
                 <input type="text" id="name" name="name" placeholder="Your name" required>
             </div>
             <div class="form-group">
+                <label for="emoji-input">Choose an emoji</label>
+                <div class="emoji-picker-container">
+                    <input type="text" id="emoji-input" readonly placeholder="Click to select emoji" value="👤">
+                    <emoji-picker id="emoji-picker" class="light"></emoji-picker>
+                </div>
+            </div>
+            <div class="form-group">
                 <label for="email">Email <span class="optional">(optional)</span></label>
                 <input type="email" id="email" name="email" placeholder="Your email address">
             </div>
@@ -46,10 +53,34 @@
 </div>
 
 <script>
+    import 'emoji-picker-element';
+</script>
+
+<script>
     const commentButton = document.getElementById('comment-button');
     const modal = document.getElementById('comment-modal');
     const closeButton = document.getElementById('close-modal');
     const form = document.getElementById('comment-form');
+    const emojiInput = document.getElementById('emoji-input');
+    const emojiPicker = document.getElementById('emoji-picker');
+
+    // Initialize emoji picker
+    emojiPicker.classList.add('hidden');
+    
+    emojiInput.addEventListener('click', () => {
+        emojiPicker.classList.toggle('hidden');
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!emojiPicker.contains(e.target) && e.target !== emojiInput) {
+            emojiPicker.classList.add('hidden');
+        }
+    });
+
+    emojiPicker.addEventListener('emoji-click', (event) => {
+        emojiInput.value = event.detail.unicode;
+        emojiPicker.classList.add('hidden');
+    });
 
     // Open modal
     commentButton.addEventListener('click', () => {
@@ -95,6 +126,14 @@
         e.preventDefault();
         
         const formData = new FormData(form);
+        const email = formData.get('email') as string;
+        
+        // Validate email if provided
+        if (email && !email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+            alert('Please enter a valid email address.');
+            return;
+        }
+
         const captchaAnswer = parseInt(formData.get('captcha'));
         
         if (captchaAnswer !== currentCaptchaAnswer) {
@@ -105,6 +144,7 @@
 
         const data = {
             name: formData.get('name'),
+            emoji: emojiInput.value,
             email: formData.get('email') || undefined,
             comment: formData.get('comment'),
             captchaToken: formData.get('captcha-token'),
@@ -151,7 +191,7 @@
                             return `
                                 <div class="comment">
                                     <div class="comment-header">
-                                        <span class="commenter-name">${comment.name}</span>
+                                        <span class="commenter-name"><span class="commenter-emoji">${comment.emoji || '👤'}</span> ${comment.name}</span>
                                         <span class="comment-date">${formattedDate}</span>
                                     </div>
                                     <p class="comment-text">${comment.comment}</p>
@@ -396,5 +436,54 @@
         color: #666;
         font-size: 0.85rem;
         font-style: italic;
+    }
+
+    .emoji-picker-container {
+        position: relative;
+        width: 100%;
+    }
+
+    #emoji-input {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 1rem;
+        cursor: pointer;
+        background-color: white;
+    }
+
+    #emoji-input:focus {
+        outline: none;
+        border-color: var(--primary-color);
+    }
+
+    emoji-picker {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        z-index: 1000;
+        width: 100%;
+        max-width: 352px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    emoji-picker.hidden {
+        display: none;
+    }
+
+    .commenter-emoji {
+        font-size: 1rem;
+        vertical-align: middle;
+        margin-right: 0.2rem;
+    }
+
+    .commenter-name {
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+        font-weight: 500;
     }
 </style> 

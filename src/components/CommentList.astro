@@ -11,6 +11,7 @@ interface Comment {
     comment: string;
     createdAt: string;
     email?: string;
+    emoji?: string;
 }
 
 const { creatureId } = Astro.props;
@@ -58,7 +59,7 @@ function formatComment(comment: string): string {
             comments.map(comment => (
                 <div class="comment">
                     <div class="comment-header">
-                        <span class="commenter-name">{comment.name}</span>
+                        <span class="commenter-name"><span class="commenter-emoji">{comment.emoji || '👤'}</span> {comment.name}</span>
                         <span class="comment-date">{formatDate(comment.createdAt)}</span>
                     </div>
                     <div class="comment-text markdown-content" set:html={formatComment(comment.comment)} />
@@ -115,10 +116,17 @@ function formatComment(comment: string): string {
         margin-bottom: 0.75rem;
     }
 
+    .commenter-emoji {
+        font-size: 1rem;
+        vertical-align: middle;
+        margin-right: 0.2rem;
+    }
+
     .commenter-name {
-        font-weight: 600;
-        color: var(--primary-color);
-        font-size: 0.95rem;
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+        font-weight: 500;
     }
 
     .comment-date {
