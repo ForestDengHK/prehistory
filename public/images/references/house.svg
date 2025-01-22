@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="600" viewBox="0 0 1200 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- House Body -->
+  <path d="M100 550 L100 200 L600 50 L1100 200 L1100 550 Z" fill="#2C3E50"/>
+  
+  <!-- Door -->
+  <path d="M500 550 L500 400 L700 400 L700 550" stroke="#FFFFFF" stroke-width="15"/>
+  
+  <!-- Windows -->
+  <rect x="250" y="250" width="150" height="150" stroke="#FFFFFF" stroke-width="15"/>
+  <rect x="800" y="250" width="150" height="150" stroke="#FFFFFF" stroke-width="15"/>
+</svg> 

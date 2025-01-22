@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="450" height="150" viewBox="0 0 450 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Car Body -->
+  <path d="M50 100 L100 100 L150 50 L300 50 L350 100 L400 100 L400 120 L50 120 Z" fill="#2C3E50"/>
+  
+  <!-- Windows -->
+  <path d="M160 55 L170 30 L280 30 L290 55" stroke="#2C3E50" stroke-width="5"/>
+  
+  <!-- Wheels -->
+  <circle cx="125" cy="120" r="25" fill="#2C3E50"/>
+  <circle cx="325" cy="120" r="25" fill="#2C3E50"/>
+</svg> 

@@ -1,0 +1,275 @@
+---
+interface Props {
+  creatureLength: string;  // e.g., "12 meters"
+  creatureHeight?: string; // optional height
+  creatureImage: string;   // URL to creature silhouette
+}
+
+const { creatureLength, creatureHeight, creatureImage } = Astro.props;
+
+// Parse dimensions to numbers (assuming meters)
+const lengthInMeters = parseFloat(creatureLength);
+
+// Reference objects with their sizes in meters
+const referenceObjects = [
+  {
+    name: 'Human',
+    height: 1.7,
+    width: 0.5,
+    silhouette: '/images/references/human.svg'
+  },
+  {
+    name: 'Car',
+    height: 1.5,
+    width: 4.5,
+    silhouette: '/images/references/car.svg'
+  },
+  {
+    name: 'Bus',
+    height: 3.2,
+    width: 12,
+    silhouette: '/images/references/bus.svg'
+  },
+  {
+    name: 'House',
+    height: 6,
+    width: 12,
+    silhouette: '/images/references/house.svg'
+  }
+];
+---
+
+<div class="size-comparison">
+  <div class="comparison-controls">
+    <h3>Size Comparison</h3>
+    <div class="reference-selector">
+      <label for="reference-object">Compare with:</label>
+      <select id="reference-object">
+        {referenceObjects.map(obj => (
+          <option value={obj.name.toLowerCase()}>{obj.name}</option>
+        ))}
+      </select>
+    </div>
+    <div class="scale-controls">
+      <button class="scale-btn" data-scale="0.5">0.5x</button>
+      <button class="scale-btn active" data-scale="1">1x</button>
+      <button class="scale-btn" data-scale="2">2x</button>
+    </div>
+  </div>
+
+  <div class="comparison-view">
+    <div class="creature-container">
+      <img 
+        src={creatureImage} 
+        alt="Creature silhouette" 
+        class="creature-silhouette"
+        data-original-width={lengthInMeters}
+      />
+      <div class="size-label">{creatureLength}</div>
+    </div>
+    <div class="reference-container">
+      <img 
+        src={referenceObjects[0].silhouette} 
+        alt="Reference object" 
+        class="reference-silhouette"
+        data-original-width={referenceObjects[0].width}
+      />
+      <div class="size-label">{referenceObjects[0].width}m</div>
+    </div>
+  </div>
+
+  <div class="scale-indicator">
+    <div class="scale-line"></div>
+    <div class="scale-markers">
+      <span>0m</span>
+      <span>5m</span>
+      <span>10m</span>
+      <span>15m</span>
+      <span>20m</span>
+    </div>
+  </div>
+</div>
+
+<style>
+  .size-comparison {
+    background: white;
+    border-radius: 8px;
+    padding: 2rem;
+    margin: 2rem 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  .comparison-controls {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color, #eee);
+  }
+
+  .comparison-controls h3 {
+    margin: 0;
+    color: var(--primary-color);
+    font-size: 1.2rem;
+  }
+
+  .reference-selector {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .reference-selector select {
+    padding: 0.5rem;
+    border: 1px solid var(--border-color, #eee);
+    border-radius: 4px;
+    font-size: 0.9rem;
+  }
+
+  .scale-controls {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .scale-btn {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--border-color, #eee);
+    border-radius: 4px;
+    background: white;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .scale-btn:hover {
+    background: var(--background-color);
+  }
+
+  .scale-btn.active {
+    background: var(--accent-color);
+    color: white;
+    border-color: var(--accent-color);
+  }
+
+  .comparison-view {
+    position: relative;
+    height: 300px;
+    border: 1px solid var(--border-color, #eee);
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    padding: 1rem;
+    background: var(--background-color);
+  }
+
+  .creature-container,
+  .reference-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s ease;
+  }
+
+  .creature-silhouette,
+  .reference-silhouette {
+    height: 200px;
+    width: auto;
+    object-fit: contain;
+  }
+
+  .size-label {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--secondary-color);
+  }
+
+  .scale-indicator {
+    position: relative;
+    height: 40px;
+    padding-top: 20px;
+  }
+
+  .scale-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--border-color, #eee);
+  }
+
+  .scale-markers {
+    display: flex;
+    justify-content: space-between;
+    color: var(--secondary-color);
+    font-size: 0.8rem;
+  }
+
+  @media (max-width: 768px) {
+    .comparison-controls {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .comparison-view {
+      height: 200px;
+    }
+
+    .creature-silhouette,
+    .reference-silhouette {
+      height: 150px;
+    }
+  }
+</style>
+
+<script>
+  // Handle reference object selection
+  const referenceSelect = document.getElementById('reference-object');
+  const referenceImage = document.querySelector('.reference-silhouette');
+  const referenceSizeLabel = referenceImage?.nextElementSibling;
+
+  referenceSelect?.addEventListener('change', (e) => {
+    const select = e.target as HTMLSelectElement;
+    const selectedObject = referenceObjects.find(
+      obj => obj.name.toLowerCase() === select.value
+    );
+    
+    if (selectedObject && referenceImage) {
+      referenceImage.src = selectedObject.silhouette;
+      referenceImage.dataset.originalWidth = selectedObject.width.toString();
+      if (referenceSizeLabel) {
+        referenceSizeLabel.textContent = `${selectedObject.width}m`;
+      }
+      updateScale();
+    }
+  });
+
+  // Handle scale buttons
+  const scaleButtons = document.querySelectorAll('.scale-btn');
+  scaleButtons.forEach(button => {
+    button.addEventListener('click', (e) => {
+      const btn = e.target as HTMLButtonElement;
+      scaleButtons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      updateScale();
+    });
+  });
+
+  function updateScale() {
+    const activeScale = document.querySelector('.scale-btn.active');
+    const scale = activeScale?.getAttribute('data-scale') || '1';
+    const scaleValue = parseFloat(scale);
+
+    const creatureContainer = document.querySelector('.creature-container');
+    const referenceContainer = document.querySelector('.reference-container');
+
+    if (creatureContainer && referenceContainer) {
+      creatureContainer.style.transform = `scale(${scaleValue})`;
+      referenceContainer.style.transform = `scale(${scaleValue})`;
+    }
+  }
+</script> 

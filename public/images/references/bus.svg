@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="320" viewBox="0 0 1200 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Bus Body -->
+  <path d="M50 250 L1150 250 L1150 50 L50 50 Z" fill="#2C3E50"/>
+  
+  <!-- Windows -->
+  <path d="M100 100 L100 200 M200 100 L200 200 M300 100 L300 200 M400 100 L400 200 M500 100 L500 200 M600 100 L600 200 M700 100 L700 200 M800 100 L800 200 M900 100 L900 200 M1000 100 L1000 200" stroke="#FFFFFF" stroke-width="10"/>
+  
+  <!-- Wheels -->
+  <circle cx="250" cy="250" r="50" fill="#2C3E50"/>
+  <circle cx="950" cy="250" r="50" fill="#2C3E50"/>
+</svg> 
