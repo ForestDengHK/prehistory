@@ -7,11 +7,21 @@ const { creatureId } = Astro.props;
 ---
 
 <div class="comment-container">
-    <button id={`comment-button-${creatureId}`} class="comment-button" aria-label="Add Comment">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-        </svg>
-    </button>
+    <div class="action-buttons">
+        <button id={`like-button-${creatureId}`} class="like-button" aria-label="Like Creature">
+            <span class="like-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                </svg>
+            </span>
+            <span id={`like-count-${creatureId}`} class="like-count">0</span>
+        </button>
+        <button id={`comment-button-${creatureId}`} class="comment-button" aria-label="Add Comment">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            </svg>
+        </button>
+    </div>
 </div>
 
 <!-- Comment Modal -->
@@ -212,6 +222,67 @@ const { creatureId } = Astro.props;
             alert('Failed to submit comment. Please try again.');
         }
     });
+
+    // Like button functionality
+    const likeButton = document.getElementById(`like-button-${creatureId}`);
+    const likeCount = document.getElementById(`like-count-${creatureId}`);
+    
+    // Check if user has liked this creature
+    const hasLiked = localStorage.getItem(`liked-${creatureId}`);
+    if (hasLiked) {
+        likeButton.classList.add('liked');
+    }
+    
+    // Fetch initial like count
+    async function fetchLikeCount() {
+        try {
+            const response = await fetch(`/api/likes/${creatureId}`);
+            if (response.ok) {
+                const data = await response.json();
+                likeCount.textContent = data.likes;
+                if (data.hasLiked) {
+                    likeButton.classList.add('liked');
+                }
+            }
+        } catch (error) {
+            console.error('Error fetching likes:', error);
+        }
+    }
+    
+    fetchLikeCount();
+    
+    // Handle like button click
+    likeButton.addEventListener('click', async () => {
+        try {
+            const response = await fetch(`/api/likes/${creatureId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+            
+            if (response.ok) {
+                const data = await response.json();
+                likeCount.textContent = data.likes;
+                likeButton.classList.toggle('liked');
+                
+                // Store like state in localStorage
+                if (data.hasLiked) {
+                    localStorage.setItem(`liked-${creatureId}`, 'true');
+                } else {
+                    localStorage.removeItem(`liked-${creatureId}`);
+                }
+                
+                // Add heart animation
+                const heart = document.createElement('div');
+                heart.className = 'heart-animation';
+                likeButton.appendChild(heart);
+                setTimeout(() => heart.remove(), 1000);
+            }
+        } catch (error) {
+            console.error('Error updating likes:', error);
+        }
+    });
 </script>
 
 <style>
@@ -220,6 +291,82 @@ const { creatureId } = Astro.props;
         right: 2rem;
         bottom: 2rem;
         z-index: 100;
+        display: flex;
+        gap: 1rem;
+    }
+
+    .action-buttons {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+    }
+
+    .like-button {
+        background-color: white;
+        color: var(--text-color);
+        border: 2px solid var(--primary-color);
+        border-radius: 50%;
+        width: 3.5rem;
+        height: 3.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        transition: all 0.3s ease;
+        position: relative;
+    }
+
+    .like-button:hover {
+        transform: translateY(-2px);
+        border-color: var(--accent-color);
+        color: var(--accent-color);
+    }
+
+    .like-button.liked {
+        background-color: var(--accent-color);
+        border-color: var(--accent-color);
+        color: white;
+    }
+
+    .like-button.liked svg {
+        fill: currentColor;
+    }
+
+    .like-count {
+        position: absolute;
+        top: -8px;
+        right: -8px;
+        background-color: var(--primary-color);
+        color: white;
+        border-radius: 12px;
+        padding: 2px 6px;
+        font-size: 0.75rem;
+        font-weight: bold;
+        min-width: 20px;
+        text-align: center;
+    }
+
+    .heart-animation {
+        position: absolute;
+        pointer-events: none;
+        animation: heart-burst 1s ease-out forwards;
+        opacity: 0;
+    }
+
+    @keyframes heart-burst {
+        0% {
+            transform: scale(1);
+            opacity: 1;
+        }
+        50% {
+            transform: scale(1.5);
+            opacity: 0.5;
+        }
+        100% {
+            transform: scale(2);
+            opacity: 0;
+        }
     }
 
     .comment-button {
