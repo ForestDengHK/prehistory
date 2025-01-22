@@ -124,6 +124,18 @@ const numberOfIndicators = Math.ceil(facts.length / getInitialCardsPerView());
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     display: flex;
     flex-direction: column;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .fact-card:hover, .fact-card:focus {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+  }
+
+  .fact-card:focus {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
   }
 
   .fact-image {
@@ -227,6 +239,10 @@ const numberOfIndicators = Math.ceil(facts.length / getInitialCardsPerView());
 
 <script>
   let currentIndex = 0;
+  let isAutoPlayPaused = false;
+  let autoPlayInterval: number;
+  const SLIDE_INTERVAL = 7000; // Increased to 7 seconds
+  
   const track = document.querySelector('.facts-track') as HTMLElement;
   const cards = document.querySelectorAll('.fact-card');
   const indicators = document.querySelectorAll('.indicator');
@@ -245,7 +261,6 @@ const numberOfIndicators = Math.ceil(facts.length / getInitialCardsPerView());
   function updateIndicatorVisibility() {
     const maxIndex = getMaxIndex();
     indicators.forEach((indicator, index) => {
-      // Show indicator if it's within the current slide range
       indicator.classList.toggle('visible', index <= maxIndex);
     });
   }
@@ -254,7 +269,7 @@ const numberOfIndicators = Math.ceil(facts.length / getInitialCardsPerView());
   updateIndicatorVisibility();
   indicators[0]?.classList.add('active');
 
-  function updateCarousel(newIndex: number) {
+  function updateCarousel(newIndex: number, resetInterval = true) {
     const maxIndex = getMaxIndex();
     newIndex = Math.max(0, Math.min(newIndex, maxIndex));
     
@@ -269,6 +284,38 @@ const numberOfIndicators = Math.ceil(facts.length / getInitialCardsPerView());
     });
 
     currentIndex = newIndex;
+
+    // Reset auto-play interval if needed
+    if (resetInterval) {
+      resetAutoPlay();
+    }
+  }
+
+  function startAutoPlay() {
+    if (!isAutoPlayPaused) {
+      autoPlayInterval = setInterval(() => {
+        if (!isAutoPlayPaused) {
+          const maxIndex = getMaxIndex();
+          const newIndex = (currentIndex + 1) % (maxIndex + 1);
+          updateCarousel(newIndex, false);
+        }
+      }, SLIDE_INTERVAL);
+    }
+  }
+
+  function resetAutoPlay() {
+    clearInterval(autoPlayInterval);
+    startAutoPlay();
+  }
+
+  function pauseAutoPlay() {
+    isAutoPlayPaused = true;
+    clearInterval(autoPlayInterval);
+  }
+
+  function resumeAutoPlay() {
+    isAutoPlayPaused = false;
+    startAutoPlay();
   }
 
   // Add click handlers for indicators
@@ -291,37 +338,48 @@ const numberOfIndicators = Math.ceil(facts.length / getInitialCardsPerView());
     updateCarousel(newIndex);
   });
 
-  // Auto-advance carousel every 5 seconds
-  setInterval(() => {
-    const maxIndex = getMaxIndex();
-    const newIndex = (currentIndex + 1) % (maxIndex + 1);
-    updateCarousel(newIndex);
-  }, 5000);
+  // Pause on hover/focus
+  track?.addEventListener('mouseenter', pauseAutoPlay);
+  track?.addEventListener('mouseleave', resumeAutoPlay);
+  track?.addEventListener('focusin', pauseAutoPlay);
+  track?.addEventListener('focusout', resumeAutoPlay);
 
-  // Update resize handler
-  let resizeTimer: number;
-  window.addEventListener('resize', () => {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(() => {
-      // Update indicator visibility and carousel position
-      updateIndicatorVisibility();
+  // Add keyboard navigation
+  track?.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') {
       const maxIndex = getMaxIndex();
-      currentIndex = Math.min(currentIndex, maxIndex);
-      updateCarousel(currentIndex);
-    }, 250);
+      const newIndex = (currentIndex - 1 + maxIndex + 1) % (maxIndex + 1);
+      updateCarousel(newIndex);
+    } else if (e.key === 'ArrowRight') {
+      const maxIndex = getMaxIndex();
+      const newIndex = (currentIndex + 1) % (maxIndex + 1);
+      updateCarousel(newIndex);
+    }
   });
 
   // Add touch support for mobile
   let touchStartX = 0;
   let touchEndX = 0;
+  let isSwiping = false;
 
   track?.addEventListener('touchstart', (e) => {
     touchStartX = e.touches[0].clientX;
+    isSwiping = true;
+    pauseAutoPlay();
   });
 
   track?.addEventListener('touchend', (e) => {
+    if (!isSwiping) return;
+    
     touchEndX = e.changedTouches[0].clientX;
     handleSwipe();
+    isSwiping = false;
+    resumeAutoPlay();
+  });
+
+  track?.addEventListener('touchcancel', () => {
+    isSwiping = false;
+    resumeAutoPlay();
   });
 
   function handleSwipe() {
@@ -341,4 +399,28 @@ const numberOfIndicators = Math.ceil(facts.length / getInitialCardsPerView());
       }
     }
   }
+
+  // Handle card click
+  cards.forEach(card => {
+    card.addEventListener('click', () => {
+      pauseAutoPlay();
+      // Resume autoplay after 30 seconds of inactivity
+      setTimeout(resumeAutoPlay, 30000);
+    });
+  });
+
+  // Update resize handler
+  let resizeTimer: number;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      updateIndicatorVisibility();
+      const maxIndex = getMaxIndex();
+      currentIndex = Math.min(currentIndex, maxIndex);
+      updateCarousel(currentIndex);
+    }, 250);
+  });
+
+  // Start auto-play
+  startAutoPlay();
 </script> 
