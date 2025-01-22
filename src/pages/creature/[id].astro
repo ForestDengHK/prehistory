@@ -4,6 +4,7 @@ import { creatures } from '../../data/creatures';
 import { marked } from 'marked';
 import CommentButton from '../../components/CommentButton.astro';
 import CommentList from '../../components/CommentList.astro';
+import ShareButton from '../../components/ShareButton.astro';
 
 const { id } = Astro.params;
 const creature = creatures.find(c => c.id === id);
@@ -54,10 +55,17 @@ const structuredData = {
     "ancient life"
   ].join(", ")
 };
+
+// Add this near other data preparation
+const shareUrl = new URL(Astro.url.pathname, Astro.site).toString();
+const shareTitle = `Check out ${creature.name} - ${creature.shortDescription}`;
+const shareDescription = creature.description;
+const shareImage = creature.image;
+
 ---
 
 <Layout 
-  title={creature.name}
+  title={`${creature.name} | Prehistoric Creatures`}
   description={seoDescription}
   image={creature.image}
   type="article"
@@ -111,7 +119,15 @@ const structuredData = {
           <div class="markdown-content" set:html={formattedDescription} />
         </div>
 
-        <CommentList creatureId={creature.id} />
+        <div class="engagement-section">
+          <ShareButton 
+            url={shareUrl}
+            title={shareTitle}
+            description={shareDescription}
+            image={shareImage}
+          />
+          <CommentList creatureId={creature.id} />
+        </div>
       </div>
     </div>
 
@@ -194,6 +210,7 @@ const structuredData = {
     padding: 2rem;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 1rem;
   }
 
   .description h2 {
@@ -283,5 +300,27 @@ const structuredData = {
     .info-grid {
       grid-template-columns: 1fr;
     }
+
+    .engagement-section {
+      padding: 1rem;
+    }
+  }
+
+  .creature-detail {
+    position: relative;
+  }
+
+  .engagement-section {
+    margin-top: 0;
+    background: white;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  .engagement-section :global(.share-section) {
+    margin: 0 0 0.5rem 0;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-color, #eee);
   }
 </style>
