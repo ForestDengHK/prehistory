@@ -5,7 +5,6 @@ import { marked } from 'marked';
 import CommentButton from '../../components/CommentButton.astro';
 import CommentList from '../../components/CommentList.astro';
 import ShareButton from '../../components/ShareButton.astro';
-import SizeComparison from '../../components/SizeComparison.astro';
 
 const { id } = Astro.params;
 const creature = creatures.find(c => c.id === id);
@@ -114,11 +113,6 @@ const shareImage = creature.image;
             <p>{creature.family}</p>
           </div>
         </div>
-
-        <SizeComparison 
-          creatureLength={creature.length}
-          creatureImage={`/images/silhouettes/${creature.id}.svg`}
-        />
 
         <div class="description">
           <h2>About {creature.name}</h2>
