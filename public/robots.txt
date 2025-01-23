@@ -1,6 +1,6 @@
 # Prehistoric World - www.xinhao.eu robots.txt
 
-# Allow all robots full access to public content
+# Allow all crawlers
 User-agent: *
 Allow: /
 Allow: /timeline/
@@ -15,24 +15,17 @@ Disallow: /api/
 Disallow: /*.json$
 Disallow: /*.ts$
 Disallow: /*.js$
+Disallow: /*.md$
+Disallow: /*.map$
+Disallow: /*.log$
 
 # Block development and staging environments
 Disallow: /dev/
 Disallow: /staging/
 Disallow: /test/
 
-# Block specific file types
-Disallow: /*.md$
-Disallow: /*.map$
-Disallow: /*.log$
-
-# Sitemaps
-Sitemap: https://www.xinhao.eu/sitemap.xml
-Sitemap: https://www.xinhao.eu/sitemap-images.xml
-
-# Crawl-delay settings
-# Recommended delay between requests
-Crawl-delay: 10
+# Point to Astro-generated sitemap
+Sitemap: https://www.xinhao.eu/sitemap-0.xml
 
 # Special rules for specific bots
 User-agent: Googlebot
@@ -44,6 +37,7 @@ Allow: /*.jpg$
 Allow: /*.jpeg$
 Allow: /*.png$
 Allow: /*.gif$
+Allow: /*.svg$
 
 User-agent: Bingbot
 Crawl-delay: 10 
