@@ -5,6 +5,7 @@ import { marked } from 'marked';
 import CommentButton from '../../components/CommentButton.astro';
 import CommentList from '../../components/CommentList.astro';
 import ShareButton from '../../components/ShareButton.astro';
+import CreatureVisualization from '../../components/CreatureVisualization.astro';
 // import SizeComparison from '../../components/SizeComparison.astro';
 
 const { id } = Astro.params;
@@ -80,6 +81,8 @@ const shareImage = creature.image;
     </div>
 
     <div class="creature-content">
+      <CreatureVisualization creature={creature} />
+      
       <div class="creature-info">
         <div class="info-grid">
           <div class="info-item">

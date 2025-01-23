@@ -14,6 +14,7 @@ export interface Creature {
   category: Category;
   subcategory: Subcategory;
   family: string;
+  modelId?: string; // Optional Sketchfab model ID
 }
 
 export interface SearchResult extends Creature {
@@ -44,7 +45,8 @@ export const creatures: Creature[] = [
     description: 'The Tyrannosaurus rex, or T. rex, is one of the most iconic dinosaurs in history. Standing up to 20 feet tall and spanning 40 feet in length, this apex predator dominated the late Cretaceous period about 68–66 million years ago. Known for its massive skull, serrated teeth, and powerful jaw capable of crushing bones, the T. rex was a highly efficient hunter and scavenger. Despite its tiny, seemingly disproportionate arms, each limb was incredibly strong and likely aided in gripping prey. Its keen sense of smell and vision further established it as one of nature’s most formidable carnivores.',
     category: 'Dinosaurs',
     subcategory: 'Theropods',
-    family: 'Tyrannosauridae'
+    family: 'Tyrannosauridae',
+    modelId: '4641dced5b474c30a1af71971a7307fe' // Smithsonian 3D T-Rex
   },
                   {
     id: 'megalodon',
@@ -59,7 +61,8 @@ export const creatures: Creature[] = [
     description: 'The Megalodon (Otodus megalodon) was the largest shark to ever roam Earth’s oceans, dominating marine ecosystems approximately 23 to 3.6 million years ago. Measuring up to 60 feet in length, this prehistoric predator had massive, serrated teeth up to 7 inches long—ideal for tearing through large prey like whales. Its immense jaw could exert a bite force of over 40,000 pounds, making it one of the most powerful biters in history. Likely a top apex predator, the Megalodon relied on its speed and strength to hunt, patrolling warm waters worldwide. Though extinct, its legacy endures as a symbol of oceanic might and mystery.',
     category: 'Marine Creatures',
     subcategory: 'Prehistoric Sharks',
-    family: 'Otodontidae'
+    family: 'Otodontidae',
+    modelId: 'dc2b75f091964c26b05544f6a990e7ac' // Smithsonian 3D T-Rex
   },
               {
     id: 'nanotyrannus',
@@ -119,7 +122,8 @@ export const creatures: Creature[] = [
     description: 'The Velociraptor, often shortened to “raptor,” was a small, feathered carnivorous dinosaur that lived during the Late Cretaceous period, approximately 75–71 million years ago. Standing about 2 feet tall and measuring up to 7 feet in length, this agile predator weighed around 30 pounds, similar to a modern turkey. Its defining features included a curved, sickle-shaped claw on each foot, used for gripping and slashing prey, and a sharp, intelligent gaze that hinted at its advanced hunting strategies. Likely hunting in packs, the Velociraptor may have been both a skilled predator and scavenger. Its discovery revolutionized our understanding of dinosaurs as active, dynamic creatures closely related to birds.',
     category: 'Dinosaurs',
     subcategory: 'Theropods',
-    family: 'Dromaeosauridae'
+    family: 'Dromaeosauridae',
+    modelId: '40412e7e70624086860fc1172f465561' // Natural History Museum Velociraptor
   },
           {
     id: 'triceratops',
@@ -134,7 +138,8 @@ export const creatures: Creature[] = [
     description: 'The Triceratops, one of the most iconic dinosaurs, was a massive herbivore that roamed North America during the Late Cretaceous period, around 68–66 million years ago. Known for its three facial horns and a large, bony frill extending from the back of its skull, Triceratops reached lengths of up to 30 feet and weighed around 6–12 tons. These features likely served for defense against predators like Tyrannosaurus rex and possibly for display or mating rituals. Despite its intimidating appearance, Triceratops primarily fed on low-lying plants. Its combination of power, adaptability, and distinctiveness makes it a favorite symbol of prehistoric life.',
     category: 'Dinosaurs',
     subcategory: 'Ceratopsians',
-    family: 'Triceratopsidae'
+    family: 'Triceratopsidae',
+    modelId: 'd16aabe33dc24f8ab37e3df50c068265' // Smithsonian 3D Triceratops
   },
         {
     id: 'pterodactyl',
@@ -194,7 +199,8 @@ export const creatures: Creature[] = [
     description: 'Spinosaurus, a massive Cretaceous theropod measuring up to 59 feet long and weighing as much as 20 tons, is renowned for its long, crocodile-like snout, conical teeth suited for fish-catching, and distinctive sail-like structure on its back formed by elongated neural spines, which is thought to have played a role in thermoregulation, display, or stability while swimming, as evidence suggests this semi-aquatic dinosaur, with its robust forelimbs, small hindlimbs, and powerful tail, likely spent significant time in water hunting fish, making it one of the most unusual and debated dinosaurs in paleontology.',
     category: 'Dinosaurs',
     subcategory: 'Theropods',
-    family: 'Spinosauridae'
+    family: 'Spinosauridae',
+    modelId: 'f136cb45937b4695af705ffd032809d9' // Museum Collection Spinosaurus
   },
             {
     id: 'stromatolite-bacteria',
