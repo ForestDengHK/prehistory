@@ -34,23 +34,24 @@ export const GET: APIRoute = async () => {
     ];
 
     const allPages = [...staticPages, ...dynamicPages];
+    const now = new Date().toISOString();
 
     const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="/sitemap.xsl"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${allPages.map(page => `  <url>
     <loc>${escapeXml(`${BASE_URL}${page ? `/${page}` : ''}`)}</loc>
-    <lastmod>${new Date().toISOString()}</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>${now}</lastmod>
+    <changefreq>daily</changefreq>
     <priority>${page === '' ? '1.0' : '0.8'}</priority>
   </url>`).join('\n')}
 </urlset>`;
 
     return new Response(sitemap.trim(), {
       headers: {
-        'Content-Type': 'application/xml',
-        'Cache-Control': 'public, max-age=3600'
+        'Content-Type': 'application/xml; charset=utf-8',
+        'Cache-Control': 'max-age=3600, public',
+        'X-Robots-Tag': 'noarchive'
       },
     });
   } catch (error) {
