@@ -39,16 +39,15 @@ export const GET: APIRoute = async () => {
 <?xml-stylesheet type="text/xsl" href="/sitemap.xsl"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
-  ${allPages.map(page => `
-  <url>
+${allPages.map(page => `  <url>
     <loc>${escapeXml(`${BASE_URL}${page ? `/${page}` : ''}`)}</loc>
     <lastmod>${new Date().toISOString()}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>${page === '' ? '1.0' : '0.8'}</priority>
-  </url>`).join('')}
+  </url>`).join('\n')}
 </urlset>`;
 
-    return new Response(sitemap, {
+    return new Response(sitemap.trim(), {
       headers: {
         'Content-Type': 'application/xml',
         'Cache-Control': 'public, max-age=3600'

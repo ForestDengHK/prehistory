@@ -14,14 +14,13 @@ export const GET: APIRoute = async () => {
     const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="/sitemap.xsl"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  ${sitemaps.map(({ path }) => `
-  <sitemap>
+${sitemaps.map(({ path }) => `  <sitemap>
     <loc>${BASE_URL}${path}</loc>
     <lastmod>${now}</lastmod>
-  </sitemap>`).join('')}
+  </sitemap>`).join('\n')}
 </sitemapindex>`;
 
-    return new Response(sitemap, {
+    return new Response(sitemap.trim(), {
       headers: {
         'Content-Type': 'application/xml',
         'Cache-Control': 'public, max-age=3600'
