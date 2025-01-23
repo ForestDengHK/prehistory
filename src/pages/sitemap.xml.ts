@@ -18,6 +18,11 @@ function escapeXml(unsafe: string): string {
   });
 }
 
+// Clean URL function
+function cleanUrl(url: string): string {
+  return url.replace(/^-+|-+$/g, ''); // Remove leading/trailing hyphens
+}
+
 export const GET: APIRoute = async () => {
   try {
     const staticPages = [
@@ -29,7 +34,7 @@ export const GET: APIRoute = async () => {
     ];
 
     const dynamicPages = [
-      ...creatures.map(creature => `creature/${creature.id}`),
+      ...creatures.map(creature => `creature/${cleanUrl(creature.id)}`),
       ...timelinePeriods.map(period => `timeline/${period.name.toLowerCase()}`),
     ];
 
@@ -51,7 +56,8 @@ ${allPages.map(page => `  <url>
       headers: {
         'Content-Type': 'application/xml; charset=utf-8',
         'Cache-Control': 'max-age=3600, public',
-        'X-Robots-Tag': 'noarchive'
+        'X-Robots-Tag': 'all',
+        'Access-Control-Allow-Origin': '*'
       },
     });
   } catch (error) {
