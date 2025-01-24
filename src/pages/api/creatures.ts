@@ -63,7 +63,7 @@ export const POST: APIRoute = async ({ request }) => {
     description: '${newCreature.description.replace(/'/g, "\\'").replace(/"/g, '\\"').replace(/\n/g, '\\n').replace(/\r/g, '\\r').replace(/\t/g, '\\t')}',
     category: '${newCreature.category}',
     subcategory: '${newCreature.subcategory}',
-    family: '${newCreature.family}'
+    family: '${newCreature.family}'${newCreature.modelId ? `,\n    modelId: '${newCreature.modelId}'` : ''}
   }`;
 
     // Insert the new creature at the end of the array

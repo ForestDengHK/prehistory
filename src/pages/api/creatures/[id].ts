@@ -97,7 +97,7 @@ export const PUT: APIRoute = async ({ params, request }) => {
     description: '${updatedCreature.description.replace(/'/g, "\\'").replace(/"/g, '\\"').replace(/\n/g, '\\n').replace(/\r/g, '\\r').replace(/\t/g, '\\t')}',
     category: '${updatedCreature.category}',
     subcategory: '${updatedCreature.subcategory}',
-    family: '${updatedCreature.family}'
+    family: '${updatedCreature.family}'${updatedCreature.modelId ? `,\n    modelId: '${updatedCreature.modelId}'` : ''}
   }`;
 
     // Replace only the specific creature entry

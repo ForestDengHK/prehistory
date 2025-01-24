@@ -156,6 +156,13 @@ const diets = ['Carnivore', 'Herbivore', 'Omnivore'];
             <p class="help-text">Upload a new image (JPG, PNG). The file will be saved to the public/images directory</p>
           </div>
         </div>
+
+        <div class="form-field">
+          <label for="modelId">3D Model ID</label>
+          <input type="text" id="modelId" name="modelId" 
+            placeholder="Sketchfab model ID (optional)">
+          <p class="help-text">Enter a Sketchfab model ID to enable 3D visualization</p>
+        </div>
       </section>
 
       <!-- Description -->
@@ -548,6 +555,7 @@ const diets = ['Carnivore', 'Herbivore', 'Omnivore'];
     (document.getElementById('diet') as HTMLSelectElement).value = creature.diet;
     (document.getElementById('description') as HTMLTextAreaElement).value = creature.description;
     (document.getElementById('family') as HTMLInputElement).value = creature.family || '';
+    (document.getElementById('modelId') as HTMLInputElement).value = creature.modelId || '';
     
     // Update subcategories and set value
     const subcategories = categories[creature.category] || [];

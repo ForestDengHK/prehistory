@@ -32,7 +32,7 @@ export interface SearchResult extends Creature {
 }
 
 export const creatures: Creature[] = [
-                                  {
+                                    {
     id: 'tyrannosaurus-rex',
     name: 'Tyrannosaurus Rex',
     scientificName: 'Tyrannosaurus rex',
@@ -46,7 +46,7 @@ export const creatures: Creature[] = [
     category: 'Dinosaurs',
     subcategory: 'Theropods',
     family: 'Tyrannosauridae',
-    modelId: '4641dced5b474c30a1af71971a7307fe' // Smithsonian 3D T-Rex
+    modelId: '4641dced5b474c30a1af71971a7307fe'
   },
                   {
     id: 'megalodon',
@@ -79,7 +79,7 @@ export const creatures: Creature[] = [
     subcategory: 'Theropods',
     family: 'Tyrannosauridae'
   },
-          {
+            {
     id: 'raptorex',
     name: 'Raptorex lancensis',
     scientificName: 'Raptorex kriegsteini',
@@ -94,7 +94,7 @@ export const creatures: Creature[] = [
     subcategory: 'Theropods',
     family: 'Tyrannosauridae'
   },
-          {
+            {
     id: 'stegosaurus',
     name: 'Stegosaurus stenops',
     scientificName: 'Stegosaurus stenops',
@@ -107,7 +107,8 @@ export const creatures: Creature[] = [
     description: 'The Stegosaurus is one of the most recognizable dinosaurs, known for its distinctive row of large, bony plates along its back and spiked tail, called the thagomizer, used for defense. This herbivorous dinosaur lived during the Late Jurassic period, around 155–150 million years ago. Measuring up to 30 feet in length and weighing about 5 tons, the Stegosaurus had a relatively small head and brain for its size, suggesting it relied more on instinct than complex behaviors. Its plates may have been used for thermoregulation, display, or intimidation. A gentle giant of its time, the Stegosaurus is a symbol of prehistoric diversity and mystery.',
     category: 'Dinosaurs',
     subcategory: 'Stegosaurs',
-    family: 'Stegosauridae'
+    family: 'Stegosauridae',
+    modelId: '6e9a2f36f0a447758d71c2134512580e'
   },
         {
     id: 'velociraptor',
