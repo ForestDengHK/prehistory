@@ -64,7 +64,7 @@ export const creatures: Creature[] = [
     family: 'Otodontidae',
     modelId: 'dc2b75f091964c26b05544f6a990e7ac' // Smithsonian 3D T-Rex
   },
-              {
+                  {
     id: 'nanotyrannus',
     name: 'Nanotyrannus lancensis',
     scientificName: 'Nanotyrannus lancensis',
@@ -233,7 +233,7 @@ export const creatures: Creature[] = [
     subcategory: 'Prehistoric Mammals',
     family: 'Morganucodontidae'
   },
-  {
+    {
     id: 'giganotosaurus-carolinii',
     name: 'Giganotosaurus carolinii',
     scientificName: 'Giganotosaurus carolinii',
@@ -246,9 +246,10 @@ export const creatures: Creature[] = [
     description: 'The Giganotosaurus, a colossal theropod that roamed the southern continents of what is now South America during the late Cretaceous period, was an apex predator of staggering proportions, measuring up to 40 feet in length and weighing as much as 8 tons, with a skull nearly 3 feet long, sharp serrated teeth capable of slicing through flesh and bone, and powerful hind limbs that allowed it to chase down prey such as large sauropods, while its relatively long arms, although less robust compared to other theropods like the T. rex, still featured sharp claws that may have been used in pinning or dismembering prey; this formidable hunter likely navigated a landscape of lush forests and open plains, employing a combination of speed, strength, and strategy to dominate its ecosystem, all while facing challenges from other carnivores like the Carcharodontosaurus and dealing with the changing climates and environments of the Cretaceous.',
     category: 'Dinosaurs',
     subcategory: 'Theropods',
-    family: 'Tyrannosauridae'
+    family: 'Tyrannosauridae',
+    modelId: 'a19074c7a9944c648ee634599b25afd3'
   },
-    {
+        {
     id: 'stegosaurus-ungulatus',
     name: 'stegosaurus ungulatus',
     scientificName: 'stegosaurus ungulatus',
@@ -261,9 +262,10 @@ export const creatures: Creature[] = [
     description: 'Stegosaurus ungulatus is another type of Stegosaurus that lived during the Late Jurassic period,\nStegosaurus ungulatus can be distinguished from S. stenops by the presence of longer hind limbs, proportionately smaller, more pointed plates with wide bases and narrow tips, and by several small, flat, spine-like plates just before the spikes on the tail.',
     category: 'Dinosaurs',
     subcategory: 'Stegosaurs',
-    family: 'Stegosauridae'
+    family: 'Stegosauridae',
+    modelId: '5713ce4d1e374edd9a63b86436d649dc'
   },
-  {
+    {
     id: 'helicoprion-bessonowi',
     name: 'Helicoprion bessonowi',
     scientificName: 'Helicoprion bessonowi',
@@ -276,9 +278,10 @@ export const creatures: Creature[] = [
     description: 'Helicoprion bessonowi is a fascinating, extinct species of chondrichthyan (cartilaginous fish) that lived approximately 270 million years ago during the Late Permian period. It is most famous for its distinctive, spiral tooth whorl, which was located in the lower jaw and could grow to be up to several centimeters in diameter. This unusual tooth arrangement is thought to have been used to grasp and slice through soft-bodied prey, particularly cephalopods like ammonites, which were likely a significant part of its diet. Fossil evidence of Helicoprion is relatively sparse, with most known specimens consisting of isolated tooth whorls, leading scientists to reconstruct the fish\'s appearance and feeding behavior based on these unique features. The spiral teeth, often compared to a buzzsaw, would have been continuously replaced throughout its life, much like modern sharks. Although its exact size and shape remain speculative, Helicoprion is believed to have been a relatively large predator, likely measuring up to 3 meters in length, with a body form similar to modern-day sharks.',
     category: 'Marine Creatures',
     subcategory: 'Prehistoric Sharks',
-    family: 'Helicoprionidae'
+    family: 'Helicoprionidae',
+    modelId: 'c43a753638c94a25805aa3a30ab2a85d'
   },
-  {
+    {
     id: 'anomalocaris-canadensis',
     name: 'Anomalocaris canadensis',
     scientificName: 'Anomalocaris canadensis',
@@ -291,9 +294,10 @@ export const creatures: Creature[] = [
     description: 'Anomalocaris, one of the most enigmatic and formidable predators of the Cambrian explosion, flourished around 500 million years ago, characterized by its elongated, segmented body, which could grow up to 1 meter in length, and its highly specialized appendages—frontal, serrated \"arms\" that it used to capture prey, such as trilobites and other small marine organisms; its circular, disk-like mouth, resembling a set of lobed plates, could efficiently crush and tear its food, while its enormous, multifaceted eyes, which were among the largest of any arthropod, offered exceptional vision for hunting and detecting prey in the murky, primordial seas. Additionally, Anomalocaris\' unique body structure, with its powerful, flexible trunk and wide, paddle-like tail, allowed for swift, agile movement, making it a top predator in the complex marine ecosystem of the early Paleozoic era.',
     category: 'Marine Creatures',
     subcategory: 'Invertebrates',
-    family: 'Anomalocarisidae'
+    family: 'Anomalocarisidae',
+    modelId: '9550c5f52fd041788909f49e55a8c714'
   },
-            {
+              {
     id: 'liopleurodon-ferox',
     name: 'Liopleurodon ferox',
     scientificName: 'Liopleurodon ferox',
@@ -306,9 +310,10 @@ export const creatures: Creature[] = [
     description: 'Liopleurodon, a massive marine reptile from the Middle Jurassic period, was a formidable predator that could grow up to 25 meters in length, belonging to the family Pliosauridae, a group of short-necked, large-headed plesiosaurs; its powerful, crocodile-like jaws, lined with sharp teeth, were well-suited for capturing and consuming large prey, including fish, marine reptiles, and possibly even smaller dinosaurs, while its streamlined body, with robust flippers and a tail adapted for propulsion, allowed it to swiftly dominate the seas of ancient Europe.\n Liopleurodon\'s impressive size and strength, combined with its acute sensory adaptations, made it one of the ocean\'s apex predators during the Jurassic, hunting in deep, coastal waters where it would have likely competed with other large marine reptiles like the long-necked Elasmosaurus and the giant fish Ichthyosaurs.\n Its fossils, often found in what is now the United Kingdom, reveal an animal that was not only a top predator but also highly adapted to a fully aquatic lifestyle, capable of fast, powerful movements in pursuit of its prey.',
     category: 'Marine Creatures',
     subcategory: 'Marine Reptiles',
-    family: 'Liopleurodonidae'
+    family: 'Liopleurodonidae',
+    modelId: '522e811044bc4e09bf84431e6c1cc109'
   },
-      {
+        {
     id: 'mosasaurus-hoffmannii',
     name: 'Mosasaurus hoffmannii',
     scientificName: 'Mosasaurus hoffmannii',
@@ -321,7 +326,8 @@ export const creatures: Creature[] = [
     description: 'Mosasaurus, a giant marine reptile that thrived during the Late Cretaceous period, was a dominant apex predator in the seas, growing up to 17 meters in length, with a sleek, hydrodynamic body and powerful tail that allowed it to navigate the water with remarkable speed and agility; as a member of the Mosasauridae family, it possessed long, paddle-like limbs and a large, muscular jaw, which was capable of delivering crushing bites with rows of sharp, conical teeth designed for grasping and tearing its prey, including fish, ammonites, and even other marine reptiles. With its highly specialized adaptations, Mosasaurus was one of the top predators in the oceans, hunting in both coastal and deep-sea environments, and its fossilized remains, often found in what is now Europe and North America, suggest it had evolved to be a fully aquatic creature, with a tail stroke propelling it much like modern marine animals such as dolphins. The mosasaur’s success was further bolstered by its ability to adapt to various environmental conditions, from warm shallow seas to deeper, more turbulent waters, making it a key player in the complex marine ecosystems leading up to the mass extinction event at the end of the Cretaceous.',
     category: 'Marine Creatures',
     subcategory: 'Marine Reptiles',
-    family: 'Mosasauridae'
+    family: 'Mosasauridae',
+    modelId: '245cd26f2cf54e88826e9c845dfcf92d'
   },
         {
     id: 'sarcoprion-edax',
@@ -338,7 +344,7 @@ export const creatures: Creature[] = [
     subcategory: 'Prehistoric Sharks',
     family: 'Sarcoprionidae'
   },
-      {
+        {
     id: 'dunkleosteus-terrelli',
     name: 'dunkleosteus terrelli',
     scientificName: 'dunkleosteus terrelli',
@@ -351,7 +357,8 @@ export const creatures: Creature[] = [
     description: 'Dunkleosteus, one of the largest and most fearsome placoderm fish to ever exist, lived during the Late Devonian period, around 358 to 382 million years ago, and is often considered one of the first true apex predators in Earth\'s oceans. Growing up to 10 meters (33 feet) in length and weighing several tons, Dunkleosteus was a heavily armored fish with a robust, bony head shield made of thick, fused plates, providing it with unparalleled protection against predators and rivals. Unlike modern fish with teeth, Dunkleosteus had a pair of formidable, razor-sharp bony plates that formed a beak-like structure capable of slicing through the flesh and bone of its prey, including other large fish, cephalopods, and possibly even smaller placoderms. This prehistoric predator\'s jaw was capable of delivering one of the most powerful bites of any known vertebrate, with estimates suggesting forces between 1 and 4 tons, allowing it to quickly incapacitate or kill large prey. Its streamlined, torpedo-shaped body, combined with its large, powerful pectoral fins, suggests it was highly efficient in swift, aggressive hunting, able to ambush and overpower its prey in the shallow, warm waters of the Devonian seas. Dunkleosteus remains a symbol of the ancient fish world, showcasing the incredible adaptations that early vertebrates developed as they evolved into the dominant predators of their time.',
     category: 'Marine Creatures',
     subcategory: 'Prehistoric Fish',
-    family: 'Dunkleosteidae'
+    family: 'Dunkleosteidae',
+    modelId: '2477a7735fe14baeb75499ad95819d2b'
   },
   {
     id: 'shonisaurus-popularis',
@@ -398,7 +405,7 @@ export const creatures: Creature[] = [
     subcategory: 'Theropods',
     family: 'Spinosauridae'
   },
-            {
+              {
     id: 'carcharodontosaurus-saharicus',
     name: 'Carcharodontosaurus saharicus',
     scientificName: 'Carcharodontosaurus saharicus',
@@ -411,9 +418,10 @@ export const creatures: Creature[] = [
     description: 'Carcharodontosaurus, a massive and fearsome theropod dinosaur from the mid-Cretaceous period, roamed what is now North Africa around 100 million years ago, and was one of the largest carnivores of its time, growing up to 13 meters (43 feet) in length and weighing over 7 tons. Its name, meaning \"shark-toothed lizard,\" reflects its most distinctive feature: a set of long, serrated teeth resembling those of a great white shark, which were perfectly suited for slicing through the flesh of its prey, including large herbivorous dinosaurs like Apatosaurus and Camarasaurus. Carcharodontosaurus had a robust, yet relatively lightweight, body built for speed and power, with long hind limbs for swift running and a large, muscular tail for balance, helping it maintain agility as it chased down prey in the open landscapes of ancient Africa. Its skull, elongated and narrow, was equipped with large, forward-facing eyes that would have given it excellent binocular vision, critical for spotting prey from a distance. Additionally, the dinosaur’s large nasal passages suggest that it may have had a keen sense of smell. Carcharodontosaurus\' hunting style is thought to have involved ambushing or outpacing slower prey, using its powerful bite to incapacitate victims quickly. As one of the top predators of the Cretaceous ecosystem, it competed with other giant theropods like Spinosaurus and Tyrannosaurus for dominance in the food chain, although it lived in different parts of the world. Fossils of Carcharodontosaurus have been found in what is now Morocco and Algeria, offering important insights into the diversity and evolutionary paths of large theropods during the Cretaceous period.',
     category: 'Dinosaurs',
     subcategory: 'Theropods',
-    family: 'Carcharodontosauridae'
+    family: 'Carcharodontosauridae',
+    modelId: 'c95efd8b235f4d8b88f5b9aaa216270f'
   },
-    {
+      {
     id: 'ceratosaurus-nasicornis',
     name: 'Ceratosaurus nasicornis',
     scientificName: 'Ceratosaurus nasicornis',
@@ -426,7 +434,8 @@ export const creatures: Creature[] = [
     description: 'The Ceratosaurus was a medium-sized theropod that lived approximately 150 to 145 million years ago, during the Late Jurassic period. It had a unique, toothless, and possibly horn-like structure on its snout, which may have been a display feature used for mating rituals or to establish dominance within its species. With a length of about 4 to 5 meters (13 to 16 feet), it was relatively smaller than some of its contemporaries, like Allosaurus, but still a powerful predator. Its body was characterized by a long, muscular tail, a lightweight, aerodynamic build, and powerful hind legs, enabling it to run swiftly in pursuit of smaller prey. The Ceratosaurus had a relatively large head with sharp teeth in its jaws, making it capable of slicing through the flesh of its prey, which likely included fish, small dinosaurs, and possibly scavenged carcasses. Fossils suggest that it lived in what is now North America and parts of Europe, thriving in diverse ecosystems ranging from coastal areas to floodplains.',
     category: 'Dinosaurs',
     subcategory: 'Theropods',
-    family: 'Ceratosauridae'
+    family: 'Ceratosauridae',
+    modelId: '8068f3c7b8924def901ec4c1172b4cc2'
   },
   {
     id: 'ceratosaurus-dentisulcatus',
@@ -443,7 +452,7 @@ export const creatures: Creature[] = [
     subcategory: 'Theropods',
     family: 'Ceratosauridae'
   },
-    {
+      {
     id: 'allosaurus-fragilis',
     name: 'Allosaurus fragilis',
     scientificName: 'Allosaurus fragilis',
@@ -456,7 +465,8 @@ export const creatures: Creature[] = [
     description: 'The Allosaurus, one of the most fearsome predators of the Late Jurassic period (around 155 to 150 million years ago), was a large theropod dinosaur distinguished by its strong, muscular body, large skull, and sharp, serrated teeth, which were perfectly designed for slicing through the flesh of its prey. Growing up to 12 meters (39 feet) in length and weighing up to 2.5 tons, it was built for both strength and agility, with long, powerful hind limbs that allowed it to move quickly and deliver devastating attacks, while its shorter forelimbs, though not as robust as its hind legs, were still equipped with three sharp claws that may have been used for grasping or holding onto prey. Allosaurus had a relatively lightweight, flexible skeleton, making it a more nimble predator compared to other contemporaries like Brachiosaurus or Stegosaurus. Its teeth and jaws were designed for cutting rather than crushing, suggesting it may have scavenged or actively hunted smaller herbivorous dinosaurs like Stegosaurus, Apatosaurus, and even young sauropods. The structure of its skull, with large fenestrae (openings), reduced the weight while providing space for powerful jaw muscles. Evidence also suggests Allosaurus may have hunted in packs, coordinating strategies to take down larger prey, although some studies suggest it may have also hunted alone, relying on ambush tactics. Fossilized remains have been found in North America, particularly in the Morrison Formation, indicating that Allosaurus was widespread and an apex predator in its ecosystem. Its speed, combined with keen senses, made it a formidable and versatile hunter, capable of taking on a wide range of prey.',
     category: 'Dinosaurs',
     subcategory: 'Theropods',
-    family: 'Allosauridae'
+    family: 'Allosauridae',
+    modelId: '937e25ea285f479b8c53e0448272eae1'
   },
   {
     id: 'cryolophosaurus-ellioti',
@@ -518,7 +528,7 @@ export const creatures: Creature[] = [
     subcategory: 'Sauropods',
     family: 'Brachiosauridae'
   },
-  {
+    {
     id: '-livyatan-melvillei',
     name: ' Livyatan melvillei',
     scientificName: ' Livyatan melvillei',
@@ -531,9 +541,10 @@ export const creatures: Creature[] = [
     description: 'Livyatan is an extinct genus of gigantic predatory whale that inhabited the oceans during the Miocene epoch, approximately 12 to 13 million years ago. It was a member of the family Physeteridae, closely related to modern sperm whales, and could reach lengths of 13 to 17 meters, making it one of the largest marine predators of its time. Livyatan had an incredibly powerful bite, with teeth that could exceed 36 centimeters in length, enabling it to prey on large marine mammals such as seals, dolphins, and even other whales. Fossil evidence suggests it had a robust and muscular body, capable of deep diving to hunt in the open ocean, and its sheer size and predatory capabilities positioned it as a dominant force in the ancient marine ecosystem, rivaling other apex predators like the giant shark Carcharocles megalodon. The genus is named after the biblical Leviathan, reflecting its immense power and size.',
     category: 'Marine Creatures',
     subcategory: 'Prehistoric Whales',
-    family: 'Physeteridae'
+    family: 'Physeteridae',
+    modelId: '1cfc39eac8a3466fbe25c66fae9dd6af'
   },
-  {
+    {
     id: 'carcharocles-megalodon',
     name: 'carcharocles megalodon',
     scientificName: 'carcharocles megalodon',
@@ -546,9 +557,10 @@ export const creatures: Creature[] = [
     description: 'Carcharocles megalodon was an enormous prehistoric shark that roamed the oceans from approximately 23 to 3.6 million years ago, during the Cenozoic Era, and is considered the largest shark to ever exist, reaching lengths of up to 18 meters (59 feet) or more, and possibly weighing as much as 50 to 70 tons; with its massive, serrated teeth—some of which exceeded 18 centimeters (7 inches)—and a powerful bite force, megalodon was a dominant apex predator capable of preying on large marine mammals, including whales and dolphins, making it a fearsome force in the ancient oceans that rivaled even the largest marine predators like Livyatan.',
     category: 'Marine Creatures',
     subcategory: 'Prehistoric Sharks',
-    family: 'Carcharhinidae'
+    family: 'Carcharhinidae',
+    modelId: '86c24ed3771a4a78be3dd8ce99b6a899'
   },
-  {
+    {
     id: 'basilosaurus-cetoides',
     name: 'Basilosaurus cetoides',
     scientificName: 'Basilosaurus cetoides',
@@ -561,7 +573,8 @@ export const creatures: Creature[] = [
     description: 'Basilosaurus cetoides, an extinct genus of large, predatory cetaceans that lived during the late Eocene epoch around 40 to 34 million years ago, is notable for its elongated, serpentine body, which reached lengths of up to 18 meters, a characteristic that sets it apart from modern whales, and its well-developed, yet vestigial hind limbs, suggesting a transitional form between land-dwelling ancestors and fully aquatic organisms; it is believed to have inhabited warm, shallow seas and preyed on smaller marine animals, such as fish and other marine vertebrates, using its sharp teeth and powerful jaws, while also being one of the first cetaceans to exhibit fully developed tail flukes for propulsion in the water, signaling a significant step in the evolutionary path of modern whales.',
     category: 'Marine Creatures',
     subcategory: 'Prehistoric Whales',
-    family: 'Basilosauridae'
+    family: 'Basilosauridae',
+    modelId: '45649c3aa93c40dbb3c7f867f5c453be'
   },
   {
     id: 'basilosaurus-isis',
@@ -683,7 +696,7 @@ export const creatures: Creature[] = [
     subcategory: 'Theropods',
     family: 'Spinosauridae'
   },  
-    {
+      {
     id: 'suchomimus-tenerensis',
     name: 'Suchomimus tenerensis',
     scientificName: 'Suchomimus tenerensis',
@@ -696,9 +709,10 @@ export const creatures: Creature[] = [
     description: 'Suchomimus was a large, predatory theropod dinosaur that lived during the Early Cretaceous period, approximately 125 to 112 million years ago, in what is now northern Africa, specifically in modern-day Niger. A member of the spinosaurid family, closely related to Baryonyx, Suchomimus was distinguished by its long, narrow, crocodile-like snout, which was filled with conical teeth suited for grasping fish, suggesting it had a diet primarily focused on aquatic prey. Estimated to reach lengths of up to 33 feet (10 meters) and weighing around 2 to 3 tons, Suchomimus was a relatively large and robust predator, although not as massive as some of its spinosaurid relatives like Spinosaurus. Its body was built for speed and agility, with long, powerful hind limbs and a long tail that likely aided in both swimming and balance while running.\n\nThe long, narrow skull of Suchomimus was one of its most distinctive features, and it is thought to have been adapted for a specialized feeding strategy, possibly stalking fish in shallow waters, much like modern-day herons or crocodiles. Fossil evidence, including partial skeletons and teeth, indicates that Suchomimus had a relatively flexible neck, which would have been advantageous in maneuvering its head to capture slippery, fast-moving prey. While fish were likely a primary component of its diet, it is possible that Suchomimus also hunted small dinosaurs and other terrestrial prey, given its relatively robust forelimbs with large claws, which might have been used for grasping or tearing at prey.\n\nThe discovery of Suchomimus was significant for paleontologists, as it helped to further clarify the ecological diversity of the spinosaurid group, which is now understood to include both semi-aquatic and terrestrial hunters. The fossil evidence also provided important insights into the anatomical adaptations of these large theropods, particularly the evolution of their elongated snouts, which set them apart from other theropods and allowed them to exploit a unique ecological niche, primarily focused on aquatic environments.',
     category: 'Dinosaurs',
     subcategory: 'Theropods',
-    family: 'Spinosauridae'
+    family: 'Spinosauridae',
+    modelId: '05a1c8baf4cd45e9b94ed27188d9a52b'
   },
-    {
+      {
     id: 'irritator-challengeri',
     name: 'Irritator challengeri',
     scientificName: 'Irritator challengeri',
@@ -711,7 +725,8 @@ export const creatures: Creature[] = [
     description: 'Irritator was a medium-sized, predatory theropod dinosaur that lived during the Early Cretaceous period, approximately 110 to 100 million years ago, in what is now Brazil. Belonging to the spinosaurid family, Irritator shared many features with other members of this group, such as its long, narrow, crocodile-like snout filled with conical teeth, which suggests it was adapted for a diet focused primarily on fish. However, unlike some of its larger relatives like Spinosaurus or Suchomimus, Irritator was relatively small, reaching lengths of about 26 feet (8 meters) and weighing around 1 to 2 tons, making it one of the smaller spinosaurids.\n\nThe most distinctive characteristic of Irritator is its unusually elongated skull, with a length that comprises a large portion of its overall body length. Its teeth were conical and curved, ideal for capturing slippery fish, but it also likely had the versatility to hunt smaller dinosaurs and other terrestrial prey when aquatic food sources were scarce. The name \"Irritator\" was given because the paleontologists who first described it found the fossil in a somewhat frustrating condition—part of the skull had been damaged by collectors, hence the name, which refers to their irritation with the incomplete specimen.\n\nFossil evidence suggests that Irritator had a relatively light and agile build, with long, slender limbs and a long tail that would have aided in balance and possibly even swimming. Like other spinosaurids, it is believed to have been semi-aquatic, capable of hunting in both water and on land, similar to modern-day crocodiles and herons. The specific role of Irritator in its ecosystem is still debated, as it may have been a specialized fish-eater in coastal environments or a more generalized predator that fed on a range of prey.\n\nIrritator’s fossil discovery, particularly its partial skull and vertebrae, has been important in understanding the diversity within the spinosaurid family. It has also shed light on the evolutionary adaptations that allowed spinosaurids to exploit a variety of niches, from strictly terrestrial hunting to semi-aquatic lifestyles. While not as famous as Spinosaurus or Baryonyx, Irritator adds valuable information about the ecological roles and evolutionary history of these intriguing theropods.',
     category: 'Dinosaurs',
     subcategory: 'Theropods',
-    family: 'Spinosauridae'
+    family: 'Spinosauridae',
+    modelId: '98f66abd45b842aa8afb344417ce177b'
   },
       {
     id: 'siamosaurus-suteethorni',
@@ -743,7 +758,7 @@ export const creatures: Creature[] = [
     subcategory: 'Theropods',
     family: 'Spinosauridae'
   },
-  {
+    {
     id: 'ichthyovenator-laosensis',
     name: 'Ichthyovenator laosensis',
     scientificName: 'Ichthyovenator laosensis',
@@ -756,7 +771,8 @@ export const creatures: Creature[] = [
     description: 'Ichthyovenator is a genus of spinosaurid dinosaur from the Early Cretaceous period, around 125 million years ago, that was discovered in what is now northeastern Thailand. The genus name, Ichthyovenator, translates to “fish hunter,” reflecting its presumed diet and semi-aquatic lifestyle, much like other spinosaurids known for hunting aquatic prey. The fossils of Ichthyovenator are relatively well-preserved, consisting primarily of a partial skeleton that includes parts of the skull, spine, and limbs, but unfortunately no complete skull or tail remains.\n\nThe dinosaur was estimated to be around 30 feet (9 meters) long, and it likely had a slender, elongated body with long, curved teeth adapted for catching fish. Its teeth resemble those of other spinosaurids, indicating that it was specialized in preying on fish and other aquatic organisms. The long, crocodile-like snout of Ichthyovenator would have been ideal for snapping up fish, while its body was likely adapted for a partially aquatic lifestyle, possibly wading in shallow water or swimming, similar to modern-day crocodiles or herons.\n\nOne of the most distinctive features of Ichthyovenator was its sail-like structure, a characteristic common to many spinosaurids. The sail consisted of elongated neural spines extending from the back, though whether this structure was used for thermoregulation, mating displays, or other purposes remains unclear. The fossil evidence suggests that the sail was less pronounced than in some other spinosaurids, such as Spinosaurus, but it still suggests that Ichthyovenator might have had some form of display or functional adaptation associated with it.\n\nWhile Ichthyovenator was not as large as some of its relatives, such as Spinosaurus, it was still a formidable predator of its time, occupying a niche as a fish-eating theropod in the ancient river and coastal ecosystems of what is now Southeast Asia. Its discovery provided valuable insight into the diversity of spinosaurids and their specialized adaptations for an aquatic or semi-aquatic lifestyle, confirming that the group was more widespread and varied than previously thought.',
     category: 'Dinosaurs',
     subcategory: 'Theropods',
-    family: 'Spinosauridae'
+    family: 'Spinosauridae',
+    modelId: '4824e6f0f0a7499bb3d9c42d7fc809af'
   },
   {
     id: 'majungasaurus-crenatissimus',
@@ -788,7 +804,7 @@ export const creatures: Creature[] = [
     subcategory: 'Theropods',
     family: 'Abelisauridae'
   },
-        {
+          {
     id: 'therizinosaurus-cheloniformis',
     name: 'Therizinosaurus cheloniformis',
     scientificName: 'Therizinosaurus cheloniformis',
@@ -801,7 +817,8 @@ export const creatures: Creature[] = [
     description: 'Therizinosaurus was one of the most bizarre and enigmatic dinosaurs to ever walk the Earth, living during the Late Cretaceous period, around 70 million years ago, in what is now Mongolia. Despite its fearsome appearance, with claws that could grow over 3 feet (1 meter) long, Therizinosaurus was actually an herbivore, and its massive claws were likely used for foraging, stripping leaves from tall plants or possibly for defense rather than hunting prey. This large, feathered dinosaur reached lengths of up to 33 feet (10 meters) and had a bulky, elongated body, with a relatively small head compared to its size. Its long neck and robust, plant-eating teeth further suggest its herbivorous diet, feeding on the abundant vegetation of the time. The claws, often depicted as being used for combat, may also have played a role in mating displays or territorial behavior. Its posture was somewhat upright, with a heavily muscled body supported by strong hind limbs, and it likely moved slowly through the Cretaceous forests, grazing on ferns, conifers, and other plants. The unique combination of features in Therizinosaurus, including its giant claws, herbivorous habits, and bizarre proportions, make it one of the most fascinating and puzzling dinosaurs known to science, illustrating how evolution can produce extraordinary and unexpected adaptations in the animal kingdom.',
     category: 'Dinosaurs',
     subcategory: 'Theropods',
-    family: 'Therizinosauridae'
+    family: 'Therizinosauridae',
+    modelId: 'c691daa2ceba467ea44b1d45511b8461'
   },
   {
     id: 'sigilmassasaurus-brevicollis',
@@ -848,7 +865,7 @@ export const creatures: Creature[] = [
     subcategory: 'Pterosaurs',
     family: 'Pteranodontidae'
   },
-  {
+    {
     id: 'ophthalmosaurus-discus',
     name: 'Ophthalmosaurus discus',
     scientificName: 'Ophthalmosaurus discus',
@@ -861,7 +878,8 @@ export const creatures: Creature[] = [
     description: 'Ophthalmosaurus was a marine reptile that lived during the Late Jurassic period, around 160 to 145 million years ago, and is considered one of the most well-adapted ichthyosaurs, a group of marine reptiles that resembled modern dolphins. This genus was characterized by its large, crescent-shaped eyes, which were among the largest relative to body size of any known animal, possibly reaching up to 10 inches (25 cm) in diameter. These enormous eyes likely provided Ophthalmosaurus with excellent vision in the dimly lit waters of the deep ocean, helping it hunt in conditions where light penetration was limited.\n\nReaching lengths of up to 4.5 meters (15 feet), Ophthalmosaurus had a streamlined body with a long, pointed snout and a tail adapted for fast swimming. Its limbs were modified into flippers, making it highly maneuverable in the water. The body structure, along with its large eyes, suggests that Ophthalmosaurus was a highly specialized predator that likely hunted small fish and squid. Fossil evidence indicates that it was an adept swimmer, capable of rapid bursts of speed to chase down its prey in the open ocean.\n\nThe exceptional size of Ophthalmosaurus\' eyes has led some scientists to speculate that it may have hunted in deep or murky waters, where visibility would have been limited, but the size of its eyes allowed it to detect prey even in low-light environments. Some evidence also suggests that it might have been an ambush predator, using its speed and agility to catch fish by surprise. Fossils of Ophthalmosaurus have been found in various parts of the world, including Europe and North America, indicating that it was a successful and widespread genus during the Jurassic period, filling the ecological role of a top marine predator in the ancient seas',
     category: 'Marine Creatures',
     subcategory: 'Marine Reptiles',
-    family: 'Ophthalmosauridae'
+    family: 'Ophthalmosauridae',
+    modelId: 'a1b8a09cb1674efeb51a16cb1f47670d'
   }];
 
 export const searchCreatures = (searchQuery: string): SearchResult[] => {
