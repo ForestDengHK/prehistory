@@ -32,7 +32,7 @@ export interface SearchResult extends Creature {
 }
 
 export const creatures: Creature[] = [
-                                    {
+                                      {
     id: 'tyrannosaurus-rex',
     name: 'Tyrannosaurus Rex',
     scientificName: 'Tyrannosaurus rex',
@@ -46,7 +46,7 @@ export const creatures: Creature[] = [
     category: 'Dinosaurs',
     subcategory: 'Theropods',
     family: 'Tyrannosauridae',
-    modelId: '4641dced5b474c30a1af71971a7307fe'
+    modelId: '30e9e38ac7554062be7406658881d105'
   },
                   {
     id: 'megalodon',
@@ -157,7 +157,7 @@ export const creatures: Creature[] = [
     subcategory: 'Pterosaurs',
     family: 'Pterodactylidae'
   },
-          {
+            {
     id: 'archaeopteryx',
     name: 'Archaeopteryx lithographica',
     scientificName: 'Archaeopteryx lithographica',
@@ -170,7 +170,8 @@ export const creatures: Creature[] = [
     description: 'Archaeopteryx is a pivotal species in the study of evolution, often considered a transitional fossil between non-avian dinosaurs and modern birds. This small, crow-sized creature lived approximately 150 million years ago during the Late Jurassic period. It possessed a fascinating combination of both avian and reptilian features, such as feathers, wings, and a wishbone similar to birds, alongside teeth, clawed fingers, and a long, bony tail like dinosaurs. These characteristics make Archaeopteryx a key piece of evidence for understanding the evolution of flight and the relationship between dinosaurs and birds',
     category: 'Flying Creatures',
     subcategory: 'Early Birds',
-    family: 'Archaeopteryxidae'
+    family: 'Archaeopteryxidae',
+    modelId: '27e8aafc63e045839ff20d45b1a9a70d'
   },
         {
     id: 'dreadnoughtus',
@@ -468,7 +469,7 @@ export const creatures: Creature[] = [
     family: 'Allosauridae',
     modelId: '937e25ea285f479b8c53e0448272eae1'
   },
-  {
+    {
     id: 'cryolophosaurus-ellioti',
     name: 'Cryolophosaurus ellioti',
     scientificName: 'Cryolophosaurus ellioti',
@@ -481,9 +482,10 @@ export const creatures: Creature[] = [
     description: 'Cryolophosaurus is an early theropod dinosaur from the Early Jurassic period, approximately 194 million years ago, known for its distinctive, fan-shaped crest on its head, which may have been used for display or species recognition, similar to modern-day crested birds. Growing up to 6 meters (20 feet) in length, Cryolophosaurus was one of the first large carnivores to inhabit what is now Antarctica, providing significant insight into the evolution of dinosaurs in polar regions. Its slender, yet powerful build, with long legs and a lightweight frame, suggests that it was a fast, agile predator, likely hunting small to medium-sized prey, such as early herbivorous dinosaurs and possibly scavenging from larger carcasses. Unlike many other theropods, Cryolophosaurus had an unusual combination of primitive and more advanced features, with a skull that showed both characteristics of earlier dinosaurs like Coelophysis and later theropods, making it an important link in the evolutionary chain. Fossils of Cryolophosaurus were discovered in the Queen Alexandra Range of Antarctica in the 1990s, marking it as one of the earliest known dinosaurs from the southern hemisphere and providing evidence that dinosaurs were able to adapt to even the colder, more isolated climates of the early Mesozoic.',
     category: 'Dinosaurs',
     subcategory: 'Theropods',
-    family: 'Theropoda'
+    family: 'Theropoda',
+    modelId: '774bf0b502c1484680a8ae4b6e322498'
   },
-    {
+      {
     id: 'argentinosaurus-huinculensis',
     name: 'Argentinosaurus huinculensis',
     scientificName: 'Argentinosaurus huinculensis',
@@ -496,9 +498,10 @@ export const creatures: Creature[] = [
     description: 'Argentinosaurus was one of the largest known land animals to have ever existed, a massive sauropod dinosaur from the Late Cretaceous period, approximately 94 to 97 million years ago, that roamed what is now South America. Estimated to have reached lengths of up to 35 meters (115 feet) and weighed as much as 100 tons, Argentinosaurus was an herbivorous giant, with a long neck and tail, which allowed it to browse on high vegetation while also reaching the ground for lower-growing plants. Its enormous size not only made it a formidable presence in its ecosystem but likely also helped deter predators like Giganotosaurus and other theropods. Despite its size, its long, graceful neck would have enabled it to feed across vast areas without needing to move constantly, and its thick, pillar-like legs supported its massive body. Fossil evidence of Argentinosaurus is limited to incomplete skeletons, mostly from vertebrae and limb bones, found in the Neuquén Province of Argentina, leading to its name. Because of its immense proportions, it is often cited as one of the heaviest and longest sauropods, alongside other giants like Patagotitan and Dreadnoughtus. As an herbivore, it would have likely lived in herds, and its size may have helped it maintain a largely solitary lifestyle, avoiding predators by sheer magnitude and perhaps using its tail for defense. The discovery of Argentinosaurus was pivotal in understanding the diversity and size range of Late Cretaceous sauropods, underscoring the extreme evolutionary paths that some herbivorous dinosaurs took to dominate the Mesozoic landscapes.',
     category: 'Dinosaurs',
     subcategory: 'Sauropods',
-    family: 'Titanosauridae'
+    family: 'Titanosauridae',
+    modelId: '23f87ddef2e444a59f9c6c9fc7defbd8'
   },
-  {
+    {
     id: 'quetzalcoatlus-northropi',
     name: 'Quetzalcoatlus northropi',
     scientificName: 'Quetzalcoatlus northropi',
@@ -511,9 +514,10 @@ export const creatures: Creature[] = [
     description: 'Quetzalcoatlus, one of the largest pterosaurs to ever live, boasted an extraordinary wingspan of up to 36 feet and a body length of around 10 to 12 feet, with a lightweight structure designed for flight, featuring a long, toothless beak likely used for snatching small prey like fish, amphibians, and potentially small dinosaurs; its long, slender legs suggest it may have been capable of walking bipedally, possibly even running on land, while its soaring ability allowed it to glide for vast distances in search of food or to avoid predators, occupying a unique ecological niche alongside some of the most famous dinosaurs of the Late Cretaceous, such as Tyrannosaurus rex and Triceratops, before going extinct in the mass extinction event that wiped out the dinosaurs around 66 million years ago.',
     category: 'Flying Creatures',
     subcategory: 'Pterosaurs',
-    family: 'Azhdarchidae'
+    family: 'Azhdarchidae',
+    modelId: 'b24471222511413aac60f76f964183f7'
   },
-        {
+          {
     id: 'brachiosaurus-altithorax',
     name: 'Brachiosaurus altithorax',
     scientificName: 'Brachiosaurus altithorax',
@@ -526,7 +530,8 @@ export const creatures: Creature[] = [
     description: 'Brachiosaurus, a towering herbivorous dinosaur from the Late Jurassic period, is known for its distinctively long neck, which was longer than its tail, and its unique body structure, with front legs that were significantly longer than the hind legs, giving it an upright, giraffe-like posture; this adaptation allowed it to reach and feed on vegetation high up in trees, well beyond the reach of most other herbivores of its time, and it grew to an enormous size, with estimates placing its length at around 80 feet and its weight at up to 80 tons, making it one of the largest and heaviest dinosaurs to roam the Earth, while its fossils have been found in what are now North America and Africa, providing vital clues about the ecological roles of massive sauropods during the Jurassic, before it, like many other dinosaurs, became extinct at the end of the Mesozoic Era around 66 million years ago.',
     category: 'Dinosaurs',
     subcategory: 'Sauropods',
-    family: 'Brachiosauridae'
+    family: 'Brachiosauridae',
+    modelId: '641feb1a485b492c8de31e84ff89ad64'
   },
     {
     id: '-livyatan-melvillei',
@@ -606,7 +611,7 @@ export const creatures: Creature[] = [
     subcategory: 'Prehistoric Sharks',
     family: 'Helicoprionidae'
   },
-    {
+      {
     id: 'concavenator-corcovatus',
     name: 'Concavenator corcovatus',
     scientificName: 'Concavenator corcovatus',
@@ -619,7 +624,8 @@ export const creatures: Creature[] = [
     description: 'Concavenator, a relatively small but fascinating theropod dinosaur that lived approximately 125 million years ago during the early Cretaceous period, is known for its distinctive, elongated neural spines along its back, which likely supported a unique, sail-like structure, and while its exact function remains debated—whether for display, thermoregulation, or mating rituals—the morphology suggests it was an important adaptation for this dinosaur, which likely inhabited what is now modern-day Spain; reaching an estimated length of about 4.5 meters and weighing around 200 kilograms, Concavenator exhibited a blend of primitive and more advanced features, such as a relatively large, slender body and a mix of carnivorous traits including sharp teeth and a partially fused, lightweight skeleton, enabling it to be a nimble predator; its forelimbs were also equipped with a notable \"thumb claw,\" adding to its hunting versatility, possibly helping it to grasp prey, while its well-preserved fossil evidence reveals that it was part of the larger group of \"carnosaurs,\" which includes some of the most iconic theropods like Allosaurus, further underscoring Concavenator\'s importance in understanding the evolutionary transition of theropod dinosaurs during the early Cretaceous, especially in terms of body plan and ecological niche.',
     category: 'Dinosaurs',
     subcategory: 'Theropods',
-    family: 'Carcharodontosauridae'
+    family: 'Carcharodontosauridae',
+    modelId: 'f07c29832c204ebab7c700840c4e12d8'
   },
     {
     id: 'troodon-formosus',
@@ -651,7 +657,7 @@ export const creatures: Creature[] = [
     subcategory: 'Theropods',
     family: 'Carcharodontosauridae'
   },
-    {
+      {
     id: 'acrocanthosaurus-atokensis',
     name: 'Acrocanthosaurus atokensis',
     scientificName: 'Acrocanthosaurus atokensis',
@@ -664,7 +670,8 @@ export const creatures: Creature[] = [
     description: 'Acrocanthosaurus was a large, predatory theropod dinosaur that lived during the Early Cretaceous period, approximately 125 to 113 million years ago, in what is now North America. Known for its distinctive, high neural spines along its back, which likely supported a sail-like structure or possibly a ridge of muscles, Acrocanthosaurus reached lengths of around 35 feet (10.5 meters) and weighed between 3 to 5 tons. Its powerful build, with robust limbs and a large head equipped with sharp teeth, suggests that it was a top predator in its ecosystem, preying on large herbivorous dinosaurs such as the sauropods and ornithischians that coexisted with it. Despite its impressive size, Acrocanthosaurus was likely a fast and agile hunter, using its keen senses to ambush prey. Fossil evidence indicates that it had strong arms and hands with three large claws, though it is debated whether it used them in predation or for other functions. Its fossils have been found in multiple locations across North America, providing valuable insight into the biodiversity of the Cretaceous period and the role Acrocanthosaurus played in its ecosystem. Additionally, the unique structure of its neural spines has intrigued paleontologists, who continue to study their potential function in temperature regulation, display, or even as an aid in locomotion.',
     category: 'Dinosaurs',
     subcategory: 'Theropods',
-    family: 'Carcharodontosauridae'
+    family: 'Carcharodontosauridae',
+    modelId: 'a9fc8cf6373e4a32a77e6e43f97a864d'
   },
     {
     id: 'tyrannotitan-chubutensis',
@@ -681,7 +688,7 @@ export const creatures: Creature[] = [
     subcategory: 'Theropods',
     family: 'Carcharodontosauridae'
   },
-    {
+      {
     id: 'baryonyx-walkeri',
     name: 'Baryonyx walkeri',
     scientificName: 'Baryonyx walkeri',
@@ -694,7 +701,8 @@ export const creatures: Creature[] = [
     description: 'Baryonyx was a large, carnivorous theropod dinosaur that lived during the Early Cretaceous period, around 130 to 125 million years ago, in what is now Europe, specifically the United Kingdom and Spain. Recognizable by its long, crocodile-like snout, Baryonyx grew to lengths of up to 30 feet (9 meters) and likely weighed between 1.5 to 2 tons. It belonged to the spinosaurid family, which is known for its semi-aquatic adaptations, and Baryonyx is one of the best-known and earliest members of this group. Its long, slender jaws were filled with conical teeth, ideal for catching slippery prey like fish, which was likely a significant part of its diet. Fossil evidence suggests that Baryonyx had a varied diet, also feeding on small dinosaurs and possibly even large prey, such as the herbivorous Iguanodon, as indicated by its fossilized remains found in the stomach cavity of one individual.\n\nThe most striking feature of Baryonyx was its large, hook-shaped claw on the first digit of each hand, which could have been used for grasping prey or possibly for defense. Despite its relatively slender build compared to some other theropods, Baryonyx was a powerful predator, capable of swift movement on land and possibly adept at swimming or wading in water, much like modern-day crocodiles. Its semi-aquatic lifestyle is further supported by its long, muscular tail, which would have aided in swimming, as well as the structure of its teeth, well-suited for grasping rather than slicing, indicating a feeding behavior more in line with fish-eating animals.\n\nThe discovery of Baryonyx in the 1980s was significant because it provided crucial evidence for the hypothesis that spinosaurids were not solely land-based predators but had adaptations for a more aquatic or semi-aquatic lifestyle. As one of the first dinosaur fossils to show such features, Baryonyx helped reshape our understanding of the diversity of theropod feeding behaviors and habitats during the Early Cretaceous period.',
     category: 'Dinosaurs',
     subcategory: 'Theropods',
-    family: 'Spinosauridae'
+    family: 'Spinosauridae',
+    modelId: 'c1c536b1928c4dba8e94dcd8c15b0815'
   },  
       {
     id: 'suchomimus-tenerensis',
@@ -774,7 +782,7 @@ export const creatures: Creature[] = [
     family: 'Spinosauridae',
     modelId: '4824e6f0f0a7499bb3d9c42d7fc809af'
   },
-  {
+    {
     id: 'majungasaurus-crenatissimus',
     name: 'Majungasaurus crenatissimus',
     scientificName: 'Majungasaurus crenatissimus',
@@ -787,9 +795,10 @@ export const creatures: Creature[] = [
     description: 'Majungasaurus was a formidable theropod dinosaur that thrived during the Late Cretaceous period, approximately 70 million years ago, in what is now Madagascar. As one of the apex predators of its time, it grew to around 6 meters (20 feet) in length and had a robust, muscular body with short arms and powerful hind limbs, which suggests it was well-adapted for running down prey. Its most distinctive feature was its unusually flattened, crested skull, with prominent bony ridges and a strong bite, which may have helped it crack open bones or prey with tough hides. Fossil evidence, including bite marks on other Majungasaurus fossils, suggests that it may have also practiced cannibalism, scavenging carcasses of its own kind when food was scarce. Its diet likely included other dinosaurs, as well as reptiles and smaller vertebrates, and its scavenging habits may have contributed to its survival in an environment where resources were sometimes limited. The diverse behaviors and adaptations of Majungasaurus paint a picture of a versatile and opportunistic predator, capable of occupying a complex and ever-changing ecological niche.',
     category: 'Dinosaurs',
     subcategory: 'Theropods',
-    family: 'Abelisauridae'
+    family: 'Abelisauridae',
+    modelId: 'aad48ce1c424499dbc9ccd708132348f'
   },
-    {
+      {
     id: 'carnotaurus-sastrei',
     name: 'Carnotaurus sastrei',
     scientificName: 'Carnotaurus sastrei',
@@ -802,7 +811,8 @@ export const creatures: Creature[] = [
     description: 'Carnarotaurus was a distinctive and fearsome theropod dinosaur that roamed South America during the Late Cretaceous period, about 70 million years ago. Characterized by its unique, bull-like features, it had a short, deep skull with thick, horn-like structures above its eyes, which may have been used for display or combat with rivals. Growing up to 9 meters (30 feet) in length, Carnotaurus had a slender, lightweight body, with powerful, muscular hind limbs that suggest it was a fast runner, likely capable of chasing down prey. Its arms were incredibly short—among the smallest relative to body size of any known theropod—leading some scientists to speculate that it was a highly specialized predator that relied on speed and agility rather than strength or grappling with its prey. Fossil evidence indicates that Carnotaurus likely hunted smaller dinosaurs and possibly scavenged, using its powerful jaws, filled with sharp, serrated teeth, to tear through flesh. Its unique combination of adaptations, including its horns, slender build, and specialized locomotion, set it apart as one of the most specialized and visually striking predators of the Cretaceous ecosystems.',
     category: 'Dinosaurs',
     subcategory: 'Theropods',
-    family: 'Abelisauridae'
+    family: 'Abelisauridae',
+    modelId: '318622a5eb5e411d8e2462063d599280'
   },
           {
     id: 'therizinosaurus-cheloniformis',
@@ -835,7 +845,7 @@ export const creatures: Creature[] = [
     subcategory: 'Theropods',
     family: 'Spinosauridae'
   },
-  {
+    {
     id: 'dimorphodon-macronyx',
     name: 'Dimorphodon macronyx',
     scientificName: 'Dimorphodon macronyx',
@@ -848,9 +858,10 @@ export const creatures: Creature[] = [
     description: 'Dimorphodon was a small but distinctive pterosaur that lived during the Early Jurassic period, around 200 million years ago, in what is now Europe, particularly the United Kingdom. Known for its unusual and varied features, Dimorphodon had a wingspan of approximately 1.5 to 2 meters (5 to 6.5 feet) and was one of the earliest pterosaurs to evolve into a specialized flying form. The name Dimorphodon translates to \"two-shaped tooth,\" referring to the striking difference in the shape of its teeth: it had sharp, pointed teeth at the front of its mouth for catching fish and other prey, while the back of its jaw contained flatter teeth that may have been better suited for grinding or gripping. This suggests that Dimorphodon was a versatile feeder, possibly eating a wide range of food from small fish to other small vertebrates or invertebrates.\n\nWhat made Dimorphodon particularly unique among early pterosaurs was its body structure. It had a relatively large, robust head compared to its body, and a long, stiff neck, which likely helped it catch prey while in flight. Its wings, although large, were relatively short in comparison to later pterosaurs, and its overall flight style may have been more gliding than active flapping, similar to that of some modern birds. The pterosaur\'s hind limbs were also adapted for grasping, suggesting it might have spent time perched on rocks or trees. The fossils of Dimorphodon provide important insights into the early evolution of flight in pterosaurs and highlight the diversity of feeding strategies and ecological niches that these ancient flying reptiles occupied in the Mesozoic skies.',
     category: 'Flying Creatures',
     subcategory: 'Pterosaurs',
-    family: 'Dimorphodontidae'
+    family: 'Dimorphodontidae',
+    modelId: 'd2e07282e4904eae9179fab32f297e66'
   },
-  {
+    {
     id: 'pteranodon-longiceps',
     name: 'Pteranodon longiceps',
     scientificName: 'Pteranodon longiceps',
@@ -863,7 +874,8 @@ export const creatures: Creature[] = [
     description: '\nPteranodon was one of the largest and most iconic pterosaurs, a group of flying reptiles that lived during the Late Cretaceous period, around 70 to 100 million years ago. Known for its massive wingspan, which ranged from 16 to 33 feet (5 to 10 meters) depending on the species, Pteranodon was one of the largest flying animals to ever exist. It had a long, toothless beak and a distinct, backward-stretching cranial crest that varied in size and shape between males and females, likely used for display or species identification. This crest, along with its elongated wings, made Pteranodon one of the most recognizable pterosaurs.\n\nDespite its enormous size, Pteranodon was not a true dinosaur but a member of the Pterosauria, an order of flying reptiles. Its wings were long and narrow, adapted for soaring over vast distances rather than rapid flapping flight, and it likely spent much of its time gliding above oceans, using air currents to stay aloft with minimal effort. Pteranodon was primarily piscivorous, feeding on fish, which it would snatch from the water\'s surface while flying or diving. Its long, toothless beak was ideal for this feeding strategy, and its lightweight skeleton, with hollow bones, helped it stay airborne despite its large size.\n\nFossil evidence suggests that Pteranodon lived in coastal and island environments, where it likely nested in colonies along cliffs. The size and strength of its wings allowed it to travel long distances in search of food, with some species possibly migrating seasonally. Its distinctive features and immense wingspan have made Pteranodon one of the most well-known pterosaurs, symbolizing the extraordinary diversity and specialization of flying reptiles during the Cretaceous period.',
     category: 'Flying Creatures',
     subcategory: 'Pterosaurs',
-    family: 'Pteranodontidae'
+    family: 'Pteranodontidae',
+    modelId: '144d0f815d5341bba6de95786a1b9343'
   },
     {
     id: 'ophthalmosaurus-discus',
