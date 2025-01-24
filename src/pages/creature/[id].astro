@@ -6,6 +6,7 @@ import CommentButton from '../../components/CommentButton.astro';
 import CommentList from '../../components/CommentList.astro';
 import ShareButton from '../../components/ShareButton.astro';
 import CreatureVisualization from '../../components/CreatureVisualization.astro';
+import DiscoveryTracker from '../../components/DiscoveryTracker.astro';
 // import SizeComparison from '../../components/SizeComparison.astro';
 
 const { id } = Astro.params;
@@ -81,7 +82,13 @@ const shareImage = creature.image;
     </div>
 
     <div class="creature-content">
-      <CreatureVisualization creature={creature} />
+      <DiscoveryTracker 
+        creatureId={creature.id}
+        category={creature.category}
+        period={creature.period}
+      />
+      
+      {creature.modelId && <CreatureVisualization creature={creature} />}
       
       <div class="creature-info">
         <div class="info-grid">
@@ -173,14 +180,27 @@ const shareImage = creature.image;
   .creature-content {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 2rem;
+    padding: 1rem 2rem;
+  }
+
+  /* Adjust spacing for all main content blocks */
+  .discovery-tracker-wrapper,
+  :global(.creature-visualization),
+  .info-grid,
+  .description,
+  .engagement-section {
+    margin-bottom: 1rem;
+  }
+
+  /* Remove the individual margin we added earlier */
+  :global(.creature-visualization) {
+    margin: 0 0 1rem 0;  /* Changed from margin: 1rem 0 to only have bottom margin */
   }
 
   .info-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 2rem;
-    margin-bottom: 3rem;
     background: white;
     padding: 2rem;
     border-radius: 8px;
@@ -221,7 +241,6 @@ const shareImage = creature.image;
     padding: 2rem;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    margin-bottom: 1rem;
   }
 
   .description h2 {

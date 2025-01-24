@@ -1,0 +1,283 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout 
+  title="Achievement System Test"
+  description="Test page for achievement system"
+>
+  <div class="test-container">
+    <h1>Achievement System Test</h1>
+    
+    <div class="test-section">
+      <h2>Current Storage Data</h2>
+      <pre id="current-data">Loading...</pre>
+    </div>
+
+    <div class="test-section">
+      <h2>Test Actions</h2>
+      
+      <div class="test-buttons">
+        <button id="add-discovery">Add Random Discovery</button>
+        <button id="simulate-streak">Simulate Daily Visit</button>
+        <button id="reset-data">Reset All Data</button>
+      </div>
+
+      <div class="test-inputs">
+        <div class="input-group">
+          <label>Add Discovery with Category:</label>
+          <select id="category-select">
+            <option value="Dinosaurs">Dinosaurs</option>
+            <option value="Marine">Marine Creatures</option>
+            <option value="Flying">Flying Creatures</option>
+          </select>
+        </div>
+        
+        <div class="input-group">
+          <label>Add Discovery with Period:</label>
+          <select id="period-select">
+            <option value="Triassic">Triassic</option>
+            <option value="Jurassic">Jurassic</option>
+            <option value="Cretaceous">Cretaceous</option>
+          </select>
+        </div>
+        
+        <button id="add-custom-discovery">Add Custom Discovery</button>
+      </div>
+    </div>
+
+    <div class="test-section">
+      <h2>Test Results</h2>
+      <div id="test-log"></div>
+    </div>
+  </div>
+</Layout>
+
+<script>
+  const STORAGE_KEY = 'prehistory_discoveries';
+  
+  // Utility functions
+  function getRandomId() {
+    return 'test-' + Math.random().toString(36).substr(2, 9);
+  }
+
+  function updateDisplay() {
+    const currentData = localStorage.getItem(STORAGE_KEY);
+    const pre = document.getElementById('current-data');
+    if (pre) {
+      pre.textContent = currentData ? JSON.stringify(JSON.parse(currentData), null, 2) : 'No data';
+    }
+  }
+
+  function logMessage(message) {
+    const log = document.getElementById('test-log');
+    if (log) {
+      const entry = document.createElement('div');
+      entry.className = 'log-entry';
+      entry.textContent = `${new Date().toLocaleTimeString()}: ${message}`;
+      log.insertBefore(entry, log.firstChild);
+    }
+  }
+
+  function getDiscoveries() {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (stored) {
+      return JSON.parse(stored);
+    }
+    return {
+      creatures: [],
+      categories: {},
+      periods: {},
+      lastVisited: new Date().toISOString(),
+      currentStreak: 0,
+      maxStreak: 0,
+      achievements: []
+    };
+  }
+
+  function saveDiscoveries(discoveries) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(discoveries));
+    updateDisplay();
+  }
+
+  // Test functions
+  function addRandomDiscovery() {
+    const discoveries = getDiscoveries();
+    const newId = getRandomId();
+    
+    if (!discoveries.creatures.includes(newId)) {
+      discoveries.creatures.push(newId);
+      
+      // Random category and period
+      const categories = ['Dinosaurs', 'Marine', 'Flying'];
+      const periods = ['Triassic', 'Jurassic', 'Cretaceous'];
+      
+      const category = categories[Math.floor(Math.random() * categories.length)];
+      const period = periods[Math.floor(Math.random() * periods.length)];
+      
+      discoveries.categories[category] = (discoveries.categories[category] || 0) + 1;
+      discoveries.periods[period] = (discoveries.periods[period] || 0) + 1;
+      
+      saveDiscoveries(discoveries);
+      logMessage(`Added random discovery: ${newId} (${category}, ${period})`);
+      
+      // Simulate page reload to trigger achievement check
+      window.dispatchEvent(new Event('storage'));
+    }
+  }
+
+  function addCustomDiscovery() {
+    const discoveries = getDiscoveries();
+    const newId = getRandomId();
+    
+    const categorySelect = document.getElementById('category-select');
+    const periodSelect = document.getElementById('period-select');
+    
+    const category = categorySelect?.value || 'Dinosaurs';
+    const period = periodSelect?.value || 'Jurassic';
+    
+    if (!discoveries.creatures.includes(newId)) {
+      discoveries.creatures.push(newId);
+      discoveries.categories[category] = (discoveries.categories[category] || 0) + 1;
+      discoveries.periods[period] = (discoveries.periods[period] || 0) + 1;
+      
+      saveDiscoveries(discoveries);
+      logMessage(`Added custom discovery: ${newId} (${category}, ${period})`);
+      
+      // Simulate page reload to trigger achievement check
+      window.dispatchEvent(new Event('storage'));
+    }
+  }
+
+  function simulateStreak() {
+    const discoveries = getDiscoveries();
+    const today = new Date();
+    const lastVisit = new Date(discoveries.lastVisited);
+    
+    // Set last visit to yesterday to simulate daily visit
+    lastVisit.setDate(lastVisit.getDate() - 1);
+    discoveries.lastVisited = lastVisit.toISOString();
+    
+    saveDiscoveries(discoveries);
+    logMessage('Simulated previous day visit');
+    
+    // Add new visit
+    const newDiscoveries = getDiscoveries();
+    const oneDayMs = 24 * 60 * 60 * 1000;
+    const timeDiff = today.getTime() - lastVisit.getTime();
+    
+    if (timeDiff >= oneDayMs) {
+      newDiscoveries.currentStreak += 1;
+      newDiscoveries.maxStreak = Math.max(newDiscoveries.currentStreak, newDiscoveries.maxStreak);
+      newDiscoveries.lastVisited = today.toISOString();
+      
+      saveDiscoveries(newDiscoveries);
+      logMessage(`Streak increased to: ${newDiscoveries.currentStreak}`);
+      
+      // Simulate page reload to trigger achievement check
+      window.dispatchEvent(new Event('storage'));
+    }
+  }
+
+  function resetData() {
+    localStorage.removeItem(STORAGE_KEY);
+    updateDisplay();
+    logMessage('Reset all achievement data');
+  }
+
+  // Initialize
+  document.addEventListener('DOMContentLoaded', () => {
+    updateDisplay();
+    
+    // Add event listeners
+    document.getElementById('add-discovery')?.addEventListener('click', addRandomDiscovery);
+    document.getElementById('add-custom-discovery')?.addEventListener('click', addCustomDiscovery);
+    document.getElementById('simulate-streak')?.addEventListener('click', simulateStreak);
+    document.getElementById('reset-data')?.addEventListener('click', resetData);
+  });
+</script>
+
+<style>
+  .test-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  .test-section {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
+  }
+
+  .test-section h2 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+  }
+
+  pre {
+    background: var(--background-color);
+    padding: 1rem;
+    border-radius: 4px;
+    overflow-x: auto;
+    font-size: 0.9rem;
+  }
+
+  .test-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  button {
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+
+  button:hover {
+    opacity: 0.9;
+  }
+
+  .test-inputs {
+    background: var(--background-color);
+    padding: 1rem;
+    border-radius: 4px;
+    margin-top: 1rem;
+  }
+
+  .input-group {
+    margin-bottom: 1rem;
+  }
+
+  .input-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--secondary-color);
+  }
+
+  select {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid var(--border-color, #eee);
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+  }
+
+  .log-entry {
+    padding: 0.5rem;
+    border-bottom: 1px solid var(--border-color, #eee);
+    font-family: monospace;
+    font-size: 0.9rem;
+  }
+
+  .log-entry:first-child {
+    border-top: 1px solid var(--border-color, #eee);
+  }
+</style> 

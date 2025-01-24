@@ -1,0 +1,325 @@
+---
+interface Props {
+  creatureId: string;
+  category: string;
+  period: string;
+}
+
+const { creatureId, category, period } = Astro.props;
+---
+
+<div class="discovery-tracker-wrapper">
+  <div id="discovery-tracker" data-creature-id={creatureId} data-category={category} data-period={period}>
+    <div class="discovery-status"></div>
+  </div>
+</div>
+
+<script>
+  class DiscoveryTracker {
+    private static STORAGE_KEY = 'prehistory_discoveries';
+    private static instance: DiscoveryTracker;
+    private discoveries: any;
+
+    private constructor() {
+      this.discoveries = this.getDiscoveries();
+      this.initializeDiscovery();
+      
+      // Listen for storage changes
+      window.addEventListener('storage', (e) => {
+        if (e.key === DiscoveryTracker.STORAGE_KEY) {
+          // If storage is cleared or changed, reset the instance
+          if (!e.newValue) {
+            DiscoveryTracker.instance = null;
+            this.discoveries = this.getDiscoveries();
+          } else {
+            this.discoveries = JSON.parse(e.newValue);
+          }
+          this.updateDiscoveryStatus();
+        }
+      });
+    }
+
+    static getInstance(): DiscoveryTracker {
+      if (!DiscoveryTracker.instance) {
+        DiscoveryTracker.instance = new DiscoveryTracker();
+      }
+      return DiscoveryTracker.instance;
+    }
+
+    private initializeDiscovery() {
+      const tracker = document.getElementById('discovery-tracker');
+      if (!tracker) return;
+
+      const creatureId = tracker.getAttribute('data-creature-id');
+      const category = tracker.getAttribute('data-category');
+      const period = tracker.getAttribute('data-period');
+
+      if (creatureId) {
+        this.recordDiscovery(creatureId, category!, period!);
+        this.updateDiscoveryStatus();
+      }
+    }
+
+    private recordDiscovery(creatureId: string, category: string, period: string) {
+      const discoveries = this.getDiscoveries();
+      if (!discoveries.creatures.includes(creatureId)) {
+        // Store previous state for achievement notification
+        const oldCount = discoveries.creatures.length;
+        const oldStreak = discoveries.currentStreak;
+
+        // Update discoveries
+        discoveries.creatures.push(creatureId);
+        discoveries.categories[category] = (discoveries.categories[category] || 0) + 1;
+        discoveries.periods[period] = (discoveries.periods[period] || 0) + 1;
+        
+        // Update streak
+        const today = new Date().setHours(0,0,0,0);
+        const lastVisit = new Date(discoveries.lastVisited).setHours(0,0,0,0);
+        const oneDayMs = 24 * 60 * 60 * 1000;
+
+        if (today - lastVisit === oneDayMs) {
+          discoveries.currentStreak += 1;
+          discoveries.maxStreak = Math.max(discoveries.currentStreak, discoveries.maxStreak);
+        } else if (today === lastVisit) {
+          // Already visited today - keep current streak
+        } else if (today - lastVisit > oneDayMs) {
+          discoveries.currentStreak = 1;
+        }
+        
+        discoveries.lastVisited = new Date().toISOString();
+        this.saveDiscoveries(discoveries);
+
+        // Show achievement notifications for milestone changes
+        this.checkAndNotifyAchievements(oldCount, discoveries.creatures.length, oldStreak, discoveries.currentStreak);
+      }
+    }
+
+    private getDiscoveries() {
+      const defaultDiscoveries = {
+        creatures: [] as string[],
+        categories: {} as Record<string, number>,
+        periods: {} as Record<string, number>,
+        lastVisited: new Date().toISOString(),
+        currentStreak: 0,
+        maxStreak: 0
+      };
+
+      const stored = localStorage.getItem(DiscoveryTracker.STORAGE_KEY);
+      if (!stored) {
+        return defaultDiscoveries;
+      }
+
+      try {
+        const parsed = JSON.parse(stored);
+        if (!Array.isArray(parsed.creatures)) {
+          return defaultDiscoveries;
+        }
+        return parsed;
+      } catch (e) {
+        return defaultDiscoveries;
+      }
+    }
+
+    private saveDiscoveries(discoveries: any) {
+      this.discoveries = discoveries;
+      localStorage.setItem(DiscoveryTracker.STORAGE_KEY, JSON.stringify(discoveries));
+      this.updateDiscoveryStatus();
+    }
+
+    private updateDiscoveryStatus() {
+      const discoveries = this.getDiscoveries();
+      const statusDiv = document.querySelector('.discovery-status');
+      if (statusDiv) {
+        const discoveryCount = discoveries.creatures?.length || 0;
+        const currentStreak = discoveries.currentStreak || 0;
+        
+        // Get discovery achievement icon
+        let discoveryIcon = '';
+        if (discoveryCount >= 100) discoveryIcon = '👑';  // Crown for Master
+        else if (discoveryCount >= 50) discoveryIcon = '🏆';  // Trophy for Expert
+        else if (discoveryCount >= 25) discoveryIcon = '🎯';  // Target for Advanced
+        else if (discoveryCount >= 10) discoveryIcon = '⭐';  // Star for Skilled
+        else if (discoveryCount >= 5) discoveryIcon = '🌟';  // Glowing star for Novice
+
+        // Get streak achievement icon
+        let streakIcon = '';
+        if (currentStreak >= 30) streakIcon = '🎗️';  // Monthly
+        else if (currentStreak >= 14) streakIcon = '🏅';  // Dedicated
+        else if (currentStreak >= 7) streakIcon = '🥈';  // Weekly
+        else if (currentStreak >= 3) streakIcon = '🥉';  // Regular
+        else if (currentStreak >= 0) streakIcon = '🎖️';  // Beginner
+
+        // Get achievement titles for tooltips
+        const discoveryTitle = discoveryCount >= 5 ? `${discoveryIcon === '👑' ? 'Master' : discoveryIcon === '🏆' ? 'Expert' : discoveryIcon === '🎯' ? 'Advanced' : discoveryIcon === '⭐' ? 'Skilled' : 'Novice'} Explorer` : '';
+        const streakTitle = `${streakIcon === '🎗️' ? 'Monthly' : streakIcon === '🏅' ? 'Dedicated' : streakIcon === '🥈' ? 'Weekly' : streakIcon === '🥉' ? 'Regular' : 'Daily'} Explorer`;
+
+        statusDiv.innerHTML = `
+          <div class="discovery-stats">
+            🦕 ${discoveryCount} Discovered &nbsp;&nbsp;&nbsp;&nbsp; 🔥 ${currentStreak} Day Streak
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            ${discoveryTitle ? `<span title="${discoveryTitle}">${discoveryIcon}</span>` : ''}
+            <span title="${streakTitle}">${streakIcon}</span>
+          </div>
+        `;
+      }
+    }
+
+    private checkAndNotifyAchievements(oldCount: number, newCount: number, oldStreak: number, newStreak: number) {
+      // Check discovery milestones with icons
+      const discoveryMilestones = [
+        { count: 100, icon: '👑', title: 'Master Explorer' },
+        { count: 50, icon: '🏆', title: 'Expert Explorer' },
+        { count: 25, icon: '🎯', title: 'Advanced Explorer' },
+        { count: 10, icon: '⭐', title: 'Skilled Explorer' },
+        { count: 5, icon: '🌟', title: 'Novice Explorer' }
+      ];
+
+      // Check streak milestones with icons
+      const streakMilestones = [
+        { count: 30, icon: '🎗️', title: 'Monthly Explorer' },
+        { count: 14, icon: '🏅', title: 'Dedicated Explorer' },
+        { count: 7, icon: '🥈', title: 'Weekly Explorer' },
+        { count: 3, icon: '🥉', title: 'Daily Explorer' }
+      ];
+
+      // Check discovery achievements
+      for (const milestone of discoveryMilestones) {
+        if (oldCount < milestone.count && newCount >= milestone.count) {
+          this.showAchievementNotification(milestone.icon, milestone.title);
+          break;  // Only show the highest new milestone
+        }
+      }
+
+      // Check streak achievements
+      for (const milestone of streakMilestones) {
+        if (oldStreak < milestone.count && newStreak >= milestone.count) {
+          this.showAchievementNotification(milestone.icon, milestone.title);
+          break;  // Only show the highest new milestone
+        }
+      }
+    }
+
+    private showAchievementNotification(icon: string, title: string) {
+      const statusDiv = document.querySelector('.discovery-status');
+      if (statusDiv) {
+        const notification = document.createElement('div');
+        notification.className = 'achievement-notification';
+        notification.innerHTML = `
+          <div class="achievement-content">
+            <span class="achievement-icon">${icon}</span>
+            <div class="achievement-text">
+              <div class="achievement-title">${title}</div>
+            </div>
+          </div>
+        `;
+        statusDiv.appendChild(notification);
+        
+        setTimeout(() => {
+          notification.classList.add('fade-out');
+          setTimeout(() => {
+            notification.remove();
+            this.updateDiscoveryStatus();
+          }, 300);
+        }, 3000);
+      }
+    }
+  }
+
+  // Initialize the tracker
+  document.addEventListener('DOMContentLoaded', () => {
+    DiscoveryTracker.getInstance();
+  });
+</script>
+
+<style>
+  .discovery-tracker-wrapper {
+    margin: 0 0 1rem 0;
+    padding: 1rem;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  .discovery-stats {
+    display: inline-block;
+    white-space: nowrap;
+  }
+
+  .discovery-stats span {
+    margin-right: 8px;
+  }
+
+  .discovery-stats span:last-child {
+    margin-right: 0;
+  }
+
+  .discovery-stats span[title] {
+    cursor: help;
+  }
+
+  .achievement-badge {
+    background: none !important;
+    padding: 0 !important;
+    color: var(--primary-color);
+  }
+
+  .achievement-notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: white;
+    color: var(--text-color);
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    animation: slideIn 0.3s ease-out;
+    z-index: 1000;
+    max-width: 300px;
+    border: 1px solid #eee;
+  }
+
+  .achievement-content {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+  }
+
+  .achievement-icon {
+    font-size: 1.5rem;
+  }
+
+  .achievement-text {
+    flex: 1;
+  }
+
+  .achievement-title {
+    font-weight: 500;
+  }
+
+  .achievement-description {
+    font-size: 0.9rem;
+    opacity: 0.9;
+  }
+
+  .fade-out {
+    animation: fadeOut 0.3s ease-out forwards;
+  }
+
+  @keyframes fadeOut {
+    to {
+      opacity: 0;
+      transform: translateX(100%);
+    }
+  }
+
+  @keyframes slideIn {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+</style> 

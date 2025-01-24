@@ -1,0 +1,275 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// Define all possible achievements
+const achievementCategories = [
+  {
+    title: "Discovery Milestones",
+    description: "Discover prehistoric creatures",
+    achievements: [
+      { id: "discover1", title: "First Discovery!", description: "Discovered your first prehistoric creature", requirement: "1 creature" },
+      { id: "discover5", title: "5 Discoveries!", description: "Discovered 5 prehistoric creatures", requirement: "5 creatures" },
+      { id: "discover10", title: "10 Discoveries!", description: "Discovered 10 prehistoric creatures", requirement: "10 creatures" },
+      { id: "discover25", title: "25 Discoveries!", description: "Discovered 25 prehistoric creatures", requirement: "25 creatures" },
+      { id: "discover50", title: "50 Discoveries!", description: "Discovered 50 prehistoric creatures", requirement: "50 creatures" },
+      { id: "discover100", title: "100 Discoveries!", description: "Discovered 100 prehistoric creatures", requirement: "100 creatures" }
+    ]
+  },
+  {
+    title: "Explorer Streaks",
+    description: "Visit daily to maintain your streak",
+    achievements: [
+      { id: "streak3", title: "3-Day Explorer!", description: "Visited for 3 consecutive days", requirement: "3 day streak" },
+      { id: "streak7", title: "Week Explorer!", description: "Visited for 7 consecutive days", requirement: "7 day streak" },
+      { id: "streak14", title: "Dedicated Explorer!", description: "Visited for 14 consecutive days", requirement: "14 day streak" },
+      { id: "streak30", title: "Master Explorer!", description: "Visited for 30 consecutive days", requirement: "30 day streak" }
+    ]
+  },
+  {
+    title: "Category Expertise",
+    description: "Become an expert in different creature categories",
+    achievements: [
+      { id: "category_Dinosaurs", title: "Dinosaur Expert", description: "Discovered 5 dinosaurs", requirement: "5 dinosaurs" },
+      { id: "category_Marine", title: "Marine Expert", description: "Discovered 5 marine creatures", requirement: "5 marine creatures" },
+      { id: "category_Flying", title: "Flying Expert", description: "Discovered 5 flying creatures", requirement: "5 flying creatures" }
+    ]
+  },
+  {
+    title: "Period Explorer",
+    description: "Explore creatures from different time periods",
+    achievements: [
+      { id: "period_Triassic", title: "Triassic Explorer", description: "Discovered 3 creatures from the Triassic period", requirement: "3 Triassic creatures" },
+      { id: "period_Jurassic", title: "Jurassic Explorer", description: "Discovered 3 creatures from the Jurassic period", requirement: "3 Jurassic creatures" },
+      { id: "period_Cretaceous", title: "Cretaceous Explorer", description: "Discovered 3 creatures from the Cretaceous period", requirement: "3 Cretaceous creatures" }
+    ]
+  }
+];
+---
+
+<Layout 
+  title="Your Achievements | Prehistoric Creatures"
+  description="Track your prehistoric discovery achievements and milestones"
+>
+  <div class="achievements-container">
+    <div class="achievements-header">
+      <h1>Your Achievements</h1>
+      <p>Track your prehistoric discovery journey</p>
+    </div>
+
+    <div id="achievement-stats" class="achievement-stats">
+      <!-- Will be populated by JavaScript -->
+    </div>
+
+    <div class="achievement-categories">
+      {achievementCategories.map(category => (
+        <div class="category-section">
+          <h2>{category.title}</h2>
+          <p class="category-description">{category.description}</p>
+          
+          <div class="achievements-grid">
+            {category.achievements.map(achievement => (
+              <div class="achievement-card" data-achievement-id={achievement.id}>
+                <div class="achievement-icon">🔒</div>
+                <div class="achievement-info">
+                  <h3>{achievement.title}</h3>
+                  <p>{achievement.description}</p>
+                  <div class="achievement-requirement">
+                    <span class="requirement-label">Requirement:</span>
+                    <span class="requirement-value">{achievement.requirement}</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</Layout>
+
+<script>
+  // Load achievements from localStorage
+  const STORAGE_KEY = 'prehistory_discoveries';
+  
+  function updateAchievements() {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (!stored) return;
+    
+    const discoveries = JSON.parse(stored);
+    
+    // Update stats
+    const statsDiv = document.getElementById('achievement-stats');
+    if (statsDiv) {
+      const totalAchievements = document.querySelectorAll('.achievement-card').length;
+      const unlockedCount = discoveries.achievements?.length || 0;
+      
+      statsDiv.innerHTML = `
+        <div class="stat-item">
+          <span class="stat-value">${unlockedCount}</span>
+          <span class="stat-label">Unlocked</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-value">${totalAchievements - unlockedCount}</span>
+          <span class="stat-label">Locked</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-value">${discoveries.creatures?.length || 0}</span>
+          <span class="stat-label">Discoveries</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-value">${discoveries.maxStreak || 0}</span>
+          <span class="stat-label">Best Streak</span>
+        </div>
+      `;
+    }
+    
+    // Update achievement cards
+    discoveries.achievements?.forEach(achievementId => {
+      const card = document.querySelector(`[data-achievement-id="${achievementId}"]`);
+      if (card) {
+        card.classList.add('unlocked');
+        const icon = card.querySelector('.achievement-icon');
+        if (icon) icon.textContent = '🏆';
+      }
+    });
+  }
+
+  // Update on load and when storage changes
+  document.addEventListener('DOMContentLoaded', updateAchievements);
+  window.addEventListener('storage', updateAchievements);
+</script>
+
+<style>
+  .achievements-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  .achievements-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .achievements-header h1 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+  }
+
+  .achievements-header p {
+    color: var(--secondary-color);
+    font-size: 1.1rem;
+  }
+
+  .achievement-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin-bottom: 3rem;
+    text-align: center;
+  }
+
+  .stat-item {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  .stat-value {
+    display: block;
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--primary-color);
+  }
+
+  .stat-label {
+    color: var(--secondary-color);
+    font-size: 0.9rem;
+  }
+
+  .category-section {
+    margin-bottom: 3rem;
+  }
+
+  .category-section h2 {
+    color: var(--primary-color);
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .category-description {
+    color: var(--secondary-color);
+    margin-bottom: 1.5rem;
+  }
+
+  .achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .achievement-card {
+    display: flex;
+    gap: 1rem;
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    opacity: 0.7;
+    transition: all 0.3s ease;
+  }
+
+  .achievement-card.unlocked {
+    opacity: 1;
+    background: linear-gradient(to right, white, var(--background-color));
+  }
+
+  .achievement-icon {
+    font-size: 2rem;
+  }
+
+  .achievement-info {
+    flex: 1;
+  }
+
+  .achievement-info h3 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+  }
+
+  .achievement-info p {
+    color: var(--secondary-color);
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .achievement-requirement {
+    font-size: 0.8rem;
+    color: var(--accent-color);
+  }
+
+  .requirement-label {
+    font-weight: bold;
+  }
+
+  @media (max-width: 768px) {
+    .achievements-container {
+      padding: 1rem;
+    }
+
+    .achievements-header h1 {
+      font-size: 2rem;
+    }
+
+    .achievements-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .stat-item {
+      padding: 1rem;
+    }
+  }
+</style> 
