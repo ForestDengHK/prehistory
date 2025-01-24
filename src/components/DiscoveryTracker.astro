@@ -156,9 +156,9 @@ const { creatureId, category, period } = Astro.props;
         statusDiv.innerHTML = `
           <div class="discovery-stats">
             <span class="discovery-text">🦕${discoveryCount} Discovered</span>
-            &nbsp;&nbsp;
+            &nbsp;
             <span class="discovery-text">🔥${currentStreak} Day Streak</span>
-            &nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;
             ${discoveryTitle ? `<span class="achievement-icon" title="${discoveryTitle}">${discoveryIcon}</span>` : ''}
             <span class="achievement-icon" title="${streakTitle}">${streakIcon}</span>
           </div>
