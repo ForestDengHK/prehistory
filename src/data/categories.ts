@@ -7,6 +7,12 @@ export const categories = {
     'Stegosaurs',     // Plate-backed dinosaurs like Stegosaurus
     'Ankylosaurs'     // Armored dinosaurs
   ],
+  'Prehistoric Reptiles': [
+    'Giant Snakes',     // Like Titanoboa
+    'Land Reptiles',    // Like Dimetrodon
+    'Crocodilians',     // Prehistoric crocodiles and relatives
+    'Other Reptiles'    // Other prehistoric reptiles
+  ],
   'Marine Creatures': [
     'Prehistoric Fish',
     'Marine Reptiles',

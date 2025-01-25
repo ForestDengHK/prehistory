@@ -909,7 +909,7 @@ export const creatures: Creature[] = [
     family: 'Madtsoiidae',
     modelId: 'bbe7f74d91b6412482d1e181f9f4f9a4'
   },
-  {
+    {
     id: 'titanoboa-cerrejonensis',
     name: 'Titanoboa Cerrejonensis',
     scientificName: 'Titanoboa Cerrejonensis',
@@ -920,8 +920,8 @@ export const creatures: Creature[] = [
     diet: 'Carnivore',
     image: '/images/titanoa.jpg',
     description: 'The Titanoboa, an extraordinary giant snake that lived approximately 60 million years ago during the Paleocene epoch, is widely regarded as the largest and heaviest snake to have ever existed, with estimates suggesting it could grow up to an astounding 42 feet in length and weigh over 2,500 pounds, and its fossilized remains, unearthed from the tropical rainforests of what is now Colombia, reveal a thick, powerful body that would have allowed it to dominate the ecosystems of the time, preying on large mammals, turtles, and other reptiles in the warm, humid, and highly oxygenated environment that prevailed during the early stages of the Cenozoic era; the sheer size of Titanoboa, coupled with its status as the apex predator of its habitat, would have made it a terrifying force in the ancient landscape, filling the ecological niche of a massive constrictor that ruled both land and water, with its discovery providing critical insights into the relationship between climate, the evolution of reptilian giants, and the rise of colossal species in the wake of the mass extinction event that wiped out the dinosaurs, highlighting how environmental conditions and ecological pressures shaped the development of such extraordinary creatures.',
-    category: 'Dinosaurs',
-    subcategory: 'Theropods',
+    category: 'Prehistoric Reptiles',
+    subcategory: 'Giant Snakes',
     family: 'Boidae',
     modelId: '9616c130d7f142f199115a0271a78c00'
   }];
