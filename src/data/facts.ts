@@ -8,11 +8,11 @@ export interface PrehistoricFact {
 }
 
 export const prehistoricFacts: PrehistoricFact[] = [
-  {
+        {
     id: 'fact-1',
     title: 'Not All Dinosaurs Were Giants',
     fact: 'While many famous dinosaurs were enormous, the smallest known dinosaur was the Compsognathus, only about the size of a chicken!',
-    image: '/images/facts/small-dinosaur.jpg',
+    image: '/images/facts/smalldino.jpg',
     category: 'dinosaur'
   },
   {

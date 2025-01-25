@@ -6,6 +6,7 @@ export const POST: APIRoute = async ({ request }) => {
   try {
     const formData = await request.formData();
     const image = formData.get('image') as File;
+    const directory = formData.get('directory') as string || ''; // Optional subdirectory
     
     if (!image) {
       return new Response(JSON.stringify({ error: 'No image provided' }), {
@@ -28,15 +29,21 @@ export const POST: APIRoute = async ({ request }) => {
     const imagesDir = path.join(publicDir, 'images');
     await fs.mkdir(imagesDir, { recursive: true });
 
+    // Create subdirectory if specified (e.g., 'facts')
+    const targetDir = directory ? path.join(imagesDir, directory) : imagesDir;
+    await fs.mkdir(targetDir, { recursive: true });
+
     // Write the file
     const buffer = Buffer.from(await image.arrayBuffer());
-    const filePath = path.join(imagesDir, image.name);
+    const filePath = path.join(targetDir, image.name);
     await fs.writeFile(filePath, buffer);
+
+    const relativePath = directory ? `/images/${directory}/${image.name}` : `/images/${image.name}`;
 
     return new Response(JSON.stringify({ 
       success: true,
       filename: image.name,
-      path: `/images/${image.name}`
+      path: relativePath
     }), {
       status: 200,
       headers: { 'Content-Type': 'application/json' }

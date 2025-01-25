@@ -510,10 +510,11 @@ const categories = ['discovery', 'evolution', 'environment', 'dinosaur'];
       // Handle image upload if a new file is selected
       if (imageFile.size > 0) {
         const imageFormData = new FormData();
-        imageFormData.append('file', imageFile);
+        imageFormData.append('image', imageFile);
+        imageFormData.append('directory', 'facts');
         
         // Upload image first
-        const uploadResponse = await fetch('/api/upload', {
+        const uploadResponse = await fetch('/api/upload-image', {
           method: 'POST',
           body: imageFormData
         });
