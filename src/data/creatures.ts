@@ -892,6 +892,38 @@ export const creatures: Creature[] = [
     subcategory: 'Marine Reptiles',
     family: 'Ophthalmosauridae',
     modelId: 'a1b8a09cb1674efeb51a16cb1f47670d'
+  },
+  {
+    id: 'vasuki-indicus',
+    name: 'Vasuki indicus',
+    scientificName: 'Vasuki indicus',
+    period: 'Paleogene',
+    location: 'Asia',
+    length: '10.9–15.2 m',
+    weight: ' 1,000 kilograms',
+    diet: 'Carnivore',
+    image: '/images/vsauce.png',
+    description: 'The Vasuki, a now-extinct genus of colossal constrictor snakes that roamed the Earth during the Miocene epoch, is believed to have reached lengths of up to 30 feet, with fossilized remains discovered in the Siwalik Hills of South Asia revealing its massive, muscular body, which likely resembled modern-day pythons or anacondas; these formidable serpents would have preyed on large mammals, and possibly smaller reptiles, inhabiting the dense, tropical forests and river systems of the time, while their name, derived from the ancient Hindu mythological serpent king Vasuki, emphasizes both their immense physical size and the awe-inspiring, almost divine power they would have commanded, evoking the same sense of reverence and terror that the mythological figure embodies in Hindu lore.',
+    category: 'Early Mammals',
+    subcategory: 'Prehistoric Mammals',
+    family: 'Madtsoiidae',
+    modelId: 'bbe7f74d91b6412482d1e181f9f4f9a4'
+  },
+  {
+    id: 'titanoboa-cerrejonensis',
+    name: 'Titanoboa Cerrejonensis',
+    scientificName: 'Titanoboa Cerrejonensis',
+    period: 'Paleogene',
+    location: ' South America',
+    length: '12.8-14 meters',
+    weight: '750-1,100 kg',
+    diet: 'Carnivore',
+    image: '/images/titanoa.jpg',
+    description: 'The Titanoboa, an extraordinary giant snake that lived approximately 60 million years ago during the Paleocene epoch, is widely regarded as the largest and heaviest snake to have ever existed, with estimates suggesting it could grow up to an astounding 42 feet in length and weigh over 2,500 pounds, and its fossilized remains, unearthed from the tropical rainforests of what is now Colombia, reveal a thick, powerful body that would have allowed it to dominate the ecosystems of the time, preying on large mammals, turtles, and other reptiles in the warm, humid, and highly oxygenated environment that prevailed during the early stages of the Cenozoic era; the sheer size of Titanoboa, coupled with its status as the apex predator of its habitat, would have made it a terrifying force in the ancient landscape, filling the ecological niche of a massive constrictor that ruled both land and water, with its discovery providing critical insights into the relationship between climate, the evolution of reptilian giants, and the rise of colossal species in the wake of the mass extinction event that wiped out the dinosaurs, highlighting how environmental conditions and ecological pressures shaped the development of such extraordinary creatures.',
+    category: 'Dinosaurs',
+    subcategory: 'Theropods',
+    family: 'Boidae',
+    modelId: '9616c130d7f142f199115a0271a78c00'
   }];
 
 export const searchCreatures = (searchQuery: string): SearchResult[] => {
