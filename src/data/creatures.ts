@@ -924,6 +924,37 @@ export const creatures: Creature[] = [
     subcategory: 'Giant Snakes',
     family: 'Boidae',
     modelId: '9616c130d7f142f199115a0271a78c00'
+  },
+    {
+    id: 'ground-sloth',
+    name: 'Ground Sloth',
+    scientificName: 'Ground Sloth',
+    period: 'Paleogene',
+    location: 'Americas',
+    length: '6 meters',
+    weight: 'up to 3,000 kilograms',
+    diet: 'Omnivore',
+    image: '/images/ground_sloth.jpg',
+    description: 'Ground sloths were large, slow-moving herbivorous mammals that thrived during the Pleistocene epoch. They belonged to the group Xenarthra, which also includes modern-day sloths, armadillos, and anteaters. Unlike their tree-dwelling relatives, ground sloths lived on the ground and ranged in size from small dog-like species to the massive Megatherium, which could reach up to 6 meters (20 feet) in length and weigh over 4 tons.\n\nNative to the Americas, ground sloths were well-adapted to various habitats, from grasslands to forests. They primarily fed on leaves, fruits, and other vegetation, using their long claws to grasp and strip plants. Despite their slow pace, they were formidable due to their sheer size and strength.\n\nGround sloths became extinct around 10,000 years ago, likely due to a combination of climate change and overhunting by humans. Their fossils provide valuable insights into the ecosystems of prehistoric times and the evolution of sloths.',
+    category: 'Early Mammals',
+    subcategory: 'Prehistoric Mammals',
+    family: 'Megatheriidae'
+  },
+  {
+    id: 'deinotherium',
+    name: 'Deinotherium',
+    scientificName: 'Deinotherium',
+    period: 'Neogene',
+    location: 'East Africa to the south to Europe and east to the Indian Subcontinent',
+    length: '3.5–7 metres',
+    weight: '8,800–12,000 kg',
+    diet: 'Herbivore',
+    image: '/images/Deinotherium.jpeg',
+    description: 'Deinotherium, meaning “terrible beast” in Greek, was a massive prehistoric elephant-like mammal that lived from the Miocene to the early Pleistocene epoch, approximately 20 to 1 million years ago. It belonged to the family Deinotheriidae, which is an extinct branch of the order Proboscidea, the same order that includes modern elephants.\n\nUnlike today’s elephants, Deinotherium had distinctive downward-curving tusks attached to its lower jaw. These tusks were likely used for stripping bark, digging for roots, or pulling down branches for food. It had a large, elongated skull and could grow up to 4–5 meters (13–16 feet) tall at the shoulders, making it one of the largest land mammals of its time.\n\nFossils of Deinotherium have been discovered across Africa, Europe, and Asia, suggesting it thrived in diverse environments such as open woodlands and savannas. However, like many other megafauna, Deinotherium went extinct as climates changed and ecosystems shifted.\n\nThis iconic creature provides a fascinating glimpse into the diversity and evolution of prehistoric proboscideans.',
+    category: 'Early Mammals',
+    subcategory: 'Prehistoric Mammals',
+    family: 'Deinotheriidae',
+    modelId: '1a4677f0a6b04e76ac86dc7838aab5ec'
   }];
 
 export const searchCreatures = (searchQuery: string): SearchResult[] => {
