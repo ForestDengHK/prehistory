@@ -902,7 +902,7 @@ export const creatures: Creature[] = [
     length: '10.9–15.2 m',
     weight: ' 1,000 kilograms',
     diet: 'Carnivore',
-    image: '/images/vsauce.png',
+    image: '/images/vsauce.jpg',
     description: 'The Vasuki, a now-extinct genus of colossal constrictor snakes that roamed the Earth during the Miocene epoch, is believed to have reached lengths of up to 30 feet, with fossilized remains discovered in the Siwalik Hills of South Asia revealing its massive, muscular body, which likely resembled modern-day pythons or anacondas; these formidable serpents would have preyed on large mammals, and possibly smaller reptiles, inhabiting the dense, tropical forests and river systems of the time, while their name, derived from the ancient Hindu mythological serpent king Vasuki, emphasizes both their immense physical size and the awe-inspiring, almost divine power they would have commanded, evoking the same sense of reverence and terror that the mythological figure embodies in Hindu lore.',
     category: 'Early Mammals',
     subcategory: 'Prehistoric Mammals',
