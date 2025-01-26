@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { list } from '@vercel/blob';
+import { creatures } from '../../data/creatures';
 
 let allComments: Comment[] = [];
 let error: string | null = null;
@@ -13,6 +14,12 @@ interface Comment {
     email?: string;
     creatureId?: string;
 }
+
+// Get base URL for links
+const baseUrl = import.meta.env.PROD ? 'https://prehistoricworld.vercel.app' : '';
+
+// Create a map of creature IDs to names for quick lookup
+const creatureMap = new Map(creatures.map(c => [c.id, c.name]));
 
 try {
     // Check if we have the blob token
@@ -103,7 +110,24 @@ try {
                                         data-creature-id={comment.creatureId}
                                     />
                                 </td>
-                                <td>{comment.creatureId}</td>
+                                <td>
+                                    <a 
+                                        href={comment.creatureId.startsWith('about') 
+                                            ? `${baseUrl}/about`
+                                            : `${baseUrl}/creature/${comment.creatureId}`}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="creature-link"
+                                        title={comment.creatureId.startsWith('about') 
+                                            ? 'View About Page'
+                                            : `View ${creatureMap.get(comment.creatureId) || 'creature'}`}
+                                    >
+                                        {comment.creatureId.startsWith('about') 
+                                            ? 'About Page'
+                                            : creatureMap.get(comment.creatureId) || comment.creatureId}
+                                        <span class="external-icon">↗</span>
+                                    </a>
+                                </td>
                                 <td>{comment.name}</td>
                                 <td class="comment-text">{comment.comment}</td>
                                 <td>{new Date(comment.createdAt).toLocaleString()}</td>
@@ -228,6 +252,25 @@ try {
         .comment-text {
             max-width: 150px;
         }
+    }
+
+    .creature-link {
+        color: var(--primary-color);
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.25rem;
+        transition: color 0.2s ease;
+    }
+
+    .creature-link:hover {
+        color: var(--accent-color);
+        text-decoration: underline;
+    }
+
+    .external-icon {
+        font-size: 0.75rem;
+        opacity: 0.7;
     }
 </style>
 
