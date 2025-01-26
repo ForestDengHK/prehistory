@@ -32,12 +32,12 @@ export interface SearchResult extends Creature {
 }
 
 export const creatures: Creature[] = [
-                                      {
+                                          {
     id: 'tyrannosaurus-rex',
     name: 'Tyrannosaurus Rex',
     scientificName: 'Tyrannosaurus rex',
     period: 'Cretaceous',
-    location: 'North America',
+    location: 'North america',
     length: '12-15 meters',
     weight: '7,000-8,000 kg',
     diet: 'Carnivore',
@@ -64,12 +64,12 @@ export const creatures: Creature[] = [
     family: 'Otodontidae',
     modelId: 'dc2b75f091964c26b05544f6a990e7ac' // Smithsonian 3D T-Rex
   },
-                  {
+                    {
     id: 'nanotyrannus',
     name: 'Nanotyrannus lancensis',
     scientificName: 'Nanotyrannus lancensis',
     period: 'Cretaceous',
-    location: 'North America',
+    location: 'South Dakota, Nebraska and Montana.',
     length: '5-6 meters',
     weight: '1,000 kg',
     diet: 'Carnivore',
@@ -79,12 +79,12 @@ export const creatures: Creature[] = [
     subcategory: 'Theropods',
     family: 'Tyrannosauridae'
   },
-            {
+              {
     id: 'raptorex',
     name: 'Raptorex lancensis',
     scientificName: 'Raptorex kriegsteini',
     period: 'Cretaceous',
-    location: 'Asia',
+    location: 'Mongolia and China',
     length: '3 meters',
     weight: '60 kg',
     diet: 'Carnivore',
@@ -94,12 +94,12 @@ export const creatures: Creature[] = [
     subcategory: 'Theropods',
     family: 'Tyrannosauridae'
   },
-            {
+              {
     id: 'stegosaurus',
     name: 'Stegosaurus stenops',
     scientificName: 'Stegosaurus stenops',
     period: 'Jurassic',
-    location: 'North America',
+    location: 'western USA',
     length: '9 meters',
     weight: '5,000-7,000 kg',
     diet: 'Herbivore',
@@ -110,12 +110,12 @@ export const creatures: Creature[] = [
     family: 'Stegosauridae',
     modelId: '6e9a2f36f0a447758d71c2134512580e'
   },
-        {
+          {
     id: 'velociraptor',
     name: 'Velociraptor mongoliensis',
     scientificName: 'Velociraptor mongoliensis',
     period: 'Cretaceous',
-    location: 'Asia (Mongolia)',
+    location: 'Mongolia',
     length: '2 meters',
     weight: '15-20 kg',
     diet: 'Carnivore',
@@ -124,9 +124,9 @@ export const creatures: Creature[] = [
     category: 'Dinosaurs',
     subcategory: 'Theropods',
     family: 'Dromaeosauridae',
-    modelId: '40412e7e70624086860fc1172f465561' // Natural History Museum Velociraptor
+    modelId: '40412e7e70624086860fc1172f465561'
   },
-          {
+            {
     id: 'triceratops',
     name: 'Triceratops horridus',
     scientificName: 'Triceratops horridus',
@@ -140,7 +140,7 @@ export const creatures: Creature[] = [
     category: 'Dinosaurs',
     subcategory: 'Ceratopsians',
     family: 'Triceratopsidae',
-    modelId: 'd16aabe33dc24f8ab37e3df50c068265' // Smithsonian 3D Triceratops
+    modelId: 'd16aabe33dc24f8ab37e3df50c068265'
   },
         {
     id: 'pterodactyl',
@@ -453,7 +453,7 @@ export const creatures: Creature[] = [
     subcategory: 'Theropods',
     family: 'Ceratosauridae'
   },
-      {
+        {
     id: 'allosaurus-fragilis',
     name: 'Allosaurus fragilis',
     scientificName: 'Allosaurus fragilis',
@@ -467,9 +467,9 @@ export const creatures: Creature[] = [
     category: 'Dinosaurs',
     subcategory: 'Theropods',
     family: 'Allosauridae',
-    modelId: '937e25ea285f479b8c53e0448272eae1'
+    modelId: 'e957609623604e918e93c7658efca3ce'
   },
-    {
+      {
     id: 'cryolophosaurus-ellioti',
     name: 'Cryolophosaurus ellioti',
     scientificName: 'Cryolophosaurus ellioti',
@@ -483,7 +483,7 @@ export const creatures: Creature[] = [
     category: 'Dinosaurs',
     subcategory: 'Theropods',
     family: 'Theropoda',
-    modelId: '774bf0b502c1484680a8ae4b6e322498'
+    modelId: '06136b7f83fe4a9e9b416f55e916c170'
   },
       {
     id: 'argentinosaurus-huinculensis',
@@ -893,7 +893,7 @@ export const creatures: Creature[] = [
     family: 'Ophthalmosauridae',
     modelId: 'a1b8a09cb1674efeb51a16cb1f47670d'
   },
-  {
+      {
     id: 'vasuki-indicus',
     name: 'Vasuki indicus',
     scientificName: 'Vasuki indicus',
@@ -902,12 +902,11 @@ export const creatures: Creature[] = [
     length: '10.9–15.2 m',
     weight: ' 1,000 kilograms',
     diet: 'Carnivore',
-    image: '/images/vsauce.jpg',
+    image: '/images/vauski.jpg',
     description: 'The Vasuki, a now-extinct genus of colossal constrictor snakes that roamed the Earth during the Miocene epoch, is believed to have reached lengths of up to 30 feet, with fossilized remains discovered in the Siwalik Hills of South Asia revealing its massive, muscular body, which likely resembled modern-day pythons or anacondas; these formidable serpents would have preyed on large mammals, and possibly smaller reptiles, inhabiting the dense, tropical forests and river systems of the time, while their name, derived from the ancient Hindu mythological serpent king Vasuki, emphasizes both their immense physical size and the awe-inspiring, almost divine power they would have commanded, evoking the same sense of reverence and terror that the mythological figure embodies in Hindu lore.',
-    category: 'Early Mammals',
-    subcategory: 'Prehistoric Mammals',
-    family: 'Madtsoiidae',
-    modelId: 'bbe7f74d91b6412482d1e181f9f4f9a4'
+    category: 'Prehistoric Reptiles',
+    subcategory: 'Giant Snakes',
+    family: 'Madtsoiidae'
   },
     {
     id: 'titanoboa-cerrejonensis',
@@ -955,6 +954,82 @@ export const creatures: Creature[] = [
     subcategory: 'Prehistoric Mammals',
     family: 'Deinotheriidae',
     modelId: '1a4677f0a6b04e76ac86dc7838aab5ec'
+  },
+  {
+    id: 'hylonomus-lyelli',
+    name: 'Hylonomus lyelli',
+    scientificName: 'Hylonomus lyelli',
+    period: 'Carboniferous',
+    location: 'North America',
+    length: '20–25 centimetres',
+    weight: 'Unknown ',
+    diet: 'Carnivore',
+    image: '/images/hylonomus.jpg',
+    description: 'Hylonomus, a genus of early reptile from the late Carboniferous period, is considered one of the first creatures to exhibit truly terrestrial adaptations, such as a fully amniotic egg, which allowed it to reproduce away from water, a crucial evolutionary step for life on land. Measuring only around 20 centimeters in length, Hylonomus likely lived in the dense, swampy forests of what is now North America, and its diet probably consisted of small arthropods and other invertebrates. Its anatomy, including elongated limbs and a relatively simple, lizard-like body structure, highlights its evolutionary position as a forerunner to more advanced reptiles, bridging the gap between amphibians and later, more evolved reptiles such as dinosaurs. The discovery of Hylonomus has provided valuable insights into the early development of amniotes, the group of vertebrates that includes reptiles, birds, and mammals.',
+    category: 'Prehistoric Reptiles',
+    subcategory: 'Land Reptiles',
+    family: 'Protorothyrididae'
+  },
+  {
+    id: 'palaeophis-colossaeus',
+    name: 'Palaeophis colossaeus',
+    scientificName: 'Palaeophis colossaeus',
+    period: 'Paleogene',
+    location: ' England, France, Denmark, Morocco and Mali, and North america',
+    length: '8.1–12.3 m',
+    weight: '17,000 kg ',
+    diet: 'Carnivore',
+    image: '/images/palaeophis.jpg',
+    description: 'Palaeophis is an extinct genus of ancient, marine snakes that lived during the Eocene epoch, roughly 50 to 55 million years ago, and is considered one of the earliest representatives of the fully aquatic snake lineage. This genus, which existed in what is now Europe and parts of North America, is notable for its long, eel-like body, small vestigial limbs, and specialized adaptations for life in the sea, such as a streamlined shape for efficient swimming and a powerful, undulating movement. Palaeophis likely preyed on fish and other marine creatures, using its flexible jaws and sharp teeth to capture and consume its prey in the water. Fossils of Palaeophis suggest it was a relatively large snake, with some species reaching lengths of up to 10 meters, highlighting the significant evolutionary jump from land-dwelling ancestors to fully aquatic forms. The discovery of Palaeophis has provided important clues about the early adaptation of snakes to aquatic environments and their subsequent diversification into the many species of sea snakes we see today.',
+    category: 'Prehistoric Reptiles',
+    subcategory: 'Giant Snakes',
+    family: 'Palaeophiidae'
+  },
+  {
+    id: 'pterosphenus-schucherti',
+    name: 'Pterosphenus schucherti',
+    scientificName: 'Pterosphenus schucherti',
+    period: 'Paleogene',
+    location: 'North and South America, Asia and Africa',
+    length: '2-5 meters',
+    weight: 'Unknown ',
+    diet: 'Carnivore',
+    image: '/images/pterosphenus.jpeg',
+    description: '\nChatGPT\nPterosphenus is an extinct genus of marine snake that lived during the Paleogene period. It had a long, streamlined body adapted for swimming, with reduced limbs and a flattened tail for efficient movement in the water. Likely a fish-eater, Pterosphenus lived in the seas of what is now Europe and represents an early form of the fully aquatic snakes that evolved later. Its name, meaning \"The sea serpent,\" refers to its long, sinuous body.',
+    category: 'Prehistoric Reptiles',
+    subcategory: 'Giant Snakes',
+    family: 'Palaeophiidae'
+  },
+  {
+    id: 'sarcosuchus-imperator',
+    name: 'Sarcosuchus imperator',
+    scientificName: 'Sarcosuchus imperator',
+    period: 'Cretaceous',
+    location: ' Africa and South America',
+    length: '9 to 9.5 m',
+    weight: '3,000-4,000 kg',
+    diet: 'Carnivore',
+    image: '/images/sarco.jpg',
+    description: 'Sarcosuchus is an extinct genus of giant crocodyliform that lived during the Cretaceous period, around 112 million years ago, and is often referred to as the \"super croc\" due to its enormous size. This formidable predator could reach lengths of up to 12 meters (about 39 feet) and weigh several tons, making it one of the largest crocodyliforms to have ever existed. Sarcosuchus had a robust, heavily armored body with thick, bony plates called osteoderms embedded in its skin, providing it with significant protection against potential threats. Its most striking feature was its long, narrow snout, which housed large, conical teeth designed for grabbing and holding onto prey. The size and shape of its mouth suggest that Sarcosuchus was an ambush predator, lying in wait for fish or even large terrestrial animals that ventured too close to the water.\n\nFossil evidence, particularly from regions that once had vast freshwater rivers and lakes (mainly in what is now Africa), indicates that Sarcosuchus likely inhabited these environments, where it would have been an apex predator, feeding on large fish, marine reptiles, and possibly dinosaurs that came near the water\'s edge. While it is not directly related to modern crocodiles, it shares many traits with them, such as its semi-aquatic lifestyle and specialized hunting techniques. The discovery of Sarcosuchus has provided important insights into the diversity of crocodyliforms in the Mesozoic era and their evolutionary adaptations to different ecological niches, especially in terms of size, strength, and predation strategies',
+    category: 'Prehistoric Reptiles',
+    subcategory: 'Crocodilians',
+    family: 'Pholidosauridae',
+    modelId: 'fd392f7ff3e2406e973d361b5257c634'
+  },
+  {
+    id: 'deinosuchus-hatcheri',
+    name: 'Deinosuchus hatcheri',
+    scientificName: 'Deinosuchus hatcheri',
+    period: 'Cretaceous',
+    location: 'eastern North America',
+    length: ' 11 metres',
+    weight: '6,000-7,000',
+    diet: 'Carnivore',
+    image: '/images/deino.png',
+    description: 'Deinosuchus is an extinct genus of giant crocodyliform that lived during the Late Cretaceous period, around 82 to 73 million years ago, and is considered one of the largest and most fearsome predators of its time. This massive reptile is believed to have reached lengths of up to 12 meters (about 40 feet) and weighed several tons, rivaling the size of modern crocodiles, but with even more formidable features. Deinosuchus had a broad, robust body and a massive, powerful skull with large, conical teeth designed for grabbing and crushing prey, including large dinosaurs that ventured near water.\n\nFossil evidence suggests that Deinosuchus lived in freshwater environments, such as rivers, lakes, and coastal areas of what is now North America. It is thought to have been an ambush predator, waiting in the water to strike swiftly at its prey, which could include large herbivorous dinosaurs, such as Hadrosaurus, or even smaller carnivores. Some paleontologists believe Deinosuchus was capable of pulling large animals into the water, where it could overpower them.\n\nAlthough it was a close relative of modern crocodiles, Deinosuchus was much larger and likely had different hunting strategies, taking full advantage of its immense size and strength. The discovery of Deinosuchus fossils, which include massive teeth and bones, has provided crucial insights into the predatory behavior and ecological role of giant crocodyliforms during the Cretaceous, showing how these reptiles could dominate both aquatic and terrestrial ecosystems',
+    category: 'Prehistoric Reptiles',
+    subcategory: 'Crocodilians',
+    family: 'Crocodylidae'
   }];
 
 export const searchCreatures = (searchQuery: string): SearchResult[] => {
