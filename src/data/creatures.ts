@@ -1030,6 +1030,37 @@ export const creatures: Creature[] = [
     category: 'Prehistoric Reptiles',
     subcategory: 'Crocodilians',
     family: 'Crocodylidae'
+  },
+  {
+    id: 'gigantophis-garstini',
+    name: 'Gigantophis garstini',
+    scientificName: 'Gigantophis garstini',
+    period: 'Paleogene',
+    location: 'Africa',
+    length: '9.3-10.7 meters',
+    weight: '500 kg',
+    diet: 'Carnivore',
+    image: '/images/gigantophis.webp',
+    description: 'Gigantophis was an extraordinary and colossal snake that lived during the Eocene epoch, roughly 40 million years ago, in what is now North Africa. Known as one of the largest snakes to ever exist, it is believed to have reached lengths of up to 33 feet (10 meters), though some estimates suggest it could have been even longer. Fossil evidence of Gigantophis is relatively scarce, but studies of its remains show it was an imposing and powerful predator. Its robust, thick body indicates it likely preyed on large mammals, possibly including early ungulates and other sizable animals, constricting them to suffocate and kill. Gigantophis is thought to have inhabited riverine and coastal environments, where it could have used the dense vegetation to ambush prey.\n\nWhat makes Gigantophis particularly fascinating is its timing within the Eocene, when the Earth’s ecosystems were undergoing major shifts. The climate was warmer, and mammalian life was rapidly evolving, providing a steady supply of potential prey. While it shared its environment with other large creatures, including crocodyliforms, Gigantophis would have had few competitors for its niche as an apex predator. Despite its terrifying size, its existence was relatively short-lived, as it likely faced environmental changes and competition that contributed to its eventual extinction. Today, Gigantophis remains an iconic example of prehistoric gigantism and is often compared to the modern reticulated python and anacondas, though it was far larger than any living snake.',
+    category: 'Prehistoric Reptiles',
+    subcategory: 'Giant Snakes',
+    family: 'Madtsoiidae'
+  },
+        {
+    id: 'megalania',
+    name: 'Megalania',
+    scientificName: 'Varanus priscus',
+    period: 'Quaternary',
+    location: 'Australia',
+    length: '2–3 m',
+    weight: '300 kg',
+    diet: 'Carnivore',
+    image: '/images/creatures/moniter-lizard.webp',
+    description: 'Megalania, an enormous prehistoric monitor lizard, roamed the vast landscapes of Australia during the Pleistocene Epoch, around 1.6 million years ago until its extinction about 40,000 years ago. The scientific name Megalania prisca refers to the species\' colossal size, with estimates suggesting it could grow up to 23 feet (7 meters) long, making it one of the largest terrestrial lizards to ever live. With its massive size and muscular build, Megalania would have been a top predator in its environment, preying on large mammals, including giant kangaroos and wombats. It had a robust body, strong limbs, and large claws, enabling it to overpower prey with both strength and speed.\n\nMegalania’s appearance would likely have been similar to modern-day monitor lizards, like the Komodo dragon, but much larger and more powerful. It is thought to have had a keen sense of smell, using it to track down its prey across the Australian outback. Fossil evidence suggests it may have been a scavenger as well, feeding on carcasses when the opportunity arose. Despite its fearsome nature, the Megalania’s extinction coincided with the arrival of humans in Australia and the changing environmental conditions of the Ice Age, which likely contributed to the loss of many large megafauna species.\n\nToday, Megalania is often depicted in popular media as a symbol of prehistoric Australia’s terrifying megafauna, and it remains a fascinating subject for paleontologists studying the ancient ecosystems of the continent. Though no living creatures come close to matching its size, it provides a striking example of the prehistoric gigantism that once dominated certain ecosystems.',
+    category: 'Prehistoric Reptiles',
+    subcategory: 'Land Reptiles',
+    family: 'Varanidae',
+    modelId: '95cc86a83ba14e24b7512ef06bf16392'
   }];
 
 export const searchCreatures = (searchQuery: string): SearchResult[] => {

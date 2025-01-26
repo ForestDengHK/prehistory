@@ -96,15 +96,15 @@ const categories = ['discovery', 'evolution', 'environment', 'dinosaur'];
           <div class="input-group">
             <span class="input-prefix">/images/facts/</span>
             <input type="text" id="image" name="image"
-              placeholder="fact-name.jpg">
+              placeholder="fact-name.webp">
           </div>
-          <p class="help-text">Specify the name of an existing image in the public/images/facts directory</p>
+          <p class="help-text">Specify the name of an existing image in the public/images/facts directory (WebP format)</p>
         </div>
 
         <div class="tab-content hidden" id="upload-image">
           <input type="file" id="imageFile" name="imageFile" accept="image/*"
             class="file-input">
-          <p class="help-text">Upload a new image (JPG, PNG). The file will be saved to the public/images/facts directory</p>
+          <p class="help-text">Upload a new image (JPG, PNG). It will be automatically converted to WebP format</p>
         </div>
       </section>
 
@@ -521,8 +521,14 @@ const categories = ['discovery', 'evolution', 'environment', 'dinosaur'];
         
         if (!uploadResponse.ok) throw new Error('Image upload failed');
         
-        const { filename } = await uploadResponse.json();
-        formData.set('image', filename);
+        const { path } = await uploadResponse.json();
+        formData.set('image', path);
+      } else {
+        // Ensure the image path is correct for existing images
+        const imagePath = formData.get('image') as string;
+        if (imagePath && !imagePath.startsWith('/images/')) {
+          formData.set('image', `/images/facts/${imagePath}`);
+        }
       }
       
       // Submit fact data

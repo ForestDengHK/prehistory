@@ -143,17 +143,17 @@ const diets = ['Carnivore', 'Herbivore', 'Omnivore'];
 
           <div class="tab-content" id="existing-image">
             <div class="input-group">
-              <span class="input-prefix">/images/</span>
+              <span class="input-prefix">/images/creatures/</span>
               <input type="text" id="image" name="image"
-                placeholder="creature-name.jpg">
+                placeholder="creature-name.webp">
             </div>
-            <p class="help-text">Specify the name of an existing image in the public/images directory</p>
+            <p class="help-text">Specify the name of an existing image in the public/images/creatures directory (WebP format)</p>
           </div>
 
           <div class="tab-content hidden" id="upload-image">
             <input type="file" id="imageFile" name="imageFile" accept="image/*"
               class="file-input">
-            <p class="help-text">Upload a new image (JPG, PNG). The file will be saved to the public/images directory</p>
+            <p class="help-text">Upload a new image (JPG, PNG). It will be automatically converted to WebP format</p>
           </div>
         </div>
 
@@ -659,77 +659,62 @@ const diets = ['Carnivore', 'Herbivore', 'Omnivore'];
   });
 
   // Handle form submission
-  form.addEventListener('submit', async (e) => {
+  form?.addEventListener('submit', async (e) => {
     e.preventDefault();
-    
-    // Disable the submit button to prevent double submission
-    const submitButton = form.querySelector('button[type="submit"]') as HTMLButtonElement;
-    submitButton.disabled = true;
-    submitButton.textContent = 'Updating Creature...';
     
     try {
       const formData = new FormData(form);
-      const creatureId = formData.get('id') as string;
-      const imageFile = imageFileInput.files?.[0];
+      const creatureId = formData.get('id');
+      const imageFile = formData.get('imageFile') as File;
       
-      // Handle image upload if a file was selected
-      if (imageFile) {
-        const fileName = imageFile.name;
-        formData.set('image', fileName);
-        
-        // Upload the image first
+      // Handle image upload if a new file is selected
+      if (imageFile.size > 0) {
         const imageFormData = new FormData();
         imageFormData.append('image', imageFile);
+        imageFormData.append('directory', 'creatures');
         
+        // Upload image first
         const uploadResponse = await fetch('/api/upload-image', {
           method: 'POST',
           body: imageFormData
         });
         
-        if (!uploadResponse.ok) {
-          throw new Error('Failed to upload image');
+        if (!uploadResponse.ok) throw new Error('Image upload failed');
+        
+        const { path } = await uploadResponse.json();
+        formData.set('image', path);
+      } else {
+        // Ensure the image path is correct for existing images
+        const imagePath = formData.get('image') as string;
+        if (imagePath && !imagePath.startsWith('/images/')) {
+          formData.set('image', `/images/creatures/${imagePath}`);
         }
       }
       
-      // Add /images/ prefix to image path if not present
-      let imagePath = formData.get('image') as string;
-      if (!imagePath.startsWith('/images/')) {
-        imagePath = `/images/${imagePath.replace(/^\/images\//, '')}`;
-        formData.set('image', imagePath);
-      }
-      
-      // Submit the creature data
+      // Submit creature data
       const response = await fetch(`/api/creatures/${creatureId}`, {
         method: 'PUT',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json'
         },
-        body: JSON.stringify(Object.fromEntries(formData)),
+        body: JSON.stringify(Object.fromEntries(formData))
       });
       
-      const result = await response.json();
+      if (!response.ok) throw new Error('Failed to update creature');
       
-      if (response.ok) {
-        messageDiv.textContent = '✅ Creature updated successfully! Redirecting...';
+      // Show success message
+      if (messageDiv) {
+        messageDiv.textContent = 'Creature updated successfully!';
         messageDiv.className = 'message success';
-        
-        // Wait 2 seconds then redirect to the creature's page
-        setTimeout(() => {
-          window.location.href = `/creatures/${result.creature.id}`;
-        }, 2000);
-      } else {
-        throw new Error(result.error || 'Failed to update creature');
       }
+      
     } catch (error) {
-      messageDiv.textContent = `❌ Error: ${error.message}`;
-      messageDiv.className = 'message error';
-      // Re-enable the submit button on error
-      submitButton.disabled = false;
-      submitButton.textContent = 'Update Creature';
+      // Show error message
+      if (messageDiv) {
+        messageDiv.textContent = error instanceof Error ? error.message : 'An error occurred';
+        messageDiv.className = 'message error';
+      }
     }
-    
-    messageDiv.classList.remove('hidden');
-    messageDiv.scrollIntoView({ behavior: 'smooth' });
   });
 
   // Close search results when clicking outside
@@ -738,4 +723,5 @@ const diets = ['Carnivore', 'Herbivore', 'Omnivore'];
       searchResults.classList.add('hidden');
     }
   });
+</script> 
 </script> 
