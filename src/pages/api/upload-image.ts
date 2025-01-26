@@ -1,6 +1,7 @@
 import type { APIRoute } from 'astro';
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import sharp from 'sharp';
 
 export const POST: APIRoute = async ({ request }) => {
   try {
@@ -16,9 +17,9 @@ export const POST: APIRoute = async ({ request }) => {
     }
 
     // Validate file type
-    const allowedTypes = ['image/jpeg', 'image/png', 'image/jpg'];
+    const allowedTypes = ['image/jpeg', 'image/png', 'image/jpg', 'image/webp'];
     if (!allowedTypes.includes(image.type)) {
-      return new Response(JSON.stringify({ error: 'Invalid image type. Only JPG and PNG are allowed.' }), {
+      return new Response(JSON.stringify({ error: 'Invalid image type. Only JPG, PNG and WebP are allowed.' }), {
         status: 400,
         headers: { 'Content-Type': 'application/json' }
       });
@@ -33,17 +34,45 @@ export const POST: APIRoute = async ({ request }) => {
     const targetDir = directory ? path.join(imagesDir, directory) : imagesDir;
     await fs.mkdir(targetDir, { recursive: true });
 
-    // Write the file
+    // Get the file buffer
     const buffer = Buffer.from(await image.arrayBuffer());
-    const filePath = path.join(targetDir, image.name);
-    await fs.writeFile(filePath, buffer);
 
-    const relativePath = directory ? `/images/${directory}/${image.name}` : `/images/${image.name}`;
+    // Generate optimized filename
+    const originalName = image.name.replace(/\.[^/.]+$/, ''); // Remove extension
+    const webpFilename = `${originalName}.webp`;
+    const filePath = path.join(targetDir, webpFilename);
+
+    // Optimize image using Sharp
+    await sharp(buffer)
+      .webp({ quality: 80 }) // Convert to WebP with 80% quality
+      .resize({ 
+        width: 1200, // Max width
+        height: 800, // Max height
+        fit: 'inside',
+        withoutEnlargement: true
+      })
+      .toFile(filePath);
+
+    // Also create a thumbnail version for previews
+    const thumbPath = path.join(targetDir, `${originalName}-thumb.webp`);
+    await sharp(buffer)
+      .webp({ quality: 70 })
+      .resize({
+        width: 300,
+        height: 200,
+        fit: 'cover'
+      })
+      .toFile(thumbPath);
+
+    const relativePath = directory ? `/images/${directory}/${webpFilename}` : `/images/${webpFilename}`;
+    const thumbRelativePath = directory ? `/images/${directory}/${originalName}-thumb.webp` : `/images/${originalName}-thumb.webp`;
 
     return new Response(JSON.stringify({ 
       success: true,
-      filename: image.name,
-      path: relativePath
+      filename: webpFilename,
+      path: relativePath,
+      thumbnailPath: thumbRelativePath,
+      originalName: image.name
     }), {
       status: 200,
       headers: { 'Content-Type': 'application/json' }

@@ -68,7 +68,7 @@ export const prehistoricFacts: PrehistoricFact[] = [
     id: 'fact-9',
     title: 'Snowball Earth',
     fact: 'Around 700 million years ago, Earth was almost completely covered in ice during the "Snowball Earth" period, with temperatures as low as -50°C.',
-    image: '/images/facts/snowball-earth.jpg',
+    image: '/images/facts/snowball-earth.webp',
     category: 'environment'
   }
 ,
@@ -83,7 +83,7 @@ export const prehistoricFacts: PrehistoricFact[] = [
     id: 'fact-11',
     title: 'Hangenberg event',
     fact: 'The Hangenberg event, about 359 million years ago, was a mass extinction at the Devonian-Carboniferous boundary, caused by global cooling and anoxic oceans, wiping out many marine species.',
-    image: '/images/facts/dead-dunk.jpg',
+    image: '/images/facts/dead-dunk.webp',
     category: 'environment'
   },
   {
