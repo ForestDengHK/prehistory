@@ -49,6 +49,16 @@ const sortedImages = imageDetails.sort((a, b) => b.size - a.size);
     <div class="optimization-panel">
       <section class="form-section">
         <h2>Batch Image Optimization</h2>
+        <div class="stats-bar">
+          <div class="stat">
+            <span class="stat-label">Total Images:</span>
+            <span class="stat-value">{sortedImages.length}</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Selected:</span>
+            <span class="stat-value" id="selected-count">0</span>
+          </div>
+        </div>
         <p class="help-text">
           Select images to optimize. Images will be:
           <ul>
@@ -338,6 +348,32 @@ const sortedImages = imageDetails.sort((a, b) => b.size - a.size);
     padding: 0.125rem 0.375rem;
     border-radius: 0.25rem;
   }
+
+  .stats-bar {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background: var(--background-color);
+    border-radius: 0.5rem;
+  }
+
+  .stat {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .stat-label {
+    font-size: 0.875rem;
+    color: var(--secondary-color);
+  }
+
+  .stat-value {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--primary-color);
+  }
 </style>
 
 <script>
@@ -381,11 +417,29 @@ const sortedImages = imageDetails.sort((a, b) => b.size - a.size);
   sortSizeBtn?.addEventListener('click', sortBySize);
   sortNameBtn?.addEventListener('click', sortByName);
 
-  // Handle select all
+  // Update selected count
+  function updateSelectedCount() {
+    const selectedCount = Array.from(checkboxes).filter(cb => cb.checked).length;
+    const selectedCountElement = document.getElementById('selected-count');
+    if (selectedCountElement) {
+      selectedCountElement.textContent = selectedCount.toString();
+    }
+  }
+
+  // Add change event listener to all checkboxes
+  checkboxes.forEach(checkbox => {
+    checkbox.addEventListener('change', updateSelectedCount);
+  });
+
+  // Update count when "Select All" is clicked
   selectAllBtn?.addEventListener('click', () => {
     const isAllSelected = Array.from(checkboxes).every(cb => cb.checked);
     checkboxes.forEach(cb => cb.checked = !isAllSelected);
+    updateSelectedCount();
   });
+
+  // Initialize count
+  updateSelectedCount();
 
   // Handle optimization
   optimizeBtn?.addEventListener('click', async () => {
