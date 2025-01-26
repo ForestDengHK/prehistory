@@ -1061,6 +1061,22 @@ export const creatures: Creature[] = [
     subcategory: 'Land Reptiles',
     family: 'Varanidae',
     modelId: '95cc86a83ba14e24b7512ef06bf16392'
+  },
+  {
+    id: 'plesiosaurus-dolichodeirus',
+    name: 'Plesiosaurus dolichodeirus',
+    scientificName: 'Plesiosaurus dolichodeirus',
+    period: 'Jurassic',
+    location: 'England and Germany',
+    length: '3-4 meters',
+    weight: '500 kg',
+    diet: 'Carnivore',
+    image: '/images/creatures/plesiosaurus.webp',
+    description: 'Plesiosaurus dolichodeirus is a specific species within the broader genus Plesiosaurus, which lived during the early Jurassic period, around 200 to 180 million years ago. This species is particularly notable for its elongated neck, a characteristic feature that distinguishes many members of the Plesiosaur group. Plesiosaurus dolichodeirus was one of the earlier species to exhibit the long-necked, small-headed design that would later become more exaggerated in other species, such as Elasmosaurus.\n\nThis species grew to about 10–15 feet (3–4.5 meters) in length, with a relatively short body compared to the extraordinary length of its neck. Plesiosaurus dolichodeirus had four large, paddle-like flippers, which it likely used for powerful propulsion through the water, allowing it to navigate with efficiency. These flippers would have been essential for stability and maneuverability, as the creature hunted fish and other small marine creatures in the shallow seas that covered much of what is now Europe during the Jurassic.\n\nWhat makes Plesiosaurus dolichodeirus stand out is its place in the evolutionary history of Plesiosaurs. It had a more primitive body shape than some of its later relatives, with a neck that, while long, wasn’t as extreme as those seen in later species like Elasmosaurus. Its skull was relatively small and equipped with sharp teeth, ideal for catching prey. The long neck likely enabled it to ambush prey in a dynamic way, swooping in quickly to snatch fish, while its large flippers allowed it to dive and maneuver with remarkable precision.\n\nFossils of Plesiosaurus dolichodeirus have been found in what is now Europe, particularly in regions like Germany and England, providing key insights into the early evolution of marine reptiles during the Jurassic. Like other Plesiosaurs, Plesiosaurus dolichodeirus eventually went extinct at the end of the Cretaceous, possibly due to the changes in marine ecosystems brought about by the mass extinction event, but it remains an important species for understanding the diversity of life in the ancient oceans.',
+    category: 'Marine Creatures',
+    subcategory: 'Marine Reptiles',
+    family: 'Plesiosauridae',
+    modelId: '87ef96b102aa4f4781ee2acc8de004d6'
   }];
 
 export const searchCreatures = (searchQuery: string): SearchResult[] => {
