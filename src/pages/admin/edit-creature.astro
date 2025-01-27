@@ -565,9 +565,11 @@ const diets = ['Carnivore', 'Herbivore', 'Omnivore'];
     subcategorySelect.value = creature.subcategory;
 
     // Set image and preview
-    const imagePath = creature.image.startsWith('/images/') 
-      ? creature.image.slice(8) 
-      : creature.image;
+    const imagePath = creature.image.startsWith('/images/creatures/') 
+      ? creature.image.slice('/images/creatures/'.length) 
+      : creature.image.startsWith('/images/') 
+        ? creature.image.slice('/images/'.length)
+        : creature.image;
     imageInput.value = imagePath;
     currentImagePreview.src = creature.image;
   };
@@ -686,8 +688,12 @@ const diets = ['Carnivore', 'Herbivore', 'Omnivore'];
       } else {
         // Ensure the image path is correct for existing images
         const imagePath = formData.get('image') as string;
-        if (imagePath && !imagePath.startsWith('/images/')) {
-          formData.set('image', `/images/creatures/${imagePath}`);
+        if (imagePath) {
+          if (!imagePath.startsWith('/images/')) {
+            formData.set('image', `/images/creatures/${imagePath}`);
+          } else if (!imagePath.startsWith('/images/creatures/')) {
+            formData.set('image', `/images/creatures/${imagePath.slice('/images/'.length)}`);
+          }
         }
       }
       
