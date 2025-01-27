@@ -3,9 +3,6 @@ import Layout from '../../layouts/Layout.astro';
 import { list } from '@vercel/blob';
 import { creatures } from '../../data/creatures';
 
-// Get base URL for links
-const baseUrl = import.meta.env.PROD ? 'https://prehistoricworld.vercel.app' : '';
-
 interface Like {
     id: string;
     creatureId: string;
@@ -13,14 +10,14 @@ interface Like {
     createdAt: string;
 }
 
-interface CreatureLikeSummary {
-    id: string;
+interface CreatureLikes {
+    creatureId: string;
     name: string;
-    likeCount: number;
-    lastLiked: string;
+    totalLikes: number;
+    details: Like[];
 }
 
-let likeSummaries: CreatureLikeSummary[] = [];
+let creatureLikesData: CreatureLikes[] = [];
 let error: string | null = null;
 
 try {
@@ -29,9 +26,6 @@ try {
     if (!blobToken) {
         throw new Error('Blob storage token not configured. Please check your environment variables.');
     }
-
-    // Create a map of creature IDs to names
-    const creatureMap = new Map(creatures.map(c => [c.id, c.name]));
 
     // Fetch all like files
     const { blobs } = await list({ token: blobToken });
@@ -44,8 +38,8 @@ try {
     const blobsByCreature = likeBlobs.reduce((acc, blob) => {
         const creatureId = blob.pathname
             .replace('likes/', '')
-            .replace('.json', '')
-            .split('-')[0]; // Remove date suffix if present
+            .replace(/\.json$/, '')
+            .replace(/-\d{4}-\d{2}-\d{2}$/, ''); // Remove date suffix if present
         if (!acc[creatureId]) {
             acc[creatureId] = [];
         }
@@ -64,17 +58,13 @@ try {
             const response = await fetch(latestBlob.url);
             if (response.ok) {
                 const likes: Like[] = await response.json();
+                const creature = creatures.find(c => c.id === creatureId);
                 
-                // Find the exact creature ID from the creatures data if it exists
-                const exactCreatureId = creatures.find(c => c.id === creatureId)?.id || creatureId;
-                
-                likeSummaries.push({
-                    id: exactCreatureId,
-                    name: creatureMap.get(exactCreatureId) || creatureId,
-                    likeCount: likes.length,
-                    lastLiked: likes.length > 0 
-                        ? new Date(Math.max(...likes.map(l => new Date(l.createdAt).getTime()))).toISOString()
-                        : '-'
+                creatureLikesData.push({
+                    creatureId,
+                    name: creature?.name || creatureId,
+                    totalLikes: likes.length,
+                    details: likes
                 });
             }
         } catch (error) {
@@ -82,22 +72,22 @@ try {
         }
     }
 
-    // Sort summaries by like count (descending)
-    likeSummaries.sort((a, b) => b.likeCount - a.likeCount);
+    // Sort creatures by number of likes (descending)
+    creatureLikesData.sort((a, b) => b.totalLikes - a.totalLikes);
 
 } catch (e) {
     error = e instanceof Error ? e.message : 'An unknown error occurred';
     console.error('Error loading likes:', e);
 }
 
-// Get total likes across all creatures
-const totalLikes = likeSummaries.reduce((sum, summary) => sum + summary.likeCount, 0);
+// Get base URL for links
+const baseUrl = import.meta.env.PROD ? 'https://prehistoricworld.vercel.app' : '';
 ---
 
-<Layout title="Manage Likes">
+<Layout title="Like Statistics">
     <div class="container">
         <a href="/admin" class="back-link">← Back to Admin</a>
-        <h1>Like Management</h1>
+        <h1>Like Statistics</h1>
         
         {error ? (
             <div class="error-message">
@@ -106,15 +96,15 @@ const totalLikes = likeSummaries.reduce((sum, summary) => sum + summary.likeCoun
                 <p class="help-text">Please ensure your environment variables are properly configured and try again.</p>
             </div>
         ) : (
-            <>
+            <div class="likes-container">
                 <div class="summary-stats">
                     <div class="stat-card">
-                        <h3>Total Likes</h3>
-                        <p class="stat-number">{totalLikes}</p>
+                        <h3>Total Creatures with Likes</h3>
+                        <p class="stat-number">{creatureLikesData.length}</p>
                     </div>
                     <div class="stat-card">
-                        <h3>Creatures with Likes</h3>
-                        <p class="stat-number">{likeSummaries.length}</p>
+                        <h3>Total Likes</h3>
+                        <p class="stat-number">{creatureLikesData.reduce((sum, item) => sum + item.totalLikes, 0)}</p>
                     </div>
                 </div>
 
@@ -122,37 +112,41 @@ const totalLikes = likeSummaries.reduce((sum, summary) => sum + summary.likeCoun
                     <table>
                         <thead>
                             <tr>
+                                <th>Rank</th>
                                 <th>Creature</th>
                                 <th>Likes</th>
-                                <th>Last Liked</th>
+                                <th>Last Like</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {likeSummaries.map(summary => (
+                            {creatureLikesData.map((item, index) => (
                                 <tr>
+                                    <td class="rank">#{index + 1}</td>
                                     <td>
                                         <a 
-                                            href={summary.id === 'about' 
-                                                ? `${baseUrl}/about`
-                                                : `${baseUrl}/creature/${summary.id}`}
+                                            href={`${baseUrl}/creature/${item.creatureId}`}
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             class="creature-link"
+                                            title={`View ${item.name}`}
                                         >
-                                            {summary.name}
+                                            {item.name}
                                             <span class="external-icon">↗</span>
                                         </a>
                                     </td>
-                                    <td class="like-count">{summary.likeCount}</td>
-                                    <td>{summary.lastLiked !== '-' 
-                                        ? new Date(summary.lastLiked).toLocaleString()
-                                        : '-'}</td>
+                                    <td class="likes-count">{item.totalLikes}</td>
+                                    <td>
+                                        {item.details.length > 0 
+                                            ? new Date(Math.max(...item.details.map(d => new Date(d.createdAt).getTime()))).toLocaleString()
+                                            : '-'
+                                        }
+                                    </td>
                                     <td>
                                         <button 
                                             class="view-details-btn"
-                                            data-creature-id={summary.id}
-                                            data-creature-name={summary.name}
+                                            data-creature-id={item.creatureId}
+                                            data-details={JSON.stringify(item.details)}
                                         >
                                             View Details
                                         </button>
@@ -162,20 +156,30 @@ const totalLikes = likeSummaries.reduce((sum, summary) => sum + summary.likeCoun
                         </tbody>
                     </table>
                 </div>
-
-                <div id="details-modal" class="modal hidden">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h2>Like Details: <span id="modal-creature-name"></span></h2>
-                            <button class="close-modal">×</button>
-                        </div>
-                        <div class="modal-body">
-                            <div id="like-details"></div>
-                        </div>
-                    </div>
-                </div>
-            </>
+            </div>
         )}
+
+        <!-- Details Modal -->
+        <div id="details-modal" class="modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Like Details: <span id="modal-creature-name"></span></h2>
+                    <button class="close-modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>IP Address</th>
+                            </tr>
+                        </thead>
+                        <tbody id="modal-details">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 </Layout>
 
@@ -222,22 +226,22 @@ const totalLikes = likeSummaries.reduce((sum, summary) => sum + summary.likeCoun
     }
 
     .stat-card h3 {
+        font-size: 1rem;
         color: var(--text-color);
         margin-bottom: 0.5rem;
-        font-size: 1rem;
     }
 
     .stat-number {
         font-size: 2rem;
-        font-weight: 600;
+        font-weight: bold;
         color: var(--primary-color);
     }
 
     .likes-table {
-        overflow-x: auto;
         background: white;
         border-radius: 8px;
         box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        overflow-x: auto;
     }
 
     table {
@@ -256,9 +260,13 @@ const totalLikes = likeSummaries.reduce((sum, summary) => sum + summary.likeCoun
         font-weight: 600;
     }
 
-    .like-count {
+    .rank {
         font-weight: 600;
         color: var(--primary-color);
+    }
+
+    .likes-count {
+        font-weight: 600;
     }
 
     .creature-link {
@@ -281,17 +289,18 @@ const totalLikes = likeSummaries.reduce((sum, summary) => sum + summary.likeCoun
     }
 
     .view-details-btn {
-        background-color: var(--primary-color);
-        color: white;
-        border: none;
+        background: none;
+        border: 1px solid var(--primary-color);
+        color: var(--primary-color);
         padding: 0.5rem 1rem;
         border-radius: 4px;
         cursor: pointer;
-        transition: opacity 0.2s;
+        transition: all 0.2s ease;
     }
 
     .view-details-btn:hover {
-        opacity: 0.9;
+        background: var(--primary-color);
+        color: white;
     }
 
     .modal {
@@ -300,20 +309,15 @@ const totalLikes = likeSummaries.reduce((sum, summary) => sum + summary.likeCoun
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(0, 0, 0, 0.5);
+        background: rgba(0,0,0,0.5);
         display: flex;
         justify-content: center;
         align-items: center;
         z-index: 1000;
     }
 
-    .modal.hidden {
-        display: none;
-    }
-
     .modal-content {
         background: white;
-        padding: 2rem;
         border-radius: 8px;
         width: 90%;
         max-width: 800px;
@@ -322,38 +326,16 @@ const totalLikes = likeSummaries.reduce((sum, summary) => sum + summary.likeCoun
     }
 
     .modal-header {
+        padding: 1rem;
+        border-bottom: 1px solid #eee;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 1rem;
     }
 
-    .details-table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 0;
-    }
-
-    .details-table th,
-    .details-table td {
-        padding: 1rem;
-        text-align: left;
-        border-bottom: 1px solid #eee;
-    }
-
-    .details-table th {
-        background: #f5f5f5;
-        font-weight: 600;
-    }
-
-    .details-table tbody tr:hover {
-        background-color: #f8f9fa;
-    }
-
-    .country-cell {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
+    .modal-header h2 {
+        margin: 0;
+        font-size: 1.25rem;
     }
 
     .close-modal {
@@ -365,6 +347,14 @@ const totalLikes = likeSummaries.reduce((sum, summary) => sum + summary.likeCoun
         line-height: 1;
     }
 
+    .modal-body {
+        padding: 1rem;
+    }
+
+    .hidden {
+        display: none;
+    }
+
     @media (max-width: 768px) {
         .stat-card {
             padding: 1rem;
@@ -373,119 +363,46 @@ const totalLikes = likeSummaries.reduce((sum, summary) => sum + summary.likeCoun
         .stat-number {
             font-size: 1.5rem;
         }
-
-        .modal-content {
-            padding: 1rem;
-        }
-
-        .details-table th,
-        .details-table td {
-            padding: 0.5rem;
-        }
     }
 </style>
 
 <script>
-    const modal = document.getElementById('details-modal');
-    const modalCreatureName = document.getElementById('modal-creature-name');
-    const likeDetails = document.getElementById('like-details');
     const viewDetailsButtons = document.querySelectorAll('.view-details-btn');
-    const closeModalButton = document.querySelector('.close-modal');
+    const modal = document.getElementById('details-modal');
+    const closeModal = document.querySelector('.close-modal');
+    const modalCreatureName = document.getElementById('modal-creature-name');
+    const modalDetails = document.getElementById('modal-details');
+    const creatures = new Map(window.creatures?.map(c => [c.id, c.name]) || []);
 
-    // Function to get country from IP
-    async function getCountryFromIP(ip) {
-        try {
-            const response = await fetch(`https://ip2c.org/${ip}`);
-            const data = await response.text();
-            const [status, country_code, country_code2, country_name] = data.split(';');
-            return status === '1' ? { code: country_code2, name: country_name } : null;
-        } catch (error) {
-            console.error('Error fetching country:', error);
-            return null;
-        }
-    }
-
-    // Handle view details button clicks
     viewDetailsButtons.forEach(button => {
-        button.addEventListener('click', async () => {
-            const creatureId = button.dataset.creatureId;
-            const creatureName = button.dataset.creatureName;
-
-            try {
-                // Show loading state
-                if (modalCreatureName) modalCreatureName.textContent = creatureName;
-                if (likeDetails) {
-                    likeDetails.innerHTML = `
-                        <div class="like-details-header">
-                            <p>Loading like details...</p>
-                        </div>
-                    `;
-                }
-                if (modal) modal.classList.remove('hidden');
-
-                // Fetch the likes from our API endpoint
-                const response = await fetch(`/api/likes/${creatureId}`);
-                if (!response.ok) {
-                    throw new Error('Failed to fetch like details');
-                }
-
-                const likes = await response.json();
-
-                // Fetch country information for each IP
-                const likesWithCountry = await Promise.all(
-                    likes.map(async (like) => {
-                        const country = await getCountryFromIP(like.clientIp);
-                        return {
-                            ...like,
-                            country
-                        };
-                    })
-                );
-
-                // Update modal content
-                if (likeDetails) {
-                    likeDetails.innerHTML = `
-                        <table class="details-table">
-                            <thead>
-                                <tr>
-                                    <th>Date</th>
-                                    <th>IP Address</th>
-                                    <th>Country</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                ${likesWithCountry.map(like => `
-                                    <tr>
-                                        <td>${new Date(like.createdAt).toLocaleString()}</td>
-                                        <td>${like.clientIp}</td>
-                                        <td>${like.country?.name || 'Unknown'}</td>
-                                    </tr>
-                                `).join('')}
-                            </tbody>
-                        </table>
-                    `;
-                }
-
-            } catch (error) {
-                console.error('Error fetching like details:', error);
-                showError('Failed to load like details. Please try again.');
+        button.addEventListener('click', () => {
+            const creatureId = button.getAttribute('data-creature-id');
+            const details = JSON.parse(button.getAttribute('data-details') || '[]');
+            
+            if (modalCreatureName && modalDetails && creatureId) {
+                modalCreatureName.textContent = creatures.get(creatureId) || creatureId;
+                modalDetails.innerHTML = details
+                    .sort((a: any, b: any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+                    .map((like: any) => `
+                        <tr>
+                            <td>${new Date(like.createdAt).toLocaleString()}</td>
+                            <td>${like.clientIp}</td>
+                        </tr>
+                    `)
+                    .join('');
+                
+                modal?.classList.remove('hidden');
             }
         });
     });
 
-    // Close modal when clicking the close button
-    closeModalButton?.addEventListener('click', () => {
-        if (modal) modal.classList.add('hidden');
+    closeModal?.addEventListener('click', () => {
+        modal?.classList.add('hidden');
     });
 
-    // Close modal when clicking outside
     modal?.addEventListener('click', (e) => {
         if (e.target === modal) {
             modal.classList.add('hidden');
         }
     });
-
-    function showError(message) {
-        alert(message);
-    }
 </script> 
