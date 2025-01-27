@@ -1077,6 +1077,38 @@ export const creatures: Creature[] = [
     subcategory: 'Marine Reptiles',
     family: 'Plesiosauridae',
     modelId: '87ef96b102aa4f4781ee2acc8de004d6'
+  },
+    {
+    id: 'nigersaurus-taqueti',
+    name: 'Nigersaurus taqueti',
+    scientificName: 'Nigersaurus taqueti',
+    period: 'Cretaceous',
+    location: 'Niger (africa)',
+    length: '9 m',
+    weight: '2,000-4,000 kg',
+    diet: 'Herbivore',
+    image: '/images/creatures/creatures/niggersaurus.webp',
+    description: 'Nigersaurus is a fascinating dinosaur that lived about 110 to 105 million years ago during the middle Cretaceous period. It was a relatively small, herbivorous dinosaur and is part of the sauropod group, which includes giant, long-necked dinosaurs like Brachiosaurus and Apatosaurus. However, unlike those massive sauropods, Nigerosaurus was much smaller and more specialized in its diet.\n\nOne of its most distinctive features was its incredibly broad, flat mouth, which resembled a vacuum cleaner. Its teeth were adapted to grazing on low-lying plants, especially ferns. The structure of its jaw suggests it might have had a very efficient way of stripping vegetation close to the ground.\n\nNigerosaurus was discovered in the late 1990s in the Sahara Desert of Niger, which is where its name comes from. The fossils were well-preserved, and paleontologists learned a lot from them, including its strange and unique dental arrangement',
+    category: 'Dinosaurs',
+    subcategory: 'Sauropods',
+    family: 'Rebbachisauridae',
+    modelId: '74a92d01551c4defbf770f2f3785d600'
+  },
+    {
+    id: 'dilophosaurus-wetherilli',
+    name: 'Dilophosaurus wetherilli',
+    scientificName: 'Dilophosaurus wetherilli',
+    period: 'Jurassic',
+    location: 'North America',
+    length: '7 m',
+    weight: '400 kg',
+    diet: 'Carnivore',
+    image: '/images/creatures/creatures/dilo.webp',
+    description: 'Dilophosaurus lived about 193 million years ago during the early Jurassic period. It was a medium-sized theropod dinosaur, growing to about 20 feet (6 meters) long, with a relatively light build compared to some of the larger theropods that came later. What made Dilophosaurus stand out were its distinctive, paired crests on top of its head. These crests were likely made of bone, and while their exact purpose is still debated, they might have been used for display, possibly to attract mates or for social signaling.\n<br>\nIn the Jurassic Park films, Dilophosaurus is depicted as spitting venom and having a frilly neck crest, but there\'s no evidence to suggest it had venom or that its neck could expand like a modern-day frilled lizard. It likely just had the head crests and used them for some form of visual display.\n<br>\nThis dinosaur was a carnivore, and it hunted smaller animals, though it may have also scavenged. Its sharp teeth and strong jaws would have helped it tear into meat, and it was probably a fast runner, given its relatively lightweight frame.',
+    category: 'Dinosaurs',
+    subcategory: 'Theropods',
+    family: 'Dilophosauridae',
+    modelId: '8b4d2af3cc64433883ca42d4a6602c65'
   }];
 
 export const searchCreatures = (searchQuery: string): SearchResult[] => {
