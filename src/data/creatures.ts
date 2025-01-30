@@ -1109,6 +1109,68 @@ export const creatures: Creature[] = [
     subcategory: 'Theropods',
     family: 'Dilophosauridae',
     modelId: '8b4d2af3cc64433883ca42d4a6602c65'
+  },
+  {
+    id: 'apatosaurus-ajax',
+    name: 'Apatosaurus ajax',
+    scientificName: 'Apatosaurus ajax',
+    period: 'Jurassic',
+    location: 'North America',
+    length: '21-23 meters',
+    weight: '16,000 – 22,000 kg',
+    diet: 'Herbivore',
+    image: '/images/creatures/Apatosaurus.webp',
+    description: 'The Apatosaurus, part of the sauropod family, had an incredibly long, whip-like tail that not only helped in balancing its enormous body but may have also served as a defensive weapon against large predators like Allosaurus, which shared its habitat. While its neck could stretch up to 30 feet in length, allowing it to reach both low and high vegetation, recent studies suggest that it likely didn’t hold its neck in a fully vertical position as previously thought, but instead at a more horizontal angle, feeding on a variety of plant life that could range from shrubs to small trees. Despite its intimidating size—up to 75 feet in length and weighing 20 tons—the Apatosaurus had relatively small teeth suited for stripping leaves and soft vegetation rather than chewing, which means it probably swallowed large amounts of plant material whole and relied on its gut to process it. Fossils of these massive creatures suggest they lived in herds, possibly as a protective measure against predators, and their migration patterns may have been influenced by the availability of food sources in the ancient environments they inhabited.',
+    category: 'Dinosaurs',
+    subcategory: 'Sauropods',
+    family: 'Diplodocidae',
+    modelId: '253af31a91c44bbbb569d5582943d9a9'
+  },
+  {
+    id: 'brontosaurus-excelsus',
+    name: 'Brontosaurus excelsus',
+    scientificName: 'Brontosaurus excelsus',
+    period: 'Jurassic',
+    location: 'United States',
+    length: '21-22 meters',
+    weight: '30,000 kg',
+    diet: 'Herbivore',
+    image: '/images/creatures/brontosaurus.webp',
+    description: 'The Brontosaurus, one of the most iconic sauropods, lived during the Late Jurassic period, roughly 154 to 153 million years ago, and is best known for its long neck, relatively small head, and massive, robust body that could grow up to 72 feet long and weigh around 15 to 20 tons. Once thought to be a misidentified species of Apatosaurus, the Brontosaurus was eventually recognized as distinct, with key differences such as a slightly shorter, more arched neck, and a differently shaped skull, which was still small compared to its body size. Like other large sauropods, the Brontosaurus was a herbivore, likely feeding on a variety of plants, including conifers, cycads, and ferns, using its long neck to reach vegetation high in the trees as well as on the ground. Despite its immense size, it likely had a relatively slow metabolism, and its small, peg-like teeth were adapted for stripping leaves rather than chewing, meaning it likely ingested large quantities of food at once. Fossils suggest Brontosaurus may have lived in herds, which could have provided protection from predators such as the fearsome Allosaurus, and its long tail, capable of swinging like a powerful whip, might have been used both for communication within the herd and as a defensive tool.\n',
+    category: 'Dinosaurs',
+    subcategory: 'Sauropods',
+    family: 'Diplodocidae',
+    modelId: '63171eba44134df8935fd1aac8966333'
+  },
+    {
+    id: 'sauroposeidon-proteles',
+    name: 'Sauroposeidon proteles',
+    scientificName: 'Sauroposeidon proteles',
+    period: 'Jurassic',
+    location: 'Mexico',
+    length: '27 – 34 m ',
+    weight: '40,000 – 60,000 kg',
+    diet: 'Herbivore',
+    image: '/images/creatures/sauroposeidon.webp',
+    description: 'Sauroposeidon, a colossal sauropod dinosaur from the Early Cretaceous period around 110 million years ago, is considered one of the tallest dinosaurs ever discovered, with estimates suggesting it could have reached heights of up to 60 feet or more when standing. Known primarily from fossilized vertebrae found in what is now Oklahoma, USA, this dinosaur’s neck alone could have been over 40 feet long, allowing it to reach the tallest vegetation in its environment, such as tree tops that other herbivores couldn\'t access. Despite its massive size, with estimates putting its length at up to 105 feet and its weight around 40 tons, Sauroposeidon’s relatively small head and peg-like teeth suggest it was a herbivore, likely feeding on conifers and cycads. This dinosaur’s long neck was supported by a powerful, muscular body and a highly specialized skeletal structure that allowed it to support its immense size. Fossil evidence also suggests that Sauroposeidon, like other giant sauropods, had a relatively slow metabolism, relying on large amounts of plant material to sustain its massive body. While there is still much to learn about its behavior, Sauroposeidon would have likely been a solitary or small-group animal, moving slowly across the forested landscapes of North America, though its size would have made it a relatively low-priority target for predators like the theropod Acrocanthosaurus.',
+    category: 'Dinosaurs',
+    subcategory: 'Sauropods',
+    family: 'Brachiosauridae'
+  },
+  {
+    id: 'giraffatitan-brancai',
+    name: 'Giraffatitan brancai',
+    scientificName: 'Giraffatitan brancai',
+    period: 'Jurassic',
+    location: 'Tanzania',
+    length: '22 – 26 m',
+    weight: '23,000 – 40,000 kg',
+    diet: 'Herbivore',
+    image: '/images/creatures/giraffatitan.webp',
+    description: 'Giraffatitan, a massive sauropod dinosaur from the Late Jurassic period, is often considered a close relative of Brachiosaurus, though it is typically regarded as its own distinct genus. Fossils of Giraffatitan have been found in what is now Tanzania, with the most famous specimen, Giraffatitan brancai, estimated to have reached lengths of about 75 feet and weighed as much as 40 tons. This giant herbivore had a long, upward-sloping neck—similar to that of Brachiosaurus—allowing it to feed on high vegetation, possibly from tree tops, and reach a greater variety of plant life than many other contemporaneous herbivores. Its body was robust, with relatively short tail and legs compared to its long neck, and its front legs were longer than its hind legs, giving it a unique \"giraffe-like\" posture, which is how it earned its name. Giraffatitan likely fed on conifers and ferns, using its relatively small, peg-like teeth to strip leaves, though it may have also browsed from taller trees. Despite its enormous size, it is believed to have been relatively slow-moving, relying on its sheer size to avoid predators rather than speed or agility. Fossils suggest Giraffatitan lived in herds, which would have provided some protection from large carnivores like Allosaurus. Its skeletal structure and posture, combined with its immense size, likely made it one of the dominant plant-eaters in its ecosystem.',
+    category: 'Dinosaurs',
+    subcategory: 'Sauropods',
+    family: 'Brachiosauridae'
   }];
 
 export const searchCreatures = (searchQuery: string): SearchResult[] => {
