@@ -1171,6 +1171,54 @@ export const creatures: Creature[] = [
     category: 'Dinosaurs',
     subcategory: 'Sauropods',
     family: 'Brachiosauridae'
+  },
+  {
+    id: 'amargasaurus-cazaui',
+    name: 'Amargasaurus cazaui',
+    scientificName: 'Amargasaurus cazaui',
+    period: 'Cretaceous',
+    location: 'Argentina',
+    length: '13 meters ',
+    weight: '2,000-4,000 kg',
+    diet: 'Herbivore',
+    image: '/images/creatures/amargasaurus.webp',
+    description: 'Amargosaurus, an intriguing and somewhat enigmatic member of the sauropod group, inhabited what is now the region of Argentina during the Early Cretaceous period, around 125 million years ago, and is notable not only for its distinctive physical features but also for the ongoing scientific debate regarding its ecological role and behavior; its most striking characteristic is the series of elongated neural spines along its vertebrae, which extend in pairs from the neck to the tail and likely formed a pronounced sail-like structure or even a set of display structures, potentially used for thermoregulation, mate attraction, or social signaling, though their exact purpose remains uncertain; despite being relatively small by sauropod standards—reaching lengths of up to 30 feet—Amargosaurus still possessed a relatively robust body, with a relatively long, yet slender, neck that suggests it was capable of foraging in high vegetation, particularly ferns, cycads, and conifers, which flourished in the subtropical environments of the time; its relatively lightweight build, compared to the more massive long-necked sauropods like Brachiosaurus, likely allowed it to move more efficiently in the dense, humid forests where it lived, and while it shared its habitat with other giant herbivores, such as the armored dinosaur Polacanthus and the theropod predator, Concavenator, Amargosaurus would have likely relied on its agility and herd behavior to avoid predation, though definitive evidence of its social structure is sparse; the discovery of its fossils, first unearthed in the early 1990s from the La Amarga Formation in Patagonia, has provided invaluable insights into the diversity of sauropod evolution and the complex ecosystems of the Jurassic period, cementing Amargosaurus as a key figure in understanding the adaptation strategies of these ancient giants.',
+    category: 'Dinosaurs',
+    subcategory: 'Sauropods',
+    family: 'Dicraeosauridae',
+    modelId: 'f6a5c719a5b84677ae6cd6f857482b2a'
+  },
+  {
+    id: 'bajadasaurus-pronuspinax',
+    name: 'Bajadasaurus pronuspinax',
+    scientificName: 'Bajadasaurus pronuspinax',
+    period: 'Cretaceous',
+    location: 'northern Patagonia, (Argentina)',
+    length: '10 meters',
+    weight: '4,000 kg',
+    diet: 'Herbivore',
+    image: '/images/creatures/bajadasaurus.webp',
+    description: 'Bajadasaurus, a unique and enigmatic sauropodomorph from the Cretaceous period, roamed what is now the region of Patagonia, Argentina, around 140-133 million years ago, and is most famous for its highly unusual and distinctive features, particularly the extremely long, slender neck and a series of massive, backward-curving spines extending from its vertebrae. These spines, which were proportionally much longer than those of most other sauropods, likely supported a frill or sail-like structure, though their exact function remains a subject of scientific debate, with hypotheses ranging from display features used for mate attraction or social signaling to potential defensive mechanisms against predators; with an estimated body length of 30 to 33 feet, Bajadasaurus was relatively modest in size compared to other contemporaneous sauropods, yet its body was more lightly built, suggesting that it may have been more agile and capable of navigating the dense forests or coastal environments of the period, feeding primarily on low-lying ferns and conifers, as well as possibly reaching higher vegetation with its long neck; while the bizarre morphology of Bajadasaurus’s spines and neck hints at specialized behavior, such as intraspecific competition or unique feeding strategies, the overall ecological role of the dinosaur remains unclear; its fossilized remains, discovered in the Bajada Colorada Formation, have provided critical insights into the diversity of Cretaceous sauropodomorphs, and highlight the fascinating variety of evolutionary adaptations that arose during this period, suggesting that, despite the dominance of large, massive sauropods in the Cretaceous, there were still many unconventional forms evolving with unusual anatomical features that reflected the complexity of life in the late Mesozoic.',
+    category: 'Dinosaurs',
+    subcategory: 'Sauropods',
+    family: 'Dicraeosauridae',
+    modelId: '40742ccd808f46e2bda517b4e3f53c06'
+  },
+  {
+    id: 'pachycephalosaurus-grangeri',
+    name: 'Pachycephalosaurus grangeri',
+    scientificName: 'Pachycephalosaurus grangeri',
+    period: 'Cretaceous',
+    location: 'western North America',
+    length: ' 4.5 meters',
+    weight: '370–450',
+    diet: 'Omnivore',
+    image: '/images/creatures/pachy.webp',
+    description: 'Pachycephalosaurus, one of the most iconic and distinctive dinosaurs of the Late Cretaceous period, lived roughly 66 to 70 million years ago in what is now North America, and is best known for its incredibly thick, domed skull, which could reach up to 10 inches (25 centimeters) in thickness, making it one of the most remarkable examples of cranial adaptation in the dinosaur world; this thickened skull, which had a somewhat dome-shaped appearance and was often surrounded by bony bumps or knobs, is believed to have played a crucial role in social behaviors, such as head-butting or intra-species combat, possibly used in territorial disputes, mating contests, or social dominance displays, although some researchers also suggest that it might have served as a defensive feature to absorb blows from predators; despite its relatively small size—estimated at around 15 feet (4.5 meters) in length and 6 feet (1.8 meters) in height—Pachycephalosaurus had a robust, bipedal build with strong, muscular legs and a relatively lightweight body, enabling it to move quickly across the ancient plains and forests of what was then North America, likely feeding on a variety of plants, including low-lying shrubs, ferns, and other vegetation, although some paleontologists speculate that it may have also eaten seeds or even the bark of certain trees; in addition to its remarkable headgear, Pachycephalosaurus is also recognized for its relatively short tail, which helped with balance during movement, and its small, leaf-shaped teeth, which suggest it was a herbivore or omnivore, though its diet remains a topic of ongoing research; fossils of Pachycephalosaurus have been primarily found in the Hell Creek and Lance formations, famous for their abundant dinosaur remains, and while the exact social structure of these dinosaurs remains uncertain, it\'s likely they lived in groups, as suggested by the discovery of multiple individuals in close proximity in some fossil sites, and they may have exhibited complex social behaviors that involved the use of their impressive heads in displays or combat, adding another layer of mystery to these unique, hard-headed creatures that continue to capture the imagination of paleontologists and dinosaur enthusiasts alike.',
+    category: 'Dinosaurs',
+    subcategory: 'Ornithopods',
+    family: 'Pachycephalosauridae',
+    modelId: '1c23aee07a734e3da5b344fa8077334c'
   }];
 
 export const searchCreatures = (searchQuery: string): SearchResult[] => {
