@@ -924,17 +924,17 @@ export const creatures: Creature[] = [
     family: 'Boidae',
     modelId: '9616c130d7f142f199115a0271a78c00'
   },
-    {
+        {
     id: 'ground-sloth',
-    name: 'Ground Sloth',
-    scientificName: 'Ground Sloth',
-    period: 'Paleogene',
-    location: 'Americas',
+    name: 'Megatherium americanum',
+    scientificName: 'Megatherium americanum',
+    period: 'Quaternary',
+    location: 'America',
     length: '6 meters',
-    weight: 'up to 3,000 kilograms',
+    weight: 'up to 4,000kg',
     diet: 'Omnivore',
-    image: '/images/ground_sloth.jpg',
-    description: 'Ground sloths were large, slow-moving herbivorous mammals that thrived during the Pleistocene epoch. They belonged to the group Xenarthra, which also includes modern-day sloths, armadillos, and anteaters. Unlike their tree-dwelling relatives, ground sloths lived on the ground and ranged in size from small dog-like species to the massive Megatherium, which could reach up to 6 meters (20 feet) in length and weigh over 4 tons.\n\nNative to the Americas, ground sloths were well-adapted to various habitats, from grasslands to forests. They primarily fed on leaves, fruits, and other vegetation, using their long claws to grasp and strip plants. Despite their slow pace, they were formidable due to their sheer size and strength.\n\nGround sloths became extinct around 10,000 years ago, likely due to a combination of climate change and overhunting by humans. Their fossils provide valuable insights into the ecosystems of prehistoric times and the evolution of sloths.',
+    image: '/images/creatures/megatherium.webp',
+    description: 'Megatherium, an enormous ground sloth that roamed the Americas during the Pleistocene epoch, was one of the most awe-inspiring and massive mammals of its time, reaching lengths of up to 6 meters (about 20 feet) and weighing as much as 4,000 kilograms (approximately 8,800 pounds). This giant herbivore, which lived roughly 2.5 million years ago until it went extinct around 10,000 years ago, was characterized by its large, curved claws—some of which measured over 30 centimeters (12 inches)—used for pulling down vegetation and possibly for defense. Despite its massive size, Megatherium likely moved slowly, grazing on leaves, shrubs, and perhaps even trees in the open woodlands and grasslands of South America, relying on its powerful limbs and claws to pull down foliage from heights. Its body structure, with strong hind limbs and shorter front limbs, suggests it was capable of standing on its hind legs to reach high branches, much like some modern-day tree-dwelling sloths. Megatherium’s diet mainly consisted of vegetation, and it has been speculated that, although it was not primarily a predator, it may have used its claws to defend itself from large predators like sabre-toothed cats or early humans. Fossil evidence indicates that Megatherium, like many other megafauna of the time, was eventually driven to extinction by a combination of climate change and hunting pressure from early human populations, marking the end of a truly extraordinary era of massive creatures.',
     category: 'Early Mammals',
     subcategory: 'Prehistoric Mammals',
     family: 'Megatheriidae'
@@ -1219,6 +1219,51 @@ export const creatures: Creature[] = [
     subcategory: 'Ornithopods',
     family: 'Pachycephalosauridae',
     modelId: '1c23aee07a734e3da5b344fa8077334c'
+  },
+  {
+    id: 'argentavis-magnificens',
+    name: 'Argentavis magnificens',
+    scientificName: 'Argentavis magnificens',
+    period: 'Neogene',
+    location: 'Argentina',
+    length: '7 meters',
+    weight: '70kg',
+    diet: 'Carnivore',
+    image: '/images/creatures/argy.webp',
+    description: 'Argentavis, an awe-inspiring genus of giant bird that roamed the skies during the Late Miocene approximately 6 million years ago, is often regarded as one of the largest flying birds to ever exist, with an estimated wingspan of up to 7 meters (around 23 feet), a size that dwarfs even today\'s largest flying birds, such as the albatross. This massive bird, which lived in the open, semi-arid landscapes of what is now Argentina, likely relied on its powerful gliding abilities to travel vast distances in search of prey, including large mammals and carrion, with its enormous wings allowing it to soar gracefully with minimal energy expenditure. Its size, coupled with a strong, curved beak and large talons, suggests it may have been a scavenger, feasting on the carcasses of sizable animals, and possibly even a predator capable of capturing and killing prey much larger than those typically hunted by modern birds of prey. While its flight would have been graceful and efficient, requiring little flapping, its large body mass would have limited its ability to take off from a standstill, likely requiring a downhill run or strong updrafts to get airborne. The extinction of Argentavis remains somewhat mysterious, but it is believed to have been a result of changes in climate and the environment, which reduced the open spaces it depended on and led to the eventual disappearance of this remarkable bird.',
+    category: 'Flying Creatures',
+    subcategory: 'Early Birds',
+    family: 'Teratornithidae'
+  },
+    {
+    id: 'micropachycephalosaurus-hongtuyanensis',
+    name: 'Micropachycephalosaurus hongtuyanensis',
+    scientificName: 'Micropachycephalosaurus hongtuyanensis',
+    period: 'Cretaceous',
+    location: 'China',
+    length: '1 metre',
+    weight: '2.3 – 4.5 kg',
+    diet: 'Herbivore',
+    image: '/images/creatures/Micropachycephalosaurus.webp',
+    description: 'ChatGPT\nMicropachycephalosaurus, a relatively small and somewhat unusual dinosaur, was a herbivorous species that lived during the Late Cretaceous period, around 75 million years ago, in what is now modern-day China. With a name that translates to “small thick-headed lizard,” this dinosaur was part of the Pachycephalosauridae family, known for its distinctive, thick skulls, though in Micropachycephalosaurus, the skull wasn’t as heavily domed as those of its larger relatives. Growing to only about 1 meters (3 feet) in length, it was much smaller than other pachycephalosaurs, which were often much larger and more robust. Its relatively lightweight frame, with a small, bipedal body, suggests it was a quick and agile dinosaur, likely using its speed to evade predators rather than relying on its skull for combat, unlike the more aggressive, headbutting pachycephalosaurs. The thickened portion of its skull, though not as pronounced, was still likely used in defense or in intraspecific competition, where individuals might have used their skulls to push or fight over territory, mates, or social status. The environment it inhabited would have been a mix of forested and open areas, with a diet likely consisting of low-lying plants, ferns, and possibly small shrubs. Micropachycephalosaurus’ relatively small size and unusual features make it a fascinating example of the diversity within the Pachycephalosaur group, showing how adaptations can vary even within closely related species. It is also the dinosaur with the longest name with 23 letters.',
+    category: 'Dinosaurs',
+    subcategory: 'Ceratopsians',
+    family: 'Marginocephalia'
+  },
+  {
+    id: 'mei-long',
+    name: 'Mei long',
+    scientificName: 'Mei long',
+    period: 'Cretaceous',
+    location: 'China',
+    length: '53 cm (juvenile)',
+    weight: '3.6 kg',
+    diet: 'Carnivore',
+    image: '/images/creatures/Mei-long-is-not-always-sleeping.webp',
+    description: 'Mei long, a small and feathered dinosaur from the Early Cretaceous period, lived around 120 million years ago and is best known for its remarkable fossil, which preserved the creature in a curled-up, sleeping position. This bipedal theropod, measuring only about 53 centimeters (16 inches) in length, was a member of the Dromaeosauridae family, which includes more famous relatives like Velociraptor, though Mei long was much smaller and more delicate. The name Mei long translates to \"sleeping dragon\" in Chinese, a fitting tribute to the fossil\'s discovery—showing the dinosaur in a seemingly peaceful pose, possibly indicating that it was curled up to sleep, much like some modern birds do.\n\nMei long was likely a small, feathered predator, with a diet consisting of small vertebrates and insects. Its body structure—light, nimble, and built for speed—suggests that it would have been an agile hunter, possibly stalking its prey in the dense, lush environments of what is now China, where fossils of Mei long have been found. It had a relatively long tail, sharp claws, and a lightly built skull, features that are characteristic of many small theropods. The feathers it likely possessed would have been used for insulation, display, or possibly aiding in balance while running or climbing. The sleeping posture preserved in the fossil, alongside evidence of feather impressions, provides important insight into the early evolution of feathers, showing that even small theropods like Mei long may have already had feather-like structures long before the rise of modern birds. The discovery of this well-preserved specimen is also significant because it provides evidence of behavior—such as sleep—offering a rare glimpse into the daily life of early dinosaurs.',
+    category: 'Dinosaurs',
+    subcategory: 'Ornithopods',
+    family: 'Troodontidae'
   }];
 
 export const searchCreatures = (searchQuery: string): SearchResult[] => {
