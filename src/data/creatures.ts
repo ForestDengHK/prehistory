@@ -1296,6 +1296,37 @@ export const creatures: Creature[] = [
     subcategory: 'Invertebrates',
     family: 'Hurdiidae',
     modelId: '1fbcf81543134fb9b39457546b77a573'
+  },
+  {
+    id: 'elasmosaurus-platyurus',
+    name: 'Elasmosaurus platyurus',
+    scientificName: 'Elasmosaurus platyurus',
+    period: 'Cretaceous',
+    location: 'North America',
+    length: '10 meters',
+    weight: '11,000-14,000 kg',
+    diet: 'Carnivore',
+    image: '/images/creatures/elasmo.webp',
+    description: 'Elasmosaurus was a long-necked marine reptile from the Late Cretaceous period, known for its incredibly elongated neck, which made up about half of its total body length—around 10 meters  in total, with its neck stretching up to 7 meters. This iconic plesiosaur had a relatively small head, equipped with sharp teeth designed for catching fish, squid, and other marine prey. Its body, though bulky, was supported by four large, flipper-like limbs, which helped it maneuver through the water with impressive agility despite its size. Elasmosaurus\'s long neck likely gave it an advantage when hunting, allowing it to swiftly strike at prey while keeping most of its body hidden from view. Paleontologists believe that it may have used its neck like a hunting tool, sweeping it through schools of fish or ambushing prey from below, using surprise and speed to capture meals. Fossil evidence suggests that Elasmosaurus lived in shallow seas, where it was a top predator in its ecosystem, though it likely faced competition from other marine reptiles like the larger mosasaurs. Despite its predatory nature, Elasmosaurus was a non-mammalian reptile, closely related to modern reptiles like snakes and lizards but adapted to life in the ocean rather than on land.',
+    category: 'Marine Creatures',
+    subcategory: 'Marine Reptiles',
+    family: 'Elasmosauridae',
+    modelId: '54416e11ea5e495fb2d7cf3d8d856b99'
+  },
+  {
+    id: 'styxosaurus-snowii',
+    name: 'Styxosaurus snowii',
+    scientificName: 'Styxosaurus snowii',
+    period: 'Cretaceous',
+    location: 'Hell Creek in Logan County, Kansas (North America)',
+    length: '11 – 12 m',
+    weight: '4,000 kg',
+    diet: 'Carnivore',
+    image: '/images/creatures/styxosaurus.webp',
+    description: 'Styxosaurus was another formidable marine reptile from the Late Cretaceous period, closely related to Elasmosaurus and part of the Plesiosauria group. Characterized by its long neck—though not quite as extreme as its cousin—it still had an impressive length, with some species reaching up to 12 meters in total body length. Styxosaurus had a relatively smaller head compared to its body, with sharp, pointed teeth that were perfect for catching fish and squid, its primary diet. Its long, powerful flippers were adapted for agile swimming, allowing it to move swiftly through the water, and it likely used its neck to maneuver and strike at prey, possibly in a similar hunting technique to Elasmosaurus, though it may have been more suited for quick, sudden lunges rather than sweeping motions.\nWhat sets Styxosaurus apart from some other plesiosaurs is its relatively shorter neck in comparison, which gave it slightly more stability in the water and may have allowed it to dive deeper or navigate different environments. Fossil evidence shows that Styxosaurus inhabited shallow seas, and although it was an apex predator in its own right, it likely had to compete with other marine reptiles like mosasaurs and sharks for food. Like other plesiosaurs, Styxosaurus was well-adapted to life in the water, with a streamlined body and a tail that helped with balance and propulsion.',
+    category: 'Marine Creatures',
+    subcategory: 'Marine Reptiles',
+    family: 'Elasmosauridae'
   }];
 
 export const searchCreatures = (searchQuery: string): SearchResult[] => {
