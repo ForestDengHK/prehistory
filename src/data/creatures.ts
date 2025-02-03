@@ -1264,6 +1264,38 @@ export const creatures: Creature[] = [
     category: 'Dinosaurs',
     subcategory: 'Ornithopods',
     family: 'Troodontidae'
+  },
+    {
+    id: 'tarbosaurus-bataar',
+    name: 'Tarbosaurus bataar',
+    scientificName: 'Tarbosaurus bataar',
+    period: 'Cretaceous',
+    location: 'Mongolia (Asia)',
+    length: '10-12 m',
+    weight: '1,700 – 2,900 kg',
+    diet: 'Carnivore',
+    image: '/images/creatures/tarbo.webp',
+    description: 'Tarbosaurus, belonging to the family Tyrannosauridae, was a top predator in its ecosystem, exhibiting features similar to its North American relative, Tyrannosaurus rex, such as a robust skull with sharp, serrated teeth capable of delivering crushing bites, and strong hind limbs built for swift, though likely not sustained, pursuit of prey. With its relatively smaller, yet muscular forelimbs, it is believed to have had a keen sense of smell and sight, using its acute sensory abilities to track herbivorous dinosaurs like the hadrosaurids and ceratopsians that populated its habitat, while likely scavenging or hunting in packs or alone. Fossil evidence suggests that Tarbosaurus had a large, powerful tail that could have aided in balance while chasing down prey or maintaining agility. Despite its formidable size, Tarbosaurus may have faced competition from other carnivores, such as the smaller theropod, Velociraptor, which shared its environment, though the exact nature of their interactions remains speculative.',
+    category: 'Dinosaurs',
+    subcategory: 'Theropods',
+    family: 'Tyrannosauridae',
+    modelId: '7c8fd38bfaf148ba97c9a32373c565e7'
+  },
+    {
+    id: 'aegirocassis-benmoulai',
+    name: 'Aegirocassis benmoulai',
+    scientificName: 'Aegirocassis benmoulai',
+    period: 'Ordovician',
+    location: 'south-eastern Morocco (Africa)',
+    length: '2 m',
+    weight: '40 kg',
+    diet: 'Herbivore',
+    image: '/images/creatures/aegirocassis.webp',
+    description: 'Aegirocassis was a remarkable sea scorpion that thrived during the Ordovician period, around 460 million years ago. As one of the largest known eurypterids, it grew up to 2 meters (6.5 feet) in length, dominating the marine ecosystems of its time. Its body was covered in hard exoskeletons, and it possessed a unique set of specialized front appendages, which scientists believe were adapted for filter feeding. These appendages, shaped like large, paddle-like structures, helped Aegirocassis sweep through the water, capturing plankton and small invertebrates. Unlike many of its predatory relatives, which used claws to seize prey, Aegirocassis likely used these feeding appendages in a similar fashion to modern filter-feeding arthropods like certain crabs and shrimp. Its well-developed compound eyes indicate it had excellent vision, and it likely used its large, muscular limbs for swimming in the open ocean, propelling itself with a side-to-side rowing motion. Aegirocassis’s unique ecological role during the Ordovician represents an early example of filter feeding in large arthropods, and it likely helped shape the dynamics of ancient marine food chains.',
+    category: 'Marine Creatures',
+    subcategory: 'Invertebrates',
+    family: 'Hurdiidae',
+    modelId: '1fbcf81543134fb9b39457546b77a573'
   }];
 
 export const searchCreatures = (searchQuery: string): SearchResult[] => {
