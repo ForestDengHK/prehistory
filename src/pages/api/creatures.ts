@@ -37,7 +37,11 @@ export const POST: APIRoute = async ({ request }) => {
 
     // Generate ID from name
     const id = data.name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
-    const newCreature: Creature = { ...data, id };
+    const newCreature: Creature = { 
+      ...data, 
+      id,
+      lastUpdated: data.lastUpdated ? parseInt(data.lastUpdated) : undefined // Convert lastUpdated to number
+    };
 
     // Read the current creatures file
     const creaturesFilePath = path.join(process.cwd(), 'src', 'data', 'creatures.ts');
@@ -63,7 +67,7 @@ export const POST: APIRoute = async ({ request }) => {
     description: '${newCreature.description.replace(/'/g, "\\'").replace(/"/g, '\\"').replace(/\n/g, '\\n').replace(/\r/g, '\\r').replace(/\t/g, '\\t')}',
     category: '${newCreature.category}',
     subcategory: '${newCreature.subcategory}',
-    family: '${newCreature.family}'${newCreature.modelId ? `,\n    modelId: '${newCreature.modelId}'` : ''}
+    family: '${newCreature.family}'${newCreature.modelId ? `,\n    modelId: '${newCreature.modelId}'` : ''}${newCreature.lastUpdated ? `,\n    lastUpdated: ${newCreature.lastUpdated}` : ''}
   }`;
 
     // Insert the new creature at the end of the array

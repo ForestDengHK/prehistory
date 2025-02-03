@@ -15,6 +15,7 @@ export interface Creature {
   subcategory: Subcategory;
   family: string;
   modelId?: string; // Optional Sketchfab model ID
+  lastUpdated?: number; // Unix timestamp in milliseconds for more precise sorting
 }
 
 export interface SearchResult extends Creature {
@@ -46,7 +47,8 @@ export const creatures: Creature[] = [
     category: 'Dinosaurs',
     subcategory: 'Theropods',
     family: 'Tyrannosauridae',
-    modelId: '30e9e38ac7554062be7406658881d105'
+    modelId: '30e9e38ac7554062be7406658881d105',
+    lastUpdated: 1712284800000 // 2024-04-01
   },
                   {
     id: 'megalodon',
@@ -62,7 +64,8 @@ export const creatures: Creature[] = [
     category: 'Marine Creatures',
     subcategory: 'Prehistoric Sharks',
     family: 'Otodontidae',
-    modelId: 'dc2b75f091964c26b05544f6a990e7ac' // Smithsonian 3D T-Rex
+    modelId: 'dc2b75f091964c26b05544f6a990e7ac', // Smithsonian 3D T-Rex
+    lastUpdated: 1712284800000 // 2024-04-01
   },
                     {
     id: 'nanotyrannus',
@@ -77,7 +80,8 @@ export const creatures: Creature[] = [
     description: 'The Nanotyrannus is a controversial genus of small tyrannosaurid, with debates ongoing about whether it is a distinct species or a juvenile Tyrannosaurus rex. Estimated to reach lengths of around 17–20 feet, this predator lived during the late Cretaceous period. With a more slender build and proportionally longer arms compared to T. rex, it may have been an agile and fast hunter, preying on smaller dinosaurs and scavenging. Its lighter skull structure suggests adaptations for speed and precision rather than brute force. While its true identity remains debated, Nanotyrannus represents a fascinating chapter in the study of dinosaur evolution and diversity.',
     category: 'Dinosaurs',
     subcategory: 'Theropods',
-    family: 'Tyrannosauridae'
+    family: 'Tyrannosauridae',
+    lastUpdated: 1712284800000 // 2024-04-01
   },
               {
     id: 'raptorex',
@@ -92,7 +96,8 @@ export const creatures: Creature[] = [
     description: 'The Raptorex was a small but significant tyrannosaurid dinosaur that lived approximately 125 million years ago during the Early Cretaceous period. Measuring about 9 feet in length and weighing roughly 80 pounds, it showcased many of the key features seen in its larger relative, Tyrannosaurus rex, including a large skull, strong hind legs for speed, and small, two-fingered arms. Raptorex’s discovery provided critical insights into the evolutionary development of tyrannosaurs, demonstrating that their characteristic adaptations—such as powerful jaws and reduced arms—evolved in smaller ancestors before scaling up in size. This dinosaur represents an important link in the lineage of one of history’s most famous predators.',
     category: 'Dinosaurs',
     subcategory: 'Theropods',
-    family: 'Tyrannosauridae'
+    family: 'Tyrannosauridae',
+    lastUpdated: 1712284800000 // 2024-04-01
   },
               {
     id: 'stegosaurus',
@@ -108,7 +113,8 @@ export const creatures: Creature[] = [
     category: 'Dinosaurs',
     subcategory: 'Stegosaurs',
     family: 'Stegosauridae',
-    modelId: '6e9a2f36f0a447758d71c2134512580e'
+    modelId: '6e9a2f36f0a447758d71c2134512580e',
+    lastUpdated: 1712284800000 // 2024-04-01
   },
           {
     id: 'velociraptor',
@@ -124,7 +130,8 @@ export const creatures: Creature[] = [
     category: 'Dinosaurs',
     subcategory: 'Theropods',
     family: 'Dromaeosauridae',
-    modelId: '40412e7e70624086860fc1172f465561'
+    modelId: '40412e7e70624086860fc1172f465561',
+    lastUpdated: 1712284800000 // 2024-04-01
   },
             {
     id: 'triceratops',
@@ -183,10 +190,11 @@ export const creatures: Creature[] = [
     weight: '65,000 kg',
     diet: 'Herbivore',
     image: '/images/dreadnoughtus.jpg',
-    description: 'The Dreadnoughtus, named for its “fear nothing” stature, is one of the largest known dinosaurs and a member of the titanosaur family. Living approximately 77 million years ago during the Late Cretaceous period, this colossal herbivore measured up to 85 feet in length and weighed an estimated 65 tons—more massive than most other land animals ever to exist. Its long neck allowed it to reach high vegetation, while its massive tail provided balance and potential defense. Despite its size, Dreadnoughtus was likely a slow-moving, peaceful giant. Its remarkably complete fossil remains have provided scientists invaluable insights into the biology of giant sauropods.',
+    description: 'The Dreadnoughtus, named for its "fear nothing" stature, is one of the largest known dinosaurs and a member of the titanosaur family. Living approximately 77 million years ago during the Late Cretaceous period, this colossal herbivore measured up to 85 feet in length and weighed an estimated 65 tons—more massive than most other land animals ever to exist. Its long neck allowed it to reach high vegetation, while its massive tail provided balance and potential defense. Despite its size, its long, graceful neck would have enabled it to feed across vast areas without needing to move constantly, and its thick, pillar-like legs supported its massive body. Fossil evidence of Argentinosaurus is limited to incomplete skeletons, mostly from vertebrae and limb bones, found in the Neuquén Province of Argentina, leading to its name. Because of its immense proportions, it is often cited as one of the heaviest and longest sauropods, alongside other giants like Patagotitan and Dreadnoughtus. As an herbivore, it would have likely lived in herds, and its size may have helped it maintain a largely solitary lifestyle, avoiding predators by sheer magnitude and perhaps using its tail for defense. The discovery of Argentinosaurus was pivotal in understanding the diversity and size range of Late Cretaceous sauropods, underscoring the extreme evolutionary paths that some herbivorous dinosaurs took to dominate the Mesozoic landscapes.',
     category: 'Dinosaurs',
     subcategory: 'Sauropods',
-    family: 'Titanosauridae'
+    family: 'Titanosauridae',
+    lastUpdated: 1712284800000 // 2024-04-01
   },
       {
     id: 'spinosaurus',
@@ -202,7 +210,8 @@ export const creatures: Creature[] = [
     category: 'Dinosaurs',
     subcategory: 'Theropods',
     family: 'Spinosauridae',
-    modelId: 'f136cb45937b4695af705ffd032809d9' // Museum Collection Spinosaurus
+    modelId: 'f136cb45937b4695af705ffd032809d9',
+    lastUpdated: 1712284800000 // 2024-04-01
   },
             {
     id: 'stromatolite-bacteria',
@@ -217,7 +226,8 @@ export const creatures: Creature[] = [
     description: '**Stromatolite bacteria** represent some of Earth\'s earliest life forms, dating back over 3.5 billion years. These ancient microorganisms, primarily cyanobacteria, played a critical role in shaping Earth\'s biosphere. By forming layered, rock-like structures called stromatolites, they created microbial mats that trapped sediment and secreted calcium carbonate, gradually building these formations over time.\n <br> <br> Stromatolite bacteria were also pivotal in the evolution of the planet\'s atmosphere through photosynthesis, producing oxygen that eventually led to the Great Oxidation Event. Though much less common today, modern stromatolites still exist in specific environments, such as Shark Bay in Australia, offering a glimpse into Earth\'s primordial past and the origins of life.',
     category: 'Microorganisms',
     subcategory: 'Bacteria',
-    family: 'Cyanobacteria'
+    family: 'Cyanobacteria',
+    lastUpdated: 1712284800000 // 2024-04-01
   },
     {
     id: 'morganucodon',
@@ -232,7 +242,8 @@ export const creatures: Creature[] = [
     description: 'The Morganucodon is an early mammal-like creature that lived during the Late Triassic to Early Jurassic period, approximately 205–195 million years ago. About the size of a modern shrew, it measured around 4 inches long and weighed only a few ounces. Morganucodon is notable for its transitional features between reptiles and mammals, including differentiated teeth (incisors, canines, and molars) and a jaw structure that incorporated both reptilian and mammalian elements. <br><br>\n\nIt likely fed on insects and small invertebrates, using its sharp teeth and nocturnal habits to avoid predators. Morganucodon represents a pivotal step in mammalian evolution, showcasing traits that would later define true mammals, such as improved hearing and a more advanced jaw joint. Its fossils provide key insights into how early mammals emerged and adapted in a dinosaur-dominated world.',
     category: 'Early Mammals',
     subcategory: 'Prehistoric Mammals',
-    family: 'Morganucodontidae'
+    family: 'Morganucodontidae',
+    lastUpdated: 1712284800000 // 2024-04-01
   },
     {
     id: 'giganotosaurus-carolinii',
@@ -248,7 +259,8 @@ export const creatures: Creature[] = [
     category: 'Dinosaurs',
     subcategory: 'Theropods',
     family: 'Tyrannosauridae',
-    modelId: 'a19074c7a9944c648ee634599b25afd3'
+    modelId: 'a19074c7a9944c648ee634599b25afd3',
+    lastUpdated: 1717545600000 // 2024-06-02
   },
         {
     id: 'stegosaurus-ungulatus',
@@ -264,7 +276,9 @@ export const creatures: Creature[] = [
     category: 'Dinosaurs',
     subcategory: 'Stegosaurs',
     family: 'Stegosauridae',
-    modelId: '5713ce4d1e374edd9a63b86436d649dc'
+    modelId: '5713ce4d1e374edd9a63b86436d649dc',
+    //2024-06-03
+    lastUpdated: 1717545600000
   },
     {
     id: 'helicoprion-bessonowi',
@@ -280,7 +294,9 @@ export const creatures: Creature[] = [
     category: 'Marine Creatures',
     subcategory: 'Prehistoric Sharks',
     family: 'Helicoprionidae',
-    modelId: 'c43a753638c94a25805aa3a30ab2a85d'
+    modelId: 'c43a753638c94a25805aa3a30ab2a85d',
+    //2024-06-04
+    lastUpdated: 1717718400000
   },
     {
     id: 'anomalocaris-canadensis',
@@ -296,7 +312,9 @@ export const creatures: Creature[] = [
     category: 'Marine Creatures',
     subcategory: 'Invertebrates',
     family: 'Anomalocarisidae',
-    modelId: '9550c5f52fd041788909f49e55a8c714'
+    modelId: '9550c5f52fd041788909f49e55a8c714',
+    //2024-06-05
+    lastUpdated: 1717891200000
   },
               {
     id: 'liopleurodon-ferox',
@@ -312,7 +330,9 @@ export const creatures: Creature[] = [
     category: 'Marine Creatures',
     subcategory: 'Marine Reptiles',
     family: 'Liopleurodonidae',
-    modelId: '522e811044bc4e09bf84431e6c1cc109'
+    modelId: '522e811044bc4e09bf84431e6c1cc109',
+    //2024-06-06
+    lastUpdated: 1718064000000
   },
         {
     id: 'mosasaurus-hoffmannii',
@@ -328,7 +348,9 @@ export const creatures: Creature[] = [
     category: 'Marine Creatures',
     subcategory: 'Marine Reptiles',
     family: 'Mosasauridae',
-    modelId: '245cd26f2cf54e88826e9c845dfcf92d'
+    modelId: '245cd26f2cf54e88826e9c845dfcf92d',
+    //2024-06-07
+    lastUpdated: 1718236800000
   },
         {
     id: 'sarcoprion-edax',
@@ -359,7 +381,9 @@ export const creatures: Creature[] = [
     category: 'Marine Creatures',
     subcategory: 'Prehistoric Fish',
     family: 'Dunkleosteidae',
-    modelId: '2477a7735fe14baeb75499ad95819d2b'
+    modelId: '2477a7735fe14baeb75499ad95819d2b',
+    //2024-06-08
+    lastUpdated: 1718409600000
   },
   {
     id: 'shonisaurus-popularis',
@@ -374,7 +398,9 @@ export const creatures: Creature[] = [
     description: 'Shoniosaurus was a large marine reptile from the Late Cretaceous period, belonging to the family Shonisauridae and a member of the order Ichthyosauria. This impressive marine predator could grow up to 15 meters in length and had a long, streamlined body, reminiscent of a modern dolphin, designed for fast swimming through the warm seas of what is now North America and Europe. With a relatively short neck, large eyes, and a pointed snout filled with conical teeth, Shoniosaurus was well adapted to hunt fish and cephalopods, including squid, in deep or coastal waters. It had a large, powerful tail that helped it propel itself swiftly through the water, and its pectoral and pelvic fins were adapted for maneuverability, allowing it to make rapid, controlled movements when chasing prey or evading larger predators. Unlike some of its ichthyosaur relatives, Shoniosaurus had a less pronounced dorsal fin, likely because it did not need it for balance in its aquatic environment. Fossil evidence of this animal shows that it likely gave birth to live young, as is characteristic of many ichthyosaurs, making it an important part of the Mesozoic marine ecosystem. The genus is often seen as an example of the peak evolution of ichthyosaurs just before the group’s eventual decline at the end of the Cretaceous.',
     category: 'Marine Creatures',
     subcategory: 'Marine Reptiles',
-    family: 'Shonisauridae'
+    family: 'Shonisauridae',
+    //2024-06-09
+    lastUpdated: 1718582400000
   },
   {
     id: 'ichthyotitan-severnensis',
@@ -389,7 +415,9 @@ export const creatures: Creature[] = [
     description: 'Ichthyotitan is the only shastasaurid and giant ichthyosaur to be known from the Rhaetian, found in the fossil record 13 million years after their relatives. The lineage is believed to have gone extinct immediately after in the Triassic–Jurassic extinction event, with later ichthyosaurs never reaching similar sizes until their extinction in the early Late Cretaceous.',
     category: 'Marine Creatures',
     subcategory: 'Marine Reptiles',
-    family: 'Ichthyosauridae'
+    family: 'Ichthyosauridae',
+    //2024-06-10
+    lastUpdated: 1718755200000
   },
       {
     id: 'pinosaurus-maroccanus',
@@ -404,7 +432,9 @@ export const creatures: Creature[] = [
     description: 'Not much is known about this type of Spinosaurus or whether if it actually existed',
     category: 'Dinosaurs',
     subcategory: 'Theropods',
-    family: 'Spinosauridae'
+    family: 'Spinosauridae',
+    //2024-06-11
+    lastUpdated: 1718928000000
   },
               {
     id: 'carcharodontosaurus-saharicus',
@@ -420,7 +450,9 @@ export const creatures: Creature[] = [
     category: 'Dinosaurs',
     subcategory: 'Theropods',
     family: 'Carcharodontosauridae',
-    modelId: 'c95efd8b235f4d8b88f5b9aaa216270f'
+    modelId: 'c95efd8b235f4d8b88f5b9aaa216270f',
+    //2024-06-12
+    lastUpdated: 1719100800000
   },
       {
     id: 'ceratosaurus-nasicornis',
@@ -436,7 +468,9 @@ export const creatures: Creature[] = [
     category: 'Dinosaurs',
     subcategory: 'Theropods',
     family: 'Ceratosauridae',
-    modelId: '8068f3c7b8924def901ec4c1172b4cc2'
+    modelId: '8068f3c7b8924def901ec4c1172b4cc2',
+    //2024-06-13
+    lastUpdated: 1719273600000
   },
   {
     id: 'ceratosaurus-dentisulcatus',
@@ -451,7 +485,9 @@ export const creatures: Creature[] = [
     description: 'Ceratosaurus dentisulcatus and Ceratosaurus nasicornis exhibit distinct differences in their physical characteristics and likely ecological roles, with C. nasicornis featuring a prominent, horn-like structure on its nose, which may have been used for display or combat, and a more robust, larger body measuring up to 8 meters in length, suggesting it could have been a versatile predator capable of both hunting and scavenging; in contrast, C. dentisulcatus was generally smaller, around 3.5 to 4 meters long, with more specialized, serrated teeth likely adapted for a diet focused on smaller, more agile prey, and a less pronounced nasal feature, indicating it may have been a more nimble and precise predator, occupying a slightly different ecological niche.',
     category: 'Dinosaurs',
     subcategory: 'Theropods',
-    family: 'Ceratosauridae'
+    family: 'Ceratosauridae',
+    //2024-06-14
+    lastUpdated: 1719446400000
   },
         {
     id: 'allosaurus-fragilis',
@@ -467,7 +503,9 @@ export const creatures: Creature[] = [
     category: 'Dinosaurs',
     subcategory: 'Theropods',
     family: 'Allosauridae',
-    modelId: 'e957609623604e918e93c7658efca3ce'
+    modelId: 'e957609623604e918e93c7658efca3ce',
+    //2024-06-15
+    lastUpdated: 1719619200000
   },
       {
     id: 'cryolophosaurus-ellioti',
@@ -483,7 +521,9 @@ export const creatures: Creature[] = [
     category: 'Dinosaurs',
     subcategory: 'Theropods',
     family: 'Theropoda',
-    modelId: '06136b7f83fe4a9e9b416f55e916c170'
+    modelId: '06136b7f83fe4a9e9b416f55e916c170',
+    //2024-06-16
+    lastUpdated: 1719792000000
   },
       {
     id: 'argentinosaurus-huinculensis',
@@ -499,7 +539,9 @@ export const creatures: Creature[] = [
     category: 'Dinosaurs',
     subcategory: 'Sauropods',
     family: 'Titanosauridae',
-    modelId: '23f87ddef2e444a59f9c6c9fc7defbd8'
+    modelId: '23f87ddef2e444a59f9c6c9fc7defbd8',
+    //2024-06-17
+    lastUpdated: 1719964800000
   },
     {
     id: 'quetzalcoatlus-northropi',
@@ -515,7 +557,9 @@ export const creatures: Creature[] = [
     category: 'Flying Creatures',
     subcategory: 'Pterosaurs',
     family: 'Azhdarchidae',
-    modelId: 'b24471222511413aac60f76f964183f7'
+    modelId: 'b24471222511413aac60f76f964183f7',
+    //2024-06-18
+    lastUpdated: 1720137600000
   },
           {
     id: 'brachiosaurus-altithorax',
@@ -531,7 +575,9 @@ export const creatures: Creature[] = [
     category: 'Dinosaurs',
     subcategory: 'Sauropods',
     family: 'Brachiosauridae',
-    modelId: '641feb1a485b492c8de31e84ff89ad64'
+    modelId: '641feb1a485b492c8de31e84ff89ad64',
+    //2024-06-19
+    lastUpdated: 1720310400000
   },
     {
     id: '-livyatan-melvillei',
@@ -547,7 +593,9 @@ export const creatures: Creature[] = [
     category: 'Marine Creatures',
     subcategory: 'Prehistoric Whales',
     family: 'Physeteridae',
-    modelId: '1cfc39eac8a3466fbe25c66fae9dd6af'
+    modelId: '1cfc39eac8a3466fbe25c66fae9dd6af',
+    //2024-06-20
+    lastUpdated: 1720483200000
   },
     {
     id: 'carcharocles-megalodon',
@@ -563,7 +611,9 @@ export const creatures: Creature[] = [
     category: 'Marine Creatures',
     subcategory: 'Prehistoric Sharks',
     family: 'Carcharhinidae',
-    modelId: '86c24ed3771a4a78be3dd8ce99b6a899'
+    modelId: '86c24ed3771a4a78be3dd8ce99b6a899',
+    //2024-06-21
+    lastUpdated: 1720656000000
   },
     {
     id: 'basilosaurus-cetoides',
@@ -579,7 +629,9 @@ export const creatures: Creature[] = [
     category: 'Marine Creatures',
     subcategory: 'Prehistoric Whales',
     family: 'Basilosauridae',
-    modelId: '45649c3aa93c40dbb3c7f867f5c453be'
+    modelId: '45649c3aa93c40dbb3c7f867f5c453be',
+    //2024-06-22
+    lastUpdated: 1720828800000
   },
   {
     id: 'basilosaurus-isis',
@@ -594,7 +646,9 @@ export const creatures: Creature[] = [
     description: 'Basilosaurus isis is an extinct species of large, carnivorous cetacean from the late Eocene, approximately 40 to 34 million years ago, and it represents a slightly smaller, more robust relative of Basilosaurus cetoides, with individuals reaching lengths of about 16 meters; it shared many physical traits with its close relatives, such as the elongated body, vestigial hind limbs, and powerful jaws, but B. isis is particularly notable for its adaptations to a fully aquatic lifestyle, with fossil evidence suggesting it had an even more streamlined body and specialized teeth, likely used for grasping and processing fish and smaller marine vertebrates; it inhabited the warm, shallow seas of the Tethys Ocean, and its existence provides crucial insights into the early evolution of fully aquatic cetaceans, representing a transitional phase between land-dwelling ancestors and modern whales, with its anatomy showcasing an increasingly advanced specialization for life in the water.',
     category: 'Marine Creatures',
     subcategory: 'Prehistoric Whales',
-    family: 'Basilosauridae'
+    family: 'Basilosauridae',
+    //2024-06-23
+    lastUpdated: 1721001600000
   },
       {
     id: 'parahelicoprion-clerci',
@@ -609,7 +663,9 @@ export const creatures: Creature[] = [
     description: 'Parahelicoprion clerci, an extinct species closely related to Helicoprion bessonowi, hails from the early to middle Permian period (around 290 to 270 million years ago) and represents an important link in the evolution of the bizarre, spiraled tooth whorl characteristic of the Helicoprion lineage; while Parahelicoprion shares many features with its predecessor, including the characteristic tooth whorl thought to be used for slicing through mollusks and other prey, it exhibits subtle differences in its dental structure and overall body morphology, suggesting slight evolutionary adaptations that may have improved its predatory efficiency; fossils of Parahelicoprion clerci, primarily consisting of teeth and jaw fragments, have been found in marine sediments, offering key insights into the diversity of early cartilaginous fish and providing a more nuanced understanding of the development of specialized feeding adaptations in the group, which would eventually give rise to more modern sharks; the peculiar, coiled teeth of Parahelicoprion also highlight the complexity of early marine ecosystems and the innovative ways in which predation strategies evolved during the Permian period.',
     category: 'Marine Creatures',
     subcategory: 'Prehistoric Sharks',
-    family: 'Helicoprionidae'
+    family: 'Helicoprionidae',
+    //2024-06-24
+    lastUpdated: 1721174400000
   },
       {
     id: 'concavenator-corcovatus',
@@ -625,7 +681,9 @@ export const creatures: Creature[] = [
     category: 'Dinosaurs',
     subcategory: 'Theropods',
     family: 'Carcharodontosauridae',
-    modelId: 'f07c29832c204ebab7c700840c4e12d8'
+    modelId: 'f07c29832c204ebab7c700840c4e12d8',
+    //2024-06-25
+    lastUpdated: 1721347200000
   },
     {
     id: 'troodon-formosus',
@@ -640,7 +698,9 @@ export const creatures: Creature[] = [
     description: 'Troodon, a small but highly intelligent theropod dinosaur that lived during the late Cretaceous period, around 75 to 70 million years ago, is often considered one of the most bird-like and cognitively advanced dinosaurs due to its relatively large brain size in proportion to its body, which suggests it had keen sensory abilities, complex behaviors, and possibly even social interactions; measuring about 2 to 2.5 meters in length and weighing roughly 50 kilograms, Troodon possessed a slender, lightweight build, characterized by sharp, serrated teeth suited for an omnivorous diet, as well as long, slender legs indicating a fast and agile predator, likely preying on small vertebrates, insects, and plants; its most distinctive feature, however, was its highly specialized, large eyes, which, in conjunction with its high brain-to-body mass ratio, may have given it excellent vision, particularly in low-light conditions, perhaps aiding in nocturnal or crepuscular hunting; fossil evidence, including well-preserved foot bones, suggests that Troodon had an opposable toe, which could have helped it grasp prey or perch, further supporting theories that it might have been more arboreal or versatile than other theropods; Troodon is often highlighted as a key genus in discussions about the evolutionary link between non-avian dinosaurs and birds, especially considering its highly developed features and complex brain structure that foreshadow the cognitive abilities of modern birds.',
     category: 'Dinosaurs',
     subcategory: 'Ornithopods',
-    family: 'Troodontidae'
+    family: 'Troodontidae',
+    //2024-06-26
+    lastUpdated: 1721520000000
   },
     {
     id: 'mapusaurus-roseae',
@@ -655,7 +715,9 @@ export const creatures: Creature[] = [
     description: 'Mapusaurus was a formidable and massive carnivorous theropod that roamed what is now Argentina around 95 million years ago, during the Late Cretaceous period. It is believed to have reached lengths of up to 33 feet (10 meters) and weighed between 3 to 5 tons, making it one of the largest theropods of its time. Distinguished by its long, slender body, sharp teeth, and powerful jaws, Mapusaurus was an apex predator in its environment, preying on large herbivorous dinosaurs. What sets Mapusaurus apart from many other large theropods is evidence suggesting it may have exhibited social behaviors, with fossilized remains of multiple individuals found in close proximity to each other, hinting that it might have hunted in packs, much like modern-day wolves. This behavior would have provided significant advantages in taking down large prey, such as sauropods, which were abundant in the region. Its discovery has offered important insights into the social dynamics and hunting strategies of Cretaceous theropods.',
     category: 'Dinosaurs',
     subcategory: 'Theropods',
-    family: 'Carcharodontosauridae'
+    family: 'Carcharodontosauridae',
+    //2024-06-27
+    lastUpdated: 1721692800000
   },
       {
     id: 'acrocanthosaurus-atokensis',
@@ -671,7 +733,9 @@ export const creatures: Creature[] = [
     category: 'Dinosaurs',
     subcategory: 'Theropods',
     family: 'Carcharodontosauridae',
-    modelId: 'a9fc8cf6373e4a32a77e6e43f97a864d'
+    modelId: 'a9fc8cf6373e4a32a77e6e43f97a864d',
+    //2024-06-28
+    lastUpdated: 1721865600000
   },
     {
     id: 'tyrannotitan-chubutensis',
@@ -686,7 +750,9 @@ export const creatures: Creature[] = [
     description: 'Tyrannotitan is a genus of large, predatory theropod dinosaur that lived during the Early Cretaceous period, approximately 110 to 100 million years ago, in what is now Argentina. Closely related to the more famous Carcharodontosaurus, Tyrannotitan was a member of the Carcharodontosauridae family, and it likely reached lengths of around 40 feet (12 meters) and weighed up to 8 tons, making it one of the largest carnivores of its time. This massive predator had a long, powerful body, large jaws filled with serrated teeth, and robust limbs, all of which suggest it was well adapted for hunting large prey, possibly including sauropods and other herbivores that dominated the landscape of South America during the Early Cretaceous. Its fossils were discovered in the Neuquén Basin, which was home to a diverse range of dinosaurs, indicating that Tyrannotitan likely played a dominant role in the ecosystem as an apex predator. The discovery of Tyrannotitan was significant because it filled in a gap in the fossil record of large theropods in South America, helping to better understand the distribution and evolution of giant predatory dinosaurs. The relatively incomplete fossil evidence available includes parts of the skull, vertebrae, and limb bones, which have provided important insights into its size and anatomy, but much of its behavior and ecological role remains speculative. Tyrannotitan’s exact relationship to other giant theropods like Carcharodontosaurus and Giganotosaurus continues to be a subject of ongoing research in the field of paleontology.',
     category: 'Dinosaurs',
     subcategory: 'Theropods',
-    family: 'Carcharodontosauridae'
+    family: 'Carcharodontosauridae',
+    //2024-06-29
+    lastUpdated: 1722038400000
   },
       {
     id: 'baryonyx-walkeri',
@@ -702,7 +768,9 @@ export const creatures: Creature[] = [
     category: 'Dinosaurs',
     subcategory: 'Theropods',
     family: 'Spinosauridae',
-    modelId: 'c1c536b1928c4dba8e94dcd8c15b0815'
+    modelId: 'c1c536b1928c4dba8e94dcd8c15b0815',
+    //2024-06-30
+    lastUpdated: 1722211200000
   },  
       {
     id: 'suchomimus-tenerensis',
@@ -718,7 +786,9 @@ export const creatures: Creature[] = [
     category: 'Dinosaurs',
     subcategory: 'Theropods',
     family: 'Spinosauridae',
-    modelId: '05a1c8baf4cd45e9b94ed27188d9a52b'
+    modelId: '05a1c8baf4cd45e9b94ed27188d9a52b',
+    //2024-07-01
+    lastUpdated: 1722384000000
   },
       {
     id: 'irritator-challengeri',
@@ -734,7 +804,9 @@ export const creatures: Creature[] = [
     category: 'Dinosaurs',
     subcategory: 'Theropods',
     family: 'Spinosauridae',
-    modelId: '98f66abd45b842aa8afb344417ce177b'
+    modelId: '98f66abd45b842aa8afb344417ce177b',
+    //2024-07-02
+    lastUpdated: 1722556800000
   },
       {
     id: 'siamosaurus-suteethorni',
@@ -749,7 +821,9 @@ export const creatures: Creature[] = [
     description: 'Siamosaurus was a large, carnivorous theropod dinosaur that lived during the Early Cretaceous period, approximately 125 to 112 million years ago, in what is now Thailand. It was a member of the spinosaurid family, closely related to other fish-eating theropods like Baryonyx and Suchomimus. Siamosaurus was characterized by its elongated, crocodile-like snout, which was filled with conical teeth, well-suited for grasping slippery prey such as fish. It likely reached lengths of about 30 feet (9 meters) and weighed between 2 to 3 tons, placing it among the larger spinosaurids.\n\nThe fossil evidence for Siamosaurus is limited but includes partial skulls and vertebrae that have helped scientists infer its overall anatomy and lifestyle. Based on its long, narrow snout and conical teeth, it is believed that Siamosaurus had a diet primarily focused on fish, similar to other spinosaurids. The presence of spinosaurid characteristics such as a long, muscular tail suggests that it may have been a semi-aquatic predator, capable of swimming to catch prey in shallow waters or along riverbanks. This ecological niche would have been advantageous in the coastal or riverine environments it inhabited, allowing it to hunt both in water and on land.\n\nLike other spinosaurids, Siamosaurus likely had a relatively lightweight, agile body, with long, powerful hind limbs designed for movement on land, although its body structure suggests it could have been just as adept in the water. Its fossilized remains were found alongside those of other dinosaurs, providing valuable insights into the types of ecosystems these large theropods inhabited. The exact role of Siamosaurus in its ecosystem remains speculative, but it is considered an apex predator in its environment, likely preying on both aquatic and terrestrial animals.\n\nSiamosaurus adds an important piece to the puzzle of spinosaurid evolution and their adaptation to different environmental niches. While it is not as well-known as other spinosaurids like Spinosaurus, the discovery of Siamosaurus contributes to our understanding of the diversity and ecological roles of these fascinating, fish-eating theropods during the Early Cretaceous.',
     category: 'Dinosaurs',
     subcategory: 'Theropods',
-    family: 'Spinosauridae'
+    family: 'Spinosauridae',
+    //2024-07-03
+    lastUpdated: 1722729600000
   },
     {
     id: 'oxalaia-quilombensis',
@@ -764,7 +838,9 @@ export const creatures: Creature[] = [
     description: 'Certainly! Oxalaia was a relatively recently discovered genus of spinosaurid dinosaur, named in 2011 from fossils found in the Alcântara Formation of northeastern Brazil. The partial remains, including parts of the skull, suggest that Oxalaia was a massive predator, with an estimated length of up to 12-14 meters, making it one of the largest known spinosaurids, possibly rivaling or exceeding Spinosaurus in size. Like other members of the Spinosauridae family, it likely had a long, narrow skull with conical teeth, ideal for catching fish, which indicates that it might have had a semi-aquatic lifestyle, feeding in rivers, lakes, or coastal environments.\n\nThe spinosaurid family, including Oxalaia, is distinguished by their elongated, sail-like structures on their backs, though it is unclear if Oxalaia had such a sail, as the fossil evidence does not preserve this feature. However, it’s possible that it had a similar structure, used either for thermoregulation or display. Oxalaia likely coexisted with other large predators in the region, including theropods and crocodile-like reptiles, and would have been a top predator in its ecosystem, hunting both large terrestrial prey and aquatic animals.\n\nDespite its impressive size and specialized features, much about its behavior, ecology, and exact place in the evolutionary tree of spinosaurids remains speculative, as the fossil record for this particular dinosaur is still limited. Nonetheless, Oxalaia offers a fascinating glimpse into the diverse and unique predatory strategies of Cretaceous theropods.',
     category: 'Dinosaurs',
     subcategory: 'Theropods',
-    family: 'Spinosauridae'
+    family: 'Spinosauridae',
+    //2024-07-04
+    lastUpdated: 1722902400000
   },
     {
     id: 'ichthyovenator-laosensis',
@@ -780,7 +856,9 @@ export const creatures: Creature[] = [
     category: 'Dinosaurs',
     subcategory: 'Theropods',
     family: 'Spinosauridae',
-    modelId: '4824e6f0f0a7499bb3d9c42d7fc809af'
+    modelId: '4824e6f0f0a7499bb3d9c42d7fc809af',
+    //2024-07-05
+    lastUpdated: 1723075200000
   },
     {
     id: 'majungasaurus-crenatissimus',
@@ -796,7 +874,9 @@ export const creatures: Creature[] = [
     category: 'Dinosaurs',
     subcategory: 'Theropods',
     family: 'Abelisauridae',
-    modelId: 'aad48ce1c424499dbc9ccd708132348f'
+    modelId: 'aad48ce1c424499dbc9ccd708132348f',
+    //2024-07-06
+    lastUpdated: 1723248000000
   },
       {
     id: 'carnotaurus-sastrei',
@@ -812,7 +892,9 @@ export const creatures: Creature[] = [
     category: 'Dinosaurs',
     subcategory: 'Theropods',
     family: 'Abelisauridae',
-    modelId: '318622a5eb5e411d8e2462063d599280'
+    modelId: '318622a5eb5e411d8e2462063d599280',
+    //2024-07-07
+    lastUpdated: 1723420800000
   },
           {
     id: 'therizinosaurus-cheloniformis',
@@ -828,7 +910,9 @@ export const creatures: Creature[] = [
     category: 'Dinosaurs',
     subcategory: 'Theropods',
     family: 'Therizinosauridae',
-    modelId: 'c691daa2ceba467ea44b1d45511b8461'
+    modelId: 'c691daa2ceba467ea44b1d45511b8461',
+    //2024-07-08
+    lastUpdated: 1723593600000
   },
   {
     id: 'sigilmassasaurus-brevicollis',
@@ -843,7 +927,9 @@ export const creatures: Creature[] = [
     description: 'Sigilmassasaurus was a large theropod dinosaur that lived around 167 million years ago during the Middle Jurassic period in what is now Morocco, part of the ancient region of North Africa. Known primarily from fossilized remains, this dinosaur was an apex predator in its ecosystem, reaching lengths of about 10 meters (33 feet). It belonged to the Megalosauridae family, making it closely related to other large, early theropods like Megalosaurus and Eustreptospondylus. Sigilmassasaurus had a long, slender body with powerful hind limbs, suggesting that it was a fast and efficient hunter. Its skull, though not as well-preserved as some other fossils, indicates it had a robust set of teeth ideal for catching and consuming other vertebrates, including smaller dinosaurs and possibly fish. The shape of its teeth and its body structure also suggest that it could have been both a predator and a scavenger, opportunistically taking advantage of whatever food sources were available in the ancient desert environment it inhabited. The discovery of Sigilmassasaurus has provided valuable insight into the diversity of theropod dinosaurs during the Jurassic period and has helped paleontologists better understand the evolution of early large carnivorous dinosaurs in Africa.',
     category: 'Dinosaurs',
     subcategory: 'Theropods',
-    family: 'Spinosauridae'
+    family: 'Spinosauridae',
+    //2024-07-09
+    lastUpdated: 1723766400000
   },
     {
     id: 'dimorphodon-macronyx',
@@ -859,7 +945,9 @@ export const creatures: Creature[] = [
     category: 'Flying Creatures',
     subcategory: 'Pterosaurs',
     family: 'Dimorphodontidae',
-    modelId: 'd2e07282e4904eae9179fab32f297e66'
+    modelId: 'd2e07282e4904eae9179fab32f297e66',
+    //2024-07-10
+    lastUpdated: 1723939200000
   },
     {
     id: 'pteranodon-longiceps',
@@ -875,7 +963,9 @@ export const creatures: Creature[] = [
     category: 'Flying Creatures',
     subcategory: 'Pterosaurs',
     family: 'Pteranodontidae',
-    modelId: '144d0f815d5341bba6de95786a1b9343'
+    modelId: '144d0f815d5341bba6de95786a1b9343',
+    //2024-07-11
+    lastUpdated: 1724112000000
   },
     {
     id: 'ophthalmosaurus-discus',
@@ -891,7 +981,9 @@ export const creatures: Creature[] = [
     category: 'Marine Creatures',
     subcategory: 'Marine Reptiles',
     family: 'Ophthalmosauridae',
-    modelId: 'a1b8a09cb1674efeb51a16cb1f47670d'
+    modelId: 'a1b8a09cb1674efeb51a16cb1f47670d',
+    //2024-07-12
+    lastUpdated: 1724284800000
   },
       {
     id: 'vasuki-indicus',
@@ -906,7 +998,9 @@ export const creatures: Creature[] = [
     description: 'The Vasuki, a now-extinct genus of colossal constrictor snakes that roamed the Earth during the Miocene epoch, is believed to have reached lengths of up to 30 feet, with fossilized remains discovered in the Siwalik Hills of South Asia revealing its massive, muscular body, which likely resembled modern-day pythons or anacondas; these formidable serpents would have preyed on large mammals, and possibly smaller reptiles, inhabiting the dense, tropical forests and river systems of the time, while their name, derived from the ancient Hindu mythological serpent king Vasuki, emphasizes both their immense physical size and the awe-inspiring, almost divine power they would have commanded, evoking the same sense of reverence and terror that the mythological figure embodies in Hindu lore.',
     category: 'Prehistoric Reptiles',
     subcategory: 'Giant Snakes',
-    family: 'Madtsoiidae'
+    family: 'Madtsoiidae',
+    //2024-07-13
+    lastUpdated: 1724457600000
   },
     {
     id: 'titanoboa-cerrejonensis',
@@ -922,7 +1016,9 @@ export const creatures: Creature[] = [
     category: 'Prehistoric Reptiles',
     subcategory: 'Giant Snakes',
     family: 'Boidae',
-    modelId: '9616c130d7f142f199115a0271a78c00'
+    modelId: '9616c130d7f142f199115a0271a78c00',
+    //2024-07-14
+    lastUpdated: 1724630400000
   },
         {
     id: 'ground-sloth',
@@ -937,7 +1033,9 @@ export const creatures: Creature[] = [
     description: 'Megatherium, an enormous ground sloth that roamed the Americas during the Pleistocene epoch, was one of the most awe-inspiring and massive mammals of its time, reaching lengths of up to 6 meters (about 20 feet) and weighing as much as 4,000 kilograms (approximately 8,800 pounds). This giant herbivore, which lived roughly 2.5 million years ago until it went extinct around 10,000 years ago, was characterized by its large, curved claws—some of which measured over 30 centimeters (12 inches)—used for pulling down vegetation and possibly for defense. Despite its massive size, Megatherium likely moved slowly, grazing on leaves, shrubs, and perhaps even trees in the open woodlands and grasslands of South America, relying on its powerful limbs and claws to pull down foliage from heights. Its body structure, with strong hind limbs and shorter front limbs, suggests it was capable of standing on its hind legs to reach high branches, much like some modern-day tree-dwelling sloths. Megatherium’s diet mainly consisted of vegetation, and it has been speculated that, although it was not primarily a predator, it may have used its claws to defend itself from large predators like sabre-toothed cats or early humans. Fossil evidence indicates that Megatherium, like many other megafauna of the time, was eventually driven to extinction by a combination of climate change and hunting pressure from early human populations, marking the end of a truly extraordinary era of massive creatures.',
     category: 'Early Mammals',
     subcategory: 'Prehistoric Mammals',
-    family: 'Megatheriidae'
+    family: 'Megatheriidae',
+    //2024-07-15
+    lastUpdated: 1724803200000
   },
   {
     id: 'deinotherium',
@@ -953,7 +1051,9 @@ export const creatures: Creature[] = [
     category: 'Early Mammals',
     subcategory: 'Prehistoric Mammals',
     family: 'Deinotheriidae',
-    modelId: '1a4677f0a6b04e76ac86dc7838aab5ec'
+    modelId: '1a4677f0a6b04e76ac86dc7838aab5ec',
+    //2024-07-16
+    lastUpdated: 1724976000000
   },
   {
     id: 'hylonomus-lyelli',
@@ -968,7 +1068,9 @@ export const creatures: Creature[] = [
     description: 'Hylonomus, a genus of early reptile from the late Carboniferous period, is considered one of the first creatures to exhibit truly terrestrial adaptations, such as a fully amniotic egg, which allowed it to reproduce away from water, a crucial evolutionary step for life on land. Measuring only around 20 centimeters in length, Hylonomus likely lived in the dense, swampy forests of what is now North America, and its diet probably consisted of small arthropods and other invertebrates. Its anatomy, including elongated limbs and a relatively simple, lizard-like body structure, highlights its evolutionary position as a forerunner to more advanced reptiles, bridging the gap between amphibians and later, more evolved reptiles such as dinosaurs. The discovery of Hylonomus has provided valuable insights into the early development of amniotes, the group of vertebrates that includes reptiles, birds, and mammals.',
     category: 'Prehistoric Reptiles',
     subcategory: 'Land Reptiles',
-    family: 'Protorothyrididae'
+    family: 'Protorothyrididae',
+    //2024-07-17
+    lastUpdated: 1725148800000
   },
   {
     id: 'palaeophis-colossaeus',
@@ -983,7 +1085,9 @@ export const creatures: Creature[] = [
     description: 'Palaeophis is an extinct genus of ancient, marine snakes that lived during the Eocene epoch, roughly 50 to 55 million years ago, and is considered one of the earliest representatives of the fully aquatic snake lineage. This genus, which existed in what is now Europe and parts of North America, is notable for its long, eel-like body, small vestigial limbs, and specialized adaptations for life in the sea, such as a streamlined shape for efficient swimming and a powerful, undulating movement. Palaeophis likely preyed on fish and other marine creatures, using its flexible jaws and sharp teeth to capture and consume its prey in the water. Fossils of Palaeophis suggest it was a relatively large snake, with some species reaching lengths of up to 10 meters, highlighting the significant evolutionary jump from land-dwelling ancestors to fully aquatic forms. The discovery of Palaeophis has provided important clues about the early adaptation of snakes to aquatic environments and their subsequent diversification into the many species of sea snakes we see today.',
     category: 'Prehistoric Reptiles',
     subcategory: 'Giant Snakes',
-    family: 'Palaeophiidae'
+    family: 'Palaeophiidae',
+    //2024-07-18
+    lastUpdated: 1725321600000
   },
   {
     id: 'pterosphenus-schucherti',
@@ -998,7 +1102,9 @@ export const creatures: Creature[] = [
     description: '\nChatGPT\nPterosphenus is an extinct genus of marine snake that lived during the Paleogene period. It had a long, streamlined body adapted for swimming, with reduced limbs and a flattened tail for efficient movement in the water. Likely a fish-eater, Pterosphenus lived in the seas of what is now Europe and represents an early form of the fully aquatic snakes that evolved later. Its name, meaning \"The sea serpent,\" refers to its long, sinuous body.',
     category: 'Prehistoric Reptiles',
     subcategory: 'Giant Snakes',
-    family: 'Palaeophiidae'
+    family: 'Palaeophiidae',
+    //2024-07-19
+    lastUpdated: 1725494400000
   },
   {
     id: 'sarcosuchus-imperator',
@@ -1010,11 +1116,13 @@ export const creatures: Creature[] = [
     weight: '3,000-4,000 kg',
     diet: 'Carnivore',
     image: '/images/sarco.jpg',
-    description: 'Sarcosuchus is an extinct genus of giant crocodyliform that lived during the Cretaceous period, around 112 million years ago, and is often referred to as the \"super croc\" due to its enormous size. This formidable predator could reach lengths of up to 12 meters (about 39 feet) and weigh several tons, making it one of the largest crocodyliforms to have ever existed. Sarcosuchus had a robust, heavily armored body with thick, bony plates called osteoderms embedded in its skin, providing it with significant protection against potential threats. Its most striking feature was its long, narrow snout, which housed large, conical teeth designed for grabbing and holding onto prey. The size and shape of its mouth suggest that Sarcosuchus was an ambush predator, lying in wait for fish or even large terrestrial animals that ventured too close to the water.\n\nFossil evidence, particularly from regions that once had vast freshwater rivers and lakes (mainly in what is now Africa), indicates that Sarcosuchus likely inhabited these environments, where it would have been an apex predator, feeding on large fish, marine reptiles, and possibly dinosaurs that came near the water\'s edge. While it is not directly related to modern crocodiles, it shares many traits with them, such as its semi-aquatic lifestyle and specialized hunting techniques. The discovery of Sarcosuchus has provided important insights into the diversity of crocodyliforms in the Mesozoic era and their evolutionary adaptations to different ecological niches, especially in terms of size, strength, and predation strategies',
+    description: 'Sarcosuchus is an extinct genus of giant crocodyliform that lived during the Cretaceous period, around 112 million years ago, and is often referred to as the \"super croc\" due to its enormous size. This formidable predator could reach lengths of up to 12 meters (about 39 feet) and weigh several tons, making it one of the largest crocodyliforms to have ever existed. Sarcosuchus had a robust, heavily armored body with thick, bony plates called osteoderms embedded in its skin, providing it with significant protection against potential threats. Its most striking feature was its long, narrow snout, which housed large, conical teeth designed for grabbing and holding onto prey. The size and shape of its mouth suggest that Sarcosuchus was an ambush predator, lying in wait for fish or even large terrestrial animals that ventured too close to the water\'s edge.\n\nFossil evidence, particularly from regions that once had vast freshwater rivers and lakes (mainly in what is now Africa), indicates that Sarcosuchus likely inhabited these environments, where it would have been an apex predator, feeding on large fish, marine reptiles, and possibly dinosaurs that came near the water\'s edge. While it is not directly related to modern crocodiles, it shares many traits with them, such as its semi-aquatic lifestyle and specialized hunting techniques. The discovery of Sarcosuchus has provided important insights into the diversity of crocodyliforms in the Mesozoic era and their evolutionary adaptations to different ecological niches, especially in terms of size, strength, and predation strategies',
     category: 'Prehistoric Reptiles',
     subcategory: 'Crocodilians',
     family: 'Pholidosauridae',
-    modelId: 'fd392f7ff3e2406e973d361b5257c634'
+    modelId: 'fd392f7ff3e2406e973d361b5257c634',
+    //2024-07-20
+    lastUpdated: 1725667200000
   },
   {
     id: 'deinosuchus-hatcheri',
@@ -1029,7 +1137,9 @@ export const creatures: Creature[] = [
     description: 'Deinosuchus is an extinct genus of giant crocodyliform that lived during the Late Cretaceous period, around 82 to 73 million years ago, and is considered one of the largest and most fearsome predators of its time. This massive reptile is believed to have reached lengths of up to 12 meters (about 40 feet) and weighed several tons, rivaling the size of modern crocodiles, but with even more formidable features. Deinosuchus had a broad, robust body and a massive, powerful skull with large, conical teeth designed for grabbing and crushing prey, including large dinosaurs that ventured near water.\n\nFossil evidence suggests that Deinosuchus lived in freshwater environments, such as rivers, lakes, and coastal areas of what is now North America. It is thought to have been an ambush predator, waiting in the water to strike swiftly at its prey, which could include large herbivorous dinosaurs, such as Hadrosaurus, or even smaller carnivores. Some paleontologists believe Deinosuchus was capable of pulling large animals into the water, where it could overpower them.\n\nAlthough it was a close relative of modern crocodiles, Deinosuchus was much larger and likely had different hunting strategies, taking full advantage of its immense size and strength. The discovery of Deinosuchus fossils, which include massive teeth and bones, has provided crucial insights into the predatory behavior and ecological role of giant crocodyliforms during the Cretaceous, showing how these reptiles could dominate both aquatic and terrestrial ecosystems',
     category: 'Prehistoric Reptiles',
     subcategory: 'Crocodilians',
-    family: 'Crocodylidae'
+    family: 'Crocodylidae',
+    //2024-07-21
+    lastUpdated: 1725840000000
   },
   {
     id: 'gigantophis-garstini',
@@ -1044,7 +1154,9 @@ export const creatures: Creature[] = [
     description: 'Gigantophis was an extraordinary and colossal snake that lived during the Eocene epoch, roughly 40 million years ago, in what is now North Africa. Known as one of the largest snakes to ever exist, it is believed to have reached lengths of up to 33 feet (10 meters), though some estimates suggest it could have been even longer. Fossil evidence of Gigantophis is relatively scarce, but studies of its remains show it was an imposing and powerful predator. Its robust, thick body indicates it likely preyed on large mammals, possibly including early ungulates and other sizable animals, constricting them to suffocate and kill. Gigantophis is thought to have inhabited riverine and coastal environments, where it could have used the dense vegetation to ambush prey.\n\nWhat makes Gigantophis particularly fascinating is its timing within the Eocene, when the Earth’s ecosystems were undergoing major shifts. The climate was warmer, and mammalian life was rapidly evolving, providing a steady supply of potential prey. While it shared its environment with other large creatures, including crocodyliforms, Gigantophis would have had few competitors for its niche as an apex predator. Despite its terrifying size, its existence was relatively short-lived, as it likely faced environmental changes and competition that contributed to its eventual extinction. Today, Gigantophis remains an iconic example of prehistoric gigantism and is often compared to the modern reticulated python and anacondas, though it was far larger than any living snake.',
     category: 'Prehistoric Reptiles',
     subcategory: 'Giant Snakes',
-    family: 'Madtsoiidae'
+    family: 'Madtsoiidae',
+    //2024-07-22
+    lastUpdated: 1726012800000
   },
         {
     id: 'megalania',
@@ -1060,7 +1172,9 @@ export const creatures: Creature[] = [
     category: 'Prehistoric Reptiles',
     subcategory: 'Land Reptiles',
     family: 'Varanidae',
-    modelId: '95cc86a83ba14e24b7512ef06bf16392'
+    modelId: '95cc86a83ba14e24b7512ef06bf16392',
+    //2024-07-23
+    lastUpdated: 1726185600000
   },
   {
     id: 'plesiosaurus-dolichodeirus',
@@ -1076,7 +1190,9 @@ export const creatures: Creature[] = [
     category: 'Marine Creatures',
     subcategory: 'Marine Reptiles',
     family: 'Plesiosauridae',
-    modelId: '87ef96b102aa4f4781ee2acc8de004d6'
+    modelId: '87ef96b102aa4f4781ee2acc8de004d6',
+    //2024-07-24
+    lastUpdated: 1726358400000
   },
         {
     id: 'nigersaurus-taqueti',
@@ -1092,7 +1208,9 @@ export const creatures: Creature[] = [
     category: 'Dinosaurs',
     subcategory: 'Sauropods',
     family: 'Rebbachisauridae',
-    modelId: '74a92d01551c4defbf770f2f3785d600'
+    modelId: '74a92d01551c4defbf770f2f3785d600',
+    //2024-07-25
+    lastUpdated: 1726531200000
   },
       {
     id: 'dilophosaurus-wetherilli',
@@ -1108,7 +1226,9 @@ export const creatures: Creature[] = [
     category: 'Dinosaurs',
     subcategory: 'Theropods',
     family: 'Dilophosauridae',
-    modelId: '8b4d2af3cc64433883ca42d4a6602c65'
+    modelId: '8b4d2af3cc64433883ca42d4a6602c65',
+    //2024-07-26
+    lastUpdated: 1726704000000
   },
   {
     id: 'apatosaurus-ajax',
@@ -1124,7 +1244,9 @@ export const creatures: Creature[] = [
     category: 'Dinosaurs',
     subcategory: 'Sauropods',
     family: 'Diplodocidae',
-    modelId: '253af31a91c44bbbb569d5582943d9a9'
+    modelId: '253af31a91c44bbbb569d5582943d9a9',
+    //2024-07-27
+    lastUpdated: 1726876800000
   },
   {
     id: 'brontosaurus-excelsus',
@@ -1140,7 +1262,9 @@ export const creatures: Creature[] = [
     category: 'Dinosaurs',
     subcategory: 'Sauropods',
     family: 'Diplodocidae',
-    modelId: '63171eba44134df8935fd1aac8966333'
+    modelId: '63171eba44134df8935fd1aac8966333',
+    //2024-07-28
+    lastUpdated: 1727049600000
   },
     {
     id: 'sauroposeidon-proteles',
@@ -1155,7 +1279,9 @@ export const creatures: Creature[] = [
     description: 'Sauroposeidon, a colossal sauropod dinosaur from the Early Cretaceous period around 110 million years ago, is considered one of the tallest dinosaurs ever discovered, with estimates suggesting it could have reached heights of up to 60 feet or more when standing. Known primarily from fossilized vertebrae found in what is now Oklahoma, USA, this dinosaur’s neck alone could have been over 40 feet long, allowing it to reach the tallest vegetation in its environment, such as tree tops that other herbivores couldn\'t access. Despite its massive size, with estimates putting its length at up to 105 feet and its weight around 40 tons, Sauroposeidon’s relatively small head and peg-like teeth suggest it was a herbivore, likely feeding on conifers and cycads. This dinosaur’s long neck was supported by a powerful, muscular body and a highly specialized skeletal structure that allowed it to support its immense size. Fossil evidence also suggests that Sauroposeidon, like other giant sauropods, had a relatively slow metabolism, relying on large amounts of plant material to sustain its massive body. While there is still much to learn about its behavior, Sauroposeidon would have likely been a solitary or small-group animal, moving slowly across the forested landscapes of North America, though its size would have made it a relatively low-priority target for predators like the theropod Acrocanthosaurus.',
     category: 'Dinosaurs',
     subcategory: 'Sauropods',
-    family: 'Brachiosauridae'
+    family: 'Brachiosauridae',
+    //2024-07-29
+    lastUpdated: 1727222400000
   },
   {
     id: 'giraffatitan-brancai',
@@ -1170,7 +1296,9 @@ export const creatures: Creature[] = [
     description: 'Giraffatitan, a massive sauropod dinosaur from the Late Jurassic period, is often considered a close relative of Brachiosaurus, though it is typically regarded as its own distinct genus. Fossils of Giraffatitan have been found in what is now Tanzania, with the most famous specimen, Giraffatitan brancai, estimated to have reached lengths of about 75 feet and weighed as much as 40 tons. This giant herbivore had a long, upward-sloping neck—similar to that of Brachiosaurus—allowing it to feed on high vegetation, possibly from tree tops, and reach a greater variety of plant life than many other contemporaneous herbivores. Its body was robust, with relatively short tail and legs compared to its long neck, and its front legs were longer than its hind legs, giving it a unique \"giraffe-like\" posture, which is how it earned its name. Giraffatitan likely fed on conifers and ferns, using its relatively small, peg-like teeth to strip leaves, though it may have also browsed from taller trees. Despite its enormous size, it is believed to have been relatively slow-moving, relying on its sheer size to avoid predators rather than speed or agility. Fossils suggest Giraffatitan lived in herds, which would have provided some protection from large carnivores like Allosaurus. Its skeletal structure and posture, combined with its immense size, likely made it one of the dominant plant-eaters in its ecosystem.',
     category: 'Dinosaurs',
     subcategory: 'Sauropods',
-    family: 'Brachiosauridae'
+    family: 'Brachiosauridae',
+    //2025-01-25
+    lastUpdated: 1727395200000
   },
   {
     id: 'amargasaurus-cazaui',
@@ -1186,7 +1314,9 @@ export const creatures: Creature[] = [
     category: 'Dinosaurs',
     subcategory: 'Sauropods',
     family: 'Dicraeosauridae',
-    modelId: 'f6a5c719a5b84677ae6cd6f857482b2a'
+    modelId: 'f6a5c719a5b84677ae6cd6f857482b2a',
+    //2025-01-26
+    lastUpdated: 1727568000000
   },
   {
     id: 'bajadasaurus-pronuspinax',
@@ -1202,7 +1332,9 @@ export const creatures: Creature[] = [
     category: 'Dinosaurs',
     subcategory: 'Sauropods',
     family: 'Dicraeosauridae',
-    modelId: '40742ccd808f46e2bda517b4e3f53c06'
+    modelId: '40742ccd808f46e2bda517b4e3f53c06',
+    //2025-01-27
+    lastUpdated: 1727740800000
   },
   {
     id: 'pachycephalosaurus-grangeri',
@@ -1218,7 +1350,9 @@ export const creatures: Creature[] = [
     category: 'Dinosaurs',
     subcategory: 'Ornithopods',
     family: 'Pachycephalosauridae',
-    modelId: '1c23aee07a734e3da5b344fa8077334c'
+    modelId: '1c23aee07a734e3da5b344fa8077334c',
+    //2025-01-28
+    lastUpdated: 1727913600000
   },
   {
     id: 'argentavis-magnificens',
@@ -1233,7 +1367,9 @@ export const creatures: Creature[] = [
     description: 'Argentavis, an awe-inspiring genus of giant bird that roamed the skies during the Late Miocene approximately 6 million years ago, is often regarded as one of the largest flying birds to ever exist, with an estimated wingspan of up to 7 meters (around 23 feet), a size that dwarfs even today\'s largest flying birds, such as the albatross. This massive bird, which lived in the open, semi-arid landscapes of what is now Argentina, likely relied on its powerful gliding abilities to travel vast distances in search of prey, including large mammals and carrion, with its enormous wings allowing it to soar gracefully with minimal energy expenditure. Its size, coupled with a strong, curved beak and large talons, suggests it may have been a scavenger, feasting on the carcasses of sizable animals, and possibly even a predator capable of capturing and killing prey much larger than those typically hunted by modern birds of prey. While its flight would have been graceful and efficient, requiring little flapping, its large body mass would have limited its ability to take off from a standstill, likely requiring a downhill run or strong updrafts to get airborne. The extinction of Argentavis remains somewhat mysterious, but it is believed to have been a result of changes in climate and the environment, which reduced the open spaces it depended on and led to the eventual disappearance of this remarkable bird.',
     category: 'Flying Creatures',
     subcategory: 'Early Birds',
-    family: 'Teratornithidae'
+    family: 'Teratornithidae',
+    //2025-01-29
+    lastUpdated: 1728086400000
   },
     {
     id: 'micropachycephalosaurus-hongtuyanensis',
@@ -1248,7 +1384,9 @@ export const creatures: Creature[] = [
     description: 'ChatGPT\nMicropachycephalosaurus, a relatively small and somewhat unusual dinosaur, was a herbivorous species that lived during the Late Cretaceous period, around 75 million years ago, in what is now modern-day China. With a name that translates to “small thick-headed lizard,” this dinosaur was part of the Pachycephalosauridae family, known for its distinctive, thick skulls, though in Micropachycephalosaurus, the skull wasn’t as heavily domed as those of its larger relatives. Growing to only about 1 meters (3 feet) in length, it was much smaller than other pachycephalosaurs, which were often much larger and more robust. Its relatively lightweight frame, with a small, bipedal body, suggests it was a quick and agile dinosaur, likely using its speed to evade predators rather than relying on its skull for combat, unlike the more aggressive, headbutting pachycephalosaurs. The thickened portion of its skull, though not as pronounced, was still likely used in defense or in intraspecific competition, where individuals might have used their skulls to push or fight over territory, mates, or social status. The environment it inhabited would have been a mix of forested and open areas, with a diet likely consisting of low-lying plants, ferns, and possibly small shrubs. Micropachycephalosaurus’ relatively small size and unusual features make it a fascinating example of the diversity within the Pachycephalosaur group, showing how adaptations can vary even within closely related species. It is also the dinosaur with the longest name with 23 letters.',
     category: 'Dinosaurs',
     subcategory: 'Ceratopsians',
-    family: 'Marginocephalia'
+    family: 'Marginocephalia',
+    //2025-01-30
+    lastUpdated: 1728259200000
   },
   {
     id: 'mei-long',
@@ -1263,7 +1401,9 @@ export const creatures: Creature[] = [
     description: 'Mei long, a small and feathered dinosaur from the Early Cretaceous period, lived around 120 million years ago and is best known for its remarkable fossil, which preserved the creature in a curled-up, sleeping position. This bipedal theropod, measuring only about 53 centimeters (16 inches) in length, was a member of the Dromaeosauridae family, which includes more famous relatives like Velociraptor, though Mei long was much smaller and more delicate. The name Mei long translates to \"sleeping dragon\" in Chinese, a fitting tribute to the fossil\'s discovery—showing the dinosaur in a seemingly peaceful pose, possibly indicating that it was curled up to sleep, much like some modern birds do.\n\nMei long was likely a small, feathered predator, with a diet consisting of small vertebrates and insects. Its body structure—light, nimble, and built for speed—suggests that it would have been an agile hunter, possibly stalking its prey in the dense, lush environments of what is now China, where fossils of Mei long have been found. It had a relatively long tail, sharp claws, and a lightly built skull, features that are characteristic of many small theropods. The feathers it likely possessed would have been used for insulation, display, or possibly aiding in balance while running or climbing. The sleeping posture preserved in the fossil, alongside evidence of feather impressions, provides important insight into the early evolution of feathers, showing that even small theropods like Mei long may have already had feather-like structures long before the rise of modern birds. The discovery of this well-preserved specimen is also significant because it provides evidence of behavior—such as sleep—offering a rare glimpse into the daily life of early dinosaurs.',
     category: 'Dinosaurs',
     subcategory: 'Ornithopods',
-    family: 'Troodontidae'
+    family: 'Troodontidae',
+    //2025-01-31
+    lastUpdated: 1728432000000
   },
     {
     id: 'tarbosaurus-bataar',
@@ -1279,9 +1419,11 @@ export const creatures: Creature[] = [
     category: 'Dinosaurs',
     subcategory: 'Theropods',
     family: 'Tyrannosauridae',
-    modelId: '7c8fd38bfaf148ba97c9a32373c565e7'
+    modelId: '7c8fd38bfaf148ba97c9a32373c565e7',
+    //2025-02-01
+    lastUpdated: 1728604800000
   },
-    {
+      {
     id: 'aegirocassis-benmoulai',
     name: 'Aegirocassis benmoulai',
     scientificName: 'Aegirocassis benmoulai',
@@ -1295,9 +1437,10 @@ export const creatures: Creature[] = [
     category: 'Marine Creatures',
     subcategory: 'Invertebrates',
     family: 'Hurdiidae',
-    modelId: '1fbcf81543134fb9b39457546b77a573'
+    modelId: '1fbcf81543134fb9b39457546b77a573',
+    lastUpdated: 1738615564457
   },
-  {
+      {
     id: 'elasmosaurus-platyurus',
     name: 'Elasmosaurus platyurus',
     scientificName: 'Elasmosaurus platyurus',
@@ -1311,7 +1454,8 @@ export const creatures: Creature[] = [
     category: 'Marine Creatures',
     subcategory: 'Marine Reptiles',
     family: 'Elasmosauridae',
-    modelId: '54416e11ea5e495fb2d7cf3d8d856b99'
+    modelId: '54416e11ea5e495fb2d7cf3d8d856b99',
+    lastUpdated: 1738615377787
   },
   {
     id: 'styxosaurus-snowii',
@@ -1326,7 +1470,26 @@ export const creatures: Creature[] = [
     description: 'Styxosaurus was another formidable marine reptile from the Late Cretaceous period, closely related to Elasmosaurus and part of the Plesiosauria group. Characterized by its long neck—though not quite as extreme as its cousin—it still had an impressive length, with some species reaching up to 12 meters in total body length. Styxosaurus had a relatively smaller head compared to its body, with sharp, pointed teeth that were perfect for catching fish and squid, its primary diet. Its long, powerful flippers were adapted for agile swimming, allowing it to move swiftly through the water, and it likely used its neck to maneuver and strike at prey, possibly in a similar hunting technique to Elasmosaurus, though it may have been more suited for quick, sudden lunges rather than sweeping motions.\nWhat sets Styxosaurus apart from some other plesiosaurs is its relatively shorter neck in comparison, which gave it slightly more stability in the water and may have allowed it to dive deeper or navigate different environments. Fossil evidence shows that Styxosaurus inhabited shallow seas, and although it was an apex predator in its own right, it likely had to compete with other marine reptiles like mosasaurs and sharks for food. Like other plesiosaurs, Styxosaurus was well-adapted to life in the water, with a streamlined body and a tail that helped with balance and propulsion.',
     category: 'Marine Creatures',
     subcategory: 'Marine Reptiles',
-    family: 'Elasmosauridae'
+    family: 'Elasmosauridae',
+    //2025-02-04
+    lastUpdated: 1729123200000
+  },
+      {
+    id: 'irish-elk',
+    name: 'Irish elk',
+    scientificName: 'Megaloceros giganteus',
+    period: 'Paleogene',
+    location: 'Europe, Asia, and North Africa',
+    length: '2.1 meters',
+    weight: '450–600 kg',
+    diet: 'Herbivore',
+    image: '/images/creatures/Irish_elk.webp',
+    description: 'The Irish Elk was one of the largest species of deer to have ever lived, roaming across Europe, Asia, and North Africa during the Pleistocene Epoch. Despite its name, it was not an elk but a member of the deer family (Cervidae). It is best known for its massive antlers, which could span up to 3.6 meters (12 feet) across, making them the largest antlers of any known deer species.\n<br>\nStanding about 2.1 meters (7 feet) tall at the shoulder and weighing 450–600 kg (990–1,320 lbs), the Irish Elk was a formidable herbivore that thrived in open woodlands and grasslands. It primarily fed on a diet of grasses, leaves, and shrubs, much like modern deer.\n<br>\nThe species went extinct around 7,700 years ago, likely due to a combination of climate change, habitat loss, and human hunting. As forests expanded at the end of the Ice Age, the large antlers may have become a disadvantage, making it harder for the Irish Elk to navigate dense woodlands and find food efficiently.\n<br>\nFossils of the Irish Elk have been found extensively in Ireland, where the alkaline bogs helped preserve many skeletons, leading to its popular name. Today, its impressive remains can be seen in museums worldwide, reminding us of this incredible prehistoric giant.',
+    category: 'Early Mammals',
+    subcategory: 'Prehistoric Mammals',
+    family: 'Cervidae',
+    modelId: '33b64def1e7d40048224f589d49d68ec',
+    lastUpdated: 1738616290061
   }];
 
 export const searchCreatures = (searchQuery: string): SearchResult[] => {

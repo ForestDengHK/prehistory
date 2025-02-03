@@ -444,6 +444,9 @@ const diets = ['Carnivore', 'Herbivore', 'Omnivore'];
       const formData = new FormData(form);
       const imageFile = formData.get('imageFile') as File;
       
+      // Add lastUpdated timestamp
+      formData.set('lastUpdated', Date.now().toString());
+      
       // Handle image upload if a new file is selected
       if (imageFile.size > 0) {
         const imageFormData = new FormData();

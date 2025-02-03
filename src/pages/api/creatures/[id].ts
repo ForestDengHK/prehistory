@@ -49,7 +49,8 @@ export const PUT: APIRoute = async ({ params, request }) => {
     const updatedCreature: Creature = {
       ...data,
       id: creatureId, // Keep the original ID
-      family: data.family || '' // Use blank if family is not provided
+      family: data.family || '', // Use blank if family is not provided
+      lastUpdated: data.lastUpdated ? parseInt(data.lastUpdated) : undefined // Convert lastUpdated to number
     };
 
     // Read the current creatures file
@@ -97,7 +98,7 @@ export const PUT: APIRoute = async ({ params, request }) => {
     description: '${updatedCreature.description.replace(/'/g, "\\'").replace(/"/g, '\\"').replace(/\n/g, '\\n').replace(/\r/g, '\\r').replace(/\t/g, '\\t')}',
     category: '${updatedCreature.category}',
     subcategory: '${updatedCreature.subcategory}',
-    family: '${updatedCreature.family}'${updatedCreature.modelId ? `,\n    modelId: '${updatedCreature.modelId}'` : ''}
+    family: '${updatedCreature.family}'${updatedCreature.modelId ? `,\n    modelId: '${updatedCreature.modelId}'` : ''}${updatedCreature.lastUpdated ? `,\n    lastUpdated: ${updatedCreature.lastUpdated}` : ''}
   }`;
 
     // Replace only the specific creature entry

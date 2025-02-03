@@ -669,6 +669,9 @@ const diets = ['Carnivore', 'Herbivore', 'Omnivore'];
       const creatureId = formData.get('id');
       const imageFile = formData.get('imageFile') as File;
       
+      // Update lastUpdated timestamp
+      formData.set('lastUpdated', Date.now().toString());
+      
       // Handle image upload if a new file is selected
       if (imageFile.size > 0) {
         const imageFormData = new FormData();
