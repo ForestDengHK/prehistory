@@ -163,7 +163,14 @@ const shareImage = creature.image;
     text-align: center;
     color: white;
     background-size: cover;
-    background-position: center;
+    background-position: top center;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    position: relative;
   }
 
   .creature-hero h1 {
@@ -318,7 +325,19 @@ const shareImage = creature.image;
     padding: 0;
   }
 
+  @media (min-width: 1200px) {
+    .creature-hero {
+      min-height: 500px;
+      background-size: cover;
+    }
+  }
+
   @media (max-width: 768px) {
+    .creature-hero {
+      min-height: 300px;
+      padding: 4rem 1rem;
+    }
+
     .creature-hero h1 {
       font-size: 2.5rem;
     }
