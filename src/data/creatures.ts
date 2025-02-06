@@ -1490,6 +1490,56 @@ export const creatures: Creature[] = [
     family: 'Cervidae',
     modelId: '33b64def1e7d40048224f589d49d68ec',
     lastUpdated: 1738616290061
+  },
+    {
+    id: 'yi-qi',
+    name: 'Yi qi',
+    scientificName: 'Yi qi',
+    period: 'Jurassic',
+    location: 'China',
+    length: '33 cm	',
+    weight: '0.52 kg',
+    diet: 'Omnivore',
+    image: '/images/creatures/yi qi.webp',
+    description: 'Yi Qi is a fascinating and enigmatic dinosaur that lived around 160 million years ago during the Late Jurassic period. Its fossil was discovered in the Tiaojishan Formation of northeastern China, providing important insights into the evolutionary link between dinosaurs and the later flying vertebrates like birds.\nWhat makes Yi Qi stand out is its wing structure. Unlike the typical long-winged pterosaurs or birds, Yi Qi had a wing membrane that stretched between its arm and an exceptionally long fourth finger, much like the wings of modern bats. This wing configuration was radically different from anything seen in other known dinosaurs, suggesting that flight or gliding may have evolved in unexpected ways during this period.\n\nDespite being relatively small—about the size of a crow—Yi Qi\'s unique anatomy, including its feather-like coverings, indicates that it was likely adapted for some form of aerial movement, though it might not have been capable of powered flight. The discovery of Yi Qi has provided valuable evidence that flight in the animal kingdom could have developed in multiple, varied forms, showing that early flying animals experimented with a range of different wing structures.\n\nThe name \"Yi Qi\" is derived from the Chinese words for \"strange wing,\" reflecting its unusual and groundbreaking wing design. This dinosaur\'s discovery has sparked numerous discussions about the evolutionary steps leading to the emergence of flight, offering a deeper understanding of how flight might have evolved in non-avian dinosaurs. It also has the least characters of any named dinosaurs.',
+    category: 'Dinosaurs',
+    subcategory: 'Ornithopods',
+    family: 'Scansoriopterygidae',
+    lastUpdated: 1738867312379
+  },
+  {
+    id: 'parasaurolophus-walkeri',
+    name: 'Parasaurolophus walkeri',
+    scientificName: 'Parasaurolophus walkeri',
+    period: 'Cretaceous',
+    location: 'western North America and Asia',
+    length: '9 – 11 m',
+    weight: '2,700 – 3,600 kg',
+    diet: 'Herbivore',
+    image: '/images/creatures/parasol.webp',
+    description: 'Parasaurolophus is a distinctive and well-known dinosaur from the Late Cretaceous period, approximately 76 to 74 million years ago. It was a herbivorous hadrosaur, or \"duck-billed\" dinosaur, recognized for its long, backward-curving crest that extended from the top of its head, which was likely used for communication, display, or possibly even temperature regulation.\n\nParasaurolophus had a body length of about 30 feet (9 meters) and weighed around 2.5 tons, with a long, low-slung body supported by sturdy, pillar-like legs. It had a broad, duck-bill shaped mouth that was capable of processing large amounts of vegetation, such as cycads and conifers, which made up its diet.\n\nThe most distinctive feature of Parasaurolophus was its crest, which varied in size and shape among different species. The crest was hollow and connected to the nasal passages, and it\'s believed that the dinosaur may have used it to produce distinctive vocalizations, possibly for mating calls or to communicate with others of its kind. The crest’s size and shape may also have been a visual signal for dominance or mate attraction.\n\nFossils of Parasaurolophus have been found in North America, particularly in the western United States and Canada. This dinosaur is often depicted in popular media due to its striking appearance and the mystery surrounding the exact function of its crest. Despite the various theories, much of the purpose of the Parasaurolophus crest remains speculative, making it one of the most intriguing and iconic dinosaurs of its time.',
+    category: 'Dinosaurs',
+    subcategory: 'Ornithopods',
+    family: 'Hadrosauridae',
+    modelId: '36d5f89a39e24c1ebc5cc2b95a4d12fc',
+    lastUpdated: 1738867818807
+  },
+  {
+    id: 'ankylosaurus-magniventris',
+    name: 'Ankylosaurus magniventris',
+    scientificName: 'Ankylosaurus magniventris',
+    period: 'Cretaceous',
+    location: 'western North America',
+    length: '6 – 8 m',
+    weight: '4,800 – 8,000 kg',
+    diet: 'Herbivore',
+    image: '/images/creatures/anky.webp',
+    description: 'Ankylosaurus is one of the most famous armored dinosaurs from the Late Cretaceous period, around 68 to 66 million years ago. Known for its distinctive and impressive armor, Ankylosaurus was a heavily-built herbivorous dinosaur that grew to about 20 to 30 feet (6 to 9 meters) in length and weighed up to 6 tons. It was a slow-moving, low-to-the-ground dinosaur that relied on its natural defenses to protect itself from predators.\n\nThe most striking feature of Ankylosaurus was its thick, bony armor, which covered its entire body, from its head down to its tail. The armor consisted of large, fused bony plates called osteoderms, embedded in its skin, and was studded with spikes or knobs. These bony plates served as protection against predators, including the massive carnivorous dinosaurs that roamed the same environments, such as Tyrannosaurus rex.\n\nAnkylosaurus also had a distinctive, club-like structure at the end of its tail, made of large, bony knobs fused together. This tail club could be swung with great force, and it is believed to have been used as a powerful weapon to deter or fight off attackers. The club was so strong that it could have inflicted severe damage to a predator, making Ankylosaurus a tough target for any carnivorous dinosaur.\n\nDespite its intimidating defenses, Ankylosaurus was a peaceful herbivore, feeding primarily on low-lying plants like ferns, cycads, and conifers. Its short, broad skull and wide, leaf-shaped teeth suggest it was well-suited for grazing. Fossils of Ankylosaurus have been found in North America, and its well-preserved remains have helped paleontologists piece together a detailed picture of its appearance and lifestyle.\n\nAnkylosaurus remains a popular and iconic dinosaur, often featured in museums, books, and movies due to its unique, heavily armored body and formidable tail club. It exemplifies the remarkable evolutionary adaptations of dinosaurs that helped them survive in a world full of giant predators.',
+    category: 'Dinosaurs',
+    subcategory: 'Ankylosaurs',
+    family: 'Ankylosauridae',
+    modelId: '28fe1f7f2e33499ca08d713a46d4566a',
+    lastUpdated: 1738868115917
   }];
 
 export const searchCreatures = (searchQuery: string): SearchResult[] => {
