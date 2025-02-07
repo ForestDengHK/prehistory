@@ -2,6 +2,47 @@
 import type { Creature } from '../data/creatures';
 import { creatures } from '../data/creatures';
 
+// Function to truncate description while preserving HTML/markdown tags
+function truncateDescription(description: string) {
+  // Convert markdown bold to HTML
+  const tempText = description.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+  const words = tempText.split(' ');
+  
+  if (words.length <= 20) return description;
+  
+  let count = 0;
+  let result = [];
+  let inTag = false;
+  let currentTag = '';
+  
+  for (const word of words) {
+    if (count >= 20 && !inTag) break;
+    
+    // Check for opening tags
+    if (word.includes('<') && !word.includes('</')) {
+      inTag = true;
+      currentTag = word.substring(word.indexOf('<')+1, word.indexOf('>'));
+    }
+    
+    result.push(word);
+    
+    // Check for closing tags
+    if (word.includes('</')) {
+      inTag = false;
+      currentTag = '';
+    }
+    
+    if (!inTag && !word.includes('>')) count++;
+  }
+  
+  // Close any open tags
+  if (inTag) {
+    result.push(`</${currentTag}>`);
+  }
+  
+  return result.join(' ') + ' ...';
+}
+
 // Get the most recently updated creature
 const latestCreature = creatures
   .filter((creature): creature is Creature & { lastUpdated: number } => 
@@ -38,7 +79,7 @@ const latestCreature = creatures
         <h3>{latestCreature.name}</h3>
         <p class="period">Period: {latestCreature.period}</p>
         
-        <p class="description">{latestCreature.description.slice(0, 200)}...</p>
+        <p class="description" set:html={truncateDescription(latestCreature.description)}></p>
         
         <div class="details">
           <div class="detail-row">
