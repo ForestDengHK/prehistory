@@ -825,7 +825,7 @@ export const creatures: Creature[] = [
     //2024-07-03
     lastUpdated: 1722729600000
   },
-      {
+        {
     id: 'oxalaia-quilombensis',
     name: 'Oxalaia quilombensis',
     scientificName: 'Oxalaia quilombensis',
@@ -834,12 +834,12 @@ export const creatures: Creature[] = [
     length: ' 12 to 14 meters ',
     weight: '4,000-7,000 kg',
     diet: 'Carnivore',
-    image: '/images/creatures/spinosaurus.jpg',
+    image: '/images/creatures/Oxalaia_quilombensis.webp',
     description: 'Oxalaia was a relatively recently discovered genus of spinosaurid dinosaur, named in 2011 from fossils found in the Alcântara Formation of northeastern Brazil. The partial remains, including parts of the skull, suggest that Oxalaia was a massive predator, with an estimated length of up to 12-14 meters, making it one of the largest known spinosaurids, possibly rivaling or exceeding Spinosaurus in size. Like other members of the Spinosauridae family, it likely had a long, narrow skull with conical teeth, ideal for catching fish, which indicates that it might have had a semi-aquatic lifestyle, feeding in rivers, lakes, or coastal environments.\n\nThe spinosaurid family, including Oxalaia, is distinguished by their elongated, sail-like structures on their backs, though it is unclear if Oxalaia had such a sail, as the fossil evidence does not preserve this feature. However, it’s possible that it had a similar structure, used either for thermoregulation or display. Oxalaia likely coexisted with other large predators in the region, including theropods and crocodile-like reptiles, and would have been a top predator in its ecosystem, hunting both large terrestrial prey and aquatic animals.\n\nDespite its impressive size and specialized features, much about its behavior, ecology, and exact place in the evolutionary tree of spinosaurids remains speculative, as the fossil record for this particular dinosaur is still limited. Nonetheless, Oxalaia offers a fascinating glimpse into the diverse and unique predatory strategies of Cretaceous theropods.',
     category: 'Dinosaurs',
     subcategory: 'Theropods',
     family: 'Spinosauridae',
-    lastUpdated: 1738947049681
+    lastUpdated: 1738947807892
   },
     {
     id: 'ichthyovenator-laosensis',
@@ -1088,7 +1088,7 @@ export const creatures: Creature[] = [
     //2024-07-18
     lastUpdated: 1725321600000
   },
-    {
+        {
     id: 'pterosphenus-schucherti',
     name: 'Pterosphenus schucherti',
     scientificName: 'Pterosphenus schucherti',
@@ -1097,12 +1097,12 @@ export const creatures: Creature[] = [
     length: '2-5 meters',
     weight: 'Unknown ',
     diet: 'Carnivore',
-    image: '/images/creatures/pterosphenus.jpeg',
-    description: '\nPterosphenus is an extinct genus of marine snake that lived during the Paleogene period. It had a long, streamlined body adapted for swimming, with reduced limbs and a flattened tail for efficient movement in the water. Likely a fish-eater, Pterosphenus lived in the seas of what is now Europe and represents an early form of the fully aquatic snakes that evolved later. Its name, meaning \"The sea serpent,\" refers to its long, sinuous body.',
+    image: '/images/creatures/Pterosphenus_schucherti.webp',
+    description: '\n**Pterosphenus schucherti** is an extinct species of pterosaur from the Late Cretaceous period, specifically from the Cenomanian stage, around 100 million years ago. It belonged to the Pterosphenidae family and was notable for its distinctively large, long wings and specialized skull structure, featuring a long, toothless beak that likely helped it feed on fish or other marine life. Fossils of *Pterosphenus schucherti* have been found in North America, specifically in what is now Kansas, where it likely inhabited coastal or shallow marine environments.\n\nThis pterosaur had a wingspan of approximately 4 to 5 meters, making it a medium-sized member of the pterosaur group. Its long, toothless beak suggests it may have had a diet consisting primarily of fish, which it likely caught while flying over water, similar to modern-day seabirds. *Pterosphenus schucherti* is thought to have been an adept flyer, able to glide over the seas with its long, narrow wings, taking advantage of the coastal environments during the Late Cretaceous.\n\nThe anatomy of *Pterosphenus schucherti*—with its unique combination of a long beak and large wings—offers important clues about the evolution of pterosaurs, particularly how different species adapted to their specific ecological niches. Its fossils contribute to our understanding of the diversity within marine reptiles of the time, shedding light on the varied feeding strategies and habitats of ancient flying reptiles in the Cretaceous seas.',
     category: 'Prehistoric Reptiles',
     subcategory: 'Giant Snakes',
     family: 'Palaeophiidae',
-    lastUpdated: 1738947021336
+    lastUpdated: 1738948032509
   },
   {
     id: 'sarcosuchus-imperator',
