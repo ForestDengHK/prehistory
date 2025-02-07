@@ -825,7 +825,7 @@ export const creatures: Creature[] = [
     //2024-07-03
     lastUpdated: 1722729600000
   },
-    {
+      {
     id: 'oxalaia-quilombensis',
     name: 'Oxalaia quilombensis',
     scientificName: 'Oxalaia quilombensis',
@@ -834,13 +834,12 @@ export const creatures: Creature[] = [
     length: ' 12 to 14 meters ',
     weight: '4,000-7,000 kg',
     diet: 'Carnivore',
-    image: '/images/spinosaurus.jpg',
-    description: 'Certainly! Oxalaia was a relatively recently discovered genus of spinosaurid dinosaur, named in 2011 from fossils found in the Alcântara Formation of northeastern Brazil. The partial remains, including parts of the skull, suggest that Oxalaia was a massive predator, with an estimated length of up to 12-14 meters, making it one of the largest known spinosaurids, possibly rivaling or exceeding Spinosaurus in size. Like other members of the Spinosauridae family, it likely had a long, narrow skull with conical teeth, ideal for catching fish, which indicates that it might have had a semi-aquatic lifestyle, feeding in rivers, lakes, or coastal environments.\n\nThe spinosaurid family, including Oxalaia, is distinguished by their elongated, sail-like structures on their backs, though it is unclear if Oxalaia had such a sail, as the fossil evidence does not preserve this feature. However, it’s possible that it had a similar structure, used either for thermoregulation or display. Oxalaia likely coexisted with other large predators in the region, including theropods and crocodile-like reptiles, and would have been a top predator in its ecosystem, hunting both large terrestrial prey and aquatic animals.\n\nDespite its impressive size and specialized features, much about its behavior, ecology, and exact place in the evolutionary tree of spinosaurids remains speculative, as the fossil record for this particular dinosaur is still limited. Nonetheless, Oxalaia offers a fascinating glimpse into the diverse and unique predatory strategies of Cretaceous theropods.',
+    image: '/images/creatures/spinosaurus.jpg',
+    description: 'Oxalaia was a relatively recently discovered genus of spinosaurid dinosaur, named in 2011 from fossils found in the Alcântara Formation of northeastern Brazil. The partial remains, including parts of the skull, suggest that Oxalaia was a massive predator, with an estimated length of up to 12-14 meters, making it one of the largest known spinosaurids, possibly rivaling or exceeding Spinosaurus in size. Like other members of the Spinosauridae family, it likely had a long, narrow skull with conical teeth, ideal for catching fish, which indicates that it might have had a semi-aquatic lifestyle, feeding in rivers, lakes, or coastal environments.\n\nThe spinosaurid family, including Oxalaia, is distinguished by their elongated, sail-like structures on their backs, though it is unclear if Oxalaia had such a sail, as the fossil evidence does not preserve this feature. However, it’s possible that it had a similar structure, used either for thermoregulation or display. Oxalaia likely coexisted with other large predators in the region, including theropods and crocodile-like reptiles, and would have been a top predator in its ecosystem, hunting both large terrestrial prey and aquatic animals.\n\nDespite its impressive size and specialized features, much about its behavior, ecology, and exact place in the evolutionary tree of spinosaurids remains speculative, as the fossil record for this particular dinosaur is still limited. Nonetheless, Oxalaia offers a fascinating glimpse into the diverse and unique predatory strategies of Cretaceous theropods.',
     category: 'Dinosaurs',
     subcategory: 'Theropods',
     family: 'Spinosauridae',
-    //2024-07-04
-    lastUpdated: 1722902400000
+    lastUpdated: 1738947049681
   },
     {
     id: 'ichthyovenator-laosensis',
@@ -1089,7 +1088,7 @@ export const creatures: Creature[] = [
     //2024-07-18
     lastUpdated: 1725321600000
   },
-  {
+    {
     id: 'pterosphenus-schucherti',
     name: 'Pterosphenus schucherti',
     scientificName: 'Pterosphenus schucherti',
@@ -1098,13 +1097,12 @@ export const creatures: Creature[] = [
     length: '2-5 meters',
     weight: 'Unknown ',
     diet: 'Carnivore',
-    image: '/images/pterosphenus.jpeg',
-    description: '\nChatGPT\nPterosphenus is an extinct genus of marine snake that lived during the Paleogene period. It had a long, streamlined body adapted for swimming, with reduced limbs and a flattened tail for efficient movement in the water. Likely a fish-eater, Pterosphenus lived in the seas of what is now Europe and represents an early form of the fully aquatic snakes that evolved later. Its name, meaning \"The sea serpent,\" refers to its long, sinuous body.',
+    image: '/images/creatures/pterosphenus.jpeg',
+    description: '\nPterosphenus is an extinct genus of marine snake that lived during the Paleogene period. It had a long, streamlined body adapted for swimming, with reduced limbs and a flattened tail for efficient movement in the water. Likely a fish-eater, Pterosphenus lived in the seas of what is now Europe and represents an early form of the fully aquatic snakes that evolved later. Its name, meaning \"The sea serpent,\" refers to its long, sinuous body.',
     category: 'Prehistoric Reptiles',
     subcategory: 'Giant Snakes',
     family: 'Palaeophiidae',
-    //2024-07-19
-    lastUpdated: 1725494400000
+    lastUpdated: 1738947021336
   },
   {
     id: 'sarcosuchus-imperator',
@@ -1491,7 +1489,7 @@ export const creatures: Creature[] = [
     modelId: '33b64def1e7d40048224f589d49d68ec',
     lastUpdated: 1738616290061
   },
-    {
+          {
     id: 'yi-qi',
     name: 'Yi qi',
     scientificName: 'Yi qi',
@@ -1500,12 +1498,12 @@ export const creatures: Creature[] = [
     length: '33 cm	',
     weight: '0.52 kg',
     diet: 'Omnivore',
-    image: '/images/creatures/yi qi.webp',
+    image: '/images/creatures/yi_qi.webp',
     description: 'Yi Qi is a fascinating and enigmatic dinosaur that lived around 160 million years ago during the Late Jurassic period. Its fossil was discovered in the Tiaojishan Formation of northeastern China, providing important insights into the evolutionary link between dinosaurs and the later flying vertebrates like birds.\nWhat makes Yi Qi stand out is its wing structure. Unlike the typical long-winged pterosaurs or birds, Yi Qi had a wing membrane that stretched between its arm and an exceptionally long fourth finger, much like the wings of modern bats. This wing configuration was radically different from anything seen in other known dinosaurs, suggesting that flight or gliding may have evolved in unexpected ways during this period.\n\nDespite being relatively small—about the size of a crow—Yi Qi\'s unique anatomy, including its feather-like coverings, indicates that it was likely adapted for some form of aerial movement, though it might not have been capable of powered flight. The discovery of Yi Qi has provided valuable evidence that flight in the animal kingdom could have developed in multiple, varied forms, showing that early flying animals experimented with a range of different wing structures.\n\nThe name \"Yi Qi\" is derived from the Chinese words for \"strange wing,\" reflecting its unusual and groundbreaking wing design. This dinosaur\'s discovery has sparked numerous discussions about the evolutionary steps leading to the emergence of flight, offering a deeper understanding of how flight might have evolved in non-avian dinosaurs. It also has the least characters of any named dinosaurs.',
     category: 'Dinosaurs',
     subcategory: 'Ornithopods',
     family: 'Scansoriopterygidae',
-    lastUpdated: 1738867312379
+    lastUpdated: 1738947541353
   },
   {
     id: 'parasaurolophus-walkeri',
@@ -1540,6 +1538,22 @@ export const creatures: Creature[] = [
     family: 'Ankylosauridae',
     modelId: '28fe1f7f2e33499ca08d713a46d4566a',
     lastUpdated: 1738868115917
+  },
+  {
+    id: 'borealopelta-markmitchelli',
+    name: 'Borealopelta markmitchelli',
+    scientificName: 'Borealopelta markmitchelli',
+    period: 'Cretaceous',
+    location: 'Canada ',
+    length: '5.5 metres',
+    weight: '1,300 kg',
+    diet: 'Herbivore',
+    image: '/images/creatures/borealopelta.webp',
+    description: 'Boreapelta, a relatively small ankylosaur, measured about 4 to 5 meters in length and was a part of the group of dinosaurs known for their robust defense mechanisms. The bony armor on its back and sides was not only a physical defense but also likely played a role in thermoregulation, as the large, flat plates could have helped dissipate heat in the cooler northern environments of Late Cretaceous Alberta. The tail of Boreapelta, with its heavy club, was likely a powerful weapon against large carnivorous dinosaurs like Tyrannosaurus rex or Troodon, which may have shared its environment.\n\nBoreapelta’s fossils were discovered in a formation that contains a rich fossil record, suggesting that it lived alongside a variety of other dinosaurs, including hadrosaurs, theropods, and other herbivorous ankylosaurs. The fact that Boreapelta lived in a region that experienced long winters with little daylight challenges the traditional view of dinosaurs only thriving in warmer climates. Its survival in such conditions indicates that dinosaurs were far more adaptable than previously thought, capable of living in diverse environments, including the high latitudes where Boreapelta roamed.\n\nThis discovery also helps illuminate the evolution of ankylosaurs, offering insight into how these armored dinosaurs evolved different types of armor and defense strategies in response to their environments and predators. Boreapelta is one of the few known ankylosaurs from northern latitudes, helping paleontologists understand the distribution and diversity of dinosaurs across prehistoric Earth.',
+    category: 'Dinosaurs',
+    subcategory: 'Ankylosaurs',
+    family: 'Nodosauridae',
+    lastUpdated: 1738947361045
   }];
 
 export const searchCreatures = (searchQuery: string): SearchResult[] => {
