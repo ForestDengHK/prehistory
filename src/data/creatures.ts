@@ -825,7 +825,7 @@ export const creatures: Creature[] = [
     //2024-07-03
     lastUpdated: 1722729600000
   },
-        {
+          {
     id: 'oxalaia-quilombensis',
     name: 'Oxalaia quilombensis',
     scientificName: 'Oxalaia quilombensis',
@@ -834,12 +834,12 @@ export const creatures: Creature[] = [
     length: ' 12 to 14 meters ',
     weight: '4,000-7,000 kg',
     diet: 'Carnivore',
-    image: '/images/creatures/Oxalaia_quilombensis.webp',
+    image: '/images/creatures/oxa.webp',
     description: 'Oxalaia was a relatively recently discovered genus of spinosaurid dinosaur, named in 2011 from fossils found in the Alcântara Formation of northeastern Brazil. The partial remains, including parts of the skull, suggest that Oxalaia was a massive predator, with an estimated length of up to 12-14 meters, making it one of the largest known spinosaurids, possibly rivaling or exceeding Spinosaurus in size. Like other members of the Spinosauridae family, it likely had a long, narrow skull with conical teeth, ideal for catching fish, which indicates that it might have had a semi-aquatic lifestyle, feeding in rivers, lakes, or coastal environments.\n\nThe spinosaurid family, including Oxalaia, is distinguished by their elongated, sail-like structures on their backs, though it is unclear if Oxalaia had such a sail, as the fossil evidence does not preserve this feature. However, it’s possible that it had a similar structure, used either for thermoregulation or display. Oxalaia likely coexisted with other large predators in the region, including theropods and crocodile-like reptiles, and would have been a top predator in its ecosystem, hunting both large terrestrial prey and aquatic animals.\n\nDespite its impressive size and specialized features, much about its behavior, ecology, and exact place in the evolutionary tree of spinosaurids remains speculative, as the fossil record for this particular dinosaur is still limited. Nonetheless, Oxalaia offers a fascinating glimpse into the diverse and unique predatory strategies of Cretaceous theropods.',
     category: 'Dinosaurs',
     subcategory: 'Theropods',
     family: 'Spinosauridae',
-    lastUpdated: 1738947807892
+    lastUpdated: 1739042139906
   },
     {
     id: 'ichthyovenator-laosensis',
@@ -1088,21 +1088,21 @@ export const creatures: Creature[] = [
     //2024-07-18
     lastUpdated: 1725321600000
   },
-        {
+          {
     id: 'pterosphenus-schucherti',
     name: 'Pterosphenus schucherti',
     scientificName: 'Pterosphenus schucherti',
     period: 'Paleogene',
     location: 'North and South America, Asia and Africa',
-    length: '2-5 meters',
-    weight: 'Unknown ',
+    length: '2.5-5.7 meters',
+    weight: 'Unknown',
     diet: 'Carnivore',
-    image: '/images/creatures/Pterosphenus_schucherti.webp',
-    description: '\n**Pterosphenus schucherti** is an extinct species of pterosaur from the Late Cretaceous period, specifically from the Cenomanian stage, around 100 million years ago. It belonged to the Pterosphenidae family and was notable for its distinctively large, long wings and specialized skull structure, featuring a long, toothless beak that likely helped it feed on fish or other marine life. Fossils of *Pterosphenus schucherti* have been found in North America, specifically in what is now Kansas, where it likely inhabited coastal or shallow marine environments.\n\nThis pterosaur had a wingspan of approximately 4 to 5 meters, making it a medium-sized member of the pterosaur group. Its long, toothless beak suggests it may have had a diet consisting primarily of fish, which it likely caught while flying over water, similar to modern-day seabirds. *Pterosphenus schucherti* is thought to have been an adept flyer, able to glide over the seas with its long, narrow wings, taking advantage of the coastal environments during the Late Cretaceous.\n\nThe anatomy of *Pterosphenus schucherti*—with its unique combination of a long beak and large wings—offers important clues about the evolution of pterosaurs, particularly how different species adapted to their specific ecological niches. Its fossils contribute to our understanding of the diversity within marine reptiles of the time, shedding light on the varied feeding strategies and habitats of ancient flying reptiles in the Cretaceous seas.',
+    image: '/images/creatures/pterosphenus.webp',
+    description: 'Pterosphenus is an extinct genus of marine snakes that lived during the Eocene epoch, approximately 56 to 34 million years ago. Belonging to the family Palaeophiidae, these snakes were adapted to a fully aquatic lifestyle, exhibiting elongated, laterally compressed bodies ideal for swimming. Fossil evidence indicates that Pterosphenus had a widespread distribution, with remains discovered in North America, South America, Africa, and Asia. Notably, fossils have been found in the southeastern United States, including states like Texas, Louisiana, Mississippi, and Arkansas, as well as in regions of Africa such as Morocco, Libya, Nigeria, and Egypt. The genus includes several species, with Pterosphenus schucherti being one of the most well-known. Size estimates for Pterosphenus vary, with some studies suggesting lengths ranging from 2.5 to 5.7 meters, while other estimates propose lengths up to 16 meters, though these larger figures are subject to debate. The anatomy of Pterosphenus, particularly its vertebrae, indicates strong adaptations to a marine environment, suggesting it was a proficient swimmer. As a top predator in its ecosystem, Pterosphenus likely preyed on fish and other marine organisms. Its existence provides valuable insights into the diversity and adaptability of ancient marine reptiles during the Eocene.  ',
     category: 'Prehistoric Reptiles',
     subcategory: 'Giant Snakes',
     family: 'Palaeophiidae',
-    lastUpdated: 1738948032509
+    lastUpdated: 1739042351574
   },
   {
     id: 'sarcosuchus-imperator',
@@ -1554,6 +1554,55 @@ export const creatures: Creature[] = [
     subcategory: 'Ankylosaurs',
     family: 'Nodosauridae',
     lastUpdated: 1738947361045
+  },
+  {
+    id: 'iguanodon-bernissartensis',
+    name: 'Iguanodon bernissartensis',
+    scientificName: 'Iguanodon bernissartensis',
+    period: 'Cretaceous',
+    location: 'Uk',
+    length: '10 meters',
+    weight: '4,000 – 5,000 kg',
+    diet: 'Herbivore',
+    image: '/images/creatures/iguandon.webp',
+    description: 'Iguanodon, a genus of large herbivorous dinosaurs from the Early Cretaceous period (approximately 140 to 110 million years ago), was first discovered in 1822 in Sussex, England, when Mary Ann Mantell found fossilized teeth that her husband, Dr. Gideon Mantell, recognized as resembling those of a modern iguana, leading to the name “Iguanodon,” meaning “iguana tooth.”  ￼ This dinosaur measured between 9 to 11 meters (30 to 36 feet) in length and weighed around 4.5 metric tons (5.0 short tons).  ￼ One of its most distinctive features was a large, conical thumb spike, which paleontologists believe was used for defense against predators.  ￼ Iguanodon had the ability to walk both bipedally and quadrupedally, allowing it to graze on various plant materials.  ￼ Its discovery was significant as it was among the first dinosaurs to be scientifically described, contributing to early paleontological studies and shaping our understanding of prehistoric life.  ￼ Fossils of Iguanodon have been found across Europe, including in Belgium, Germany, England, and Spain, indicating a wide distribution during its time.  ￼ The genus played a crucial role in the early days of paleontology, being one of the three genera used to define Dinosauria, alongside Megalosaurus and Hylaeosaurus.  ￼ Its unique characteristics and historical significance make Iguanodon a focal point in the study of dinosaur evolution and the history of paleontological discovery.',
+    category: 'Dinosaurs',
+    subcategory: 'Ornithopods',
+    family: 'Iguanodontidae',
+    modelId: '6a379a99853c44fa85dcf60fba758a6e',
+    lastUpdated: 1739042031395
+  },
+  {
+    id: 'dubreuillosaurus-valesdunensis',
+    name: 'Dubreuillosaurus valesdunensis',
+    scientificName: 'Dubreuillosaurus valesdunensis',
+    period: 'Jurassic',
+    location: 'France',
+    length: '5 metres',
+    weight: '250 kg',
+    diet: 'Carnivore',
+    image: '/images/creatures/dui.webp',
+    description: 'Dubreuillosaurus is an extinct genus of carnivorous theropod dinosaur from the Middle Jurassic period, approximately 167.7 million years ago. Its fossils were discovered in Normandy, France, in sedimentary rocks indicative of coastal, mangrove swamp environments. The genus was named in 2005 by paleontologist Ronan Allain, honoring the Dubreuil family, with the type species designated as Dubreuillosaurus valesdunensis.  ￼\n\nThis megalosaurid theropod is characterized by an unusually low and elongated skull, measuring three times its height. The holotype specimen, MNHN 1998-13, represents a subadult individual estimated to be around 5 meters (16 feet) in length and weighing approximately 250 kilograms (550 pounds). However, adult individuals may have reached lengths up to 9 meters (30 feet).  ￼\n\nThe anatomical features of Dubreuillosaurus suggest it was a carnivore, with adaptations possibly indicating a diet that included fish and other marine prey, aligning with its coastal habitat. Its discovery has provided valuable insights into the diversity and distribution of megalosaurid theropods in Europe during the Middle Jurassic.\n',
+    category: 'Dinosaurs',
+    subcategory: 'Theropods',
+    family: 'Megalosauridae',
+    lastUpdated: 1739042602814
+  },
+  {
+    id: 'megalosaurus-bucklandii',
+    name: 'Megalosaurus bucklandii',
+    scientificName: 'Megalosaurus bucklandii',
+    period: 'Jurassic',
+    location: 'England',
+    length: '9 m',
+    weight: '1,000 – 3,000 kg',
+    diet: 'Carnivore',
+    image: '/images/creatures/Megalosaurus.webp',
+    description: 'Megalosaurus, meaning “great lizard,” is a genus of large carnivorous theropod dinosaurs that lived during the Middle Jurassic period, approximately 166 million years ago. Its fossils have been primarily discovered in southern England, particularly in Oxfordshire.  ￼\n\nIn 1824, Megalosaurus became the first dinosaur to be scientifically described, marking a significant milestone in paleontology.  ￼ The genus was named by William Buckland, who identified it based on scattered bones, including vertebrae, hip fragments, hindlimb elements, and a lower jaw fragment with dagger-like teeth.\n\nEstimates suggest that Megalosaurus measured about 6 meters (20 feet) in length.  ￼ As a carnivore, it likely preyed on other dinosaurs and possibly scavenged for food.\n\nRecent discoveries in Oxfordshire have unveiled a “dinosaur highway” with approximately 200 footprints dating back 166 million years. These tracks include those of Megalosaurus, providing valuable insights into the behavior and environment of these ancient creatures.  ￼',
+    category: 'Dinosaurs',
+    subcategory: 'Theropods',
+    family: 'Megalosauridae',
+    lastUpdated: 1739042789587
   }];
 
 export const searchCreatures = (searchQuery: string): SearchResult[] => {
