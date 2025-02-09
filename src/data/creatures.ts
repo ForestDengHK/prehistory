@@ -33,7 +33,7 @@ export interface SearchResult extends Creature {
 }
 
 export const creatures: Creature[] = [
-                                          {
+                                            {
     id: 'tyrannosaurus-rex',
     name: 'Tyrannosaurus Rex',
     scientificName: 'Tyrannosaurus rex',
@@ -48,7 +48,7 @@ export const creatures: Creature[] = [
     subcategory: 'Theropods',
     family: 'Tyrannosauridae',
     modelId: '30e9e38ac7554062be7406658881d105',
-    lastUpdated: 1712284800000 // 2024-04-01
+    lastUpdated: 1739136678542
   },
                   {
     id: 'megalodon',

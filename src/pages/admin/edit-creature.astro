@@ -564,13 +564,10 @@ const diets = ['Carnivore', 'Herbivore', 'Omnivore'];
       .join('');
     subcategorySelect.value = creature.subcategory;
 
-    // Store the full image path in a data attribute and set the preview
+    // Store the original image path and set the preview
     currentImagePreview.src = creature.image;
     currentImagePreview.dataset.fullPath = creature.image;
-    
-    // Set the input value to just the filename for display
-    const imagePath = creature.image.split('/').pop() || '';
-    imageInput.value = imagePath;
+    imageInput.value = creature.image;
   };
 
   // Handle dropdown selection
@@ -687,13 +684,9 @@ const diets = ['Carnivore', 'Herbivore', 'Omnivore'];
         
         const { path } = await uploadResponse.json();
         formData.set('image', path);
-      } else if (activeTab === 'existing') {
-        // If using existing image input, ensure proper path
-        const imageName = formData.get('image') as string;
-        formData.set('image', `/images/creatures/${imageName.split('/').pop()}`);
       } else {
-        // Use the stored full path for the current image
-        formData.set('image', currentImagePreview.dataset.fullPath || currentImagePreview.src);
+        // Use the original stored path
+        formData.set('image', currentImagePreview.dataset.fullPath || formData.get('image'));
       }
       
       // Submit creature data
