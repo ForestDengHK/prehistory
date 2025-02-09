@@ -5,7 +5,9 @@ export const categories = {
     'Ceratopsians',   // Horned dinosaurs like Triceratops
     'Ornithopods',    // Duck-billed and other bipedal herbivores
     'Stegosaurs',     // Plate-backed dinosaurs like Stegosaurus
-    'Ankylosaurs'     // Armored dinosaurs
+    'Ankylosaurs',
+    'Pachycephalosaurs',
+    'Hadrosaurs'
   ],
   'Prehistoric Reptiles': [
     'Giant Snakes',     // Like Titanoboa
@@ -15,10 +17,13 @@ export const categories = {
   ],
   'Marine Creatures': [
     'Prehistoric Fish',
-    'Marine Reptiles',
     'Invertebrates',
     'Prehistoric Sharks',
-    'Prehistoric Whales'
+    'Prehistoric Whales',
+    'Plesiosaurs',
+    'Mosasaurs',
+    'Marine Arthropods',
+    'Ichthyosaurs'
   ],
   'Flying Creatures': [
     'Pterosaurs',

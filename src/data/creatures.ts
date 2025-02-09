@@ -298,7 +298,7 @@ export const creatures: Creature[] = [
     //2024-06-04
     lastUpdated: 1717718400000
   },
-    {
+          {
     id: 'anomalocaris-canadensis',
     name: 'Anomalocaris canadensis',
     scientificName: 'Anomalocaris canadensis',
@@ -307,16 +307,15 @@ export const creatures: Creature[] = [
     length: ' 34.2–37.8 cm',
     weight: '2 Kgs for the larger species and 400-500 Grams for smaller species',
     diet: 'Carnivore',
-    image: '/images/anomalocaris.webp',
+    image: '/images/creatures/anomalocaris.webp',
     description: 'Anomalocaris, one of the most enigmatic and formidable predators of the Cambrian explosion, flourished around 500 million years ago, characterized by its elongated, segmented body, which could grow up to 1 meter in length, and its highly specialized appendages—frontal, serrated \"arms\" that it used to capture prey, such as trilobites and other small marine organisms; its circular, disk-like mouth, resembling a set of lobed plates, could efficiently crush and tear its food, while its enormous, multifaceted eyes, which were among the largest of any arthropod, offered exceptional vision for hunting and detecting prey in the murky, primordial seas. Additionally, Anomalocaris\' unique body structure, with its powerful, flexible trunk and wide, paddle-like tail, allowed for swift, agile movement, making it a top predator in the complex marine ecosystem of the early Paleozoic era.',
     category: 'Marine Creatures',
-    subcategory: 'Invertebrates',
+    subcategory: 'Marine Arthropods',
     family: 'Anomalocarisidae',
     modelId: '9550c5f52fd041788909f49e55a8c714',
-    //2024-06-05
-    lastUpdated: 1717891200000
+    lastUpdated: 1739129385606
   },
-              {
+                  {
     id: 'liopleurodon-ferox',
     name: 'Liopleurodon ferox',
     scientificName: 'Liopleurodon ferox',
@@ -325,16 +324,15 @@ export const creatures: Creature[] = [
     length: '4.9 – 7 m',
     weight: '1,000 – 1,700 kg',
     diet: 'Carnivore',
-    image: '/images/liopleurdon.webp',
+    image: '/images/creatures/liopleurdon.webp',
     description: 'Liopleurodon, a massive marine reptile from the Middle Jurassic period, was a formidable predator that could grow up to 25 meters in length, belonging to the family Pliosauridae, a group of short-necked, large-headed plesiosaurs; its powerful, crocodile-like jaws, lined with sharp teeth, were well-suited for capturing and consuming large prey, including fish, marine reptiles, and possibly even smaller dinosaurs, while its streamlined body, with robust flippers and a tail adapted for propulsion, allowed it to swiftly dominate the seas of ancient Europe.\n Liopleurodon\'s impressive size and strength, combined with its acute sensory adaptations, made it one of the ocean\'s apex predators during the Jurassic, hunting in deep, coastal waters where it would have likely competed with other large marine reptiles like the long-necked Elasmosaurus and the giant fish Ichthyosaurs.\n Its fossils, often found in what is now the United Kingdom, reveal an animal that was not only a top predator but also highly adapted to a fully aquatic lifestyle, capable of fast, powerful movements in pursuit of its prey.',
     category: 'Marine Creatures',
-    subcategory: 'Marine Reptiles',
+    subcategory: 'Plesiosaurs',
     family: 'Liopleurodonidae',
     modelId: '522e811044bc4e09bf84431e6c1cc109',
-    //2024-06-06
-    lastUpdated: 1718064000000
+    lastUpdated: 1739128243561
   },
-        {
+            {
     id: 'mosasaurus-hoffmannii',
     name: 'Mosasaurus hoffmannii',
     scientificName: 'Mosasaurus hoffmannii',
@@ -343,14 +341,13 @@ export const creatures: Creature[] = [
     length: '15-17',
     weight: '10,00 kg',
     diet: 'Carnivore',
-    image: '/images/mosasaurus.jpg',
+    image: '/images/creatures/mosasaurus.webp',
     description: 'Mosasaurus, a giant marine reptile that thrived during the Late Cretaceous period, was a dominant apex predator in the seas, growing up to 17 meters in length, with a sleek, hydrodynamic body and powerful tail that allowed it to navigate the water with remarkable speed and agility; as a member of the Mosasauridae family, it possessed long, paddle-like limbs and a large, muscular jaw, which was capable of delivering crushing bites with rows of sharp, conical teeth designed for grasping and tearing its prey, including fish, ammonites, and even other marine reptiles. With its highly specialized adaptations, Mosasaurus was one of the top predators in the oceans, hunting in both coastal and deep-sea environments, and its fossilized remains, often found in what is now Europe and North America, suggest it had evolved to be a fully aquatic creature, with a tail stroke propelling it much like modern marine animals such as dolphins. The mosasaur’s success was further bolstered by its ability to adapt to various environmental conditions, from warm shallow seas to deeper, more turbulent waters, making it a key player in the complex marine ecosystems leading up to the mass extinction event at the end of the Cretaceous.',
     category: 'Marine Creatures',
-    subcategory: 'Marine Reptiles',
+    subcategory: 'Mosasaurs',
     family: 'Mosasauridae',
     modelId: '245cd26f2cf54e88826e9c845dfcf92d',
-    //2024-06-07
-    lastUpdated: 1718236800000
+    lastUpdated: 1739128571040
   },
         {
     id: 'sarcoprion-edax',
@@ -385,7 +382,7 @@ export const creatures: Creature[] = [
     //2024-06-08
     lastUpdated: 1718409600000
   },
-  {
+      {
     id: 'shonisaurus-popularis',
     name: 'Shonisaurus popularis',
     scientificName: 'Shonisaurus popularis',
@@ -394,15 +391,14 @@ export const creatures: Creature[] = [
     length: '3.5–15 metres ',
     weight: '30,000 kg',
     diet: 'Carnivore',
-    image: '/images/shoniosaurus.jpeg',
+    image: '/images/creatures/shoniosaurus.webp',
     description: 'Shoniosaurus was a large marine reptile from the Late Cretaceous period, belonging to the family Shonisauridae and a member of the order Ichthyosauria. This impressive marine predator could grow up to 15 meters in length and had a long, streamlined body, reminiscent of a modern dolphin, designed for fast swimming through the warm seas of what is now North America and Europe. With a relatively short neck, large eyes, and a pointed snout filled with conical teeth, Shoniosaurus was well adapted to hunt fish and cephalopods, including squid, in deep or coastal waters. It had a large, powerful tail that helped it propel itself swiftly through the water, and its pectoral and pelvic fins were adapted for maneuverability, allowing it to make rapid, controlled movements when chasing prey or evading larger predators. Unlike some of its ichthyosaur relatives, Shoniosaurus had a less pronounced dorsal fin, likely because it did not need it for balance in its aquatic environment. Fossil evidence of this animal shows that it likely gave birth to live young, as is characteristic of many ichthyosaurs, making it an important part of the Mesozoic marine ecosystem. The genus is often seen as an example of the peak evolution of ichthyosaurs just before the group’s eventual decline at the end of the Cretaceous.',
     category: 'Marine Creatures',
-    subcategory: 'Marine Reptiles',
+    subcategory: 'Ichthyosaurs',
     family: 'Shonisauridae',
-    //2024-06-09
-    lastUpdated: 1718582400000
+    lastUpdated: 1739128964970
   },
-  {
+        {
     id: 'ichthyotitan-severnensis',
     name: 'Ichthyotitan severnensis',
     scientificName: 'Ichthyotitan severnensis',
@@ -411,13 +407,12 @@ export const creatures: Creature[] = [
     length: 'nearly 25 metres',
     weight: 'unknown',
     diet: 'Carnivore',
-    image: '/images/Ichthyotitan.webp',
+    image: '/images/creatures/Ichthyotitan.webp',
     description: 'Ichthyotitan is the only shastasaurid and giant ichthyosaur to be known from the Rhaetian, found in the fossil record 13 million years after their relatives. The lineage is believed to have gone extinct immediately after in the Triassic–Jurassic extinction event, with later ichthyosaurs never reaching similar sizes until their extinction in the early Late Cretaceous.',
     category: 'Marine Creatures',
-    subcategory: 'Marine Reptiles',
+    subcategory: 'Ichthyosaurs',
     family: 'Ichthyosauridae',
-    //2024-06-10
-    lastUpdated: 1718755200000
+    lastUpdated: 1739128946652
   },
       {
     id: 'pinosaurus-maroccanus',
@@ -966,7 +961,7 @@ export const creatures: Creature[] = [
     //2024-07-11
     lastUpdated: 1724112000000
   },
-    {
+        {
     id: 'ophthalmosaurus-discus',
     name: 'Ophthalmosaurus discus',
     scientificName: 'Ophthalmosaurus discus',
@@ -975,14 +970,13 @@ export const creatures: Creature[] = [
     length: '4 m',
     weight: '1,000-2,000 kg',
     diet: 'Carnivore',
-    image: '/images/oha.webp',
+    image: '/images/creatures/oha.webp',
     description: 'Ophthalmosaurus was a marine reptile that lived during the Late Jurassic period, around 160 to 145 million years ago, and is considered one of the most well-adapted ichthyosaurs, a group of marine reptiles that resembled modern dolphins. This genus was characterized by its large, crescent-shaped eyes, which were among the largest relative to body size of any known animal, possibly reaching up to 10 inches (25 cm) in diameter. These enormous eyes likely provided Ophthalmosaurus with excellent vision in the dimly lit waters of the deep ocean, helping it hunt in conditions where light penetration was limited.\n\nReaching lengths of up to 4.5 meters (15 feet), Ophthalmosaurus had a streamlined body with a long, pointed snout and a tail adapted for fast swimming. Its limbs were modified into flippers, making it highly maneuverable in the water. The body structure, along with its large eyes, suggests that Ophthalmosaurus was a highly specialized predator that likely hunted small fish and squid. Fossil evidence indicates that it was an adept swimmer, capable of rapid bursts of speed to chase down its prey in the open ocean.\n\nThe exceptional size of Ophthalmosaurus\' eyes has led some scientists to speculate that it may have hunted in deep or murky waters, where visibility would have been limited, but the size of its eyes allowed it to detect prey even in low-light environments. Some evidence also suggests that it might have been an ambush predator, using its speed and agility to catch fish by surprise. Fossils of Ophthalmosaurus have been found in various parts of the world, including Europe and North America, indicating that it was a successful and widespread genus during the Jurassic period, filling the ecological role of a top marine predator in the ancient seas',
     category: 'Marine Creatures',
-    subcategory: 'Marine Reptiles',
+    subcategory: 'Ichthyosaurs',
     family: 'Ophthalmosauridae',
     modelId: 'a1b8a09cb1674efeb51a16cb1f47670d',
-    //2024-07-12
-    lastUpdated: 1724284800000
+    lastUpdated: 1739129036048
   },
       {
     id: 'vasuki-indicus',
@@ -1174,7 +1168,7 @@ export const creatures: Creature[] = [
     //2024-07-23
     lastUpdated: 1726185600000
   },
-  {
+    {
     id: 'plesiosaurus-dolichodeirus',
     name: 'Plesiosaurus dolichodeirus',
     scientificName: 'Plesiosaurus dolichodeirus',
@@ -1186,11 +1180,10 @@ export const creatures: Creature[] = [
     image: '/images/creatures/plesiosaurus.webp',
     description: 'Plesiosaurus dolichodeirus is a specific species within the broader genus Plesiosaurus, which lived during the early Jurassic period, around 200 to 180 million years ago. This species is particularly notable for its elongated neck, a characteristic feature that distinguishes many members of the Plesiosaur group. Plesiosaurus dolichodeirus was one of the earlier species to exhibit the long-necked, small-headed design that would later become more exaggerated in other species, such as Elasmosaurus.\n\nThis species grew to about 10–15 feet (3–4.5 meters) in length, with a relatively short body compared to the extraordinary length of its neck. Plesiosaurus dolichodeirus had four large, paddle-like flippers, which it likely used for powerful propulsion through the water, allowing it to navigate with efficiency. These flippers would have been essential for stability and maneuverability, as the creature hunted fish and other small marine creatures in the shallow seas that covered much of what is now Europe during the Jurassic.\n\nWhat makes Plesiosaurus dolichodeirus stand out is its place in the evolutionary history of Plesiosaurs. It had a more primitive body shape than some of its later relatives, with a neck that, while long, wasn’t as extreme as those seen in later species like Elasmosaurus. Its skull was relatively small and equipped with sharp teeth, ideal for catching prey. The long neck likely enabled it to ambush prey in a dynamic way, swooping in quickly to snatch fish, while its large flippers allowed it to dive and maneuver with remarkable precision.\n\nFossils of Plesiosaurus dolichodeirus have been found in what is now Europe, particularly in regions like Germany and England, providing key insights into the early evolution of marine reptiles during the Jurassic. Like other Plesiosaurs, Plesiosaurus dolichodeirus eventually went extinct at the end of the Cretaceous, possibly due to the changes in marine ecosystems brought about by the mass extinction event, but it remains an important species for understanding the diversity of life in the ancient oceans.',
     category: 'Marine Creatures',
-    subcategory: 'Marine Reptiles',
+    subcategory: 'Plesiosaurs',
     family: 'Plesiosauridae',
     modelId: '87ef96b102aa4f4781ee2acc8de004d6',
-    //2024-07-24
-    lastUpdated: 1726358400000
+    lastUpdated: 1739128607062
   },
         {
     id: 'nigersaurus-taqueti',
@@ -1334,7 +1327,7 @@ export const creatures: Creature[] = [
     //2025-01-27
     lastUpdated: 1727740800000
   },
-  {
+    {
     id: 'pachycephalosaurus-grangeri',
     name: 'Pachycephalosaurus grangeri',
     scientificName: 'Pachycephalosaurus grangeri',
@@ -1346,11 +1339,10 @@ export const creatures: Creature[] = [
     image: '/images/creatures/pachy.webp',
     description: 'Pachycephalosaurus, one of the most iconic and distinctive dinosaurs of the Late Cretaceous period, lived roughly 66 to 70 million years ago in what is now North America, and is best known for its incredibly thick, domed skull, which could reach up to 10 inches (25 centimeters) in thickness, making it one of the most remarkable examples of cranial adaptation in the dinosaur world; this thickened skull, which had a somewhat dome-shaped appearance and was often surrounded by bony bumps or knobs, is believed to have played a crucial role in social behaviors, such as head-butting or intra-species combat, possibly used in territorial disputes, mating contests, or social dominance displays, although some researchers also suggest that it might have served as a defensive feature to absorb blows from predators; despite its relatively small size—estimated at around 15 feet (4.5 meters) in length and 6 feet (1.8 meters) in height—Pachycephalosaurus had a robust, bipedal build with strong, muscular legs and a relatively lightweight body, enabling it to move quickly across the ancient plains and forests of what was then North America, likely feeding on a variety of plants, including low-lying shrubs, ferns, and other vegetation, although some paleontologists speculate that it may have also eaten seeds or even the bark of certain trees; in addition to its remarkable headgear, Pachycephalosaurus is also recognized for its relatively short tail, which helped with balance during movement, and its small, leaf-shaped teeth, which suggest it was a herbivore or omnivore, though its diet remains a topic of ongoing research; fossils of Pachycephalosaurus have been primarily found in the Hell Creek and Lance formations, famous for their abundant dinosaur remains, and while the exact social structure of these dinosaurs remains uncertain, it\'s likely they lived in groups, as suggested by the discovery of multiple individuals in close proximity in some fossil sites, and they may have exhibited complex social behaviors that involved the use of their impressive heads in displays or combat, adding another layer of mystery to these unique, hard-headed creatures that continue to capture the imagination of paleontologists and dinosaur enthusiasts alike.',
     category: 'Dinosaurs',
-    subcategory: 'Ornithopods',
+    subcategory: 'Pachycephalosaurs',
     family: 'Pachycephalosauridae',
     modelId: '1c23aee07a734e3da5b344fa8077334c',
-    //2025-01-28
-    lastUpdated: 1727913600000
+    lastUpdated: 1739127962545
   },
   {
     id: 'argentavis-magnificens',
@@ -1438,7 +1430,7 @@ export const creatures: Creature[] = [
     modelId: '1fbcf81543134fb9b39457546b77a573',
     lastUpdated: 1738615564457
   },
-      {
+        {
     id: 'elasmosaurus-platyurus',
     name: 'Elasmosaurus platyurus',
     scientificName: 'Elasmosaurus platyurus',
@@ -1450,12 +1442,12 @@ export const creatures: Creature[] = [
     image: '/images/creatures/elasmo.webp',
     description: 'Elasmosaurus was a long-necked marine reptile from the Late Cretaceous period, known for its incredibly elongated neck, which made up about half of its total body length—around 10 meters  in total, with its neck stretching up to 7 meters. This iconic plesiosaur had a relatively small head, equipped with sharp teeth designed for catching fish, squid, and other marine prey. Its body, though bulky, was supported by four large, flipper-like limbs, which helped it maneuver through the water with impressive agility despite its size. Elasmosaurus\'s long neck likely gave it an advantage when hunting, allowing it to swiftly strike at prey while keeping most of its body hidden from view. Paleontologists believe that it may have used its neck like a hunting tool, sweeping it through schools of fish or ambushing prey from below, using surprise and speed to capture meals. Fossil evidence suggests that Elasmosaurus lived in shallow seas, where it was a top predator in its ecosystem, though it likely faced competition from other marine reptiles like the larger mosasaurs. Despite its predatory nature, Elasmosaurus was a non-mammalian reptile, closely related to modern reptiles like snakes and lizards but adapted to life in the ocean rather than on land.',
     category: 'Marine Creatures',
-    subcategory: 'Marine Reptiles',
+    subcategory: 'Plesiosaurs',
     family: 'Elasmosauridae',
     modelId: '54416e11ea5e495fb2d7cf3d8d856b99',
-    lastUpdated: 1738615377787
+    lastUpdated: 1739128836107
   },
-  {
+    {
     id: 'styxosaurus-snowii',
     name: 'Styxosaurus snowii',
     scientificName: 'Styxosaurus snowii',
@@ -1467,10 +1459,9 @@ export const creatures: Creature[] = [
     image: '/images/creatures/styxosaurus.webp',
     description: 'Styxosaurus was another formidable marine reptile from the Late Cretaceous period, closely related to Elasmosaurus and part of the Plesiosauria group. Characterized by its long neck—though not quite as extreme as its cousin—it still had an impressive length, with some species reaching up to 12 meters in total body length. Styxosaurus had a relatively smaller head compared to its body, with sharp, pointed teeth that were perfect for catching fish and squid, its primary diet. Its long, powerful flippers were adapted for agile swimming, allowing it to move swiftly through the water, and it likely used its neck to maneuver and strike at prey, possibly in a similar hunting technique to Elasmosaurus, though it may have been more suited for quick, sudden lunges rather than sweeping motions.\nWhat sets Styxosaurus apart from some other plesiosaurs is its relatively shorter neck in comparison, which gave it slightly more stability in the water and may have allowed it to dive deeper or navigate different environments. Fossil evidence shows that Styxosaurus inhabited shallow seas, and although it was an apex predator in its own right, it likely had to compete with other marine reptiles like mosasaurs and sharks for food. Like other plesiosaurs, Styxosaurus was well-adapted to life in the water, with a streamlined body and a tail that helped with balance and propulsion.',
     category: 'Marine Creatures',
-    subcategory: 'Marine Reptiles',
+    subcategory: 'Plesiosaurs',
     family: 'Elasmosauridae',
-    //2025-02-04
-    lastUpdated: 1729123200000
+    lastUpdated: 1739128851236
   },
       {
     id: 'irish-elk',
@@ -1505,7 +1496,7 @@ export const creatures: Creature[] = [
     family: 'Scansoriopterygidae',
     lastUpdated: 1738947541353
   },
-  {
+    {
     id: 'parasaurolophus-walkeri',
     name: 'Parasaurolophus walkeri',
     scientificName: 'Parasaurolophus walkeri',
@@ -1517,10 +1508,10 @@ export const creatures: Creature[] = [
     image: '/images/creatures/parasol.webp',
     description: 'Parasaurolophus is a distinctive and well-known dinosaur from the Late Cretaceous period, approximately 76 to 74 million years ago. It was a herbivorous hadrosaur, or \"duck-billed\" dinosaur, recognized for its long, backward-curving crest that extended from the top of its head, which was likely used for communication, display, or possibly even temperature regulation.\n\nParasaurolophus had a body length of about 30 feet (9 meters) and weighed around 2.5 tons, with a long, low-slung body supported by sturdy, pillar-like legs. It had a broad, duck-bill shaped mouth that was capable of processing large amounts of vegetation, such as cycads and conifers, which made up its diet.\n\nThe most distinctive feature of Parasaurolophus was its crest, which varied in size and shape among different species. The crest was hollow and connected to the nasal passages, and it\'s believed that the dinosaur may have used it to produce distinctive vocalizations, possibly for mating calls or to communicate with others of its kind. The crest’s size and shape may also have been a visual signal for dominance or mate attraction.\n\nFossils of Parasaurolophus have been found in North America, particularly in the western United States and Canada. This dinosaur is often depicted in popular media due to its striking appearance and the mystery surrounding the exact function of its crest. Despite the various theories, much of the purpose of the Parasaurolophus crest remains speculative, making it one of the most intriguing and iconic dinosaurs of its time.',
     category: 'Dinosaurs',
-    subcategory: 'Ornithopods',
+    subcategory: 'Hadrosaurs',
     family: 'Hadrosauridae',
     modelId: '36d5f89a39e24c1ebc5cc2b95a4d12fc',
-    lastUpdated: 1738867818807
+    lastUpdated: 1739128013272
   },
   {
     id: 'ankylosaurus-magniventris',

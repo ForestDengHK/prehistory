@@ -564,14 +564,13 @@ const diets = ['Carnivore', 'Herbivore', 'Omnivore'];
       .join('');
     subcategorySelect.value = creature.subcategory;
 
-    // Set image and preview
-    const imagePath = creature.image.startsWith('/images/creatures/') 
-      ? creature.image.slice('/images/creatures/'.length) 
-      : creature.image.startsWith('/images/') 
-        ? creature.image.slice('/images/'.length)
-        : creature.image;
-    imageInput.value = imagePath;
+    // Store the full image path in a data attribute and set the preview
     currentImagePreview.src = creature.image;
+    currentImagePreview.dataset.fullPath = creature.image;
+    
+    // Set the input value to just the filename for display
+    const imagePath = creature.image.split('/').pop() || '';
+    imageInput.value = imagePath;
   };
 
   // Handle dropdown selection
@@ -668,17 +667,17 @@ const diets = ['Carnivore', 'Herbivore', 'Omnivore'];
       const formData = new FormData(form);
       const creatureId = formData.get('id');
       const imageFile = formData.get('imageFile') as File;
+      const activeTab = document.querySelector('.tab-button.active')?.getAttribute('data-tab');
       
       // Update lastUpdated timestamp
       formData.set('lastUpdated', Date.now().toString());
       
-      // Handle image upload if a new file is selected
-      if (imageFile.size > 0) {
+      // Handle image path based on the active tab and whether we're uploading
+      if (imageFile.size > 0 && activeTab === 'upload') {
         const imageFormData = new FormData();
         imageFormData.append('image', imageFile);
         imageFormData.append('directory', 'creatures');
         
-        // Upload image first
         const uploadResponse = await fetch('/api/upload-image', {
           method: 'POST',
           body: imageFormData
@@ -688,16 +687,13 @@ const diets = ['Carnivore', 'Herbivore', 'Omnivore'];
         
         const { path } = await uploadResponse.json();
         formData.set('image', path);
+      } else if (activeTab === 'existing') {
+        // If using existing image input, ensure proper path
+        const imageName = formData.get('image') as string;
+        formData.set('image', `/images/creatures/${imageName.split('/').pop()}`);
       } else {
-        // Ensure the image path is correct for existing images
-        const imagePath = formData.get('image') as string;
-        if (imagePath) {
-          if (!imagePath.startsWith('/images/')) {
-            formData.set('image', `/images/creatures/${imagePath}`);
-          } else if (!imagePath.startsWith('/images/creatures/')) {
-            formData.set('image', `/images/creatures/${imagePath.slice('/images/'.length)}`);
-          }
-        }
+        // Use the stored full path for the current image
+        formData.set('image', currentImagePreview.dataset.fullPath || currentImagePreview.src);
       }
       
       // Submit creature data
@@ -732,5 +728,4 @@ const diets = ['Carnivore', 'Herbivore', 'Omnivore'];
       searchResults.classList.add('hidden');
     }
   });
-</script> 
 </script> 
