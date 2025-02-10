@@ -33,7 +33,7 @@ export interface SearchResult extends Creature {
 }
 
 export const creatures: Creature[] = [
-                                            {
+                                              {
     id: 'tyrannosaurus-rex',
     name: 'Tyrannosaurus Rex',
     scientificName: 'Tyrannosaurus rex',
@@ -43,14 +43,14 @@ export const creatures: Creature[] = [
     weight: '7,000-8,000 kg',
     diet: 'Carnivore',
     image: '/images/t-rex.webp',
-    description: 'The Tyrannosaurus rex, or T. rex, is one of the most iconic dinosaurs in history. Standing up to 20 feet tall and spanning 40 feet in length, this apex predator dominated the late Cretaceous period about 68–66 million years ago. Known for its massive skull, serrated teeth, and powerful jaw capable of crushing bones, the T. rex was a highly efficient hunter and scavenger. Despite its tiny, seemingly disproportionate arms, each limb was incredibly strong and likely aided in gripping prey. Its keen sense of smell and vision further established it as one of nature’s most formidable carnivores.',
+    description: 'Tyrannosaurus rex, often abbreviated as T. rex, is one of the most well-known and extensively studied dinosaurs, having lived approximately 68 to 66 million years ago during the Late Cretaceous period in what is now western North America. As a member of the theropod group, T. rex was a bipedal carnivore characterized by its massive skull, which could measure up to 1.5 meters in length, balanced by a long, heavy tail. Despite its formidable size, with adults reaching lengths of over 12 meters and weights estimated between 6 to 9 metric tons, T. rex had relatively short forelimbs with two clawed digits, the function of which has been a subject of debate among paleontologists. The skull of T. rex was uniquely structured, being extremely wide at the rear and featuring a narrow snout, which provided it with exceptional binocular vision. The robust nature of its skull bones, many of which were fused and pneumatized (containing air spaces), contributed to its powerful bite force, considered one of the strongest among terrestrial animals. Its teeth were heterodont, meaning they varied in shape and size; the premaxillary teeth at the front were D-shaped in cross-section and closely packed, while the remaining teeth were more widely spaced and robust, some exceeding 30 centimeters in length, making them the largest known teeth of any carnivorous dinosaur. The sensory capabilities of T. rex were highly developed; studies have shown that it possessed large olfactory bulbs, indicating a keen sense of smell, and its vision was likely superior to that of modern hawks, with a binocular range of 55 degrees. The discovery of soft tissue and proteins in at least one specimen has provided deeper insights into its biology and evolutionary relationships. Recent studies have also suggested that T. rex had a highly sensitive snout, possibly covered with scales or a form of integument, which it may have used for various behaviors, including nest building and social interactions. The debate over whether T. rex was primarily a predator or scavenger has largely been settled, with most paleontologists agreeing that it was both an active predator and a scavenger, preying upon hadrosaurs, ceratopsians, and possibly sauropods, while also consuming carrion when available. The cultural significance of T. rex is immense, having been featured prominently in films, literature, and media, solidifying its status as an iconic representation of dinosaurs in popular culture. Ongoing research continues to uncover new information about its growth patterns, biomechanics, and ecology, further enriching our understanding of this remarkable species.  ￼',
     category: 'Dinosaurs',
     subcategory: 'Theropods',
     family: 'Tyrannosauridae',
     modelId: '30e9e38ac7554062be7406658881d105',
-    lastUpdated: 1739136678542
+    lastUpdated: 1739215286304
   },
-                  {
+                    {
     id: 'megalodon',
     name: 'Otodus Megalodon',
     scientificName: 'Otodus megalodon',
@@ -60,14 +60,14 @@ export const creatures: Creature[] = [
     weight: '70,000 kg',
     diet: 'Carnivore',
     image: '/images/megalodon.jpg',
-    description: 'The Megalodon (Otodus megalodon) was the largest shark to ever roam Earth’s oceans, dominating marine ecosystems approximately 23 to 3.6 million years ago. Measuring up to 60 feet in length, this prehistoric predator had massive, serrated teeth up to 7 inches long—ideal for tearing through large prey like whales. Its immense jaw could exert a bite force of over 40,000 pounds, making it one of the most powerful biters in history. Likely a top apex predator, the Megalodon relied on its speed and strength to hunt, patrolling warm waters worldwide. Though extinct, its legacy endures as a symbol of oceanic might and mystery.',
+    description: 'Otodus megalodon, commonly known as megalodon, is an extinct species of giant mackerel shark that lived approximately 23 to 3.6 million years ago, from the Early Miocene to the Early Pliocene epochs. As one of the largest and most powerful predators to have ever lived, megalodon is primarily known from fossilized teeth and vertebral centra, as its cartilaginous skeletons rarely preserved well. These teeth are notably large, with triangular crowns and smooth cutting edges, some reaching lengths of up to 18 centimeters (7 inches).  ￼\n\nEstimations of megalodon’s size vary due to the fragmentary nature of its remains. Based on the size of its teeth and comparisons with modern sharks, mature individuals are believed to have averaged around 10.2 meters (33.5 feet) in length, with the largest specimens possibly reaching up to 17.9 meters (58.7 feet). Some studies suggest that in cooler waters, megalodons grew even larger, potentially exceeding 20 meters (65.6 feet) in length.  ￼\n\nThe teeth of megalodon are similar to those of modern great white sharks (Carcharodon carcharias) in that they are triangular, serrated, and symmetrical. However, megalodon teeth are larger and thicker, with more regular serrations and a distinctive bourlette—a darker, chevron-shaped region near the tooth’s root. These features suggest a powerful bite, with a diameter estimated at about 3 meters (9.8 feet), several times larger than that of modern great white sharks.  ￼\n\nFossil evidence indicates that megalodon had a cosmopolitan distribution, inhabiting warm, shallow seas along the coastlines and continental shelf regions of all continents except Antarctica. Its diet likely consisted of large marine mammals, such as whales, dolphins, and seals, as well as other sharks and large fish. The extinction of megalodon around 3.6 million years ago is thought to be linked to a combination of factors, including cooling ocean temperatures, declining prey populations, and competition with other predators.  ￼\n\nDespite its extinction, megalodon remains a subject of fascination and has been featured prominently in popular culture, often depicted as a monstrous, unstoppable predator. However, scientific evidence supports that megalodon was a real animal that lived and died millions of years ago, contributing to our understanding of marine ecosystems in the prehistoric past.  ￼',
     category: 'Marine Creatures',
     subcategory: 'Prehistoric Sharks',
     family: 'Otodontidae',
-    modelId: 'dc2b75f091964c26b05544f6a990e7ac', // Smithsonian 3D T-Rex
-    lastUpdated: 1712284800000 // 2024-04-01
+    modelId: 'dc2b75f091964c26b05544f6a990e7ac',
+    lastUpdated: 1739215341648
   },
-                    {
+                      {
     id: 'nanotyrannus',
     name: 'Nanotyrannus lancensis',
     scientificName: 'Nanotyrannus lancensis',
@@ -77,11 +77,11 @@ export const creatures: Creature[] = [
     weight: '1,000 kg',
     diet: 'Carnivore',
     image: '/images/nanotyrannus.jpg',
-    description: 'The Nanotyrannus is a controversial genus of small tyrannosaurid, with debates ongoing about whether it is a distinct species or a juvenile Tyrannosaurus rex. Estimated to reach lengths of around 17–20 feet, this predator lived during the late Cretaceous period. With a more slender build and proportionally longer arms compared to T. rex, it may have been an agile and fast hunter, preying on smaller dinosaurs and scavenging. Its lighter skull structure suggests adaptations for speed and precision rather than brute force. While its true identity remains debated, Nanotyrannus represents a fascinating chapter in the study of dinosaur evolution and diversity.',
+    description: 'Nanotyrannus, meaning “dwarf tyrant,” is a genus of tyrannosaurid dinosaur from the Late Cretaceous period, approximately 67 million years ago. The taxonomic status of Nanotyrannus has been a subject of considerable debate among paleontologists. Some researchers propose that specimens attributed to Nanotyrannus represent juvenile individuals of Tyrannosaurus rex, while others argue that they belong to a distinct, smaller-bodied tyrannosaur species.\n\nThe primary specimen associated with Nanotyrannus is CMNH 7541, a skull discovered in Montana in 1942. Initially classified as a species of Gorgosaurus, it was re-evaluated in 1988 by paleontologists Robert T. Bakker and others, who assigned it to a new genus, Nanotyrannus, based on features they interpreted as indicative of a distinct species. However, subsequent studies have questioned this classification, suggesting that the specimen’s characteristics are consistent with those of juvenile T. rex individuals.\n\nIn 2001, the discovery of a more complete juvenile tyrannosaur specimen, known as “Jane” (BMRP 2002.4.1), provided additional data for this debate. Some analyses of “Jane” and other similar specimens have concluded that they represent juvenile T. rex individuals, citing features such as bone histology and cranial morphology that align with known growth patterns of T. rex.\n\nConversely, a 2024 study by paleontologists Nicholas Longrich and Evan Saitta re-examined these specimens and argued that Nanotyrannus is a valid, distinct species. They based their conclusion on differences in morphology, growth patterns, and phylogenetic analyses, suggesting that Nanotyrannus had a more gracile build, narrower jaws, and a higher tooth count compared to T. rex.\n\nDespite these findings, the scientific community has not reached a consensus on the validity of Nanotyrannus as a separate genus. The debate highlights the challenges in distinguishing between distinct species and different life stages of known species in the fossil record, especially when available specimens are limited.\n\nFurther discoveries and analyses, particularly those involving more complete specimens and advanced imaging techniques, are necessary to resolve the taxonomic status of Nanotyrannus conclusively. Until then, the question of whether Nanotyrannus represents a distinct species or juvenile T. rex remains open.',
     category: 'Dinosaurs',
     subcategory: 'Theropods',
     family: 'Tyrannosauridae',
-    lastUpdated: 1712284800000 // 2024-04-01
+    lastUpdated: 1739215400774
   },
               {
     id: 'raptorex',
@@ -99,7 +99,7 @@ export const creatures: Creature[] = [
     family: 'Tyrannosauridae',
     lastUpdated: 1712284800000 // 2024-04-01
   },
-              {
+                {
     id: 'stegosaurus',
     name: 'Stegosaurus stenops',
     scientificName: 'Stegosaurus stenops',
@@ -109,14 +109,14 @@ export const creatures: Creature[] = [
     weight: '5,000-7,000 kg',
     diet: 'Herbivore',
     image: '/images/stegosaurus.jpg',
-    description: 'The Stegosaurus is one of the most recognizable dinosaurs, known for its distinctive row of large, bony plates along its back and spiked tail, called the thagomizer, used for defense. This herbivorous dinosaur lived during the Late Jurassic period, around 155–150 million years ago. Measuring up to 30 feet in length and weighing about 5 tons, the Stegosaurus had a relatively small head and brain for its size, suggesting it relied more on instinct than complex behaviors. Its plates may have been used for thermoregulation, display, or intimidation. A gentle giant of its time, the Stegosaurus is a symbol of prehistoric diversity and mystery.',
+    description: 'Stegosaurus stenops, meaning “narrow-faced roof lizard,” is a species of stegosaurid dinosaur that lived during the Late Jurassic period, approximately 156 to 146 million years ago. Its fossils have been discovered throughout the western United States, particularly in Colorado, Wyoming, and Utah.  ￼\n\nThis herbivorous dinosaur measured about 6.5 meters (21 feet) in length and weighed around 3.5 metric tons. It is characterized by its distinctive double row of kite-shaped bony plates along its back and the four long spikes on its tail, known as the “thagomizer,” which were likely used for defense against predators.  ￼\n\nStegosaurus stenops had a small head with a toothless beak at the front and small, leaf-shaped teeth in the back of its jaws, adapted for a herbivorous diet. Its forelimbs were shorter than its hind limbs, resulting in a posture where the head was positioned relatively low to the ground, likely facilitating the browsing of low-lying vegetation.  ￼\n\nThe first nearly complete skeleton of Stegosaurus stenops was discovered by Marshall P. Felch in 1885 at Garden Park, north of Cañon City, Colorado. This specimen provided significant insights into the anatomy of the species, including the arrangement of its plates and spikes.  ￼\n\nIn December 2024, the American Museum of Natural History unveiled “Apex,” one of the most complete Stegosaurus skeletons ever discovered. Standing 11 feet tall and 20 feet long, this specimen features the iconic upright plates and spiked tail characteristic of the species. “Apex” was found in Colorado and sold for a record $44.6 million at a Sotheby’s auction before being loaned to the museum.  ￼\n\nStegosaurus stenops remains one of the most recognizable dinosaurs, known for its distinctive appearance and significant contributions to our understanding of dinosaur anatomy and behavior.',
     category: 'Dinosaurs',
     subcategory: 'Stegosaurs',
     family: 'Stegosauridae',
     modelId: '6e9a2f36f0a447758d71c2134512580e',
-    lastUpdated: 1712284800000 // 2024-04-01
+    lastUpdated: 1739215460087
   },
-          {
+            {
     id: 'velociraptor',
     name: 'Velociraptor mongoliensis',
     scientificName: 'Velociraptor mongoliensis',
@@ -126,14 +126,14 @@ export const creatures: Creature[] = [
     weight: '15-20 kg',
     diet: 'Carnivore',
     image: '/images/velociraptor.webp',
-    description: 'The Velociraptor, often shortened to “raptor,” was a small, feathered carnivorous dinosaur that lived during the Late Cretaceous period, approximately 75–71 million years ago. Standing about 2 feet tall and measuring up to 7 feet in length, this agile predator weighed around 30 pounds, similar to a modern turkey. Its defining features included a curved, sickle-shaped claw on each foot, used for gripping and slashing prey, and a sharp, intelligent gaze that hinted at its advanced hunting strategies. Likely hunting in packs, the Velociraptor may have been both a skilled predator and scavenger. Its discovery revolutionized our understanding of dinosaurs as active, dynamic creatures closely related to birds.',
+    description: 'Velociraptor, meaning “swift thief,” is a genus of small dromaeosaurid theropod dinosaurs that lived approximately 75 to 71 million years ago during the Late Cretaceous period. Fossils of Velociraptor have been discovered in central and eastern Asia, particularly in the Gobi Desert region of Mongolia.  ￼\n\nAdult Velociraptors measured about 1.5 to 2 meters (5 to 6.5 feet) in length and weighed approximately 15 kilograms (33 pounds). They were bipedal carnivores characterized by a long, stiff tail that provided balance and agility, and an enlarged, sickle-shaped claw on each hind foot, which was likely used to tackle and restrain prey.  ￼\n\nUnlike their portrayal in popular media, Velociraptors were relatively small, comparable in size to a turkey. They had long legs and were likely agile hunters, capable of quick movements. Their agility was enhanced by a long, stiff tail that helped them steer at high speeds.  ￼\n\nPaleontological evidence indicates that Velociraptors had feathers, suggesting a closer evolutionary relationship to modern birds than to reptiles. This feathered covering likely provided insulation and may have been used for display or other functions.  ￼\n\nOne of the most famous fossils, known as the “Fighting Dinosaurs,” captures a Velociraptor locked in combat with a Protoceratops, providing a rare glimpse into predator-prey interactions during the Cretaceous period.  ￼\n\nVelociraptor’s portrayal in the “Jurassic Park” film series significantly influenced public perception of the dinosaur, often depicting them as larger and more reptilian than scientific evidence suggests. In reality, Velociraptors were smaller, feathered, and more bird-like in appearance.  ',
     category: 'Dinosaurs',
     subcategory: 'Theropods',
     family: 'Dromaeosauridae',
     modelId: '40412e7e70624086860fc1172f465561',
-    lastUpdated: 1712284800000 // 2024-04-01
+    lastUpdated: 1739215508906
   },
-            {
+              {
     id: 'triceratops',
     name: 'Triceratops horridus',
     scientificName: 'Triceratops horridus',
@@ -143,13 +143,14 @@ export const creatures: Creature[] = [
     weight: '6,000-12,000 kg',
     diet: 'Herbivore',
     image: '/images/triceratops.webp',
-    description: 'The Triceratops, one of the most iconic dinosaurs, was a massive herbivore that roamed North America during the Late Cretaceous period, around 68–66 million years ago. Known for its three facial horns and a large, bony frill extending from the back of its skull, Triceratops reached lengths of up to 30 feet and weighed around 6–12 tons. These features likely served for defense against predators like Tyrannosaurus rex and possibly for display or mating rituals. Despite its intimidating appearance, Triceratops primarily fed on low-lying plants. Its combination of power, adaptability, and distinctiveness makes it a favorite symbol of prehistoric life.',
+    description: 'Triceratops, meaning “three-horned face,” is a genus of large, herbivorous ceratopsid dinosaurs that roamed North America during the late Cretaceous period, approximately 68 to 66 million years ago. Recognized for its distinctive features, Triceratops possessed a massive skull adorned with a bony frill at the back and three prominent facial horns—two above the eyes and one on the nose. These physical characteristics have made it one of the most iconic and well-known dinosaurs.  ￼\n\nAdult Triceratops were formidable in size, measuring up to 9 meters (30 feet) in length and weighing between 6 to 12 tons. Their sturdy, quadrupedal build was supported by robust limbs, and they featured a parrot-like beak used for clipping vegetation. The large frill and horns have been subjects of extensive study, with theories suggesting they served various purposes, including defense against predators like Tyrannosaurus rex, display during mating rituals, and species recognition.  ￼\n\nFossil evidence indicates that Triceratops primarily inhabited regions that are now the western United States and Canada, with numerous specimens unearthed in the Hell Creek Formation, spanning areas of Montana, Wyoming, and the Dakotas. These fossils have provided significant insights into the anatomy and behavior of Triceratops, contributing to its status as one of the most extensively studied dinosaurs.  ￼\n\nThe discovery of a partially healed Triceratops horn with bite marks matching those of Tyrannosaurus suggests that encounters between these two species occurred, and that some Triceratops individuals survived such attacks.  ￼\n\nIn recent years, Triceratops fossils have garnered significant attention in the auction market. Notably, a specimen known as “Big John,” the largest Triceratops skeleton discovered to date, was sold at auction in 2021 for €6.6 million (approximately US$7.7 million). This high-profile sale reflects the growing interest in dinosaur fossils among private collectors and has sparked discussions about the implications of private ownership for scientific research.  ￼\n\nThe enduring popularity of Triceratops is evident in its frequent representation in media, literature, and museum exhibits, where it continues to captivate the public’s imagination and contribute to our understanding of prehistoric life.',
     category: 'Dinosaurs',
     subcategory: 'Ceratopsians',
     family: 'Triceratopsidae',
-    modelId: 'd16aabe33dc24f8ab37e3df50c068265'
+    modelId: 'd16aabe33dc24f8ab37e3df50c068265',
+    lastUpdated: 1739215561359
   },
-        {
+          {
     id: 'pterodactyl',
     name: 'Pterodactyl antiquus',
     scientificName: 'Pterodactylus antiquus',
@@ -159,12 +160,13 @@ export const creatures: Creature[] = [
     weight: '2-3 kg',
     diet: 'Carnivore',
     image: '/images/Pterodactylus.webp',
-    description: 'One of the first flying reptiles ever discovered, Pterodactylus was a relatively small pterosaur from the Late Jurassic period. Known for its short tail and elongated fourth finger that supported its wing membrane, it was perfectly adapted for aerial life. Despite common misconceptions, it wasn\'t a dinosaur but rather belonged to a separate group of flying reptiles. It likely fed on fish and small marine creatures, using its sharp teeth and excellent vision to catch prey',
+    description: 'The term “Pterodactyl” is commonly used to refer to flying reptiles of the order Pterosauria, which lived during the Late Jurassic through Late Cretaceous epochs (approximately 163.5 million to 66 million years ago). However, “Pterodactyl” specifically pertains to the genus Pterodactylus, one of the earliest pterosaurs discovered.  ￼\n\nPterodactylus was a small pterosaur, with an estimated wingspan of about 1.5 meters (5 feet). Its wings were formed by a skin and muscle membrane stretching from its elongated fourth finger to its hind limbs. This structure was supported internally by collagen fibers and externally by keratinous ridges.  ￼\n\nPterosaurs, including Pterodactylus, were the first vertebrates known to have evolved powered flight. They had hollow bones, large brains with well-developed optic lobes, and elongated jaws with conical teeth, adaptations that facilitated their aerial lifestyle. While often associated with dinosaurs, pterosaurs are a distinct group of reptiles that coexisted with dinosaurs but are not classified within the Dinosauria clade.\n\nThe discovery of Pterodactylus in the late 18th century marked a significant milestone in paleontology, as it was among the first pterosaur fossils to be identified and studied. Its unique anatomy challenged early scientists’ understanding of vertebrate morphology and contributed to the development of concepts related to extinction and the diversity of prehistoric life.\n\nIt’s important to note that while “Pterodactyl” is a popular term, it is not scientifically precise. The correct term for this group of flying reptiles is “pterosaurs,” which encompasses a wide variety of species with diverse sizes, shapes, and ecological roles.',
     category: 'Flying Creatures',
     subcategory: 'Pterosaurs',
-    family: 'Pterodactylidae'
+    family: 'Pterodactylidae',
+    lastUpdated: 1739215603384
   },
-            {
+              {
     id: 'archaeopteryx',
     name: 'Archaeopteryx lithographica',
     scientificName: 'Archaeopteryx lithographica',
@@ -174,13 +176,14 @@ export const creatures: Creature[] = [
     weight: '0.5 to 1 kg',
     diet: 'Carnivore',
     image: '/images/archaeopteryx.jpg',
-    description: 'Archaeopteryx is a pivotal species in the study of evolution, often considered a transitional fossil between non-avian dinosaurs and modern birds. This small, crow-sized creature lived approximately 150 million years ago during the Late Jurassic period. It possessed a fascinating combination of both avian and reptilian features, such as feathers, wings, and a wishbone similar to birds, alongside teeth, clawed fingers, and a long, bony tail like dinosaurs. These characteristics make Archaeopteryx a key piece of evidence for understanding the evolution of flight and the relationship between dinosaurs and birds',
+    description: 'Archaeopteryx, often hailed as a pivotal link between non-avian dinosaurs and birds, exhibits a fascinating blend of characteristics from both groups. Its anatomy includes features such as a wishbone (furcula), flight feathers, and a partially reversed first toe, which are typical of birds. Conversely, it also possesses traits common to non-avian theropod dinosaurs, including jaws with sharp teeth, three fingers with claws, a long bony tail, and hyperextensible second toes. This unique combination underscores its significance in understanding avian evolution.  ￼\n\nThe Solnhofen limestone in Bavaria, Germany, where most Archaeopteryx specimens have been found, is renowned for its exceptional fossil preservation. This geological formation dates back to the early Tithonian stage of the Jurassic period, approximately 150.8 to 148.5 million years ago, providing a detailed snapshot of life during that era.  ￼\n\nRecent studies have delved into the plumage of Archaeopteryx, revealing that its feathers were remarkably similar in structure to those of modern birds. The presence of asymmetrical flight feathers suggests that it had some aerodynamic capabilities, though the extent of its flight abilities—whether it was capable of powered flight or merely gliding—remains a topic of ongoing research.  ￼\n\nThe coloration of Archaeopteryx has also been a subject of scientific inquiry. Analyses of melanosomes (pigment-containing organelles) in fossilized feathers have provided insights into its possible coloration, indicating that some feathers were likely pigmented, which could have implications for understanding its behavior and ecology.  ￼\n\nThe discovery of Archaeopteryx shortly after Charles Darwin published “On the Origin of Species” provided tangible evidence supporting the theory of evolution, illustrating a transitional form between reptiles and birds. Its unique blend of avian and reptilian features has made it a central figure in discussions about the origin of birds and the evolutionary processes that led to the diversity of life we observe today.  ￼\n\nIn summary, Archaeopteryx stands as a cornerstone in the study of evolutionary biology, offering profound insights into the transition from dinosaurs to modern birds and highlighting the complex pathways of evolution.',
     category: 'Flying Creatures',
     subcategory: 'Early Birds',
     family: 'Archaeopteryxidae',
-    modelId: '27e8aafc63e045839ff20d45b1a9a70d'
+    modelId: '27e8aafc63e045839ff20d45b1a9a70d',
+    lastUpdated: 1739215660664
   },
-        {
+          {
     id: 'dreadnoughtus',
     name: 'Dreadnoughtus schrani',
     scientificName: 'Dreadnoughtus schrani',
@@ -190,13 +193,13 @@ export const creatures: Creature[] = [
     weight: '65,000 kg',
     diet: 'Herbivore',
     image: '/images/dreadnoughtus.jpg',
-    description: 'The Dreadnoughtus, named for its "fear nothing" stature, is one of the largest known dinosaurs and a member of the titanosaur family. Living approximately 77 million years ago during the Late Cretaceous period, this colossal herbivore measured up to 85 feet in length and weighed an estimated 65 tons—more massive than most other land animals ever to exist. Its long neck allowed it to reach high vegetation, while its massive tail provided balance and potential defense. Despite its size, its long, graceful neck would have enabled it to feed across vast areas without needing to move constantly, and its thick, pillar-like legs supported its massive body. Fossil evidence of Argentinosaurus is limited to incomplete skeletons, mostly from vertebrae and limb bones, found in the Neuquén Province of Argentina, leading to its name. Because of its immense proportions, it is often cited as one of the heaviest and longest sauropods, alongside other giants like Patagotitan and Dreadnoughtus. As an herbivore, it would have likely lived in herds, and its size may have helped it maintain a largely solitary lifestyle, avoiding predators by sheer magnitude and perhaps using its tail for defense. The discovery of Argentinosaurus was pivotal in understanding the diversity and size range of Late Cretaceous sauropods, underscoring the extreme evolutionary paths that some herbivorous dinosaurs took to dominate the Mesozoic landscapes.',
+    description: 'Dreadnoughtus schrani is a genus of massive sauropod dinosaurs that lived during the Late Cretaceous period, approximately 77 million years ago, in what is now southern Patagonia, Argentina. The name “Dreadnoughtus,” meaning “fears nothing,” reflects its immense size and presumed lack of predators.  ￼\n\nThe holotype specimen of Dreadnoughtus is notable for its exceptional completeness, with over 70% of the skeleton preserved, excluding the head. This level of preservation provides valuable insights into the anatomy and physiology of giant sauropods.  ￼\n\nEstimates of Dreadnoughtus’s mass have varied among researchers. Initial studies suggested a weight of about 59 metric tons (approximately 65 tons), making it one of the heaviest known land animals. However, subsequent analyses have proposed lower mass estimates, ranging between 30 to 40 metric tons, based on different modeling techniques.  ￼\n\nThe discovery of Dreadnoughtus has significantly enhanced our understanding of sauropod anatomy, growth, and biomechanics, offering a more comprehensive view of these colossal creatures that once roamed the Earth.',
     category: 'Dinosaurs',
     subcategory: 'Sauropods',
     family: 'Titanosauridae',
-    lastUpdated: 1712284800000 // 2024-04-01
+    lastUpdated: 1739215714949
   },
-      {
+              {
     id: 'spinosaurus',
     name: 'Spinosaurus aegyptiacus',
     scientificName: 'Spinosaurus aegyptiacus',
@@ -206,12 +209,12 @@ export const creatures: Creature[] = [
     weight: '20,000 - 22,000 kg',
     diet: 'Carnivore',
     image: '/images/spinosaurus3.webp',
-    description: 'Spinosaurus, a massive Cretaceous theropod measuring up to 59 feet long and weighing as much as 20 tons, is renowned for its long, crocodile-like snout, conical teeth suited for fish-catching, and distinctive sail-like structure on its back formed by elongated neural spines, which is thought to have played a role in thermoregulation, display, or stability while swimming, as evidence suggests this semi-aquatic dinosaur, with its robust forelimbs, small hindlimbs, and powerful tail, likely spent significant time in water hunting fish, making it one of the most unusual and debated dinosaurs in paleontology.',
+    description: 'Spinosaurus aegyptiacus, meaning “Egyptian spine lizard,” is a genus of theropod dinosaur that inhabited North Africa during the Cenomanian stage of the Late Cretaceous period, approximately 100 to 94 million years ago. First described by German paleontologist Ernst Stromer in 1915, Spinosaurus has since captivated scientists and the public alike due to its distinctive morphology and potential semi-aquatic lifestyle.  ￼\n\n\n\nThe initial remains of Spinosaurus were unearthed in Egypt in 1912 and studied by Stromer, who named the genus in 1915. Unfortunately, these original fossils were destroyed during World War II, leaving only Stromer’s detailed descriptions and drawings. Subsequent discoveries in Morocco and other parts of North Africa have provided additional material, allowing for a more comprehensive understanding of this enigmatic dinosaur.  ￼\n\n\nSpinosaurus is recognized as one of the largest known carnivorous dinosaurs, surpassing even Tyrannosaurus rex in length. Estimates suggest it measured between 14 to 18 meters (46 to 59 feet) in length, with a skull approximately 1.75 meters (5.7 feet) long. Early studies proposed that Spinosaurus could have weighed up to 20 metric tons (22 tons), but more recent analyses indicate a mass closer to 7.4 metric tons (8.1 tons).  ￼\n\nA defining feature of Spinosaurus is the series of elongated neural spines extending from its vertebrae, some exceeding 1 meter in height, which likely supported a sail-like structure along its back. The function of this sail remains debated, with hypotheses ranging from thermoregulation and energy storage to display purposes for attracting mates or intimidating rivals.  ￼\n\nThe skull of Spinosaurus was long, low, and narrow, resembling that of a modern crocodilian. It possessed straight, conical teeth without serrations, well-suited for grasping slippery prey such as fish. The nostrils were positioned further back on the snout, an adaptation potentially beneficial for a semi-aquatic lifestyle.  ￼\n\n\nSpinosaurus exhibited notable adaptations in its limbs. The forelimbs were robust and well-developed, featuring three-fingered hands with an enlarged claw on the first digit. In contrast, the hind limbs were relatively short in proportion to its body, comprising just over 25% of the total body length. This limb proportion is unusual among theropods and has led to various interpretations regarding its locomotion.  ￼\n\nRecent studies have highlighted the unique structure of the tail in Spinosaurus. The tail was long and deep, with tall neural spines and elongated chevrons, forming a flexible, paddle-like structure. This morphology suggests that the tail played a significant role in aquatic propulsion, supporting the idea of a semi-aquatic lifestyle.  ￼\n\n\n\nEvidence increasingly supports the notion that Spinosaurus was adapted to a semi-aquatic lifestyle. Its conical teeth and elongated jaws are indicative of piscivory, or fish-eating behavior. The high bone density observed in its limb bones would have aided in buoyancy control, allowing it to submerge more easily. Additionally, isotopic analyses of its bones have provided further evidence of a semi-aquatic lifestyle, with oxygen isotope ratios similar to those of modern aquatic animals.  ￼\n\n\n\nSpinosaurus inhabited a region characterized by river systems and mangrove forests, coexisting with a diverse array of fauna, including other theropods, sauropods, and various aquatic organisms. Its semi-aquatic adaptations suggest it occupied a unique ecological niche, potentially reducing competition with other large predators by exploiting aquatic resources.  ￼\n\nThe function of the sail-like structure on its back remains a topic of debate. Some researchers propose it served as a display structure for social interactions, while others suggest it may have played a role in thermoregulation or energy storage. The exact function of this feature continues to be explored in ongoing research.  ￼\n\n\n\nSpinosaurus aegyptiacus stands as one of the most intriguing and distinctive dinosaurs known to science. Its unique combination of features, including a potential sail, semi-aquatic adaptations, and considerable size, has provided valuable insights into the diversity and adaptability of theropod dinosaurs. Ongoing research continues to refine our understanding of this remarkable creature, shedding light on its biology, ecology, and evolutionary significance.',
     category: 'Dinosaurs',
     subcategory: 'Theropods',
     family: 'Spinosauridae',
     modelId: 'f136cb45937b4695af705ffd032809d9',
-    lastUpdated: 1712284800000 // 2024-04-01
+    lastUpdated: 1739215885614
   },
             {
     id: 'stromatolite-bacteria',
@@ -1594,6 +1597,22 @@ export const creatures: Creature[] = [
     subcategory: 'Theropods',
     family: 'Megalosauridae',
     lastUpdated: 1739042789587
+  },
+  {
+    id: 'deinocheirus-mirificus',
+    name: 'Deinocheirus mirificus',
+    scientificName: 'Deinocheirus mirificus',
+    period: 'Cretaceous',
+    location: 'Mongolia (Asia)',
+    length: '11 m',
+    weight: '6,500 kg',
+    diet: 'Herbivore',
+    image: '/images/creatures/dienocrous.webp',
+    description: 'Deinocheirus mirificus, a genus of large ornithomimosaurian theropod dinosaurs from the Late Cretaceous period approximately 70 million years ago, was first discovered in Mongolia’s Nemegt Formation in 1965, initially known only from its massive forelimbs measuring about 2.4 meters in length, leading to its name meaning “terrible hand”; however, subsequent discoveries revealed a more complete picture of this unique dinosaur, which measured over 10 meters in length and weighed around 6.5 tonnes, featuring a combination of distinctive characteristics such as a long, toothless skull with a duck-like beak, a sail-like structure formed by elongated neural spines on its back, and large, blunt claws on its forelimbs, suggesting adaptations for omnivorous feeding habits that included both plant material and fish, as evidenced by gastroliths and fish remains found in association with its fossils, positioning Deinocheirus as a highly specialized member of the ornithomimosaur clade, with a body plan and ecological niche that distinguish it from other theropods of its time; the discovery of more complete specimens in the early 2010s, including two individuals that had been partially collected by fossil poachers but later recovered and studied by scientists, provided significant insights into the anatomy and ecology of Deinocheirus, revealing that it possessed a unique combination of features not seen in other dinosaurs, such as a large, humped back supported by tall neural spines, a broad, duck-like bill, and a bulky body supported by relatively short, robust legs, indicating that, unlike other ornithomimosaurs which were built for speed, Deinocheirus was not adapted for fast running, and its physical characteristics suggest it led a different lifestyle, possibly foraging in aquatic environments for a variety of food sources; the presence of gastroliths—stones swallowed to aid digestion—along with fish remains in the stomach region of one specimen, indicates that Deinocheirus had an omnivorous diet, consuming both plants and animals, which is further supported by the structure of its beak and jaws, adapted for cropping vegetation and possibly foraging in water; the discovery of Deinocheirus has significantly expanded our understanding of the diversity and ecological roles of theropod dinosaurs, demonstrating that they occupied a wider range of niches than previously thought, and highlighting the complex evolutionary history of this group during the Late Cretaceous period.  ￼ ￼ ￼',
+    category: 'Dinosaurs',
+    subcategory: 'Theropods',
+    family: 'Deinocheiridae',
+    lastUpdated: 1739215176076
   }];
 
 export const searchCreatures = (searchQuery: string): SearchResult[] => {
