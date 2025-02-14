@@ -13,7 +13,8 @@ export const categories = {
     'Giant Snakes',     // Like Titanoboa
     'Land Reptiles',    // Like Dimetrodon
     'Crocodilians',     // Prehistoric crocodiles and relatives
-    'Other Reptiles'    // Other prehistoric reptiles
+    'Other Reptiles',
+    'Synapsids'
   ],
   'Marine Creatures': [
     'Prehistoric Fish',
