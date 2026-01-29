@@ -1,0 +1,771 @@
+---
+interface Props {
+    title: string;
+    description?: string;
+}
+
+const { title, description = 'Admin Dashboard for Prehistoric World' } = Astro.props;
+
+// Get current path for nav highlighting
+const currentPath = Astro.url.pathname;
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <meta name="robots" content="noindex, nofollow" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+        <!-- Nunito to match main site -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+        <title>{title} | Admin</title>
+        <meta name="description" content={description} />
+    </head>
+    <body>
+        <!-- Toast Container -->
+        <div id="toast-container" class="toast-container"></div>
+
+        <div class="admin-shell">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <div class="sidebar-header">
+                    <a href="/admin" class="logo">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                            <path d="M2 17l10 5 10-5"/>
+                            <path d="M2 12l10 5 10-5"/>
+                        </svg>
+                        <span>Prehistory</span>
+                    </a>
+                    <span class="badge">Admin</span>
+                </div>
+
+                <nav class="sidebar-nav">
+                    <div class="nav-section">
+                        <span class="nav-label">Overview</span>
+                        <a href="/admin" class:list={["nav-item", { active: currentPath === '/admin' || currentPath === '/admin/' }]}>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="3" width="7" height="9"/>
+                                <rect x="14" y="3" width="7" height="5"/>
+                                <rect x="14" y="12" width="7" height="9"/>
+                                <rect x="3" y="16" width="7" height="5"/>
+                            </svg>
+                            Dashboard
+                        </a>
+                    </div>
+
+                    <div class="nav-section">
+                        <span class="nav-label">Creatures</span>
+                        <a href="/admin/add-creature" class:list={["nav-item", { active: currentPath.includes('add-creature') }]}>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <line x1="12" y1="8" x2="12" y2="16"/>
+                                <line x1="8" y1="12" x2="16" y2="12"/>
+                            </svg>
+                            Add Creature
+                        </a>
+                        <a href="/admin/edit-creature" class:list={["nav-item", { active: currentPath.includes('edit-creature') }]}>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                            </svg>
+                            Edit Creature
+                        </a>
+                    </div>
+
+                    <div class="nav-section">
+                        <span class="nav-label">Content</span>
+                        <a href="/admin/add-facts" class:list={["nav-item", { active: currentPath.includes('add-facts') }]}>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <line x1="12" y1="8" x2="12" y2="16"/>
+                                <line x1="8" y1="12" x2="16" y2="12"/>
+                            </svg>
+                            Add Facts
+                        </a>
+                        <a href="/admin/edit-facts" class:list={["nav-item", { active: currentPath.includes('edit-facts') }]}>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                            </svg>
+                            Edit Facts
+                        </a>
+                    </div>
+
+                    <div class="nav-section">
+                        <span class="nav-label">Engagement</span>
+                        <a href="/admin/comments" class:list={["nav-item", { active: currentPath.includes('comments') }]}>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                            </svg>
+                            Comments
+                        </a>
+                        <a href="/admin/likes" class:list={["nav-item", { active: currentPath.includes('likes') }]}>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                            </svg>
+                            Likes
+                        </a>
+                    </div>
+
+                    <div class="nav-section">
+                        <span class="nav-label">Tools</span>
+                        <a href="/admin/optimize-images" class:list={["nav-item", { active: currentPath.includes('optimize-images') }]}>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                                <circle cx="8.5" cy="8.5" r="1.5"/>
+                                <polyline points="21 15 16 10 5 21"/>
+                            </svg>
+                            Optimize Images
+                        </a>
+                    </div>
+                </nav>
+
+                <div class="sidebar-footer">
+                    <a href="/" class="nav-item external">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                            <polyline points="15 3 21 3 21 9"/>
+                            <line x1="10" y1="14" x2="21" y2="3"/>
+                        </svg>
+                        View Site
+                    </a>
+                </div>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="main-content">
+                <slot />
+            </main>
+        </div>
+    </body>
+</html>
+
+<style is:global>
+    :root {
+        /* Clean white palette matching main site */
+        --admin-bg: #f8f9fa;
+        --admin-surface: #ffffff;
+        --admin-surface-hover: #f1f3f4;
+        --admin-border: #e0e0e0;
+        --admin-border-light: #d0d0d0;
+
+        /* Text - matching main site */
+        --admin-text: #2c3e50;
+        --admin-text-muted: #7f8c8d;
+        --admin-text-dim: #95a5a6;
+
+        /* Accent colors matching main site */
+        --admin-accent: #e74c3c;
+        --admin-accent-hover: #c0392b;
+        --admin-success: #27ae60;
+        --admin-warning: #f39c12;
+        --admin-danger: #e74c3c;
+        --admin-info: #3498db;
+
+        /* Category colors - fun palette */
+        --color-creatures: #27ae60;
+        --color-content: #3498db;
+        --color-engagement: #9b59b6;
+        --color-tools: #f39c12;
+
+        /* Typography - matching main site */
+        --font-sans: 'Nunito', -apple-system, BlinkMacSystemFont, sans-serif;
+        --font-mono: ui-monospace, 'SF Mono', Consolas, monospace;
+
+        /* Spacing */
+        --sidebar-width: 260px;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    html {
+        font-family: var(--font-sans);
+        font-size: 15px;
+        background: var(--admin-bg);
+        color: var(--admin-text);
+        -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+        min-height: 100vh;
+    }
+
+    /* Admin Shell */
+    .admin-shell {
+        display: flex;
+        min-height: 100vh;
+    }
+
+    /* Sidebar - Clean white to match site design */
+    .sidebar {
+        width: var(--sidebar-width);
+        background: var(--admin-surface);
+        border-right: 1px solid var(--admin-border);
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        z-index: 100;
+    }
+
+    .sidebar-header {
+        padding: 1.25rem 1rem;
+        border-bottom: 1px solid var(--admin-border);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: var(--admin-surface);
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        gap: 0.625rem;
+        color: var(--admin-text);
+        text-decoration: none;
+        font-weight: 800;
+        font-size: 1.125rem;
+    }
+
+    .logo svg {
+        color: var(--admin-accent);
+    }
+
+    .badge {
+        background: var(--admin-accent);
+        color: white;
+        font-size: 0.625rem;
+        font-weight: 700;
+        padding: 0.25rem 0.625rem;
+        border-radius: 100px;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    .sidebar-nav {
+        flex: 1;
+        overflow-y: auto;
+        padding: 1rem 0;
+        background: var(--admin-surface);
+    }
+
+    .nav-section {
+        margin-bottom: 1.5rem;
+    }
+
+    .nav-label {
+        display: block;
+        font-size: 0.6875rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--admin-text-dim);
+        padding: 0 1rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .nav-item {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.75rem 1rem;
+        color: var(--admin-text-muted);
+        text-decoration: none;
+        font-size: 0.9375rem;
+        font-weight: 600;
+        transition: all 0.15s ease;
+        border-left: 3px solid transparent;
+        margin: 0 0.5rem;
+        border-radius: 0 8px 8px 0;
+    }
+
+    .nav-item:hover {
+        background: var(--admin-surface-hover);
+        color: var(--admin-text);
+    }
+
+    .nav-item.active {
+        background: rgba(231, 76, 60, 0.08);
+        color: var(--admin-accent);
+        border-left-color: var(--admin-accent);
+    }
+
+    .nav-item svg {
+        flex-shrink: 0;
+        opacity: 0.7;
+    }
+
+    .nav-item.active svg,
+    .nav-item:hover svg {
+        opacity: 1;
+    }
+
+    .sidebar-footer {
+        padding: 1rem;
+        border-top: 1px solid var(--admin-border);
+        background: var(--admin-surface);
+    }
+
+    .sidebar-footer .nav-item {
+        border-radius: 8px;
+        border-left: none;
+        margin: 0;
+    }
+
+    /* Main Content */
+    .main-content {
+        flex: 1;
+        margin-left: var(--sidebar-width);
+        min-height: 100vh;
+        background: var(--admin-bg);
+    }
+
+    /* Toast System */
+    .toast-container {
+        position: fixed;
+        top: 1rem;
+        right: 1rem;
+        z-index: 9999;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .toast {
+        background: var(--admin-surface);
+        border-radius: 12px;
+        padding: 1rem 1.25rem;
+        display: flex;
+        align-items: center;
+        gap: 0.875rem;
+        min-width: 320px;
+        max-width: 450px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+        animation: slideIn 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        border-left: 4px solid transparent;
+    }
+
+    .toast.success {
+        border-left-color: var(--admin-success);
+    }
+
+    .toast.error {
+        border-left-color: var(--admin-danger);
+    }
+
+    .toast.warning {
+        border-left-color: var(--admin-warning);
+    }
+
+    .toast.info {
+        border-left-color: var(--admin-info);
+    }
+
+    .toast-icon {
+        flex-shrink: 0;
+        width: 2.25rem;
+        height: 2.25rem;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .toast.success .toast-icon {
+        background: rgba(39, 174, 96, 0.12);
+        color: var(--admin-success);
+    }
+    .toast.error .toast-icon {
+        background: rgba(231, 76, 60, 0.12);
+        color: var(--admin-danger);
+    }
+    .toast.warning .toast-icon {
+        background: rgba(243, 156, 18, 0.12);
+        color: var(--admin-warning);
+    }
+    .toast.info .toast-icon {
+        background: rgba(52, 152, 219, 0.12);
+        color: var(--admin-info);
+    }
+
+    .toast-content {
+        flex: 1;
+    }
+
+    .toast-title {
+        font-weight: 700;
+        margin-bottom: 0.125rem;
+        color: var(--admin-text);
+    }
+
+    .toast-message {
+        font-size: 0.875rem;
+        color: var(--admin-text-muted);
+    }
+
+    .toast-close {
+        background: none;
+        border: none;
+        color: var(--admin-text-dim);
+        cursor: pointer;
+        padding: 0.375rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 6px;
+        transition: all 0.15s ease;
+    }
+
+    .toast-close:hover {
+        background: var(--admin-surface-hover);
+        color: var(--admin-text);
+    }
+
+    @keyframes slideIn {
+        from {
+            opacity: 0;
+            transform: translateX(100%);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes slideOut {
+        from {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        to {
+            opacity: 0;
+            transform: translateX(100%);
+        }
+    }
+
+    /* Utility Classes */
+    .page-header {
+        padding: 2rem 2.5rem;
+        background: var(--admin-surface);
+        border-bottom: 1px solid var(--admin-border);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    }
+
+    .page-title {
+        font-size: 1.75rem;
+        font-weight: 800;
+        color: var(--admin-text);
+        margin-bottom: 0.25rem;
+    }
+
+    .page-subtitle {
+        color: var(--admin-text-muted);
+        font-size: 0.9375rem;
+    }
+
+    .page-content {
+        padding: 2rem 2.5rem;
+    }
+
+    /* Cards */
+    .card {
+        background: var(--admin-surface);
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        border: 1px solid var(--admin-border);
+    }
+
+    .card-header {
+        padding: 1rem 1.25rem;
+        border-bottom: 1px solid var(--admin-border);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: var(--admin-surface);
+    }
+
+    .card-title {
+        font-size: 1rem;
+        font-weight: 700;
+        color: var(--admin-text);
+    }
+
+    .card-body {
+        padding: 1.25rem;
+    }
+
+    /* Buttons */
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1.25rem;
+        font-size: 0.875rem;
+        font-weight: 700;
+        font-family: var(--font-sans);
+        border-radius: 8px;
+        border: none;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        text-decoration: none;
+    }
+
+    .btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+
+    .btn-primary {
+        background: var(--admin-accent);
+        color: white;
+        box-shadow: 0 2px 4px rgba(231, 76, 60, 0.2);
+    }
+
+    .btn-primary:hover:not(:disabled) {
+        background: var(--admin-accent-hover);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
+    }
+
+    .btn-danger {
+        background: var(--admin-danger);
+        color: white;
+        box-shadow: 0 2px 4px rgba(231, 76, 60, 0.2);
+    }
+
+    .btn-danger:hover:not(:disabled) {
+        background: #c0392b;
+        transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+        background: transparent;
+        color: var(--admin-text-muted);
+        border: 2px solid var(--admin-border);
+    }
+
+    .btn-ghost:hover:not(:disabled) {
+        background: var(--admin-surface-hover);
+        color: var(--admin-text);
+        border-color: var(--admin-border-light);
+    }
+
+    .btn-success {
+        background: var(--admin-success);
+        color: white;
+        box-shadow: 0 2px 4px rgba(39, 174, 96, 0.2);
+    }
+
+    .btn-success:hover:not(:disabled) {
+        background: #219a52;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(39, 174, 96, 0.3);
+    }
+
+    /* Tables */
+    .table-container {
+        overflow-x: auto;
+        border-radius: 12px;
+        border: 1px solid var(--admin-border);
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background: var(--admin-surface);
+    }
+
+    th {
+        text-align: left;
+        padding: 1rem 1.25rem;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--admin-text-muted);
+        background: var(--admin-surface);
+        border-bottom: 2px solid var(--admin-border);
+        position: sticky;
+        top: 0;
+    }
+
+    td {
+        padding: 1rem 1.25rem;
+        border-bottom: 1px solid var(--admin-border);
+        font-size: 0.9375rem;
+    }
+
+    tr:last-child td {
+        border-bottom: none;
+    }
+
+    tr:hover td {
+        background: var(--admin-surface-hover);
+    }
+
+    /* Custom Checkbox */
+    .checkbox {
+        appearance: none;
+        width: 1.125rem;
+        height: 1.125rem;
+        border: 2px solid var(--admin-border-light);
+        border-radius: 5px;
+        background: var(--admin-surface);
+        cursor: pointer;
+        position: relative;
+        transition: all 0.15s ease;
+    }
+
+    .checkbox:hover {
+        border-color: var(--admin-accent);
+    }
+
+    .checkbox:checked {
+        background: var(--admin-accent);
+        border-color: var(--admin-accent);
+    }
+
+    .checkbox:checked::after {
+        content: '';
+        position: absolute;
+        top: 2px;
+        left: 5px;
+        width: 5px;
+        height: 9px;
+        border: solid white;
+        border-width: 0 2.5px 2.5px 0;
+        transform: rotate(45deg);
+    }
+
+    /* Stats */
+    .stat-value {
+        font-family: var(--font-sans);
+        font-size: 2.25rem;
+        font-weight: 800;
+        color: var(--admin-text);
+        line-height: 1;
+    }
+
+    .stat-label {
+        font-size: 0.8125rem;
+        font-weight: 600;
+        color: var(--admin-text-muted);
+        margin-top: 0.375rem;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+    }
+
+    /* Links */
+    .link {
+        color: var(--admin-accent);
+        text-decoration: none;
+        font-weight: 600;
+        transition: color 0.15s ease;
+    }
+
+    .link:hover {
+        color: var(--admin-accent-hover);
+        text-decoration: underline;
+    }
+
+    /* Badges */
+    .status-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.375rem;
+        padding: 0.375rem 0.75rem;
+        font-size: 0.75rem;
+        font-weight: 700;
+        border-radius: 100px;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
+    }
+
+    .status-badge.success {
+        background: rgba(39, 174, 96, 0.12);
+        color: var(--admin-success);
+    }
+
+    .status-badge.warning {
+        background: rgba(243, 156, 18, 0.12);
+        color: var(--admin-warning);
+    }
+
+    .status-badge.danger {
+        background: rgba(231, 76, 60, 0.12);
+        color: var(--admin-danger);
+    }
+
+    .status-badge.info {
+        background: rgba(52, 152, 219, 0.12);
+        color: var(--admin-info);
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+        .sidebar {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar.open {
+            transform: translateX(0);
+        }
+
+        .main-content {
+            margin-left: 0;
+        }
+    }
+</style>
+
+<script is:inline>
+    // Toast system
+    window.showToast = function(type, title, message, duration = 5000) {
+        const container = document.getElementById('toast-container');
+        const toast = document.createElement('div');
+        toast.className = `toast ${type}`;
+
+        const icons = {
+            success: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>',
+            error: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>',
+            warning: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>',
+            info: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>'
+        };
+
+        toast.innerHTML = `
+            <span class="toast-icon">${icons[type]}</span>
+            <div class="toast-content">
+                <div class="toast-title">${title}</div>
+                ${message ? `<div class="toast-message">${message}</div>` : ''}
+            </div>
+            <button class="toast-close" onclick="this.parentElement.remove()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+            </button>
+        `;
+
+        container.appendChild(toast);
+
+        if (duration > 0) {
+            setTimeout(() => {
+                toast.style.animation = 'slideOut 0.3s ease forwards';
+                setTimeout(() => toast.remove(), 300);
+            }, duration);
+        }
+    };
+</script>

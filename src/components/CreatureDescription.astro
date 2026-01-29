@@ -1,0 +1,538 @@
+---
+import { marked } from 'marked';
+
+interface Props {
+    name: string;
+    description: string;
+    showTableOfContents?: boolean;
+}
+
+const { name, description, showTableOfContents = true } = Astro.props;
+
+// Parse the markdown
+const htmlContent = marked(description) as string;
+
+// Extract headings for table of contents
+const headingRegex = /<h([23])[^>]*>(.*?)<\/h[23]>/gi;
+const headings: { level: number; text: string; id: string }[] = [];
+let match;
+while ((match = headingRegex.exec(htmlContent)) !== null) {
+    // Strip HTML tags and decode HTML entities
+    let text = match[2].replace(/<[^>]+>/g, '');
+    // Decode common HTML entities
+    text = text
+        .replace(/&amp;/g, '&')
+        .replace(/&lt;/g, '<')
+        .replace(/&gt;/g, '>')
+        .replace(/&quot;/g, '"')
+        .replace(/&#39;/g, "'");
+    const id = text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+    headings.push({ level: parseInt(match[1]), text, id });
+}
+
+// Add IDs to headings in the content
+let processedContent = htmlContent;
+headings.forEach(heading => {
+    const regex = new RegExp(`<h${heading.level}>([^<]*${heading.text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}[^<]*)</h${heading.level}>`, 'i');
+    processedContent = processedContent.replace(regex, `<h${heading.level} id="${heading.id}">$1</h${heading.level}>`);
+});
+
+// Check if content is long enough for "read more"
+const isLongContent = description.length > 1500;
+const hasStructuredSections = headings.length >= 2;
+---
+
+<div class="creature-description">
+    <article class={`description-content ${isLongContent ? 'has-read-more' : ''}`}>
+        <h2 class="description-title">About {name}</h2>
+
+        {showTableOfContents && hasStructuredSections && (
+            <nav class="toc" aria-label="Table of contents">
+                <span class="toc-label">Contents</span>
+                <ul class="toc-list">
+                    {headings.filter(h => h.level === 2).map(heading => (
+                        <li>
+                            <a href={`#${heading.id}`}>{heading.text}</a>
+                        </li>
+                    ))}
+                </ul>
+            </nav>
+        )}
+
+        <div class="markdown-content" set:html={processedContent} />
+
+        {isLongContent && (
+            <div class="read-more-overlay">
+                <button type="button" class="read-more-btn" aria-expanded="false">
+                    <span class="btn-text">Read More</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <polyline points="6 9 12 15 18 9"/>
+                    </svg>
+                </button>
+            </div>
+        )}
+    </article>
+</div>
+
+<style>
+    .creature-description {
+        margin-top: 1rem;
+    }
+
+    /* Description Content */
+    .description-content {
+        background: white;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        position: relative;
+    }
+
+    .description-content.has-read-more:not(.expanded) {
+        max-height: 600px;
+        overflow: hidden;
+    }
+
+    .description-title {
+        color: var(--primary-color);
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+    }
+
+    /* Table of Contents - Sticky navigation */
+    .toc {
+        position: sticky;
+        top: 1rem;
+        z-index: 10;
+        background: white;
+        border-radius: 12px;
+        padding: 1rem 1.25rem;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+        border: 1px solid rgba(0, 0, 0, 0.04);
+    }
+
+    .toc-label {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.6875rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--primary-color);
+        margin-bottom: 0.875rem;
+        padding: 0.25rem 0.625rem;
+        background: var(--background-color, #f5f5f5);
+        border-radius: 4px;
+    }
+
+    .toc-label::before {
+        content: '📑';
+        font-size: 0.875rem;
+    }
+
+    .toc-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem 0.5rem;
+        align-items: center;
+    }
+
+    .toc-list li {
+        margin: 0;
+        display: flex;
+    }
+
+    .toc-list a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.5rem 1rem;
+        font-size: 0.8125rem;
+        font-weight: 600;
+        color: var(--secondary-color);
+        text-decoration: none;
+        background: var(--background-color, #f8f9fa);
+        border: 2px solid transparent;
+        border-radius: 100px;
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        white-space: nowrap;
+        min-height: 2.25rem;
+    }
+
+    .toc-list a:hover {
+        background: var(--accent-color);
+        color: white;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(231, 76, 60, 0.25);
+    }
+
+    .toc-list a:active {
+        transform: translateY(0);
+    }
+
+    .toc-list a.active {
+        background: var(--accent-color);
+        color: white;
+        box-shadow: 0 2px 8px rgba(231, 76, 60, 0.3);
+    }
+
+    .toc-list a:focus-visible {
+        outline: 2px solid var(--accent-color);
+        outline-offset: 2px;
+    }
+
+    /* Markdown Content Styling */
+    .markdown-content {
+        color: var(--secondary-color);
+        font-size: 1rem;
+        line-height: 1.7;
+    }
+
+    .markdown-content :global(p) {
+        margin-bottom: 1rem;
+    }
+
+    .markdown-content :global(p:last-child) {
+        margin-bottom: 0;
+    }
+
+    .markdown-content :global(strong) {
+        color: var(--primary-color);
+        font-weight: 600;
+    }
+
+    .markdown-content :global(em) {
+        font-style: italic;
+    }
+
+    /* Section Headings */
+    .markdown-content :global(h1) {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--primary-color);
+        margin: 1.5rem 0 1rem;
+        scroll-margin-top: 2rem;
+    }
+
+    .markdown-content :global(h2) {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: var(--primary-color);
+        margin: 2rem 0 1rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid rgba(0, 0, 0, 0.08);
+        scroll-margin-top: 2rem;
+    }
+
+    .markdown-content :global(h2:first-child) {
+        margin-top: 0;
+        padding-top: 0;
+        border-top: none;
+    }
+
+    .markdown-content :global(h3) {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--primary-color);
+        margin: 1.5rem 0 0.75rem;
+        scroll-margin-top: 2rem;
+    }
+
+    /* Lists */
+    .markdown-content :global(ul),
+    .markdown-content :global(ol) {
+        margin: 1rem 0;
+        padding-left: 1.5rem;
+    }
+
+    .markdown-content :global(li) {
+        margin-bottom: 0.5rem;
+    }
+
+    .markdown-content :global(li:last-child) {
+        margin-bottom: 0;
+    }
+
+    /* Nested lists */
+    .markdown-content :global(li ul),
+    .markdown-content :global(li ol) {
+        margin: 0.5rem 0 0.5rem 0;
+    }
+
+    /* Blockquotes */
+    .markdown-content :global(blockquote) {
+        margin: 1.5rem 0;
+        padding: 1rem 1.25rem;
+        background: var(--background-color, #f5f5f5);
+        border-radius: 8px;
+        border-left: 4px solid var(--accent-color);
+        font-style: italic;
+    }
+
+    .markdown-content :global(blockquote p) {
+        margin: 0;
+    }
+
+    .markdown-content :global(blockquote p + p) {
+        margin-top: 0.75rem;
+    }
+
+    /* Horizontal rules */
+    .markdown-content :global(hr) {
+        border: none;
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        margin: 2rem 0;
+    }
+
+    /* Links */
+    .markdown-content :global(a) {
+        color: var(--accent-color);
+        text-decoration: none;
+        transition: color 0.2s ease;
+    }
+
+    .markdown-content :global(a:hover) {
+        text-decoration: underline;
+    }
+
+    .markdown-content :global(a:focus-visible) {
+        outline: 2px solid var(--accent-color);
+        outline-offset: 2px;
+    }
+
+    /* Code */
+    .markdown-content :global(code) {
+        background: var(--background-color, #f5f5f5);
+        padding: 0.2rem 0.4rem;
+        border-radius: 4px;
+        font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+        font-size: 0.875em;
+    }
+
+    .markdown-content :global(pre) {
+        background: var(--background-color, #f5f5f5);
+        padding: 1rem;
+        border-radius: 8px;
+        overflow-x: auto;
+        margin: 1rem 0;
+    }
+
+    .markdown-content :global(pre code) {
+        background: none;
+        padding: 0;
+    }
+
+    /* Read More Overlay */
+    .read-more-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 120px;
+        background: linear-gradient(to bottom, transparent, white 50%);
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        padding-bottom: 1.5rem;
+    }
+
+    .description-content.expanded .read-more-overlay {
+        position: relative;
+        height: auto;
+        background: none;
+        padding-top: 1.5rem;
+        padding-bottom: 0;
+    }
+
+    .read-more-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.625rem 1.25rem;
+        background: var(--accent-color);
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-size: 0.875rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .read-more-btn:hover {
+        background: var(--primary-color);
+        transform: translateY(-1px);
+    }
+
+    .read-more-btn:focus-visible {
+        outline: 2px solid var(--accent-color);
+        outline-offset: 2px;
+    }
+
+    .read-more-btn svg {
+        transition: transform 0.2s ease;
+    }
+
+    .description-content.expanded .read-more-btn svg {
+        transform: rotate(180deg);
+    }
+
+    .description-content.expanded .read-more-btn .btn-text::after {
+        content: 'Show Less';
+    }
+
+    .description-content.expanded .read-more-btn .btn-text {
+        font-size: 0;
+    }
+
+    .description-content.expanded .read-more-btn .btn-text::after {
+        font-size: 0.875rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .description-content {
+            padding: 1.5rem;
+        }
+
+        .description-title {
+            font-size: 1.5rem;
+        }
+
+        .toc {
+            position: sticky;
+            top: 0.5rem;
+            padding: 0.875rem 1rem;
+        }
+
+        .toc-label {
+            font-size: 0.625rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .toc-list {
+            gap: 0.375rem;
+        }
+
+        .toc-list a {
+            padding: 0.4rem 0.75rem;
+            font-size: 0.75rem;
+            min-height: 2rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .toc-list {
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+        .toc-list a {
+            justify-content: flex-start;
+            width: 100%;
+        }
+    }
+</style>
+
+<script>
+    document.querySelectorAll('.read-more-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const content = btn.closest('.description-content');
+            const isExpanded = content?.classList.toggle('expanded');
+            btn.setAttribute('aria-expanded', String(isExpanded));
+        });
+    });
+
+    // Smooth scroll for TOC links with reduced motion support
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const tocLinks = document.querySelectorAll('.toc-list a');
+
+    // Set active state on TOC links
+    function setActiveLink(activeHref: string) {
+        tocLinks.forEach(link => {
+            const href = link.getAttribute('href');
+            if (href === activeHref) {
+                link.classList.add('active');
+            } else {
+                link.classList.remove('active');
+            }
+        });
+    }
+
+    tocLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const href = link.getAttribute('href');
+            if (href) {
+                // Auto-expand content if collapsed
+                const content = document.querySelector('.description-content');
+                const readMoreBtn = document.querySelector('.read-more-btn');
+                const wasCollapsed = content && !content.classList.contains('expanded');
+
+                if (wasCollapsed && readMoreBtn) {
+                    content.classList.add('expanded');
+                    readMoreBtn.setAttribute('aria-expanded', 'true');
+                }
+
+                // Set active state
+                setActiveLink(href);
+
+                // Scroll to target with offset for sticky TOC
+                // Use requestAnimationFrame to ensure DOM has updated after expansion
+                const scrollToTarget = () => {
+                    const target = document.querySelector(href);
+                    if (target) {
+                        const tocHeight = document.querySelector('.toc')?.getBoundingClientRect().height || 0;
+                        const targetPosition = target.getBoundingClientRect().top + window.scrollY - tocHeight - 24;
+
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: prefersReducedMotion ? 'auto' : 'smooth'
+                        });
+                    }
+                };
+
+                // Delay scroll if content was just expanded to allow layout recalculation
+                if (wasCollapsed) {
+                    requestAnimationFrame(() => {
+                        requestAnimationFrame(scrollToTarget);
+                    });
+                } else {
+                    scrollToTarget();
+                }
+
+                // Update URL without scrolling
+                history.pushState(null, '', href);
+            }
+        });
+    });
+
+    // Update active link on scroll (intersection observer)
+    const headings = document.querySelectorAll('.markdown-content h2[id]');
+
+    if (headings.length > 0) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    setActiveLink(`#${entry.target.id}`);
+                }
+            });
+        }, {
+            rootMargin: '-20% 0px -70% 0px',
+            threshold: 0
+        });
+
+        headings.forEach(heading => observer.observe(heading));
+    }
+
+    // Set initial active state from URL hash
+    if (window.location.hash) {
+        setActiveLink(window.location.hash);
+    }
+</script>

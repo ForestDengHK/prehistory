@@ -1,11 +1,9 @@
 ---
-import Layout from '../../layouts/Layout.astro';
+import AdminLayout from '../../layouts/AdminLayout.astro';
 import { creatures } from '../../data/creatures';
 import { prehistoricFacts } from '../../data/facts';
 import fs from 'node:fs/promises';
 import path from 'node:path';
-
-const title = 'Image Optimization';
 
 // Get all unique image paths
 const creatureImages = creatures.map(c => c.image);
@@ -14,561 +12,598 @@ const allImages = [...new Set([...creatureImages, ...factImages])];
 
 // Get image details
 const imageDetails = await Promise.all(
-  allImages.map(async (imagePath) => {
-    try {
-      const fullPath = path.join(process.cwd(), 'public', imagePath);
-      const stats = await fs.stat(fullPath);
-      const extension = path.extname(imagePath).toLowerCase();
-      return {
-        path: imagePath,
-        size: stats.size,
-        extension,
-        sizeFormatted: (stats.size / 1024 / 1024).toFixed(2) + ' MB'
-      };
-    } catch (error) {
-      console.error(`Error getting details for ${imagePath}:`, error);
-      return {
-        path: imagePath,
-        size: 0,
-        extension: path.extname(imagePath).toLowerCase(),
-        sizeFormatted: 'N/A'
-      };
-    }
-  })
+    allImages.map(async (imagePath) => {
+        try {
+            const fullPath = path.join(process.cwd(), 'public', imagePath);
+            const stats = await fs.stat(fullPath);
+            const extension = path.extname(imagePath).toLowerCase();
+            return {
+                path: imagePath,
+                size: stats.size,
+                extension,
+                sizeFormatted: stats.size > 1024 * 1024
+                    ? (stats.size / 1024 / 1024).toFixed(2) + ' MB'
+                    : (stats.size / 1024).toFixed(0) + ' KB'
+            };
+        } catch (error) {
+            return {
+                path: imagePath,
+                size: 0,
+                extension: path.extname(imagePath).toLowerCase(),
+                sizeFormatted: 'N/A'
+            };
+        }
+    })
 );
 
 // Sort images by size (largest first)
 const sortedImages = imageDetails.sort((a, b) => b.size - a.size);
+const totalSize = imageDetails.reduce((acc, img) => acc + img.size, 0);
+const totalSizeFormatted = totalSize > 1024 * 1024
+    ? (totalSize / 1024 / 1024).toFixed(2) + ' MB'
+    : (totalSize / 1024).toFixed(0) + ' KB';
 ---
 
-<Layout title={title}>
-  <div class="container">
-    <a href="/admin" class="back-link">← Back to Admin</a>
-    <h1>{title}</h1>
-
-    <div class="optimization-panel">
-      <section class="form-section">
-        <h2>Batch Image Optimization</h2>
-        <div class="stats-bar">
-          <div class="stat">
-            <span class="stat-label">Total Images:</span>
-            <span class="stat-value">{sortedImages.length}</span>
-          </div>
-          <div class="stat">
-            <span class="stat-label">Selected:</span>
-            <span class="stat-value" id="selected-count">0</span>
-          </div>
-        </div>
-        <p class="help-text">
-          Select images to optimize. Images will be:
-          <ul>
-            <li>Converted to WebP format for better compression</li>
-            <li>Resized to optimal dimensions (max 1200x800)</li>
-            <li>Compressed with minimal quality loss</li>
-            <li>Generated with thumbnails for previews</li>
-          </ul>
-        </p>
-
-        <div class="sort-controls">
-          <button type="button" id="sort-size" class="sort-button active">Sort by Size</button>
-          <button type="button" id="sort-name" class="sort-button">Sort by Name</button>
-        </div>
-
-        <div class="image-grid" id="image-grid">
-          {sortedImages.map(image => (
-            <div class="image-item" data-size={image.size} data-name={image.path}>
-              <label class="image-checkbox">
-                <input 
-                  type="checkbox" 
-                  name="images" 
-                  value={image.path}
-                  data-original={image.path}
-                >
-                <div class="image-preview">
-                  <img src={image.path} alt="Preview" loading="lazy">
-                </div>
-                <div class="image-info">
-                  <span class="filename">{image.path.split('/').pop()}</span>
-                  <div class="image-metadata">
-                    <span class="size">{image.sizeFormatted}</span>
-                    <span class="extension">{image.extension}</span>
-                  </div>
-                  <span class="status"></span>
-                </div>
-              </label>
+<AdminLayout title="Optimize Images">
+    <header class="page-header">
+        <div class="header-content">
+            <div>
+                <h1 class="page-title">Optimize Images</h1>
+                <p class="page-subtitle">Compress and convert images for better performance</p>
             </div>
-          ))}
+            <div class="header-actions">
+                <button id="optimize-selected" class="btn btn-primary" disabled>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                        <polyline points="17 8 12 3 7 8"/>
+                        <line x1="12" y1="3" x2="12" y2="15"/>
+                    </svg>
+                    Optimize Selected
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="page-content">
+        <!-- Stats Row -->
+        <div class="stats-row">
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                        <circle cx="8.5" cy="8.5" r="1.5"/>
+                        <polyline points="21 15 16 10 5 21"/>
+                    </svg>
+                </div>
+                <div class="stat-info">
+                    <span class="stat-value">{sortedImages.length}</span>
+                    <span class="stat-label">Total Images</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon storage">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 12H2"/>
+                        <path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/>
+                        <line x1="6" y1="16" x2="6.01" y2="16"/>
+                        <line x1="10" y1="16" x2="10.01" y2="16"/>
+                    </svg>
+                </div>
+                <div class="stat-info">
+                    <span class="stat-value">{totalSizeFormatted}</span>
+                    <span class="stat-label">Total Size</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon selected">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="9 11 12 14 22 4"/>
+                        <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+                    </svg>
+                </div>
+                <div class="stat-info">
+                    <span class="stat-value" id="selected-count">0</span>
+                    <span class="stat-label">Selected</span>
+                </div>
+            </div>
         </div>
 
-        <div class="actions">
-          <button type="button" id="select-all">Select All</button>
-          <button type="button" id="optimize-selected" class="primary">Optimize Selected</button>
+        <!-- Info Card -->
+        <div class="info-card">
+            <div class="info-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <line x1="12" y1="16" x2="12" y2="12"/>
+                    <line x1="12" y1="8" x2="12.01" y2="8"/>
+                </svg>
+            </div>
+            <div class="info-content">
+                <strong>Optimization Details</strong>
+                <p>Selected images will be converted to WebP format, resized to optimal dimensions (max 1200x800), and compressed with minimal quality loss. Thumbnails will be generated for previews.</p>
+            </div>
         </div>
 
-        <div id="progress" class="progress hidden">
-          <div class="progress-bar"></div>
-          <div class="progress-text">Processing images... <span id="progress-count"></span></div>
+        <!-- Image Grid Card -->
+        <div class="card">
+            <div class="card-header">
+                <div class="header-left">
+                    <input type="checkbox" id="select-all" class="checkbox" />
+                    <h2 class="card-title">All Images</h2>
+                </div>
+                <div class="sort-controls">
+                    <button type="button" id="sort-size" class="sort-btn active">Size</button>
+                    <button type="button" id="sort-name" class="sort-btn">Name</button>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="image-grid" id="image-grid">
+                    {sortedImages.map(image => (
+                        <div class="image-item" data-size={image.size} data-name={image.path}>
+                            <label class="image-checkbox">
+                                <input
+                                    type="checkbox"
+                                    name="images"
+                                    value={image.path}
+                                    class="checkbox image-cb"
+                                    data-original={image.path}
+                                >
+                                <div class="image-preview">
+                                    <img src={image.path} alt="Preview" loading="lazy">
+                                </div>
+                                <div class="image-info">
+                                    <span class="filename">{image.path.split('/').pop()}</span>
+                                    <div class="image-meta">
+                                        <span class="size">{image.sizeFormatted}</span>
+                                        <span class="ext-badge">{image.extension.replace('.', '')}</span>
+                                    </div>
+                                    <span class="status"></span>
+                                </div>
+                            </label>
+                        </div>
+                    ))}
+                </div>
+            </div>
         </div>
 
-        <div id="message" class="message hidden"></div>
-      </section>
+        <!-- Progress -->
+        <div id="progress" class="progress-card hidden">
+            <div class="progress-header">
+                <span>Optimizing images...</span>
+                <span id="progress-count">0/0</span>
+            </div>
+            <div class="progress-bar-container">
+                <div class="progress-bar"></div>
+            </div>
+        </div>
     </div>
-  </div>
-</Layout>
+</AdminLayout>
 
 <style>
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem 1rem;
-  }
+    /* Stats Row */
+    .stats-row {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+    }
 
-  .back-link {
-    display: inline-block;
-    color: var(--text-color);
-    text-decoration: none;
-    margin-bottom: 1rem;
-    transition: color 0.2s ease-in-out;
-  }
+    @media (max-width: 768px) {
+        .stats-row {
+            grid-template-columns: 1fr;
+        }
+    }
 
-  .back-link:hover {
-    color: var(--primary-color);
-  }
+    .stat-card {
+        background: var(--admin-surface);
+        border: 1px solid var(--admin-border);
+        border-radius: 8px;
+        padding: 1.25rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
 
-  h1 {
-    font-size: 2rem;
-    font-weight: 600;
-    color: var(--primary-color);
-    text-align: center;
-    margin-bottom: 2rem;
-  }
+    .stat-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(245, 158, 11, 0.15);
+        color: var(--color-tools);
+    }
 
-  .optimization-panel {
-    background-color: white;
-    border-radius: 1rem;
-    padding: 2rem;
-    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-  }
+    .stat-icon.storage {
+        background: rgba(59, 130, 246, 0.15);
+        color: var(--color-content);
+    }
 
-  .form-section {
-    margin-bottom: 2rem;
-  }
+    .stat-icon.selected {
+        background: rgba(34, 197, 94, 0.15);
+        color: var(--color-creatures);
+    }
 
-  h2 {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: var(--primary-color);
-    margin-bottom: 1rem;
-  }
+    .stat-info {
+        display: flex;
+        flex-direction: column;
+    }
 
-  .help-text {
-    color: var(--secondary-color);
-    margin-bottom: 2rem;
-  }
+    /* Info Card */
+    .info-card {
+        background: rgba(99, 102, 241, 0.1);
+        border: 1px solid rgba(99, 102, 241, 0.3);
+        border-radius: 8px;
+        padding: 1rem 1.25rem;
+        display: flex;
+        align-items: flex-start;
+        gap: 0.75rem;
+        margin-bottom: 1.5rem;
+    }
 
-  .help-text ul {
-    margin-top: 0.5rem;
-    margin-left: 1.5rem;
-  }
+    .info-icon {
+        color: var(--admin-accent);
+        flex-shrink: 0;
+        margin-top: 0.125rem;
+    }
 
-  .help-text li {
-    margin-bottom: 0.25rem;
-  }
+    .info-content strong {
+        display: block;
+        color: var(--admin-text);
+        font-size: 0.875rem;
+        margin-bottom: 0.25rem;
+    }
 
-  .image-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 1rem;
-    margin-bottom: 2rem;
-  }
+    .info-content p {
+        color: var(--admin-text-muted);
+        font-size: 0.8125rem;
+        line-height: 1.5;
+        margin: 0;
+    }
 
-  .image-item {
-    position: relative;
-  }
+    /* Card Header */
+    .card-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
 
-  .image-checkbox {
-    display: block;
-    cursor: pointer;
-  }
+    .header-left {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
 
-  .image-checkbox input {
-    position: absolute;
-    top: 0.5rem;
-    left: 0.5rem;
-    z-index: 1;
-  }
+    .sort-controls {
+        display: flex;
+        gap: 0.375rem;
+    }
 
-  .image-preview {
-    position: relative;
-    padding-top: 75%;
-    border-radius: 0.5rem;
-    overflow: hidden;
-    background: var(--background-color);
-  }
+    .sort-btn {
+        padding: 0.375rem 0.75rem;
+        background: transparent;
+        border: 1px solid var(--admin-border);
+        border-radius: 4px;
+        color: var(--admin-text-muted);
+        font-size: 0.75rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.15s ease;
+    }
 
-  .image-preview img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
+    .sort-btn:hover {
+        border-color: var(--admin-border-light);
+        color: var(--admin-text);
+    }
 
-  .image-info {
-    margin-top: 0.5rem;
-    font-size: 0.875rem;
-  }
+    .sort-btn.active {
+        background: var(--admin-accent);
+        border-color: var(--admin-accent);
+        color: white;
+    }
 
-  .filename {
-    display: block;
-    color: var(--text-color);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
+    /* Image Grid */
+    .image-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 1rem;
+    }
 
-  .status {
-    display: block;
-    font-size: 0.75rem;
-    color: var(--secondary-color);
-  }
+    .image-item {
+        position: relative;
+    }
 
-  .actions {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 1rem;
-  }
+    .image-checkbox {
+        display: block;
+        cursor: pointer;
+    }
 
-  button {
-    padding: 0.75rem 1.5rem;
-    border: 1px solid var(--primary-color);
-    border-radius: 0.5rem;
-    font-size: 0.875rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
-  }
+    .image-checkbox input {
+        position: absolute;
+        top: 0.5rem;
+        left: 0.5rem;
+        z-index: 2;
+    }
 
-  button:not(.primary) {
-    background: none;
-    color: var(--primary-color);
-  }
+    .image-preview {
+        position: relative;
+        padding-top: 75%;
+        border-radius: 6px;
+        overflow: hidden;
+        background: var(--admin-bg);
+        border: 1px solid var(--admin-border);
+        transition: border-color 0.15s ease;
+    }
 
-  button.primary {
-    background: var(--primary-color);
-    color: white;
-  }
+    .image-checkbox:hover .image-preview,
+    .image-checkbox:has(input:checked) .image-preview {
+        border-color: var(--admin-accent);
+    }
 
-  button:hover {
-    transform: translateY(-1px);
-  }
+    .image-preview img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
 
-  .progress {
-    margin-top: 1rem;
-    padding: 1rem;
-    border-radius: 0.5rem;
-    background: var(--background-color);
-  }
+    .image-info {
+        margin-top: 0.5rem;
+    }
 
-  .progress-bar {
-    height: 4px;
-    background: var(--primary-color);
-    width: 0%;
-    transition: width 0.3s ease-in-out;
-    border-radius: 2px;
-  }
+    .filename {
+        display: block;
+        font-size: 0.75rem;
+        color: var(--admin-text);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-bottom: 0.25rem;
+    }
 
-  .progress-text {
-    margin-top: 0.5rem;
-    font-size: 0.875rem;
-    color: var(--secondary-color);
-    text-align: center;
-  }
+    .image-meta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
 
-  .message {
-    margin-top: 1rem;
-    padding: 1rem;
-    border-radius: 0.5rem;
-    font-size: 0.875rem;
-  }
+    .size {
+        font-size: 0.6875rem;
+        font-weight: 500;
+        color: var(--admin-text-muted);
+        font-family: var(--font-mono);
+    }
 
-  .message.success {
-    background-color: #f0fdf4;
-    color: #15803d;
-    border: 1px solid #bbf7d0;
-  }
+    .ext-badge {
+        font-size: 0.625rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        background: var(--admin-surface-hover);
+        color: var(--admin-text-dim);
+        padding: 0.125rem 0.375rem;
+        border-radius: 3px;
+    }
 
-  .message.error {
-    background-color: #fef2f2;
-    color: #b91c1c;
-    border: 1px solid #fecaca;
-  }
+    .status {
+        display: block;
+        font-size: 0.6875rem;
+        color: var(--admin-success);
+        margin-top: 0.25rem;
+    }
 
-  .hidden {
-    display: none;
-  }
+    .image-item.optimized .image-preview {
+        border-color: var(--admin-success);
+    }
 
-  .sort-controls {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 1rem;
-  }
+    .image-item.failed .status {
+        color: var(--admin-danger);
+    }
 
-  .sort-button {
-    padding: 0.5rem 1rem;
-    border: 1px solid var(--primary-color);
-    border-radius: 0.5rem;
-    background: none;
-    color: var(--primary-color);
-    cursor: pointer;
-    transition: all 0.2s ease;
-  }
+    /* Progress Card */
+    .progress-card {
+        background: var(--admin-surface);
+        border: 1px solid var(--admin-border);
+        border-radius: 8px;
+        padding: 1.25rem;
+        margin-top: 1.5rem;
+    }
 
-  .sort-button.active {
-    background: var(--primary-color);
-    color: white;
-  }
+    .progress-card.hidden {
+        display: none;
+    }
 
-  .image-metadata {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.75rem;
-    color: var(--secondary-color);
-    margin-top: 0.25rem;
-  }
+    .progress-header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 0.75rem;
+        font-size: 0.875rem;
+        color: var(--admin-text-muted);
+    }
 
-  .size {
-    font-weight: 500;
-  }
+    .progress-bar-container {
+        height: 6px;
+        background: var(--admin-bg);
+        border-radius: 3px;
+        overflow: hidden;
+    }
 
-  .extension {
-    text-transform: uppercase;
-    background: var(--background-color);
-    padding: 0.125rem 0.375rem;
-    border-radius: 0.25rem;
-  }
-
-  .stats-bar {
-    display: flex;
-    gap: 2rem;
-    margin-bottom: 1rem;
-    padding: 1rem;
-    background: var(--background-color);
-    border-radius: 0.5rem;
-  }
-
-  .stat {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-
-  .stat-label {
-    font-size: 0.875rem;
-    color: var(--secondary-color);
-  }
-
-  .stat-value {
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--primary-color);
-  }
+    .progress-bar {
+        height: 100%;
+        background: var(--admin-accent);
+        width: 0%;
+        transition: width 0.3s ease;
+        border-radius: 3px;
+    }
 </style>
 
-<script>
-  const imageGrid = document.getElementById('image-grid');
-  const sortSizeBtn = document.getElementById('sort-size');
-  const sortNameBtn = document.getElementById('sort-name');
-  const selectAllBtn = document.getElementById('select-all');
-  const optimizeBtn = document.getElementById('optimize-selected');
-  const progress = document.getElementById('progress');
-  const progressBar = progress?.querySelector('.progress-bar');
-  const progressCount = document.getElementById('progress-count');
-  const message = document.getElementById('message');
-  const checkboxes = document.querySelectorAll<HTMLInputElement>('input[type="checkbox"]');
+<script is:inline>
+    const imageGrid = document.getElementById('image-grid');
+    const sortSizeBtn = document.getElementById('sort-size');
+    const sortNameBtn = document.getElementById('sort-name');
+    const selectAllCheckbox = document.getElementById('select-all');
+    const optimizeBtn = document.getElementById('optimize-selected');
+    const progress = document.getElementById('progress');
+    const progressBar = progress?.querySelector('.progress-bar');
+    const progressCount = document.getElementById('progress-count');
+    const checkboxes = document.querySelectorAll('.image-cb');
+    const selectedCountEl = document.getElementById('selected-count');
 
-  // Sorting functions
-  function sortBySize() {
-    const items = Array.from(document.querySelectorAll('.image-item'));
-    items.sort((a, b) => {
-      const sizeA = Number(a.getAttribute('data-size'));
-      const sizeB = Number(b.getAttribute('data-size'));
-      return sizeB - sizeA;
-    });
-    items.forEach(item => imageGrid?.appendChild(item));
-    sortSizeBtn?.classList.add('active');
-    sortNameBtn?.classList.remove('active');
-  }
-
-  function sortByName() {
-    const items = Array.from(document.querySelectorAll('.image-item'));
-    items.sort((a, b) => {
-      const nameA = a.getAttribute('data-name') || '';
-      const nameB = b.getAttribute('data-name') || '';
-      return nameA.localeCompare(nameB);
-    });
-    items.forEach(item => imageGrid?.appendChild(item));
-    sortNameBtn?.classList.add('active');
-    sortSizeBtn?.classList.remove('active');
-  }
-
-  // Add event listeners for sorting
-  sortSizeBtn?.addEventListener('click', sortBySize);
-  sortNameBtn?.addEventListener('click', sortByName);
-
-  // Update selected count
-  function updateSelectedCount() {
-    const selectedCount = Array.from(checkboxes).filter(cb => cb.checked).length;
-    const selectedCountElement = document.getElementById('selected-count');
-    if (selectedCountElement) {
-      selectedCountElement.textContent = selectedCount.toString();
-    }
-  }
-
-  // Add change event listener to all checkboxes
-  checkboxes.forEach(checkbox => {
-    checkbox.addEventListener('change', updateSelectedCount);
-  });
-
-  // Update count when "Select All" is clicked
-  selectAllBtn?.addEventListener('click', () => {
-    const isAllSelected = Array.from(checkboxes).every(cb => cb.checked);
-    checkboxes.forEach(cb => cb.checked = !isAllSelected);
-    updateSelectedCount();
-  });
-
-  // Initialize count
-  updateSelectedCount();
-
-  // Handle optimization
-  optimizeBtn?.addEventListener('click', async () => {
-    const selectedImages = Array.from(checkboxes)
-      .filter(cb => cb.checked)
-      .map(cb => ({
-        path: cb.value,
-        element: cb.closest('.image-item')
-      }));
-
-    if (selectedImages.length === 0) {
-      if (message) {
-        message.textContent = 'Please select at least one image to optimize';
-        message.className = 'message error';
-      }
-      return;
+    // Sorting functions
+    function sortBySize() {
+        const items = Array.from(document.querySelectorAll('.image-item'));
+        items.sort((a, b) => {
+            const sizeA = Number(a.getAttribute('data-size'));
+            const sizeB = Number(b.getAttribute('data-size'));
+            return sizeB - sizeA;
+        });
+        items.forEach(item => imageGrid?.appendChild(item));
+        sortSizeBtn?.classList.add('active');
+        sortNameBtn?.classList.remove('active');
     }
 
-    try {
-      // Show progress
-      if (progress) progress.classList.remove('hidden');
-      if (message) message.classList.add('hidden');
-      
-      // Disable buttons
-      if (selectAllBtn) selectAllBtn.disabled = true;
-      if (optimizeBtn) optimizeBtn.disabled = true;
-      if (sortSizeBtn) sortSizeBtn.disabled = true;
-      if (sortNameBtn) sortNameBtn.disabled = true;
+    function sortByName() {
+        const items = Array.from(document.querySelectorAll('.image-item'));
+        items.sort((a, b) => {
+            const nameA = a.getAttribute('data-name') || '';
+            const nameB = b.getAttribute('data-name') || '';
+            return nameA.localeCompare(nameB);
+        });
+        items.forEach(item => imageGrid?.appendChild(item));
+        sortNameBtn?.classList.add('active');
+        sortSizeBtn?.classList.remove('active');
+    }
 
-      // Process each image
-      const total = selectedImages.length;
-      let completed = 0;
-      let failed = 0;
+    sortSizeBtn?.addEventListener('click', sortBySize);
+    sortNameBtn?.addEventListener('click', sortByName);
 
-      // Process images in parallel with a concurrency limit of 3
-      const concurrencyLimit = 3;
-      const chunks = [];
-      for (let i = 0; i < selectedImages.length; i += concurrencyLimit) {
-        chunks.push(selectedImages.slice(i, i + concurrencyLimit));
-      }
+    // Update selected count and button state
+    function updateUI() {
+        const checkedCount = Array.from(checkboxes).filter(cb => cb.checked).length;
+        const allChecked = checkedCount === checkboxes.length && checkboxes.length > 0;
 
-      for (const chunk of chunks) {
-        await Promise.all(chunk.map(async ({ path, element }) => {
-          const status = element?.querySelector('.status');
-          if (status) status.textContent = 'Processing...';
+        if (selectAllCheckbox) {
+            selectAllCheckbox.checked = allChecked;
+            selectAllCheckbox.indeterminate = checkedCount > 0 && !allChecked;
+        }
 
-          try {
-            // Get the file from the path
-            const response = await fetch(path);
-            if (!response.ok) throw new Error('Failed to fetch image');
-            
-            const blob = await response.blob();
-            const filename = path.split('/').pop() || '';
-            
-            // Create form data
-            const formData = new FormData();
-            formData.append('image', blob, filename);
-            formData.append('directory', path.includes('/facts/') ? 'facts' : '');
+        if (selectedCountEl) {
+            selectedCountEl.textContent = checkedCount.toString();
+        }
 
-            // Upload and optimize with timeout
-            const uploadResponse = await Promise.race([
-              fetch('/api/upload-image', {
-                method: 'POST',
-                body: formData
-              }),
-              new Promise((_, reject) => 
-                setTimeout(() => reject(new Error('Optimization timeout')), 30000)
-              )
-            ]);
+        if (optimizeBtn) {
+            optimizeBtn.disabled = checkedCount === 0;
+        }
+    }
 
-            if (!uploadResponse.ok) throw new Error('Failed to optimize image');
+    selectAllCheckbox?.addEventListener('change', () => {
+        checkboxes.forEach(cb => {
+            cb.checked = selectAllCheckbox.checked;
+        });
+        updateUI();
+    });
 
-            const result = await uploadResponse.json();
+    checkboxes.forEach(cb => {
+        cb.addEventListener('change', updateUI);
+    });
 
-            // Update image references in data files
-            const updateResponse = await fetch('/api/update-image-references', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify({
-                oldPath: path,
-                newPath: result.path
-              })
-            });
+    updateUI();
 
-            if (!updateResponse.ok) {
-              throw new Error('Failed to update image references');
+    // Handle optimization
+    optimizeBtn?.addEventListener('click', async () => {
+        const selectedImages = Array.from(checkboxes)
+            .filter(cb => cb.checked)
+            .map(cb => ({
+                path: cb.value,
+                element: cb.closest('.image-item')
+            }));
+
+        if (selectedImages.length === 0) {
+            window.showToast('warning', 'No Selection', 'Please select at least one image to optimize');
+            return;
+        }
+
+        try {
+            if (progress) progress.classList.remove('hidden');
+            optimizeBtn.disabled = true;
+
+            const total = selectedImages.length;
+            let completed = 0;
+            let failed = 0;
+
+            const concurrencyLimit = 3;
+            const chunks = [];
+            for (let i = 0; i < selectedImages.length; i += concurrencyLimit) {
+                chunks.push(selectedImages.slice(i, i + concurrencyLimit));
             }
 
-            // Update status
-            if (status) status.textContent = 'Optimized & Updated ✓';
-            if (element) element.classList.add('optimized');
+            for (const chunk of chunks) {
+                await Promise.all(chunk.map(async ({ path, element }) => {
+                    const status = element?.querySelector('.status');
+                    if (status) status.textContent = 'Processing...';
 
-            // Update progress
-            completed++;
-            if (progressBar) progressBar.style.width = `${(completed / total) * 100}%`;
-            if (progressCount) progressCount.textContent = `${completed}/${total}`;
+                    try {
+                        const response = await fetch(path);
+                        if (!response.ok) throw new Error('Failed to fetch image');
 
-          } catch (error) {
-            failed++;
-            if (status) status.textContent = 'Failed ✗';
-            console.error(`Failed to optimize ${path}:`, error);
-          }
-        }));
-      }
+                        const blob = await response.blob();
+                        const filename = path.split('/').pop() || '';
 
-      // Show completion message
-      if (message) {
-        if (failed > 0) {
-          message.textContent = `Completed with some issues: ${completed} optimized, ${failed} failed`;
-          message.className = 'message warning';
-        } else {
-          message.textContent = `Successfully optimized ${completed} out of ${total} images`;
-          message.className = 'message success';
+                        const formData = new FormData();
+                        formData.append('image', blob, filename);
+                        formData.append('directory', path.includes('/facts/') ? 'facts' : '');
+
+                        const uploadResponse = await Promise.race([
+                            fetch('/api/upload-image', {
+                                method: 'POST',
+                                body: formData
+                            }),
+                            new Promise((_, reject) =>
+                                setTimeout(() => reject(new Error('Timeout')), 30000)
+                            )
+                        ]);
+
+                        if (!uploadResponse.ok) throw new Error('Optimization failed');
+
+                        const result = await uploadResponse.json();
+
+                        const updateResponse = await fetch('/api/update-image-references', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                oldPath: path,
+                                newPath: result.path
+                            })
+                        });
+
+                        if (!updateResponse.ok) throw new Error('Failed to update references');
+
+                        if (status) status.textContent = 'Optimized ✓';
+                        if (element) element.classList.add('optimized');
+                        completed++;
+
+                    } catch (error) {
+                        failed++;
+                        if (status) status.textContent = 'Failed ✗';
+                        if (element) element.classList.add('failed');
+                    }
+
+                    if (progressBar) progressBar.style.width = `${((completed + failed) / total) * 100}%`;
+                    if (progressCount) progressCount.textContent = `${completed + failed}/${total}`;
+                }));
+            }
+
+            if (failed > 0) {
+                window.showToast('warning', 'Optimization Complete', `${completed} optimized, ${failed} failed`);
+            } else {
+                window.showToast('success', 'Optimization Complete', `Successfully optimized ${completed} images`);
+            }
+
+        } catch (error) {
+            window.showToast('error', 'Error', error instanceof Error ? error.message : 'An error occurred');
+        } finally {
+            optimizeBtn.disabled = false;
         }
-      }
-
-    } catch (error) {
-      if (message) {
-        message.textContent = error instanceof Error ? error.message : 'An error occurred';
-        message.className = 'message error';
-      }
-    } finally {
-      // Re-enable buttons
-      if (selectAllBtn) selectAllBtn.disabled = false;
-      if (optimizeBtn) optimizeBtn.disabled = false;
-      if (sortSizeBtn) sortSizeBtn.disabled = false;
-      if (sortNameBtn) sortNameBtn.disabled = false;
-    }
-  });
-</script> 
+    });
+</script>

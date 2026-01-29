@@ -1,503 +1,586 @@
 ---
-import Layout from '../../layouts/Layout.astro';
+import AdminLayout from '../../layouts/AdminLayout.astro';
+import MarkdownEditor from '../../components/admin/MarkdownEditor.astro';
 import { categories } from '../../data/categories';
 import { timelinePeriods } from '../../data/timeline';
 
-const title = 'Add New Creature';
 const diets = ['Carnivore', 'Herbivore', 'Omnivore'];
 ---
 
-<Layout title={title}>
-  <div class="container">
-    <a href="/admin" class="back-link">← Back to Admin</a>
-    <h1>{title}</h1>
-    
-    <form id="add-creature-form">
-      <!-- Basic Information -->
-      <section class="form-section">
-        <h2>Basic Information</h2>
-        <div class="form-grid">
-          <div class="form-field">
-            <label for="name">Name <span class="required">*</span></label>
-            <input type="text" id="name" name="name" required
-              placeholder="e.g. Tyrannosaurus Rex">
-          </div>
-
-          <div class="form-field">
-            <label for="scientificName">Scientific Name <span class="required">*</span></label>
-            <input type="text" id="scientificName" name="scientificName" required
-              placeholder="e.g. Tyrannosaurus rex">
-          </div>
-        </div>
-      </section>
-
-      <!-- Classification -->
-      <section class="form-section">
-        <h2>Classification</h2>
-        <div class="form-grid">
-          <div class="form-field">
-            <label for="period">Period <span class="required">*</span></label>
-            <select id="period" name="period" required>
-              <option value="">Select a period</option>
-              {timelinePeriods.map(period => (
-                <option value={period.name}>{period.name} ({period.period})</option>
-              ))}
-            </select>
-          </div>
-
-          <div class="form-field">
-            <label for="location">Location <span class="required">*</span></label>
-            <input type="text" id="location" name="location" required
-              placeholder="e.g. North America">
-          </div>
-
-          <div class="form-field">
-            <label for="category">Category <span class="required">*</span></label>
-            <select id="category" name="category" required>
-              <option value="">Select a category</option>
-              {Object.keys(categories).map(category => (
-                <option value={category}>{category}</option>
-              ))}
-            </select>
-          </div>
-
-          <div class="form-field">
-            <label for="subcategory">Subcategory <span class="required">*</span></label>
-            <select id="subcategory" name="subcategory" required>
-              <option value="">Select a category first</option>
-            </select>
-          </div>
-        </div>
-      </section>
-
-      <!-- Physical Characteristics -->
-      <section class="form-section">
-        <h2>Physical Characteristics</h2>
-        <div class="form-grid">
-          <div class="form-field">
-            <label for="length">Length <span class="required">*</span></label>
-            <input type="text" id="length" name="length" required
-              placeholder="e.g. 12-15 meters">
-          </div>
-
-          <div class="form-field">
-            <label for="weight">Weight <span class="required">*</span></label>
-            <input type="text" id="weight" name="weight" required
-              placeholder="e.g. 5,000-7,000 kg">
-          </div>
-
-          <div class="form-field">
-            <label for="diet">Diet <span class="required">*</span></label>
-            <select id="diet" name="diet" required>
-              <option value="">Select a diet</option>
-              {diets.map(diet => (
-                <option value={diet}>{diet}</option>
-              ))}
-            </select>
-          </div>
-        </div>
-      </section>
-
-      <!-- Media -->
-      <section class="form-section">
-        <h2>Media</h2>
-        <div class="form-field">
-          <label>Image <span class="required">*</span></label>
-          
-          <div class="image-input-tabs">
-            <button type="button" class="tab-button active" data-tab="existing">Use Existing Image</button>
-            <button type="button" class="tab-button" data-tab="upload">Upload New Image</button>
-          </div>
-
-          <div class="tab-content" id="existing-image">
-            <div class="input-group">
-              <span class="input-prefix">/images/creatures/</span>
-              <input type="text" id="image" name="image"
-                placeholder="creature-name.webp">
+<AdminLayout title="Add Creature">
+    <header class="page-header">
+        <div class="header-content">
+            <div>
+                <h1 class="page-title">Add New Creature</h1>
+                <p class="page-subtitle">Create a new prehistoric creature entry</p>
             </div>
-            <p class="help-text">Specify the name of an existing image in the public/images/creatures directory (WebP format)</p>
-          </div>
-
-          <div class="tab-content hidden" id="upload-image">
-            <input type="file" id="imageFile" name="imageFile" accept="image/*"
-              class="file-input">
-            <p class="help-text">Upload a new image (JPG, PNG). It will be automatically converted to WebP format</p>
-          </div>
         </div>
+    </header>
 
-        <div class="form-field">
-          <label for="modelId">3D Model ID</label>
-          <input type="text" id="modelId" name="modelId" 
-            placeholder="Sketchfab model ID (optional)">
-          <p class="help-text">Enter a Sketchfab model ID to enable 3D visualization</p>
+    <div class="page-content">
+        <div class="form-card">
+            <form id="add-creature-form">
+                <!-- Basic Information -->
+                <section class="form-section">
+                    <div class="section-header">
+                        <div class="section-icon creatures">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                                <path d="M2 17l10 5 10-5"/>
+                            </svg>
+                        </div>
+                        <h2>Basic Information</h2>
+                    </div>
+                    <div class="form-grid">
+                        <div class="form-field">
+                            <label for="name">Name <span class="required">*</span></label>
+                            <input type="text" id="name" name="name" required
+                                placeholder="e.g. Tyrannosaurus Rex">
+                        </div>
+
+                        <div class="form-field">
+                            <label for="scientificName">Scientific Name <span class="required">*</span></label>
+                            <input type="text" id="scientificName" name="scientificName" required
+                                placeholder="e.g. Tyrannosaurus rex">
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Classification -->
+                <section class="form-section">
+                    <div class="section-header">
+                        <div class="section-icon content">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+                            </svg>
+                        </div>
+                        <h2>Classification</h2>
+                    </div>
+                    <div class="form-grid">
+                        <div class="form-field">
+                            <label for="period">Period <span class="required">*</span></label>
+                            <select id="period" name="period" required>
+                                <option value="">Select a period</option>
+                                {timelinePeriods.map(period => (
+                                    <option value={period.name}>{period.name} ({period.period})</option>
+                                ))}
+                            </select>
+                        </div>
+
+                        <div class="form-field">
+                            <label for="location">Location <span class="required">*</span></label>
+                            <input type="text" id="location" name="location" required
+                                placeholder="e.g. North America">
+                        </div>
+
+                        <div class="form-field">
+                            <label for="category">Category <span class="required">*</span></label>
+                            <select id="category" name="category" required>
+                                <option value="">Select a category</option>
+                                {Object.keys(categories).map(category => (
+                                    <option value={category}>{category}</option>
+                                ))}
+                            </select>
+                        </div>
+
+                        <div class="form-field">
+                            <label for="subcategory">Subcategory <span class="required">*</span></label>
+                            <select id="subcategory" name="subcategory" required>
+                                <option value="">Select a category first</option>
+                            </select>
+                        </div>
+
+                        <div class="form-field">
+                            <label for="family">Family <span class="required">*</span></label>
+                            <input type="text" id="family" name="family" required
+                                placeholder="e.g. Tyrannosauridae">
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Physical Characteristics -->
+                <section class="form-section">
+                    <div class="section-header">
+                        <div class="section-icon tools">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+                            </svg>
+                        </div>
+                        <h2>Physical Characteristics</h2>
+                    </div>
+                    <div class="form-grid">
+                        <div class="form-field">
+                            <label for="length">Length <span class="required">*</span></label>
+                            <input type="text" id="length" name="length" required
+                                placeholder="e.g. 12-15 meters">
+                        </div>
+
+                        <div class="form-field">
+                            <label for="weight">Weight <span class="required">*</span></label>
+                            <input type="text" id="weight" name="weight" required
+                                placeholder="e.g. 5,000-7,000 kg">
+                        </div>
+
+                        <div class="form-field">
+                            <label for="diet">Diet <span class="required">*</span></label>
+                            <select id="diet" name="diet" required>
+                                <option value="">Select a diet</option>
+                                {diets.map(diet => (
+                                    <option value={diet}>{diet}</option>
+                                ))}
+                            </select>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Media -->
+                <section class="form-section">
+                    <div class="section-header">
+                        <div class="section-icon engagement">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                                <circle cx="8.5" cy="8.5" r="1.5"/>
+                                <polyline points="21 15 16 10 5 21"/>
+                            </svg>
+                        </div>
+                        <h2>Media</h2>
+                    </div>
+
+                    <div class="form-field">
+                        <label>Image <span class="required">*</span></label>
+
+                        <div class="tab-group">
+                            <button type="button" class="tab-button active" data-tab="existing">Use Existing Image</button>
+                            <button type="button" class="tab-button" data-tab="upload">Upload New Image</button>
+                        </div>
+
+                        <div class="tab-content" id="existing-image">
+                            <div class="input-group">
+                                <span class="input-prefix">/images/creatures/</span>
+                                <input type="text" id="image" name="image"
+                                    placeholder="creature-name.webp">
+                            </div>
+                            <p class="help-text">Specify the name of an existing image in the public/images/creatures directory</p>
+                        </div>
+
+                        <div class="tab-content hidden" id="upload-image">
+                            <div class="file-drop-zone" id="file-drop-zone">
+                                <input type="file" id="imageFile" name="imageFile" accept="image/*">
+                                <div class="drop-content">
+                                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                        <polyline points="17 8 12 3 7 8"/>
+                                        <line x1="12" y1="3" x2="12" y2="15"/>
+                                    </svg>
+                                    <span>Drop image here or click to browse</span>
+                                    <small>JPG, PNG - Will be converted to WebP</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="modelId">3D Model ID</label>
+                        <input type="text" id="modelId" name="modelId"
+                            placeholder="Sketchfab model ID (optional)">
+                        <p class="help-text">Enter a Sketchfab model ID to enable 3D visualization</p>
+                    </div>
+                </section>
+
+                <!-- Description -->
+                <section class="form-section">
+                    <div class="section-header">
+                        <div class="section-icon content">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                <polyline points="14 2 14 8 20 8"/>
+                                <line x1="16" y1="13" x2="8" y2="13"/>
+                                <line x1="16" y1="17" x2="8" y2="17"/>
+                            </svg>
+                        </div>
+                        <h2>Description</h2>
+                    </div>
+                    <div class="form-field form-field-full">
+                        <label for="description">Description <span class="required">*</span></label>
+                        <p class="help-text" style="margin-bottom: 0.75rem;">Use Markdown formatting for rich content. Click "Templates" to insert pre-structured sections.</p>
+                        <MarkdownEditor
+                            id="description"
+                            name="description"
+                            required={true}
+                            placeholder="Start with an overview of this prehistoric creature..."
+                            rows={16}
+                        />
+                    </div>
+                </section>
+
+                <div class="form-actions">
+                    <button type="button" class="btn btn-ghost" onclick="window.history.back()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <line x1="12" y1="8" x2="12" y2="16"/>
+                            <line x1="8" y1="12" x2="16" y2="12"/>
+                        </svg>
+                        Add Creature
+                    </button>
+                </div>
+            </form>
         </div>
-      </section>
-
-      <!-- Description -->
-      <section class="form-section">
-        <h2>Description</h2>
-        <div class="form-field">
-          <label for="description">Description <span class="required">*</span></label>
-          <textarea id="description" name="description" required rows="4"
-            placeholder="Provide a detailed description of the creature..."></textarea>
-        </div>
-      </section>
-
-      <div class="form-field">
-        <label for="family">Family <span class="required">*</span></label>
-        <input type="text" id="family" name="family" required
-          placeholder="e.g. Tyrannosauridae">
-      </div>
-
-      <div class="form-actions">
-        <button type="submit">Add Creature</button>
-      </div>
-
-      <div id="message" class="message hidden"></div>
-    </form>
-  </div>
-</Layout>
+    </div>
+</AdminLayout>
 
 <style>
-  .container {
-    max-width: 48rem;
-    margin: 0 auto;
-    padding: 2rem 1rem;
-  }
-
-  .back-link {
-    display: inline-block;
-    color: var(--color-text);
-    text-decoration: none;
-    margin-bottom: 1rem;
-    transition: color 0.2s ease-in-out;
-  }
-
-  .back-link:hover {
-    color: var(--color-primary);
-  }
-
-  h1 {
-    font-size: 2rem;
-    font-weight: 600;
-    color: var(--color-heading);
-    text-align: center;
-    margin-bottom: 2rem;
-  }
-
-  form {
-    background-color: var(--color-background);
-    border-radius: 1rem;
-    padding: 2rem;
-    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-  }
-
-  .form-section {
-    margin-bottom: 2rem;
-  }
-
-  .form-section:last-child {
-    margin-bottom: 0;
-  }
-
-  h2 {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: var(--color-heading);
-    margin-bottom: 1rem;
-  }
-
-  .form-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-
-  @media (min-width: 640px) {
-    .form-grid {
-      grid-template-columns: repeat(2, 1fr);
+    .form-card {
+        background: var(--admin-surface);
+        border: 1px solid var(--admin-border);
+        border-radius: 8px;
+        max-width: 800px;
     }
-  }
 
-  .form-field {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  label {
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: var(--color-text);
-  }
-
-  .required {
-    color: var(--color-error);
-  }
-
-  input, select, textarea {
-    padding: 0.75rem 1rem;
-    border: 1px solid var(--color-border);
-    border-radius: 0.5rem;
-    background-color: var(--color-input);
-    color: var(--color-text);
-    font-size: 0.875rem;
-    transition: all 0.2s ease-in-out;
-  }
-
-  input:focus, select:focus, textarea:focus {
-    outline: none;
-    border-color: var(--color-primary);
-    box-shadow: 0 0 0 2px var(--color-primary-alpha);
-  }
-
-  .input-group {
-    display: flex;
-    align-items: center;
-  }
-
-  .input-prefix {
-    padding: 0.75rem 1rem;
-    background-color: var(--color-background-alt);
-    border: 1px solid var(--color-border);
-    border-right: none;
-    border-radius: 0.5rem 0 0 0.5rem;
-    color: var(--color-text-muted);
-    font-size: 0.875rem;
-  }
-
-  .input-group input {
-    border-radius: 0 0.5rem 0.5rem 0;
-    flex: 1;
-  }
-
-  .help-text {
-    font-size: 0.75rem;
-    color: var(--color-text-muted);
-    margin-top: 0.25rem;
-  }
-
-  .form-actions {
-    margin-top: 2rem;
-  }
-
-  button {
-    width: 100%;
-    padding: 0.875rem 1.5rem;
-    background-color: var(--color-primary);
-    color: var(--color-primary-foreground);
-    border: none;
-    border-radius: 0.5rem;
-    font-size: 1rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.2s ease-in-out;
-  }
-
-  button:hover {
-    background-color: var(--color-primary-dark);
-  }
-
-  .message {
-    margin-top: 1rem;
-    padding: 1rem;
-    border-radius: 0.5rem;
-    font-size: 0.875rem;
-  }
-
-  .message.success {
-    background-color: var(--color-success-background);
-    color: var(--color-success);
-    border: 1px solid var(--color-success-border);
-  }
-
-  .message.error {
-    background-color: var(--color-error-background);
-    color: var(--color-error);
-    border: 1px solid var(--color-error-border);
-  }
-
-  .hidden {
-    display: none;
-  }
-
-  .image-input-tabs {
-    display: flex;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
-  }
-
-  .tab-button {
-    flex: 1;
-    padding: 0.5rem;
-    background-color: var(--color-background-alt);
-    border: 1px solid var(--color-border);
-    border-radius: 0.5rem;
-    color: var(--color-text);
-    font-size: 0.875rem;
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
-  }
-
-  .tab-button.active {
-    background-color: var(--color-primary);
-    border-color: var(--color-primary);
-    color: var(--color-primary-foreground);
-  }
-
-  .tab-content.hidden {
-    display: none;
-  }
-
-  .file-input {
-    width: 100%;
-    padding: 0.75rem;
-    border: 2px dashed var(--color-border);
-    border-radius: 0.5rem;
-    background-color: var(--color-background-alt);
-    cursor: pointer;
-  }
-
-  .file-input:hover {
-    border-color: var(--color-primary);
-  }
-
-  /* Dark mode support */
-  @media (prefers-color-scheme: dark) {
     form {
-      background-color: var(--color-background-dark);
+        padding: 0;
+    }
+
+    .form-section {
+        padding: 1.5rem;
+        border-bottom: 1px solid var(--admin-border);
+    }
+
+    .form-section:last-of-type {
+        border-bottom: none;
+    }
+
+    .section-header {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 1.25rem;
+    }
+
+    .section-icon {
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .section-icon.creatures {
+        background: rgba(34, 197, 94, 0.15);
+        color: var(--color-creatures);
+    }
+
+    .section-icon.content {
+        background: rgba(59, 130, 246, 0.15);
+        color: var(--color-content);
+    }
+
+    .section-icon.engagement {
+        background: rgba(168, 85, 247, 0.15);
+        color: var(--color-engagement);
+    }
+
+    .section-icon.tools {
+        background: rgba(245, 158, 11, 0.15);
+        color: var(--color-tools);
+    }
+
+    .section-header h2 {
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--admin-text);
+        margin: 0;
+    }
+
+    .form-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    @media (max-width: 640px) {
+        .form-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    .form-field {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .form-field:has(textarea),
+    .form-field:has(.tab-group) {
+        grid-column: 1 / -1;
+    }
+
+    label {
+        font-size: 0.8125rem;
+        font-weight: 500;
+        color: var(--admin-text);
+    }
+
+    .required {
+        color: var(--admin-danger);
     }
 
     input, select, textarea {
-      background-color: var(--color-input-dark);
-      border-color: var(--color-border-dark);
+        padding: 0.625rem 0.875rem;
+        background: var(--admin-bg);
+        border: 1px solid var(--admin-border);
+        border-radius: 6px;
+        color: var(--admin-text);
+        font-size: 0.875rem;
+        font-family: var(--font-sans);
+        transition: all 0.15s ease;
+    }
+
+    input::placeholder, textarea::placeholder {
+        color: var(--admin-text-dim);
+    }
+
+    input:focus, select:focus, textarea:focus {
+        outline: none;
+        border-color: var(--admin-accent);
+        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+    }
+
+    select {
+        cursor: pointer;
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%238b929e' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 0.75rem center;
+        padding-right: 2.5rem;
+    }
+
+    textarea {
+        resize: vertical;
+        min-height: 120px;
+    }
+
+    .help-text {
+        font-size: 0.75rem;
+        color: var(--admin-text-dim);
+    }
+
+    /* Input Group */
+    .input-group {
+        display: flex;
     }
 
     .input-prefix {
-      background-color: var(--color-background-alt-dark);
-      border-color: var(--color-border-dark);
+        padding: 0.625rem 0.875rem;
+        background: var(--admin-surface-hover);
+        border: 1px solid var(--admin-border);
+        border-right: none;
+        border-radius: 6px 0 0 6px;
+        color: var(--admin-text-dim);
+        font-size: 0.8125rem;
+        font-family: var(--font-mono);
+        white-space: nowrap;
+    }
+
+    .input-group input {
+        border-radius: 0 6px 6px 0;
+        flex: 1;
+    }
+
+    /* Tab Group */
+    .tab-group {
+        display: flex;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
     }
 
     .tab-button {
-      background-color: var(--color-background-alt-dark);
-      border-color: var(--color-border-dark);
+        flex: 1;
+        padding: 0.625rem 1rem;
+        background: var(--admin-bg);
+        border: 1px solid var(--admin-border);
+        border-radius: 6px;
+        color: var(--admin-text-muted);
+        font-size: 0.8125rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.15s ease;
     }
 
-    .file-input {
-      background-color: var(--color-background-alt-dark);
-      border-color: var(--color-border-dark);
+    .tab-button:hover {
+        border-color: var(--admin-border-light);
+        color: var(--admin-text);
     }
-  }
+
+    .tab-button.active {
+        background: var(--admin-accent);
+        border-color: var(--admin-accent);
+        color: white;
+    }
+
+    .tab-content.hidden {
+        display: none;
+    }
+
+    /* File Drop Zone */
+    .file-drop-zone {
+        position: relative;
+        border: 2px dashed var(--admin-border);
+        border-radius: 8px;
+        padding: 2rem;
+        text-align: center;
+        transition: all 0.15s ease;
+        cursor: pointer;
+    }
+
+    .file-drop-zone:hover,
+    .file-drop-zone.drag-over {
+        border-color: var(--admin-accent);
+        background: rgba(99, 102, 241, 0.05);
+    }
+
+    .file-drop-zone input {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+    .drop-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--admin-text-muted);
+        pointer-events: none;
+    }
+
+    .drop-content svg {
+        color: var(--admin-text-dim);
+    }
+
+    .drop-content small {
+        font-size: 0.75rem;
+        color: var(--admin-text-dim);
+    }
+
+    /* Form Actions */
+    .form-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 0.75rem;
+        padding: 1.25rem 1.5rem;
+        background: var(--admin-bg);
+        border-top: 1px solid var(--admin-border);
+        border-radius: 0 0 8px 8px;
+    }
 </style>
 
 <script>
-  import { categories } from '../../data/categories';
+    import { categories } from '../../data/categories';
 
-  const form = document.getElementById('add-creature-form') as HTMLFormElement;
-  const categorySelect = document.getElementById('category') as HTMLSelectElement;
-  const subcategorySelect = document.getElementById('subcategory') as HTMLSelectElement;
-  const messageDiv = document.getElementById('message') as HTMLDivElement;
-  const imageInput = document.getElementById('image') as HTMLInputElement;
-  const imageFileInput = document.getElementById('imageFile') as HTMLInputElement;
-  const tabButtons = document.querySelectorAll('.tab-button');
-  const tabContents = document.querySelectorAll('.tab-content');
+    const form = document.getElementById('add-creature-form') as HTMLFormElement;
+    const categorySelect = document.getElementById('category') as HTMLSelectElement;
+    const subcategorySelect = document.getElementById('subcategory') as HTMLSelectElement;
+    const imageInput = document.getElementById('image') as HTMLInputElement;
+    const imageFileInput = document.getElementById('imageFile') as HTMLInputElement;
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const tabContents = document.querySelectorAll('.tab-content');
+    const fileDropZone = document.getElementById('file-drop-zone');
 
-  // Handle image input tab switching
-  tabButtons.forEach(button => {
-    button.addEventListener('click', () => {
-      const tab = button.getAttribute('data-tab');
-      
-      // Update button states
-      tabButtons.forEach(btn => btn.classList.remove('active'));
-      button.classList.add('active');
-      
-      // Update content visibility
-      tabContents.forEach(content => content.classList.add('hidden'));
-      document.getElementById(`${tab}-image`)?.classList.remove('hidden');
-      
-      // Update input requirements
-      if (tab === 'existing') {
-        imageInput.required = true;
-        imageFileInput.required = false;
-      } else {
-        imageInput.required = false;
-        imageFileInput.required = true;
-      }
-    });
-  });
+    // Handle image input tab switching
+    tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const tab = button.getAttribute('data-tab');
 
-  // Update subcategories when category changes
-  categorySelect.addEventListener('change', () => {
-    const category = categorySelect.value;
-    const subcategories = categories[category] || [];
-    
-    subcategorySelect.innerHTML = subcategories.length 
-      ? subcategories.map(sub => `<option value="${sub}">${sub}</option>`).join('')
-      : '<option value="">Select a category first</option>';
-  });
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
 
-  // Handle form submission
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    
-    try {
-      const formData = new FormData(form);
-      const imageFile = formData.get('imageFile') as File;
-      
-      // Add lastUpdated timestamp
-      formData.set('lastUpdated', Date.now().toString());
-      
-      // Handle image upload if a new file is selected
-      if (imageFile.size > 0) {
-        const imageFormData = new FormData();
-        imageFormData.append('image', imageFile);
-        imageFormData.append('directory', 'creatures');
-        
-        // Upload image first
-        const uploadResponse = await fetch('/api/upload-image', {
-          method: 'POST',
-          body: imageFormData
+            tabContents.forEach(content => content.classList.add('hidden'));
+            document.getElementById(`${tab}-image`)?.classList.remove('hidden');
+
+            if (tab === 'existing') {
+                imageInput.required = true;
+                imageFileInput.required = false;
+            } else {
+                imageInput.required = false;
+                imageFileInput.required = true;
+            }
         });
-        
-        if (!uploadResponse.ok) throw new Error('Image upload failed');
-        
-        const { path } = await uploadResponse.json();
-        formData.set('image', path);
-      } else {
-        // Ensure the image path is correct for existing images
-        const imagePath = formData.get('image') as string;
-        if (imagePath && !imagePath.startsWith('/images/')) {
-          formData.set('image', `/images/creatures/${imagePath}`);
-        }
-      }
-      
-      // Submit creature data
-      const response = await fetch('/api/creatures', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(Object.fromEntries(formData))
-      });
-      
-      if (!response.ok) throw new Error('Failed to add creature');
-      
-      // Show success message
-      if (messageDiv) {
-        messageDiv.textContent = 'Creature added successfully!';
-        messageDiv.className = 'message success';
-      }
-      
-      // Reset form
-      form.reset();
-      
-    } catch (error) {
-      // Show error message
-      if (messageDiv) {
-        messageDiv.textContent = error instanceof Error ? error.message : 'An error occurred';
-        messageDiv.className = 'message error';
-      }
+    });
+
+    // Drag and drop handling
+    if (fileDropZone) {
+        ['dragenter', 'dragover'].forEach(eventName => {
+            fileDropZone.addEventListener(eventName, (e) => {
+                e.preventDefault();
+                fileDropZone.classList.add('drag-over');
+            });
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+            fileDropZone.addEventListener(eventName, (e) => {
+                e.preventDefault();
+                fileDropZone.classList.remove('drag-over');
+            });
+        });
     }
-  });
-</script>
+
+    // Update subcategories when category changes
+    categorySelect.addEventListener('change', () => {
+        const category = categorySelect.value;
+        const subcategories = categories[category] || [];
+
+        subcategorySelect.innerHTML = subcategories.length
+            ? subcategories.map(sub => `<option value="${sub}">${sub}</option>`).join('')
+            : '<option value="">Select a category first</option>';
+    });
+
+    // Handle form submission
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        try {
+            const formData = new FormData(form);
+            const imageFile = formData.get('imageFile') as File;
+
+            formData.set('lastUpdated', Date.now().toString());
+
+            if (imageFile && imageFile.size > 0) {
+                const imageFormData = new FormData();
+                imageFormData.append('image', imageFile);
+                imageFormData.append('directory', 'creatures');
+
+                const uploadResponse = await fetch('/api/upload-image', {
+                    method: 'POST',
+                    body: imageFormData
+                });
+
+                if (!uploadResponse.ok) throw new Error('Image upload failed');
+
+                const { path } = await uploadResponse.json();
+                formData.set('image', path);
+            } else {
+                const imagePath = formData.get('image') as string;
+                if (imagePath && !imagePath.startsWith('/images/')) {
+                    formData.set('image', `/images/creatures/${imagePath}`);
+                }
+            }
+
+            const response = await fetch('/api/creatures', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(Object.fromEntries(formData))
+            });
+
+            if (!response.ok) throw new Error('Failed to add creature');
+
+            window.showToast('success', 'Creature Added', 'The creature has been added successfully');
+            form.reset();
+
+        } catch (error) {
+            window.showToast('error', 'Error', error instanceof Error ? error.message : 'An error occurred');
+        }
+    });
 </script>

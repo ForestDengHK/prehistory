@@ -1,201 +1,537 @@
 ---
-import Layout from '../../layouts/Layout.astro';
+import AdminLayout from '../../layouts/AdminLayout.astro';
 import { creatures } from '../../data/creatures';
 import { prehistoricFacts } from '../../data/facts';
-
-const title = "Admin Dashboard";
-const description = "Central administration dashboard for Prehistoric World";
+import { getAllCreaturesWithLikes } from '../../db/index';
+import { getRedis } from '../../lib/redis';
 
 // Calculate stats
 const totalCreatures = creatures.length;
 const totalFacts = prehistoricFacts.length;
+
+// Get engagement stats
+let totalLikes = 0;
+let totalComments = 0;
+let topCreature = { name: 'N/A', likes: 0 };
+
+try {
+    const likesData = await getAllCreaturesWithLikes();
+    totalLikes = likesData.reduce((sum, item) => sum + item.totalLikes, 0);
+
+    if (likesData.length > 0) {
+        const top = likesData[0];
+        const creature = creatures.find(c => c.id === top.creatureId);
+        topCreature = { name: creature?.name || top.creatureId, likes: top.totalLikes };
+    }
+
+    // Count comments
+    const redis = getRedis();
+    let cursor: string | number = 0;
+    do {
+        const scanResult = await redis.scan(cursor, { match: '*:comments', count: 100 });
+        cursor = scanResult[0];
+        for (const key of scanResult[1]) {
+            const count = await redis.zcard(key);
+            totalComments += count;
+        }
+    } while (cursor != 0);
+} catch (e) {
+    console.error('Error loading stats:', e);
+}
+
+// Quick action cards
+const quickActions = [
+    {
+        title: 'Add Creature',
+        description: 'Create a new prehistoric creature profile',
+        href: '/admin/add-creature',
+        icon: 'creature',
+        color: 'creatures'
+    },
+    {
+        title: 'Add Facts',
+        description: 'Create new "Did You Know?" facts',
+        href: '/admin/add-facts',
+        icon: 'fact',
+        color: 'content'
+    },
+    {
+        title: 'Moderate Comments',
+        description: 'Review and manage user comments',
+        href: '/admin/comments',
+        icon: 'comment',
+        color: 'engagement'
+    },
+    {
+        title: 'View Likes',
+        description: 'See which creatures are most popular',
+        href: '/admin/likes',
+        icon: 'heart',
+        color: 'engagement'
+    }
+];
 ---
 
-<Layout title={title} description={description}>
-  <div class="admin-dashboard">
-    <h1>Admin Dashboard</h1>
-    
-    <div class="dashboard-grid">
-      <!-- Creature Management -->
-      <section class="dashboard-section">
-        <h2>Creature Management</h2>
-        <div class="card-grid">
-          <a href="/admin/add-creature" class="dashboard-card">
-            <h3>Add New Creature</h3>
-            <p>Create a new prehistoric creature profile</p>
-          </a>
-          <a href="/admin/edit-creature" class="dashboard-card">
-            <h3>Edit Creature</h3>
-            <p>Modify existing creature profiles</p>
-          </a>
-        </div>
-      </section>
+<AdminLayout title="Dashboard">
+    <header class="page-header">
+        <h1 class="page-title">Dashboard</h1>
+        <p class="page-subtitle">Welcome to the Prehistoric World admin panel</p>
+    </header>
 
-      <!-- Facts Management -->
-      <section class="dashboard-section">
-        <h2>Facts Management</h2>
-        <div class="card-grid">
-          <a href="/admin/add-facts" class="dashboard-card">
-            <h3>Add New Facts</h3>
-            <p>Create new "Did You Know?" facts</p>
-          </a>
-          <a href="/admin/edit-facts" class="dashboard-card">
-            <h3>Edit Facts</h3>
-            <p>Modify existing facts</p>
-          </a>
-        </div>
-      </section>
-
-      <!-- Media Management -->
-      <section class="dashboard-section">
-        <h2>Media Management</h2>
-        <div class="card-grid">
-          <a href="/admin/optimize-images" class="dashboard-card">
-            <h3>Optimize Images</h3>
-            <p>Convert and optimize images for better performance</p>
-          </a>
-        </div>
-      </section>
-
-      <!-- Comment Management -->
-      <section class="dashboard-section">
-        <h2>Comment Management</h2>
-        <div class="card-grid">
-          <a href="/admin/comments" class="dashboard-card">
-            <h3>Manage Comments</h3>
-            <p>Review and moderate user comments</p>
-          </a>
-          <a href="/admin/likes" class="dashboard-card">
-            <h3>Like Statistics</h3>
-            <p>View like statistics and details</p>
-          </a>
-        </div>
-      </section>
-
-      <!-- Analytics & Stats -->
-      <section class="dashboard-section">
-        <h2>Quick Stats</h2>
+    <div class="page-content">
+        <!-- Stats Grid -->
         <div class="stats-grid">
-          <div class="stat-card">
-            <h3>Total Creatures</h3>
-            <p class="stat-number">{totalCreatures}</p>
-          </div>
-          <div class="stat-card">
-            <h3>Total Facts</h3>
-            <p class="stat-number">{totalFacts}</p>
-          </div>
+            <div class="stat-card">
+                <div class="stat-icon creatures">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
+                        <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+                        <line x1="9" y1="9" x2="9.01" y2="9"/>
+                        <line x1="15" y1="9" x2="15.01" y2="9"/>
+                    </svg>
+                </div>
+                <div class="stat-info">
+                    <span class="stat-value">{totalCreatures}</span>
+                    <span class="stat-label">Total Creatures</span>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon content">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <line x1="12" y1="16" x2="12" y2="12"/>
+                        <line x1="12" y1="8" x2="12.01" y2="8"/>
+                    </svg>
+                </div>
+                <div class="stat-info">
+                    <span class="stat-value">{totalFacts}</span>
+                    <span class="stat-label">Fun Facts</span>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon engagement">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                    </svg>
+                </div>
+                <div class="stat-info">
+                    <span class="stat-value">{totalLikes}</span>
+                    <span class="stat-label">Total Likes</span>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon engagement">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    </svg>
+                </div>
+                <div class="stat-info">
+                    <span class="stat-value">{totalComments}</span>
+                    <span class="stat-label">Comments</span>
+                </div>
+            </div>
         </div>
-      </section>
+
+        <!-- Top Performer -->
+        {topCreature.likes > 0 && (
+            <div class="highlight-card">
+                <div class="highlight-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                    </svg>
+                </div>
+                <div class="highlight-content">
+                    <span class="highlight-label">Most Popular Creature</span>
+                    <span class="highlight-value">{topCreature.name}</span>
+                    <span class="highlight-meta">{topCreature.likes} likes</span>
+                </div>
+            </div>
+        )}
+
+        <!-- Quick Actions -->
+        <section class="section">
+            <h2 class="section-title">Quick Actions</h2>
+            <div class="actions-grid">
+                {quickActions.map(action => (
+                    <a href={action.href} class={`action-card ${action.color}`}>
+                        <div class="action-icon">
+                            {action.icon === 'creature' && (
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <line x1="12" y1="8" x2="12" y2="16"/>
+                                    <line x1="8" y1="12" x2="16" y2="12"/>
+                                </svg>
+                            )}
+                            {action.icon === 'fact' && (
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                    <polyline points="14 2 14 8 20 8"/>
+                                    <line x1="12" y1="18" x2="12" y2="12"/>
+                                    <line x1="9" y1="15" x2="15" y2="15"/>
+                                </svg>
+                            )}
+                            {action.icon === 'comment' && (
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                                </svg>
+                            )}
+                            {action.icon === 'heart' && (
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                                </svg>
+                            )}
+                        </div>
+                        <div class="action-content">
+                            <span class="action-title">{action.title}</span>
+                            <span class="action-desc">{action.description}</span>
+                        </div>
+                        <svg class="action-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="5" y1="12" x2="19" y2="12"/>
+                            <polyline points="12 5 19 12 12 19"/>
+                        </svg>
+                    </a>
+                ))}
+            </div>
+        </section>
+
+        <!-- Management Sections -->
+        <div class="sections-grid">
+            <section class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Creature Management</h3>
+                </div>
+                <div class="card-body">
+                    <div class="link-list">
+                        <a href="/admin/add-creature" class="link-item">
+                            <span>Add New Creature</span>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="9 18 15 12 9 6"/>
+                            </svg>
+                        </a>
+                        <a href="/admin/edit-creature" class="link-item">
+                            <span>Edit Existing Creatures</span>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="9 18 15 12 9 6"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <section class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Content Management</h3>
+                </div>
+                <div class="card-body">
+                    <div class="link-list">
+                        <a href="/admin/add-facts" class="link-item">
+                            <span>Add New Facts</span>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="9 18 15 12 9 6"/>
+                            </svg>
+                        </a>
+                        <a href="/admin/edit-facts" class="link-item">
+                            <span>Edit Existing Facts</span>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="9 18 15 12 9 6"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <section class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Tools</h3>
+                </div>
+                <div class="card-body">
+                    <div class="link-list">
+                        <a href="/admin/optimize-images" class="link-item">
+                            <span>Optimize Images</span>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="9 18 15 12 9 6"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </div>
     </div>
-  </div>
-</Layout>
+</AdminLayout>
 
 <style>
-  .admin-dashboard {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem;
-  }
-
-  h1 {
-    font-size: 2.5rem;
-    color: var(--primary-color);
-    margin-bottom: 2rem;
-    text-align: center;
-  }
-
-  .dashboard-grid {
-    display: grid;
-    gap: 2rem;
-  }
-
-  .dashboard-section {
-    background: white;
-    padding: 2rem;
-    border-radius: 1rem;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  }
-
-  .dashboard-section h2 {
-    color: var(--primary-color);
-    font-size: 1.5rem;
-    margin-bottom: 1.5rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 2px solid var(--background-color);
-  }
-
-  .card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1rem;
-  }
-
-  .dashboard-card {
-    background: var(--background-color);
-    padding: 1.5rem;
-    border-radius: 0.5rem;
-    text-decoration: none;
-    color: inherit;
-    transition: all 0.3s ease;
-  }
-
-  .dashboard-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    background: var(--primary-color);
-    color: white;
-  }
-
-  .dashboard-card h3 {
-    font-size: 1.25rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .dashboard-card p {
-    font-size: 0.9rem;
-    opacity: 0.8;
-  }
-
-  .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
-  }
-
-  .stat-card {
-    background: var(--background-color);
-    padding: 1.5rem;
-    border-radius: 0.5rem;
-    text-align: center;
-  }
-
-  .stat-card h3 {
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
-    color: var(--secondary-color);
-  }
-
-  .stat-number {
-    font-size: 2rem;
-    font-weight: bold;
-    color: var(--primary-color);
-  }
-
-  @media (max-width: 768px) {
-    .admin-dashboard {
-      padding: 1rem;
+    /* Stats Grid */
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.25rem;
+        margin-bottom: 1.5rem;
     }
 
-    h1 {
-      font-size: 2rem;
+    .stat-card {
+        background: var(--admin-surface);
+        border-radius: 12px;
+        padding: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
-    .dashboard-section {
-      padding: 1.5rem;
+    .stat-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
     }
 
-    .card-grid {
-      grid-template-columns: 1fr;
+    .stat-icon {
+        width: 52px;
+        height: 52px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
-  }
-</style> 
+
+    .stat-icon.creatures {
+        background: rgba(39, 174, 96, 0.12);
+        color: var(--color-creatures);
+    }
+
+    .stat-icon.content {
+        background: rgba(52, 152, 219, 0.12);
+        color: var(--color-content);
+    }
+
+    .stat-icon.engagement {
+        background: rgba(155, 89, 182, 0.12);
+        color: var(--color-engagement);
+    }
+
+    .stat-info {
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Highlight Card */
+    .highlight-card {
+        background: linear-gradient(135deg, rgba(243, 156, 18, 0.1) 0%, rgba(243, 156, 18, 0.02) 100%);
+        border: 2px solid rgba(243, 156, 18, 0.2);
+        border-radius: 12px;
+        padding: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 1.25rem;
+        margin-bottom: 2rem;
+    }
+
+    .highlight-icon {
+        width: 60px;
+        height: 60px;
+        background: rgba(243, 156, 18, 0.15);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--admin-warning);
+    }
+
+    .highlight-content {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .highlight-label {
+        font-size: 0.75rem;
+        font-weight: 700;
+        color: var(--admin-text-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    .highlight-value {
+        font-size: 1.375rem;
+        font-weight: 800;
+        color: var(--admin-text);
+    }
+
+    .highlight-meta {
+        font-size: 0.875rem;
+        color: var(--admin-warning);
+        font-weight: 700;
+    }
+
+    /* Section */
+    .section {
+        margin-bottom: 2rem;
+    }
+
+    .section-title {
+        font-size: 0.875rem;
+        font-weight: 700;
+        color: var(--admin-text-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        margin-bottom: 1rem;
+    }
+
+    /* Actions Grid */
+    .actions-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.25rem;
+    }
+
+    .action-card {
+        background: var(--admin-surface);
+        border-radius: 12px;
+        padding: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        text-decoration: none;
+        transition: all 0.2s ease;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        border: 2px solid transparent;
+    }
+
+    .action-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    }
+
+    .action-card.creatures:hover {
+        border-color: var(--color-creatures);
+        box-shadow: 0 8px 24px rgba(39, 174, 96, 0.15);
+    }
+
+    .action-card.content:hover {
+        border-color: var(--color-content);
+        box-shadow: 0 8px 24px rgba(52, 152, 219, 0.15);
+    }
+
+    .action-card.engagement:hover {
+        border-color: var(--color-engagement);
+        box-shadow: 0 8px 24px rgba(155, 89, 182, 0.15);
+    }
+
+    .action-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    .action-card.creatures .action-icon {
+        background: rgba(39, 174, 96, 0.12);
+        color: var(--color-creatures);
+    }
+
+    .action-card.content .action-icon {
+        background: rgba(52, 152, 219, 0.12);
+        color: var(--color-content);
+    }
+
+    .action-card.engagement .action-icon {
+        background: rgba(155, 89, 182, 0.12);
+        color: var(--color-engagement);
+    }
+
+    .action-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .action-title {
+        font-weight: 700;
+        font-size: 1rem;
+        color: var(--admin-text);
+        margin-bottom: 0.25rem;
+    }
+
+    .action-desc {
+        font-size: 0.875rem;
+        color: var(--admin-text-muted);
+    }
+
+    .action-arrow {
+        color: var(--admin-text-dim);
+        transition: transform 0.2s ease, color 0.2s ease;
+    }
+
+    .action-card:hover .action-arrow {
+        transform: translateX(4px);
+        color: var(--admin-accent);
+    }
+
+    /* Sections Grid */
+    .sections-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.25rem;
+    }
+
+    .link-list {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .link-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.875rem 0;
+        border-bottom: 1px solid var(--admin-border);
+        color: var(--admin-text);
+        text-decoration: none;
+        font-size: 0.9375rem;
+        font-weight: 600;
+        transition: color 0.15s ease;
+    }
+
+    .link-item:last-child {
+        border-bottom: none;
+    }
+
+    .link-item:hover {
+        color: var(--admin-accent);
+    }
+
+    .link-item svg {
+        color: var(--admin-text-dim);
+        transition: transform 0.15s ease, color 0.15s ease;
+    }
+
+    .link-item:hover svg {
+        transform: translateX(4px);
+        color: var(--admin-accent);
+    }
+
+    /* Responsive */
+    @media (max-width: 1200px) {
+        .stats-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .sections-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .stats-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .actions-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>

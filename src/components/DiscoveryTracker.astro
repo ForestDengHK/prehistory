@@ -10,7 +10,9 @@ const { creatureId, category, period } = Astro.props;
 
 <div class="discovery-tracker-wrapper">
   <div id="discovery-tracker" data-creature-id={creatureId} data-category={category} data-period={period}>
-    <div class="discovery-status"></div>
+    <div class="discovery-status">
+      <!-- Content populated by JavaScript -->
+    </div>
   </div>
 </div>
 
@@ -23,11 +25,9 @@ const { creatureId, category, period } = Astro.props;
     private constructor() {
       this.discoveries = this.getDiscoveries();
       this.initializeDiscovery();
-      
-      // Listen for storage changes
+
       window.addEventListener('storage', (e) => {
         if (e.key === DiscoveryTracker.STORAGE_KEY) {
-          // If storage is cleared or changed, reset the instance
           if (!e.newValue) {
             DiscoveryTracker.instance = null;
             this.discoveries = this.getDiscoveries();
@@ -63,16 +63,13 @@ const { creatureId, category, period } = Astro.props;
     private recordDiscovery(creatureId: string, category: string, period: string) {
       const discoveries = this.getDiscoveries();
       if (!discoveries.creatures.includes(creatureId)) {
-        // Store previous state for achievement notification
         const oldCount = discoveries.creatures.length;
         const oldStreak = discoveries.currentStreak;
 
-        // Update discoveries
         discoveries.creatures.push(creatureId);
         discoveries.categories[category] = (discoveries.categories[category] || 0) + 1;
         discoveries.periods[period] = (discoveries.periods[period] || 0) + 1;
-        
-        // Update streak
+
         const today = new Date().setHours(0,0,0,0);
         const lastVisit = new Date(discoveries.lastVisited).setHours(0,0,0,0);
         const oneDayMs = 24 * 60 * 60 * 1000;
@@ -81,15 +78,13 @@ const { creatureId, category, period } = Astro.props;
           discoveries.currentStreak += 1;
           discoveries.maxStreak = Math.max(discoveries.currentStreak, discoveries.maxStreak);
         } else if (today === lastVisit) {
-          // Already visited today - keep current streak
+          // Already visited today
         } else if (today - lastVisit > oneDayMs) {
           discoveries.currentStreak = 1;
         }
-        
+
         discoveries.lastVisited = new Date().toISOString();
         this.saveDiscoveries(discoveries);
-
-        // Show achievement notifications for milestone changes
         this.checkAndNotifyAchievements(oldCount, discoveries.creatures.length, oldStreak, discoveries.currentStreak);
       }
     }
@@ -105,15 +100,11 @@ const { creatureId, category, period } = Astro.props;
       };
 
       const stored = localStorage.getItem(DiscoveryTracker.STORAGE_KEY);
-      if (!stored) {
-        return defaultDiscoveries;
-      }
+      if (!stored) return defaultDiscoveries;
 
       try {
         const parsed = JSON.parse(stored);
-        if (!Array.isArray(parsed.creatures)) {
-          return defaultDiscoveries;
-        }
+        if (!Array.isArray(parsed.creatures)) return defaultDiscoveries;
         return parsed;
       } catch (e) {
         return defaultDiscoveries;
@@ -129,201 +120,305 @@ const { creatureId, category, period } = Astro.props;
     private updateDiscoveryStatus() {
       const discoveries = this.getDiscoveries();
       const statusDiv = document.querySelector('.discovery-status');
-      if (statusDiv) {
-        const discoveryCount = discoveries.creatures?.length || 0;
-        const currentStreak = discoveries.currentStreak || 0;
-        
-        // Get discovery achievement icon
-        let discoveryIcon = '';
-        if (discoveryCount >= 100) discoveryIcon = '👑';  // Crown for Master
-        else if (discoveryCount >= 50) discoveryIcon = '🏆';  // Trophy for Expert
-        else if (discoveryCount >= 25) discoveryIcon = '🎯';  // Target for Advanced
-        else if (discoveryCount >= 10) discoveryIcon = '⭐';  // Star for Skilled
-        else if (discoveryCount >= 5) discoveryIcon = '🌟';  // Glowing star for Novice
+      if (!statusDiv) return;
 
-        // Get streak achievement icon
-        let streakIcon = '';
-        if (currentStreak >= 30) streakIcon = '🎗️';  // Monthly
-        else if (currentStreak >= 14) streakIcon = '🏅';  // Dedicated
-        else if (currentStreak >= 7) streakIcon = '🥈';  // Weekly
-        else if (currentStreak >= 3) streakIcon = '🥉';  // Regular
-        else if (currentStreak >= 0) streakIcon = '🎖️';  // Beginner
+      const discoveryCount = discoveries.creatures?.length || 0;
+      const currentStreak = discoveries.currentStreak || 0;
 
-        // Get achievement titles for tooltips
-        const discoveryTitle = discoveryCount >= 5 ? `${discoveryIcon === '👑' ? 'Master' : discoveryIcon === '🏆' ? 'Expert' : discoveryIcon === '🎯' ? 'Advanced' : discoveryIcon === '⭐' ? 'Skilled' : 'Novice'} Explorer` : '';
-        const streakTitle = `${streakIcon === '🎗️' ? 'Monthly' : streakIcon === '🏅' ? 'Dedicated' : streakIcon === '🥈' ? 'Weekly' : streakIcon === '🥉' ? 'Regular' : 'Daily'} Explorer`;
+      // Get discovery level and color
+      let discoveryLevel = { icon: '🥚', title: 'Beginner', color: '#95a5a6', next: 5 };
+      if (discoveryCount >= 100) discoveryLevel = { icon: '👑', title: 'Master', color: '#f1c40f', next: null };
+      else if (discoveryCount >= 50) discoveryLevel = { icon: '🏆', title: 'Expert', color: '#e67e22', next: 100 };
+      else if (discoveryCount >= 25) discoveryLevel = { icon: '🎯', title: 'Advanced', color: '#9b59b6', next: 50 };
+      else if (discoveryCount >= 10) discoveryLevel = { icon: '⭐', title: 'Explorer', color: '#3498db', next: 25 };
+      else if (discoveryCount >= 5) discoveryLevel = { icon: '🌟', title: 'Novice', color: '#27ae60', next: 10 };
 
-        statusDiv.innerHTML = `
-          <div class="discovery-stats">
-            <span class="discovery-text">🦕${discoveryCount} Discovered</span>
-            <span class="discovery-text">🔥${currentStreak} Day Streak</span>
-            &nbsp;
-            ${discoveryTitle ? `<span class="achievement-icon" title="${discoveryTitle}">${discoveryIcon}</span>` : ''}
-            <span class="achievement-icon" title="${streakTitle}">${streakIcon}</span>
+      // Get streak level
+      let streakLevel = { icon: '🔥', title: 'Starting', color: '#95a5a6' };
+      if (currentStreak >= 30) streakLevel = { icon: '🌋', title: 'On Fire!', color: '#e74c3c' };
+      else if (currentStreak >= 14) streakLevel = { icon: '💫', title: 'Amazing!', color: '#f39c12' };
+      else if (currentStreak >= 7) streakLevel = { icon: '⚡', title: 'Great!', color: '#f1c40f' };
+      else if (currentStreak >= 3) streakLevel = { icon: '🔥', title: 'Nice!', color: '#e67e22' };
+
+      // Calculate progress to next level
+      const progressPercent = discoveryLevel.next
+        ? Math.min(100, (discoveryCount / discoveryLevel.next) * 100)
+        : 100;
+
+      statusDiv.innerHTML = `
+        <div class="tracker-cards">
+          <div class="tracker-card discoveries" style="--card-color: ${discoveryLevel.color}">
+            <div class="card-icon">${discoveryLevel.icon}</div>
+            <div class="card-content">
+              <div class="card-value">${discoveryCount}</div>
+              <div class="card-label">Discovered</div>
+              ${discoveryLevel.next ? `
+                <div class="progress-bar">
+                  <div class="progress-fill" style="width: ${progressPercent}%"></div>
+                </div>
+                <div class="progress-text">${discoveryLevel.next - discoveryCount} more to ${discoveryLevel.next >= 100 ? 'Master' : 'level up'}!</div>
+              ` : `<div class="progress-text">Max level reached! 🎉</div>`}
+            </div>
           </div>
-        `;
-      }
+
+          <div class="tracker-card streak" style="--card-color: ${streakLevel.color}">
+            <div class="card-icon">${streakLevel.icon}</div>
+            <div class="card-content">
+              <div class="card-value">${currentStreak}</div>
+              <div class="card-label">Day Streak</div>
+              <div class="streak-status">${streakLevel.title}</div>
+            </div>
+          </div>
+
+          <a href="/achievements" class="tracker-card achievements-link">
+            <div class="card-icon">🏅</div>
+            <div class="card-content">
+              <div class="card-sublabel">Achievements</div>
+            </div>
+            <div class="card-arrow">→</div>
+          </a>
+        </div>
+      `;
     }
 
     private checkAndNotifyAchievements(oldCount: number, newCount: number, oldStreak: number, newStreak: number) {
-      // Check discovery milestones with icons
       const discoveryMilestones = [
-        { count: 100, icon: '👑', title: 'Master Explorer' },
-        { count: 50, icon: '🏆', title: 'Expert Explorer' },
-        { count: 25, icon: '🎯', title: 'Advanced Explorer' },
-        { count: 10, icon: '⭐', title: 'Skilled Explorer' },
-        { count: 5, icon: '🌟', title: 'Novice Explorer' }
+        { count: 100, icon: '👑', title: 'Master Explorer!' },
+        { count: 50, icon: '🏆', title: 'Expert Explorer!' },
+        { count: 25, icon: '🎯', title: 'Advanced Explorer!' },
+        { count: 10, icon: '⭐', title: 'Explorer!' },
+        { count: 5, icon: '🌟', title: 'Novice Explorer!' }
       ];
 
-      // Check streak milestones with icons
       const streakMilestones = [
-        { count: 30, icon: '🎗️', title: 'Monthly Explorer' },
-        { count: 14, icon: '🏅', title: 'Dedicated Explorer' },
-        { count: 7, icon: '🥈', title: 'Weekly Explorer' },
-        { count: 3, icon: '🥉', title: 'Daily Explorer' }
+        { count: 30, icon: '🌋', title: '30 Day Streak!' },
+        { count: 14, icon: '💫', title: '2 Week Streak!' },
+        { count: 7, icon: '⚡', title: 'Week Streak!' },
+        { count: 3, icon: '🔥', title: '3 Day Streak!' }
       ];
 
-      // Check discovery achievements
       for (const milestone of discoveryMilestones) {
         if (oldCount < milestone.count && newCount >= milestone.count) {
           this.showAchievementNotification(milestone.icon, milestone.title);
-          break;  // Only show the highest new milestone
+          break;
         }
       }
 
-      // Check streak achievements
       for (const milestone of streakMilestones) {
         if (oldStreak < milestone.count && newStreak >= milestone.count) {
           this.showAchievementNotification(milestone.icon, milestone.title);
-          break;  // Only show the highest new milestone
+          break;
         }
       }
     }
 
     private showAchievementNotification(icon: string, title: string) {
-      const statusDiv = document.querySelector('.discovery-status');
-      if (statusDiv) {
-        const notification = document.createElement('div');
-        notification.className = 'achievement-notification';
-        notification.innerHTML = `
-          <div class="achievement-content">
-            <span class="achievement-icon">${icon}</span>
-            <div class="achievement-text">
-              <div class="achievement-title">${title}</div>
-            </div>
+      const notification = document.createElement('div');
+      notification.className = 'achievement-notification';
+      notification.innerHTML = `
+        <div class="achievement-content">
+          <span class="achievement-icon">${icon}</span>
+          <div class="achievement-text">
+            <div class="achievement-label">Achievement Unlocked!</div>
+            <div class="achievement-title">${title}</div>
           </div>
-        `;
-        statusDiv.appendChild(notification);
-        
-        setTimeout(() => {
-          notification.classList.add('fade-out');
-          setTimeout(() => {
-            notification.remove();
-            this.updateDiscoveryStatus();
-          }, 300);
-        }, 3000);
-      }
+        </div>
+      `;
+      document.body.appendChild(notification);
+
+      requestAnimationFrame(() => notification.classList.add('show'));
+
+      setTimeout(() => {
+        notification.classList.remove('show');
+        setTimeout(() => notification.remove(), 300);
+      }, 3000);
     }
   }
 
-  // Initialize the tracker
   document.addEventListener('DOMContentLoaded', () => {
     DiscoveryTracker.getInstance();
   });
 </script>
 
-<style>
+<style is:global>
   .discovery-tracker-wrapper {
     margin: 0 0 1rem 0;
-    padding: 1rem;
+  }
+
+  .tracker-cards {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .tracker-card {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
     background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 0.75rem 1rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    border-left: 4px solid var(--card-color, var(--primary-color));
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    flex: 1 1 auto;
+    min-width: 140px;
   }
 
-  .discovery-tracker-wrapper .discovery-stats {
-    display: inline-block;
-    white-space: nowrap;
+  .tracker-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
   }
 
-  /* Make the rule extremely specific to override any inheritance */
-  .discovery-tracker-wrapper .discovery-stats .discovery-text {
-    font-size: 0.85rem !important;
-    display: inline-block;
-    line-height: normal !important;
-    transform: scale(0.85);
-    transform-origin: left center;
+  .card-icon {
+    font-size: 1.75rem;
+    line-height: 1;
   }
 
-  .discovery-tracker-wrapper .achievement-icon {
-    font-size: 1.1rem;
-    cursor: help;
-    margin-left: 4px;
+  .card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
   }
 
-  .discovery-stats span {
-    margin-right: 8px;
+  .card-value {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    line-height: 1;
   }
 
-  .discovery-stats span:last-child {
-    margin-right: 0;
+  .card-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--secondary-color);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
   }
 
-  .achievement-badge {
-    background: none !important;
-    padding: 0 !important;
+  .progress-bar {
+    width: 80px;
+    height: 4px;
+    background: #e0e0e0;
+    border-radius: 2px;
+    margin-top: 0.375rem;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: var(--card-color, var(--fun-green));
+    border-radius: 2px;
+    transition: width 0.5s ease;
+  }
+
+  .progress-text {
+    font-size: 0.625rem;
+    color: var(--text-muted);
+    margin-top: 0.25rem;
+  }
+
+  .streak-status {
+    font-size: 0.6875rem;
+    font-weight: 700;
+    color: var(--card-color);
+    margin-top: 0.25rem;
+  }
+
+  /* Achievements link card */
+  .achievements-link {
+    text-decoration: none;
+    color: inherit;
+    border-left-color: var(--fun-purple);
+    cursor: pointer;
+    align-items: center;
+  }
+
+  .achievements-link .card-content {
+    display: flex;
+    align-items: center;
+  }
+
+  .achievements-link .card-sublabel {
+    font-size: 0.875rem;
+    font-weight: 700;
     color: var(--primary-color);
   }
 
+  .card-arrow {
+    font-size: 1.25rem;
+    color: var(--fun-purple);
+    margin-left: auto;
+    transition: transform 0.2s ease;
+  }
+
+  .achievements-link:hover .card-arrow {
+    transform: translateX(4px);
+  }
+
+  /* Achievement notification */
   .achievement-notification {
     position: fixed;
-    bottom: 20px;
+    bottom: 100px;
     right: 20px;
-    background: white;
-    color: var(--text-color);
-    padding: 0.75rem 1rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    animation: slideIn 0.3s ease-out;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 1rem 1.25rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(102, 126, 234, 0.4);
     z-index: 1000;
-    max-width: 300px;
-    border: 1px solid #eee;
+    transform: translateX(120%);
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  .achievement-notification.show {
+    transform: translateX(0);
+    opacity: 1;
   }
 
   .achievement-content {
     display: flex;
-    gap: 0.75rem;
     align-items: center;
+    gap: 0.875rem;
   }
 
-  .achievement-title {
-    font-weight: 500;
+  .achievement-notification .achievement-icon {
+    font-size: 2rem;
+    animation: bounce 0.5s ease infinite alternate;
   }
 
-  .achievement-description {
-    font-size: 0.9rem;
+  .achievement-label {
+    font-size: 0.6875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
     opacity: 0.9;
   }
 
-  .fade-out {
-    animation: fadeOut 0.3s ease-out forwards;
+  .achievement-title {
+    font-size: 1rem;
+    font-weight: 700;
   }
 
-  @keyframes fadeOut {
-    to {
-      opacity: 0;
-      transform: translateX(100%);
-    }
+  @keyframes bounce {
+    from { transform: scale(1); }
+    to { transform: scale(1.1); }
   }
 
-  @keyframes slideIn {
-    from {
-      transform: translateX(100%);
-      opacity: 0;
+  @media (max-width: 500px) {
+    .tracker-cards {
+      flex-direction: column;
     }
-    to {
-      transform: translateX(0);
-      opacity: 1;
+
+    .tracker-card {
+      width: 100%;
+      min-width: unset;
+    }
+
+    .achievement-notification {
+      left: 20px;
+      right: 20px;
+      bottom: 80px;
     }
   }
-</style> 
+</style>

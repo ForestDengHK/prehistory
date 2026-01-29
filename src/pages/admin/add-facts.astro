@@ -1,365 +1,455 @@
 ---
-import Layout from '../../layouts/Layout.astro';
+import AdminLayout from '../../layouts/AdminLayout.astro';
 
-const title = 'Add New Fact';
 const categories = ['discovery', 'evolution', 'environment', 'dinosaur'];
 ---
 
-<Layout title={title}>
-  <div class="container">
-    <a href="/admin" class="back-link">← Back to Admin</a>
-    <h1>{title}</h1>
-    
-    <form id="add-fact-form">
-      <!-- Basic Information -->
-      <section class="form-section">
-        <h2>Basic Information</h2>
-        <div class="form-grid">
-          <div class="form-field">
-            <label for="title">Title <span class="required">*</span></label>
-            <input type="text" id="title" name="title" required
-              placeholder="e.g. The Great Dying">
-          </div>
-
-          <div class="form-field">
-            <label for="category">Category <span class="required">*</span></label>
-            <input 
-              type="text" 
-              id="category" 
-              name="category" 
-              required
-              list="category-options"
-              placeholder="Select or type a category"
-            >
-            <datalist id="category-options">
-              {categories.map(category => (
-                <option value={category}>{category}</option>
-              ))}
-            </datalist>
-          </div>
+<AdminLayout title="Add Fact">
+    <header class="page-header">
+        <div class="header-content">
+            <div>
+                <h1 class="page-title">Add New Fact</h1>
+                <p class="page-subtitle">Create a new prehistoric fact entry</p>
+            </div>
         </div>
-      </section>
+    </header>
 
-      <!-- Fact Content -->
-      <section class="form-section">
-        <h2>Fact Content</h2>
-        <div class="form-field">
-          <label for="fact">Fact Description <span class="required">*</span></label>
-          <textarea id="fact" name="fact" required rows="4"
-            placeholder="Enter the interesting fact..."></textarea>
-          <p class="help-text">Provide a clear and engaging description of the prehistoric fact.</p>
+    <div class="page-content">
+        <div class="form-card">
+            <form id="add-fact-form">
+                <!-- Basic Information -->
+                <section class="form-section">
+                    <div class="section-header">
+                        <div class="section-icon content">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <line x1="12" y1="16" x2="12" y2="12"/>
+                                <line x1="12" y1="8" x2="12.01" y2="8"/>
+                            </svg>
+                        </div>
+                        <h2>Basic Information</h2>
+                    </div>
+                    <div class="form-grid">
+                        <div class="form-field">
+                            <label for="title">Title <span class="required">*</span></label>
+                            <input type="text" id="title" name="title" required
+                                placeholder="e.g. The Great Dying">
+                        </div>
+
+                        <div class="form-field">
+                            <label for="category">Category <span class="required">*</span></label>
+                            <input
+                                type="text"
+                                id="category"
+                                name="category"
+                                required
+                                list="category-options"
+                                placeholder="Select or type a category"
+                            >
+                            <datalist id="category-options">
+                                {categories.map(category => (
+                                    <option value={category}>{category}</option>
+                                ))}
+                            </datalist>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Fact Content -->
+                <section class="form-section">
+                    <div class="section-header">
+                        <div class="section-icon engagement">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                <polyline points="14 2 14 8 20 8"/>
+                                <line x1="16" y1="13" x2="8" y2="13"/>
+                                <line x1="16" y1="17" x2="8" y2="17"/>
+                            </svg>
+                        </div>
+                        <h2>Fact Content</h2>
+                    </div>
+                    <div class="form-field">
+                        <label for="fact">Fact Description <span class="required">*</span></label>
+                        <textarea id="fact" name="fact" required rows="5"
+                            placeholder="Enter the interesting fact..."></textarea>
+                        <p class="help-text">Provide a clear and engaging description of the prehistoric fact.</p>
+                    </div>
+                </section>
+
+                <!-- Image -->
+                <section class="form-section">
+                    <div class="section-header">
+                        <div class="section-icon tools">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                                <circle cx="8.5" cy="8.5" r="1.5"/>
+                                <polyline points="21 15 16 10 5 21"/>
+                            </svg>
+                        </div>
+                        <h2>Image</h2>
+                    </div>
+
+                    <div class="form-field">
+                        <div class="tab-group">
+                            <button type="button" class="tab-button active" data-tab="existing-image">Use Existing Image</button>
+                            <button type="button" class="tab-button" data-tab="upload-image">Upload New Image</button>
+                        </div>
+
+                        <div class="tab-content" id="existing-image">
+                            <div class="input-group">
+                                <span class="input-prefix">/images/facts/</span>
+                                <input type="text" id="image" name="image"
+                                    placeholder="fact-name.webp">
+                            </div>
+                            <p class="help-text">Specify the name of an existing image in the public/images/facts directory</p>
+                        </div>
+
+                        <div class="tab-content hidden" id="upload-image">
+                            <div class="file-drop-zone" id="file-drop-zone">
+                                <input type="file" id="imageFile" name="imageFile" accept="image/*">
+                                <div class="drop-content">
+                                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                        <polyline points="17 8 12 3 7 8"/>
+                                        <line x1="12" y1="3" x2="12" y2="15"/>
+                                    </svg>
+                                    <span>Drop image here or click to browse</span>
+                                    <small>JPG, PNG - Will be converted to WebP</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="form-actions">
+                    <button type="button" class="btn btn-ghost" onclick="window.history.back()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <line x1="12" y1="8" x2="12" y2="16"/>
+                            <line x1="8" y1="12" x2="16" y2="12"/>
+                        </svg>
+                        Add Fact
+                    </button>
+                </div>
+            </form>
         </div>
-      </section>
-
-      <!-- Image -->
-      <section class="form-section">
-        <h2>Image</h2>
-        <div class="image-input-tabs">
-          <button type="button" class="tab-button active" data-tab="existing-image">Use Existing Image</button>
-          <button type="button" class="tab-button" data-tab="upload-image">Upload New Image</button>
-        </div>
-
-        <div class="tab-content" id="existing-image">
-          <div class="input-group">
-            <span class="input-prefix">/images/facts/</span>
-            <input type="text" id="image" name="image"
-              placeholder="fact-name.webp">
-          </div>
-          <p class="help-text">Specify the name of an existing image in the public/images/facts directory (WebP format)</p>
-        </div>
-
-        <div class="tab-content hidden" id="upload-image">
-          <input type="file" id="imageFile" name="imageFile" accept="image/*"
-            class="file-input">
-          <p class="help-text">Upload a new image (JPG, PNG). It will be automatically converted to WebP format</p>
-        </div>
-      </section>
-
-      <div class="form-actions">
-        <button type="submit">Add Fact</button>
-      </div>
-
-      <div id="message" class="message hidden"></div>
-    </form>
-  </div>
-</Layout>
+    </div>
+</AdminLayout>
 
 <style>
-  .container {
-    max-width: 48rem;
-    margin: 0 auto;
-    padding: 2rem 1rem;
-  }
-
-  .back-link {
-    display: inline-block;
-    color: var(--text-color);
-    text-decoration: none;
-    margin-bottom: 1rem;
-    transition: color 0.2s ease-in-out;
-  }
-
-  .back-link:hover {
-    color: var(--primary-color);
-  }
-
-  h1 {
-    font-size: 2rem;
-    font-weight: 600;
-    color: var(--primary-color);
-    text-align: center;
-    margin-bottom: 2rem;
-  }
-
-  form {
-    background-color: white;
-    border-radius: 1rem;
-    padding: 2rem;
-    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-  }
-
-  .form-section {
-    margin-bottom: 2rem;
-  }
-
-  .form-section:last-child {
-    margin-bottom: 0;
-  }
-
-  h2 {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: var(--primary-color);
-    margin-bottom: 1rem;
-  }
-
-  .form-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-
-  @media (min-width: 640px) {
-    .form-grid {
-      grid-template-columns: repeat(2, 1fr);
+    .form-card {
+        background: var(--admin-surface);
+        border: 1px solid var(--admin-border);
+        border-radius: 8px;
+        max-width: 800px;
     }
-  }
 
-  .form-field {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
+    form {
+        padding: 0;
+    }
 
-  label {
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: var(--text-color);
-  }
+    .form-section {
+        padding: 1.5rem;
+        border-bottom: 1px solid var(--admin-border);
+    }
 
-  .required {
-    color: var(--accent-color);
-  }
+    .form-section:last-of-type {
+        border-bottom: none;
+    }
 
-  input, select, textarea {
-    padding: 0.75rem 1rem;
-    border: 1px solid var(--background-color);
-    border-radius: 0.5rem;
-    background-color: white;
-    color: var(--text-color);
-    font-size: 0.875rem;
-    transition: all 0.2s ease-in-out;
-  }
+    .section-header {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 1.25rem;
+    }
 
-  input:focus, select:focus, textarea:focus {
-    outline: none;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 2px var(--primary-color-alpha);
-  }
+    .section-icon {
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 
-  .input-group {
-    display: flex;
-    align-items: center;
-  }
+    .section-icon.content {
+        background: rgba(59, 130, 246, 0.15);
+        color: var(--color-content);
+    }
 
-  .input-prefix {
-    padding: 0.75rem 1rem;
-    background-color: var(--background-color);
-    border: 1px solid var(--background-color);
-    border-right: none;
-    border-radius: 0.5rem 0 0 0.5rem;
-    color: var(--secondary-color);
-    font-size: 0.875rem;
-  }
+    .section-icon.engagement {
+        background: rgba(168, 85, 247, 0.15);
+        color: var(--color-engagement);
+    }
 
-  .input-group input {
-    border-radius: 0 0.5rem 0.5rem 0;
-    flex: 1;
-  }
+    .section-icon.tools {
+        background: rgba(245, 158, 11, 0.15);
+        color: var(--color-tools);
+    }
 
-  .help-text {
-    font-size: 0.75rem;
-    color: var(--secondary-color);
-    margin-top: 0.25rem;
-  }
+    .section-header h2 {
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--admin-text);
+        margin: 0;
+    }
 
-  .form-actions {
-    margin-top: 2rem;
-  }
+    .form-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
 
-  button[type="submit"] {
-    width: 100%;
-    padding: 0.875rem 1.5rem;
-    background-color: var(--primary-color);
-    color: white;
-    border: none;
-    border-radius: 0.5rem;
-    font-size: 1rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.2s ease-in-out;
-  }
+    @media (max-width: 640px) {
+        .form-grid {
+            grid-template-columns: 1fr;
+        }
+    }
 
-  button[type="submit"]:hover {
-    background-color: var(--accent-color);
-  }
+    .form-field {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
 
-  .message {
-    margin-top: 1rem;
-    padding: 1rem;
-    border-radius: 0.5rem;
-    font-size: 0.875rem;
-  }
+    .form-field:has(textarea),
+    .form-field:has(.tab-group) {
+        grid-column: 1 / -1;
+    }
 
-  .message.success {
-    background-color: #f0fdf4;
-    color: #15803d;
-    border: 1px solid #bbf7d0;
-  }
+    label {
+        font-size: 0.8125rem;
+        font-weight: 500;
+        color: var(--admin-text);
+    }
 
-  .message.error {
-    background-color: #fef2f2;
-    color: #b91c1c;
-    border: 1px solid #fecaca;
-  }
+    .required {
+        color: var(--admin-danger);
+    }
 
-  .hidden {
-    display: none;
-  }
+    input, select, textarea {
+        padding: 0.625rem 0.875rem;
+        background: var(--admin-bg);
+        border: 1px solid var(--admin-border);
+        border-radius: 6px;
+        color: var(--admin-text);
+        font-size: 0.875rem;
+        font-family: var(--font-sans);
+        transition: all 0.15s ease;
+    }
 
-  .image-input-tabs {
-    display: flex;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
-  }
+    input::placeholder, textarea::placeholder {
+        color: var(--admin-text-dim);
+    }
 
-  .tab-button {
-    padding: 0.5rem 1rem;
-    background: none;
-    border: 1px solid var(--primary-color);
-    border-radius: 0.5rem;
-    color: var(--primary-color);
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
-  }
+    input:focus, select:focus, textarea:focus {
+        outline: none;
+        border-color: var(--admin-accent);
+        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+    }
 
-  .tab-button.active {
-    background: var(--primary-color);
-    color: white;
-  }
+    textarea {
+        resize: vertical;
+        min-height: 120px;
+    }
 
-  .tab-content {
-    margin-top: 1rem;
-  }
+    .help-text {
+        font-size: 0.75rem;
+        color: var(--admin-text-dim);
+    }
 
-  .file-input {
-    width: 100%;
-    padding: 0.5rem;
-    border: 1px dashed var(--background-color);
-    border-radius: 0.5rem;
-  }
+    /* Input Group */
+    .input-group {
+        display: flex;
+    }
+
+    .input-prefix {
+        padding: 0.625rem 0.875rem;
+        background: var(--admin-surface-hover);
+        border: 1px solid var(--admin-border);
+        border-right: none;
+        border-radius: 6px 0 0 6px;
+        color: var(--admin-text-dim);
+        font-size: 0.8125rem;
+        font-family: var(--font-mono);
+        white-space: nowrap;
+    }
+
+    .input-group input {
+        border-radius: 0 6px 6px 0;
+        flex: 1;
+    }
+
+    /* Tab Group */
+    .tab-group {
+        display: flex;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .tab-button {
+        flex: 1;
+        padding: 0.625rem 1rem;
+        background: var(--admin-bg);
+        border: 1px solid var(--admin-border);
+        border-radius: 6px;
+        color: var(--admin-text-muted);
+        font-size: 0.8125rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.15s ease;
+    }
+
+    .tab-button:hover {
+        border-color: var(--admin-border-light);
+        color: var(--admin-text);
+    }
+
+    .tab-button.active {
+        background: var(--admin-accent);
+        border-color: var(--admin-accent);
+        color: white;
+    }
+
+    .tab-content.hidden {
+        display: none;
+    }
+
+    /* File Drop Zone */
+    .file-drop-zone {
+        position: relative;
+        border: 2px dashed var(--admin-border);
+        border-radius: 8px;
+        padding: 2rem;
+        text-align: center;
+        transition: all 0.15s ease;
+        cursor: pointer;
+    }
+
+    .file-drop-zone:hover,
+    .file-drop-zone.drag-over {
+        border-color: var(--admin-accent);
+        background: rgba(99, 102, 241, 0.05);
+    }
+
+    .file-drop-zone input {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+    .drop-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--admin-text-muted);
+        pointer-events: none;
+    }
+
+    .drop-content svg {
+        color: var(--admin-text-dim);
+    }
+
+    .drop-content small {
+        font-size: 0.75rem;
+        color: var(--admin-text-dim);
+    }
+
+    /* Form Actions */
+    .form-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 0.75rem;
+        padding: 1.25rem 1.5rem;
+        background: var(--admin-bg);
+        border-top: 1px solid var(--admin-border);
+        border-radius: 0 0 8px 8px;
+    }
 </style>
 
 <script>
-  const form = document.getElementById('add-fact-form') as HTMLFormElement;
-  const message = document.getElementById('message');
-  const tabButtons = document.querySelectorAll('.tab-button');
-  const tabContents = document.querySelectorAll('.tab-content');
+    const form = document.getElementById('add-fact-form') as HTMLFormElement;
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const tabContents = document.querySelectorAll('.tab-content');
+    const fileDropZone = document.getElementById('file-drop-zone');
 
-  // Handle tab switching
-  tabButtons.forEach(button => {
-    button.addEventListener('click', () => {
-      const tabId = button.getAttribute('data-tab');
-      
-      // Update active states
-      tabButtons.forEach(btn => btn.classList.remove('active'));
-      button.classList.add('active');
-      
-      // Show/hide content
-      tabContents.forEach(content => {
-        content.classList.toggle('hidden', content.id !== tabId);
-      });
-    });
-  });
+    // Handle tab switching
+    tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const tabId = button.getAttribute('data-tab');
 
-  // Handle form submission
-  form?.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    
-    try {
-      const formData = new FormData(form);
-      const imageFile = formData.get('imageFile') as File;
-      
-      // Handle image upload if a new file is selected
-      if (imageFile.size > 0) {
-        const imageFormData = new FormData();
-        imageFormData.append('image', imageFile);
-        imageFormData.append('directory', 'facts');
-        
-        // Upload image first
-        const uploadResponse = await fetch('/api/upload-image', {
-          method: 'POST',
-          body: imageFormData
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+
+            tabContents.forEach(content => {
+                content.classList.toggle('hidden', content.id !== tabId);
+            });
         });
-        
-        if (!uploadResponse.ok) throw new Error('Image upload failed');
-        
-        const { path } = await uploadResponse.json();
-        formData.set('image', path);
-      } else {
-        // Ensure the image path is correct for existing images
-        const imagePath = formData.get('image') as string;
-        if (imagePath && !imagePath.startsWith('/images/')) {
-          formData.set('image', `/images/facts/${imagePath}`);
-        }
-      }
-      
-      // Submit fact data
-      const response = await fetch('/api/facts', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(Object.fromEntries(formData))
-      });
-      
-      if (!response.ok) throw new Error('Failed to add fact');
-      
-      // Show success message
-      if (message) {
-        message.textContent = 'Fact added successfully!';
-        message.className = 'message success';
-      }
-      
-      // Reset form
-      form.reset();
-      
-    } catch (error) {
-      // Show error message
-      if (message) {
-        message.textContent = error instanceof Error ? error.message : 'An error occurred';
-        message.className = 'message error';
-      }
+    });
+
+    // Drag and drop handling
+    if (fileDropZone) {
+        ['dragenter', 'dragover'].forEach(eventName => {
+            fileDropZone.addEventListener(eventName, (e) => {
+                e.preventDefault();
+                fileDropZone.classList.add('drag-over');
+            });
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+            fileDropZone.addEventListener(eventName, (e) => {
+                e.preventDefault();
+                fileDropZone.classList.remove('drag-over');
+            });
+        });
     }
-  });
-</script> 
+
+    // Handle form submission
+    form?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        try {
+            const formData = new FormData(form);
+            const imageFile = formData.get('imageFile') as File;
+
+            if (imageFile && imageFile.size > 0) {
+                const imageFormData = new FormData();
+                imageFormData.append('image', imageFile);
+                imageFormData.append('directory', 'facts');
+
+                const uploadResponse = await fetch('/api/upload-image', {
+                    method: 'POST',
+                    body: imageFormData
+                });
+
+                if (!uploadResponse.ok) throw new Error('Image upload failed');
+
+                const { path } = await uploadResponse.json();
+                formData.set('image', path);
+            } else {
+                const imagePath = formData.get('image') as string;
+                if (imagePath && !imagePath.startsWith('/images/')) {
+                    formData.set('image', `/images/facts/${imagePath}`);
+                }
+            }
+
+            const response = await fetch('/api/facts', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(Object.fromEntries(formData))
+            });
+
+            if (!response.ok) throw new Error('Failed to add fact');
+
+            window.showToast('success', 'Fact Added', 'The fact has been added successfully');
+            form.reset();
+
+        } catch (error) {
+            window.showToast('error', 'Error', error instanceof Error ? error.message : 'An error occurred');
+        }
+    });
+</script>

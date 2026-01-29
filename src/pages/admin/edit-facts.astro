@@ -1,566 +1,761 @@
 ---
-import Layout from '../../layouts/Layout.astro';
+import AdminLayout from '../../layouts/AdminLayout.astro';
 import { prehistoricFacts } from '../../data/facts';
 
-const title = 'Edit Fact';
 const categories = ['discovery', 'evolution', 'environment', 'dinosaur'];
 ---
 
-<Layout title={title}>
-  <div class="container">
-    <a href="/admin" class="back-link">← Back to Admin</a>
-    <h1>{title}</h1>
-    
-    <!-- Fact Selection -->
-    <div class="fact-select-section">
-      <label for="fact-search">Search or Select Fact <span class="required">*</span></label>
-      <div class="search-container">
-        <select id="fact-dropdown" class="fact-dropdown">
-          <option value="">Select a fact</option>
-          {prehistoricFacts.map(fact => (
-            <option value={fact.id}>{fact.title}</option>
-          ))}
-        </select>
-        <div class="search-box">
-          <input 
-            type="text" 
-            id="fact-search" 
-            placeholder="Or type to search facts..."
-            autocomplete="off"
-          >
-          <div id="search-results" class="search-results hidden">
-            <!-- Results will be populated by JavaScript -->
-          </div>
+<AdminLayout title="Edit Fact">
+    <header class="page-header">
+        <div class="header-content">
+            <div>
+                <h1 class="page-title">Edit Fact</h1>
+                <p class="page-subtitle">Modify an existing prehistoric fact</p>
+            </div>
         </div>
-      </div>
+    </header>
+
+    <div class="page-content">
+        <!-- Fact Selection -->
+        <div class="selector-card">
+            <div class="selector-header">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"/>
+                    <path d="m21 21-4.35-4.35"/>
+                </svg>
+                <span>Select a fact to edit</span>
+            </div>
+            <div class="selector-body">
+                <div class="selector-row">
+                    <select id="fact-dropdown" class="fact-dropdown">
+                        <option value="">Select a fact</option>
+                        {prehistoricFacts.map(fact => (
+                            <option value={fact.id}>{fact.title}</option>
+                        ))}
+                    </select>
+                    <span class="selector-or">or</span>
+                    <div class="search-box">
+                        <input
+                            type="text"
+                            id="fact-search"
+                            placeholder="Type to search..."
+                            autocomplete="off"
+                        >
+                        <div id="search-results" class="search-results hidden"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-card hidden" id="form-card">
+            <form id="edit-fact-form">
+                <input type="hidden" id="fact-id" name="id">
+
+                <!-- Basic Information -->
+                <section class="form-section">
+                    <div class="section-header">
+                        <div class="section-icon content">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <line x1="12" y1="16" x2="12" y2="12"/>
+                                <line x1="12" y1="8" x2="12.01" y2="8"/>
+                            </svg>
+                        </div>
+                        <h2>Basic Information</h2>
+                    </div>
+                    <div class="form-grid">
+                        <div class="form-field">
+                            <label for="title">Title <span class="required">*</span></label>
+                            <input type="text" id="title" name="title" required
+                                placeholder="e.g. The Great Dying">
+                        </div>
+
+                        <div class="form-field">
+                            <label for="category">Category <span class="required">*</span></label>
+                            <input
+                                type="text"
+                                id="category"
+                                name="category"
+                                required
+                                list="category-options"
+                                placeholder="Select or type a category"
+                            >
+                            <datalist id="category-options">
+                                {categories.map(category => (
+                                    <option value={category}>{category}</option>
+                                ))}
+                            </datalist>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Fact Content -->
+                <section class="form-section">
+                    <div class="section-header">
+                        <div class="section-icon engagement">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                <polyline points="14 2 14 8 20 8"/>
+                                <line x1="16" y1="13" x2="8" y2="13"/>
+                                <line x1="16" y1="17" x2="8" y2="17"/>
+                            </svg>
+                        </div>
+                        <h2>Fact Content</h2>
+                    </div>
+                    <div class="form-field">
+                        <label for="fact">Fact Description <span class="required">*</span></label>
+                        <textarea id="fact" name="fact" required rows="5"
+                            placeholder="Enter the interesting fact..."></textarea>
+                        <p class="help-text">Provide a clear and engaging description of the prehistoric fact.</p>
+                    </div>
+                </section>
+
+                <!-- Image -->
+                <section class="form-section">
+                    <div class="section-header">
+                        <div class="section-icon tools">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                                <circle cx="8.5" cy="8.5" r="1.5"/>
+                                <polyline points="21 15 16 10 5 21"/>
+                            </svg>
+                        </div>
+                        <h2>Image</h2>
+                    </div>
+
+                    <div class="current-image-card">
+                        <span class="current-label">Current Image</span>
+                        <img id="current-image-preview" src="" alt="Current fact image">
+                        <p id="current-image-path" class="help-text"></p>
+                    </div>
+
+                    <div class="form-field">
+                        <div class="tab-group">
+                            <button type="button" class="tab-button active" data-tab="existing-image">Use Existing Image</button>
+                            <button type="button" class="tab-button" data-tab="upload-image">Upload New Image</button>
+                        </div>
+
+                        <div class="tab-content" id="existing-image">
+                            <div class="input-group">
+                                <span class="input-prefix">/images/facts/</span>
+                                <input type="text" id="image" name="image"
+                                    placeholder="fact-name.webp">
+                            </div>
+                            <p class="help-text">Specify the name of an existing image in the public/images/facts directory</p>
+                        </div>
+
+                        <div class="tab-content hidden" id="upload-image">
+                            <div class="file-drop-zone" id="file-drop-zone">
+                                <input type="file" id="imageFile" name="imageFile" accept="image/*">
+                                <div class="drop-content">
+                                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                        <polyline points="17 8 12 3 7 8"/>
+                                        <line x1="12" y1="3" x2="12" y2="15"/>
+                                    </svg>
+                                    <span>Drop image here or click to browse</span>
+                                    <small>JPG, PNG - Will be converted to WebP</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="form-actions">
+                    <button type="button" class="btn btn-ghost" onclick="window.history.back()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
+                            <polyline points="17 21 17 13 7 13 7 21"/>
+                            <polyline points="7 3 7 8 15 8"/>
+                        </svg>
+                        Update Fact
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
-    
-    <form id="edit-fact-form" class="hidden">
-      <input type="hidden" id="fact-id" name="id">
-      
-      <!-- Basic Information -->
-      <section class="form-section">
-        <h2>Basic Information</h2>
-        <div class="form-grid">
-          <div class="form-field">
-            <label for="title">Title <span class="required">*</span></label>
-            <input type="text" id="title" name="title" required
-              placeholder="e.g. The Great Dying">
-          </div>
-
-          <div class="form-field">
-            <label for="category">Category <span class="required">*</span></label>
-            <input 
-              type="text" 
-              id="category" 
-              name="category" 
-              required
-              list="category-options"
-              placeholder="Select or type a category"
-            >
-            <datalist id="category-options">
-              {categories.map(category => (
-                <option value={category}>{category}</option>
-              ))}
-            </datalist>
-          </div>
-        </div>
-      </section>
-
-      <!-- Fact Content -->
-      <section class="form-section">
-        <h2>Fact Content</h2>
-        <div class="form-field">
-          <label for="fact">Fact Description <span class="required">*</span></label>
-          <textarea id="fact" name="fact" required rows="4"
-            placeholder="Enter the interesting fact..."></textarea>
-          <p class="help-text">Provide a clear and engaging description of the prehistoric fact.</p>
-        </div>
-      </section>
-
-      <!-- Image -->
-      <section class="form-section">
-        <h2>Image</h2>
-        <div class="current-image">
-          <h3>Current Image</h3>
-          <img id="current-image-preview" src="" alt="Current fact image">
-          <p id="current-image-path" class="help-text"></p>
-        </div>
-
-        <div class="image-input-tabs">
-          <button type="button" class="tab-button active" data-tab="existing-image">Use Existing Image</button>
-          <button type="button" class="tab-button" data-tab="upload-image">Upload New Image</button>
-        </div>
-
-        <div class="tab-content" id="existing-image">
-          <div class="input-group">
-            <span class="input-prefix">/images/facts/</span>
-            <input type="text" id="image" name="image"
-              placeholder="fact-name.webp">
-          </div>
-          <p class="help-text">Specify the name of an existing image in the public/images/facts directory (WebP format)</p>
-        </div>
-
-        <div class="tab-content hidden" id="upload-image">
-          <input type="file" id="imageFile" name="imageFile" accept="image/*"
-            class="file-input">
-          <p class="help-text">Upload a new image (JPG, PNG). It will be automatically converted to WebP format</p>
-        </div>
-      </section>
-
-      <div class="form-actions">
-        <button type="submit">Update Fact</button>
-      </div>
-
-      <div id="message" class="message hidden"></div>
-    </form>
-  </div>
-</Layout>
+</AdminLayout>
 
 <style>
-  .container {
-    max-width: 48rem;
-    margin: 0 auto;
-    padding: 2rem 1rem;
-  }
-
-  .back-link {
-    display: inline-block;
-    color: var(--text-color);
-    text-decoration: none;
-    margin-bottom: 1rem;
-    transition: color 0.2s ease-in-out;
-  }
-
-  .back-link:hover {
-    color: var(--primary-color);
-  }
-
-  h1 {
-    font-size: 2rem;
-    font-weight: 600;
-    color: var(--primary-color);
-    text-align: center;
-    margin-bottom: 2rem;
-  }
-
-  .fact-select-section {
-    margin-bottom: 2rem;
-  }
-
-  .search-container {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .fact-dropdown {
-    width: 100%;
-    padding: 0.75rem 1rem;
-    border: 1px solid var(--background-color);
-    border-radius: 0.5rem;
-    background-color: white;
-    color: var(--text-color);
-    font-size: 0.875rem;
-  }
-
-  .search-box {
-    position: relative;
-  }
-
-  .search-box input {
-    width: 100%;
-  }
-
-  .search-results {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background: white;
-    border: 1px solid var(--background-color);
-    border-radius: 0.5rem;
-    margin-top: 0.5rem;
-    max-height: 200px;
-    overflow-y: auto;
-    z-index: 10;
-  }
-
-  .search-result-item {
-    padding: 0.75rem 1rem;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-  }
-
-  .search-result-item:hover {
-    background-color: var(--background-color);
-  }
-
-  .current-image {
-    margin-bottom: 1rem;
-    padding: 1rem;
-    border: 1px solid var(--background-color);
-    border-radius: 0.5rem;
-    background-color: white;
-  }
-
-  .current-image h3 {
-    font-size: 1rem;
-    font-weight: 500;
-    margin-bottom: 0.5rem;
-  }
-
-  .current-image img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 0.5rem;
-    margin-bottom: 0.5rem;
-  }
-
-  /* Inherit rest of the styles from add-facts.astro */
-  form {
-    background-color: white;
-    border-radius: 1rem;
-    padding: 2rem;
-    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-  }
-
-  .form-section {
-    margin-bottom: 2rem;
-  }
-
-  .form-section:last-child {
-    margin-bottom: 0;
-  }
-
-  h2 {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: var(--primary-color);
-    margin-bottom: 1rem;
-  }
-
-  .form-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-
-  @media (min-width: 640px) {
-    .form-grid {
-      grid-template-columns: repeat(2, 1fr);
+    /* Selector Card */
+    .selector-card {
+        background: var(--admin-surface);
+        border: 1px solid var(--admin-border);
+        border-radius: 8px;
+        margin-bottom: 1.5rem;
+        max-width: 800px;
     }
-  }
 
-  .form-field {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
+    .selector-header {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 1rem 1.25rem;
+        border-bottom: 1px solid var(--admin-border);
+        color: var(--admin-text-muted);
+        font-size: 0.875rem;
+        font-weight: 500;
+    }
 
-  label {
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: var(--text-color);
-  }
+    .selector-header svg {
+        color: var(--admin-accent);
+    }
 
-  .required {
-    color: var(--accent-color);
-  }
+    .selector-body {
+        padding: 1.25rem;
+    }
 
-  input, select, textarea {
-    padding: 0.75rem 1rem;
-    border: 1px solid var(--background-color);
-    border-radius: 0.5rem;
-    background-color: white;
-    color: var(--text-color);
-    font-size: 0.875rem;
-    transition: all 0.2s ease-in-out;
-  }
+    .selector-row {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
 
-  input:focus, select:focus, textarea:focus {
-    outline: none;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 2px var(--primary-color-alpha);
-  }
+    .fact-dropdown {
+        flex: 1;
+        padding: 0.625rem 0.875rem;
+        background: var(--admin-bg);
+        border: 1px solid var(--admin-border);
+        border-radius: 6px;
+        color: var(--admin-text);
+        font-size: 0.875rem;
+        cursor: pointer;
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%238b929e' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 0.75rem center;
+        padding-right: 2.5rem;
+    }
 
-  .input-group {
-    display: flex;
-    align-items: center;
-  }
+    .fact-dropdown:focus {
+        outline: none;
+        border-color: var(--admin-accent);
+        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+    }
 
-  .input-prefix {
-    padding: 0.75rem 1rem;
-    background-color: var(--background-color);
-    border: 1px solid var(--background-color);
-    border-right: none;
-    border-radius: 0.5rem 0 0 0.5rem;
-    color: var(--secondary-color);
-    font-size: 0.875rem;
-  }
+    .selector-or {
+        color: var(--admin-text-dim);
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
 
-  .input-group input {
-    border-radius: 0 0.5rem 0.5rem 0;
-    flex: 1;
-  }
+    .search-box {
+        flex: 1;
+        position: relative;
+    }
 
-  .help-text {
-    font-size: 0.75rem;
-    color: var(--secondary-color);
-    margin-top: 0.25rem;
-  }
+    .search-box input {
+        width: 100%;
+        padding: 0.625rem 0.875rem;
+        background: var(--admin-bg);
+        border: 1px solid var(--admin-border);
+        border-radius: 6px;
+        color: var(--admin-text);
+        font-size: 0.875rem;
+    }
 
-  .form-actions {
-    margin-top: 2rem;
-  }
+    .search-box input:focus {
+        outline: none;
+        border-color: var(--admin-accent);
+        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+    }
 
-  button[type="submit"] {
-    width: 100%;
-    padding: 0.875rem 1.5rem;
-    background-color: var(--primary-color);
-    color: white;
-    border: none;
-    border-radius: 0.5rem;
-    font-size: 1rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.2s ease-in-out;
-  }
+    .search-box input::placeholder {
+        color: var(--admin-text-dim);
+    }
 
-  button[type="submit"]:hover {
-    background-color: var(--accent-color);
-  }
+    .search-results {
+        position: absolute;
+        top: calc(100% + 4px);
+        left: 0;
+        right: 0;
+        background: var(--admin-surface);
+        border: 1px solid var(--admin-border);
+        border-radius: 6px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        max-height: 240px;
+        overflow-y: auto;
+        z-index: 50;
+    }
 
-  .message {
-    margin-top: 1rem;
-    padding: 1rem;
-    border-radius: 0.5rem;
-    font-size: 0.875rem;
-  }
+    .search-results.hidden {
+        display: none;
+    }
 
-  .message.success {
-    background-color: #f0fdf4;
-    color: #15803d;
-    border: 1px solid #bbf7d0;
-  }
+    .search-result-item {
+        padding: 0.75rem 1rem;
+        cursor: pointer;
+        transition: background 0.15s ease;
+        border-bottom: 1px solid var(--admin-border);
+        color: var(--admin-text);
+    }
 
-  .message.error {
-    background-color: #fef2f2;
-    color: #b91c1c;
-    border: 1px solid #fecaca;
-  }
+    .search-result-item:last-child {
+        border-bottom: none;
+    }
 
-  .hidden {
-    display: none;
-  }
+    .search-result-item:hover {
+        background: var(--admin-surface-hover);
+    }
 
-  .image-input-tabs {
-    display: flex;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
-  }
+    /* Form Card */
+    .form-card {
+        background: var(--admin-surface);
+        border: 1px solid var(--admin-border);
+        border-radius: 8px;
+        max-width: 800px;
+    }
 
-  .tab-button {
-    padding: 0.5rem 1rem;
-    background: none;
-    border: 1px solid var(--primary-color);
-    border-radius: 0.5rem;
-    color: var(--primary-color);
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
-  }
+    .form-card.hidden {
+        display: none;
+    }
 
-  .tab-button.active {
-    background: var(--primary-color);
-    color: white;
-  }
+    form {
+        padding: 0;
+    }
 
-  .tab-content {
-    margin-top: 1rem;
-  }
+    .form-section {
+        padding: 1.5rem;
+        border-bottom: 1px solid var(--admin-border);
+    }
 
-  .file-input {
-    width: 100%;
-    padding: 0.5rem;
-    border: 1px dashed var(--background-color);
-    border-radius: 0.5rem;
-  }
+    .form-section:last-of-type {
+        border-bottom: none;
+    }
+
+    .section-header {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-bottom: 1.25rem;
+    }
+
+    .section-icon {
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .section-icon.content {
+        background: rgba(59, 130, 246, 0.15);
+        color: var(--color-content);
+    }
+
+    .section-icon.engagement {
+        background: rgba(168, 85, 247, 0.15);
+        color: var(--color-engagement);
+    }
+
+    .section-icon.tools {
+        background: rgba(245, 158, 11, 0.15);
+        color: var(--color-tools);
+    }
+
+    .section-header h2 {
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--admin-text);
+        margin: 0;
+    }
+
+    /* Current Image Card */
+    .current-image-card {
+        background: var(--admin-bg);
+        border: 1px solid var(--admin-border);
+        border-radius: 8px;
+        padding: 1rem;
+        margin-bottom: 1.25rem;
+        position: relative;
+    }
+
+    .current-label {
+        position: absolute;
+        top: 0.5rem;
+        left: 0.75rem;
+        font-size: 0.6875rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--admin-text-dim);
+        background: var(--admin-bg);
+        padding: 0.125rem 0.5rem;
+        border-radius: 4px;
+    }
+
+    .current-image-card img {
+        width: 100%;
+        max-width: 300px;
+        height: auto;
+        border-radius: 6px;
+        display: block;
+        margin: 1rem auto 0;
+    }
+
+    .current-image-card .help-text {
+        text-align: center;
+        margin-top: 0.5rem;
+    }
+
+    .form-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    @media (max-width: 640px) {
+        .form-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .selector-row {
+            flex-direction: column;
+        }
+
+        .selector-or {
+            display: none;
+        }
+
+        .fact-dropdown,
+        .search-box {
+            width: 100%;
+        }
+    }
+
+    .form-field {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .form-field:has(textarea),
+    .form-field:has(.tab-group) {
+        grid-column: 1 / -1;
+    }
+
+    label {
+        font-size: 0.8125rem;
+        font-weight: 500;
+        color: var(--admin-text);
+    }
+
+    .required {
+        color: var(--admin-danger);
+    }
+
+    input, select, textarea {
+        padding: 0.625rem 0.875rem;
+        background: var(--admin-bg);
+        border: 1px solid var(--admin-border);
+        border-radius: 6px;
+        color: var(--admin-text);
+        font-size: 0.875rem;
+        font-family: var(--font-sans);
+        transition: all 0.15s ease;
+    }
+
+    input::placeholder, textarea::placeholder {
+        color: var(--admin-text-dim);
+    }
+
+    input:focus, select:focus, textarea:focus {
+        outline: none;
+        border-color: var(--admin-accent);
+        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+    }
+
+    textarea {
+        resize: vertical;
+        min-height: 120px;
+    }
+
+    .help-text {
+        font-size: 0.75rem;
+        color: var(--admin-text-dim);
+    }
+
+    /* Input Group */
+    .input-group {
+        display: flex;
+    }
+
+    .input-prefix {
+        padding: 0.625rem 0.875rem;
+        background: var(--admin-surface-hover);
+        border: 1px solid var(--admin-border);
+        border-right: none;
+        border-radius: 6px 0 0 6px;
+        color: var(--admin-text-dim);
+        font-size: 0.8125rem;
+        font-family: var(--font-mono);
+        white-space: nowrap;
+    }
+
+    .input-group input {
+        border-radius: 0 6px 6px 0;
+        flex: 1;
+    }
+
+    /* Tab Group */
+    .tab-group {
+        display: flex;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .tab-button {
+        flex: 1;
+        padding: 0.625rem 1rem;
+        background: var(--admin-bg);
+        border: 1px solid var(--admin-border);
+        border-radius: 6px;
+        color: var(--admin-text-muted);
+        font-size: 0.8125rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.15s ease;
+    }
+
+    .tab-button:hover {
+        border-color: var(--admin-border-light);
+        color: var(--admin-text);
+    }
+
+    .tab-button.active {
+        background: var(--admin-accent);
+        border-color: var(--admin-accent);
+        color: white;
+    }
+
+    .tab-content.hidden {
+        display: none;
+    }
+
+    /* File Drop Zone */
+    .file-drop-zone {
+        position: relative;
+        border: 2px dashed var(--admin-border);
+        border-radius: 8px;
+        padding: 2rem;
+        text-align: center;
+        transition: all 0.15s ease;
+        cursor: pointer;
+    }
+
+    .file-drop-zone:hover,
+    .file-drop-zone.drag-over {
+        border-color: var(--admin-accent);
+        background: rgba(99, 102, 241, 0.05);
+    }
+
+    .file-drop-zone input {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+    .drop-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--admin-text-muted);
+        pointer-events: none;
+    }
+
+    .drop-content svg {
+        color: var(--admin-text-dim);
+    }
+
+    .drop-content small {
+        font-size: 0.75rem;
+        color: var(--admin-text-dim);
+    }
+
+    /* Form Actions */
+    .form-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 0.75rem;
+        padding: 1.25rem 1.5rem;
+        background: var(--admin-bg);
+        border-top: 1px solid var(--admin-border);
+        border-radius: 0 0 8px 8px;
+    }
 </style>
 
 <script>
-  import { prehistoricFacts } from '../../data/facts';
+    import { prehistoricFacts } from '../../data/facts';
 
-  const form = document.getElementById('edit-fact-form') as HTMLFormElement;
-  const factDropdown = document.getElementById('fact-dropdown') as HTMLSelectElement;
-  const searchInput = document.getElementById('fact-search') as HTMLInputElement;
-  const searchResults = document.getElementById('search-results');
-  const message = document.getElementById('message');
-  const tabButtons = document.querySelectorAll('.tab-button');
-  const tabContents = document.querySelectorAll('.tab-content');
+    const formCard = document.getElementById('form-card');
+    const form = document.getElementById('edit-fact-form') as HTMLFormElement;
+    const factDropdown = document.getElementById('fact-dropdown') as HTMLSelectElement;
+    const searchInput = document.getElementById('fact-search') as HTMLInputElement;
+    const searchResults = document.getElementById('search-results');
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const tabContents = document.querySelectorAll('.tab-content');
+    const fileDropZone = document.getElementById('file-drop-zone');
 
-  // Handle tab switching
-  tabButtons.forEach(button => {
-    button.addEventListener('click', () => {
-      const tabId = button.getAttribute('data-tab');
-      
-      // Update active states
-      tabButtons.forEach(btn => btn.classList.remove('active'));
-      button.classList.add('active');
-      
-      // Show/hide content
-      tabContents.forEach(content => {
-        content.classList.toggle('hidden', content.id !== tabId);
-      });
+    // Handle tab switching
+    tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const tabId = button.getAttribute('data-tab');
+
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+
+            tabContents.forEach(content => {
+                content.classList.toggle('hidden', content.id !== tabId);
+            });
+        });
     });
-  });
 
-  // Load fact data when selected
-  function loadFactData(factId: string) {
-    try {
-      const fact = prehistoricFacts.find(f => f.id === factId);
-      if (!fact) throw new Error('Fact not found');
-      
-      // Show the form
-      form.classList.remove('hidden');
-      
-      // Populate form fields
-      (document.getElementById('fact-id') as HTMLInputElement).value = fact.id;
-      (document.getElementById('title') as HTMLInputElement).value = fact.title;
-      (document.getElementById('category') as HTMLInputElement).value = fact.category;
-      (document.getElementById('fact') as HTMLTextAreaElement).value = fact.fact;
-      (document.getElementById('image') as HTMLInputElement).value = fact.image.replace('/images/facts/', '');
-      
-      // Update image preview
-      const imagePreview = document.getElementById('current-image-preview') as HTMLImageElement;
-      const imagePath = document.getElementById('current-image-path');
-      imagePreview.src = fact.image;
-      imagePreview.alt = fact.title;
-      if (imagePath) imagePath.textContent = fact.image;
-      
-    } catch (error) {
-      if (message) {
-        message.textContent = error instanceof Error ? error.message : 'An error occurred';
-        message.className = 'message error';
-      }
-    }
-  }
-
-  // Handle dropdown selection
-  factDropdown?.addEventListener('change', (e) => {
-    const factId = (e.target as HTMLSelectElement).value;
-    if (factId) {
-      loadFactData(factId);
-    } else {
-      form.classList.add('hidden');
-    }
-  });
-
-  // Handle search input
-  let searchTimeout: number;
-  searchInput?.addEventListener('input', (e) => {
-    const query = (e.target as HTMLInputElement).value.toLowerCase();
-    
-    // Clear previous timeout
-    clearTimeout(searchTimeout);
-    
-    // Set new timeout to prevent too many updates
-    searchTimeout = setTimeout(() => {
-      if (!searchResults) return;
-      
-      if (query.length < 2) {
-        searchResults.classList.add('hidden');
-        return;
-      }
-      
-      // Filter facts based on query
-      const filteredFacts = Array.from(factDropdown.options)
-        .slice(1) // Skip the placeholder option
-        .filter(option => 
-          option.text.toLowerCase().includes(query)
-        );
-      
-      // Show results
-      searchResults.innerHTML = '';
-      filteredFacts.forEach(fact => {
-        const div = document.createElement('div');
-        div.className = 'search-result-item';
-        div.textContent = fact.text;
-        div.addEventListener('click', () => {
-          factDropdown.value = fact.value;
-          loadFactData(fact.value);
-          searchResults.classList.add('hidden');
-          searchInput.value = '';
+    // Drag and drop handling
+    if (fileDropZone) {
+        ['dragenter', 'dragover'].forEach(eventName => {
+            fileDropZone.addEventListener(eventName, (e) => {
+                e.preventDefault();
+                fileDropZone.classList.add('drag-over');
+            });
         });
-        searchResults.appendChild(div);
-      });
-      
-      searchResults.classList.toggle('hidden', filteredFacts.length === 0);
-    }, 300);
-  });
 
-  // Handle form submission
-  form?.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    
-    try {
-      const formData = new FormData(form);
-      const factId = formData.get('id');
-      const imageFile = formData.get('imageFile') as File;
-      
-      // Handle image upload if a new file is selected
-      if (imageFile.size > 0) {
-        const imageFormData = new FormData();
-        imageFormData.append('image', imageFile);
-        imageFormData.append('directory', 'facts');
-        
-        // Upload image first
-        const uploadResponse = await fetch('/api/upload-image', {
-          method: 'POST',
-          body: imageFormData
+        ['dragleave', 'drop'].forEach(eventName => {
+            fileDropZone.addEventListener(eventName, (e) => {
+                e.preventDefault();
+                fileDropZone.classList.remove('drag-over');
+            });
         });
-        
-        if (!uploadResponse.ok) throw new Error('Image upload failed');
-        
-        const { path } = await uploadResponse.json();
-        formData.set('image', path);
-      } else {
-        // Ensure the image path is correct for existing images
-        const imagePath = formData.get('image') as string;
-        if (imagePath && !imagePath.startsWith('/images/')) {
-          formData.set('image', `/images/facts/${imagePath}`);
+    }
+
+    // Load fact data when selected
+    function loadFactData(factId: string) {
+        const fact = prehistoricFacts.find(f => f.id === factId);
+        if (!fact) {
+            window.showToast('error', 'Error', 'Fact not found');
+            return;
         }
-      }
-      
-      // Submit fact data
-      const response = await fetch(`/api/facts/${factId}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(Object.fromEntries(formData))
-      });
-      
-      if (!response.ok) throw new Error('Failed to update fact');
-      
-      // Show success message
-      if (message) {
-        message.textContent = 'Fact updated successfully!';
-        message.className = 'message success';
-      }
-      
-    } catch (error) {
-      // Show error message
-      if (message) {
-        message.textContent = error instanceof Error ? error.message : 'An error occurred';
-        message.className = 'message error';
-      }
-    }
-  });
 
-  // Close search results when clicking outside
-  document.addEventListener('click', (e) => {
-    if (searchResults && !searchResults.contains(e.target as Node) && e.target !== searchInput) {
-      searchResults.classList.add('hidden');
+        formCard?.classList.remove('hidden');
+
+        (document.getElementById('fact-id') as HTMLInputElement).value = fact.id;
+        (document.getElementById('title') as HTMLInputElement).value = fact.title;
+        (document.getElementById('category') as HTMLInputElement).value = fact.category;
+        (document.getElementById('fact') as HTMLTextAreaElement).value = fact.fact;
+        (document.getElementById('image') as HTMLInputElement).value = fact.image.replace('/images/facts/', '');
+
+        const imagePreview = document.getElementById('current-image-preview') as HTMLImageElement;
+        const imagePath = document.getElementById('current-image-path');
+        imagePreview.src = fact.image;
+        imagePreview.alt = fact.title;
+        if (imagePath) imagePath.textContent = fact.image;
     }
-  });
-</script> 
+
+    // Handle dropdown selection
+    factDropdown?.addEventListener('change', (e) => {
+        const factId = (e.target as HTMLSelectElement).value;
+        if (factId) {
+            loadFactData(factId);
+        } else {
+            formCard?.classList.add('hidden');
+        }
+    });
+
+    // Handle search input
+    let searchTimeout: number;
+    searchInput?.addEventListener('input', (e) => {
+        const query = (e.target as HTMLInputElement).value.toLowerCase();
+
+        clearTimeout(searchTimeout);
+
+        searchTimeout = setTimeout(() => {
+            if (!searchResults) return;
+
+            if (query.length < 2) {
+                searchResults.classList.add('hidden');
+                return;
+            }
+
+            const filteredFacts = prehistoricFacts.filter(fact =>
+                fact.title.toLowerCase().includes(query)
+            );
+
+            searchResults.innerHTML = filteredFacts
+                .slice(0, 10)
+                .map(fact => `<div class="search-result-item" data-id="${fact.id}">${fact.title}</div>`)
+                .join('');
+
+            searchResults.classList.toggle('hidden', filteredFacts.length === 0);
+        }, 300);
+    });
+
+    // Handle search result click
+    searchResults?.addEventListener('click', (e) => {
+        const item = (e.target as HTMLElement).closest('.search-result-item');
+        if (!item) return;
+
+        const factId = item.getAttribute('data-id');
+        if (factId) {
+            factDropdown.value = factId;
+            loadFactData(factId);
+            searchResults.classList.add('hidden');
+            searchInput.value = '';
+        }
+    });
+
+    // Handle form submission
+    form?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        try {
+            const formData = new FormData(form);
+            const factId = formData.get('id');
+            const imageFile = formData.get('imageFile') as File;
+
+            if (imageFile && imageFile.size > 0) {
+                const imageFormData = new FormData();
+                imageFormData.append('image', imageFile);
+                imageFormData.append('directory', 'facts');
+
+                const uploadResponse = await fetch('/api/upload-image', {
+                    method: 'POST',
+                    body: imageFormData
+                });
+
+                if (!uploadResponse.ok) throw new Error('Image upload failed');
+
+                const { path } = await uploadResponse.json();
+                formData.set('image', path);
+            } else {
+                const imagePath = formData.get('image') as string;
+                if (imagePath && !imagePath.startsWith('/images/')) {
+                    formData.set('image', `/images/facts/${imagePath}`);
+                }
+            }
+
+            const response = await fetch(`/api/facts/${factId}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(Object.fromEntries(formData))
+            });
+
+            if (!response.ok) throw new Error('Failed to update fact');
+
+            window.showToast('success', 'Fact Updated', 'The fact has been updated successfully');
+
+        } catch (error) {
+            window.showToast('error', 'Error', error instanceof Error ? error.message : 'An error occurred');
+        }
+    });
+
+    // Close search results when clicking outside
+    document.addEventListener('click', (e) => {
+        if (searchResults && !searchResults.contains(e.target as Node) && e.target !== searchInput) {
+            searchResults.classList.add('hidden');
+        }
+    });
+</script>

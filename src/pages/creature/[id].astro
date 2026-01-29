@@ -1,12 +1,12 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { creatures } from '../../data/creatures';
-import { marked } from 'marked';
 import CommentButton from '../../components/CommentButton.astro';
 import CommentList from '../../components/CommentList.astro';
 import ShareButton from '../../components/ShareButton.astro';
 import CreatureVisualization from '../../components/CreatureVisualization.astro';
 import DiscoveryTracker from '../../components/DiscoveryTracker.astro';
+import CreatureDescription from '../../components/CreatureDescription.astro';
 // import SizeComparison from '../../components/SizeComparison.astro';
 
 const { id } = Astro.params;
@@ -15,9 +15,6 @@ const creature = creatures.find(c => c.id === id);
 if (!creature) {
   return Astro.redirect('/404');
 }
-
-// Process both Markdown and HTML in the description
-const formattedDescription = marked(creature.description);
 
 // Create SEO description
 const seoDescription = `Learn about ${creature.name} (${creature.scientificName}), a ${creature.diet.toLowerCase()} creature from the ${creature.period}. Discover its habitat in ${creature.location}, measuring ${creature.length} in length and weighing ${creature.weight}.`;
@@ -132,10 +129,11 @@ const shareImage = creature.image;
         />
         */}
 
-        <div class="description">
-          <h2>About {creature.name}</h2>
-          <div class="markdown-content" set:html={formattedDescription} />
-        </div>
+        <CreatureDescription
+          name={creature.name}
+          description={creature.description}
+          showTableOfContents={true}
+        />
 
         <div class="engagement-section">
           <ShareButton 

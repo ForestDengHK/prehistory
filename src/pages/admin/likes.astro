@@ -1,5 +1,5 @@
 ---
-import Layout from '../../layouts/Layout.astro';
+import AdminLayout from '../../layouts/AdminLayout.astro';
 import { getAllCreaturesWithLikes } from '../../db/index';
 import { creatures } from '../../data/creatures';
 
@@ -12,9 +12,11 @@ interface CreatureLikes {
 
 let creatureLikesData: CreatureLikes[] = [];
 let error: string | null = null;
+let totalLikes = 0;
 
 try {
     const likesData = await getAllCreaturesWithLikes();
+    totalLikes = likesData.reduce((sum, item) => sum + item.totalLikes, 0);
 
     creatureLikesData = likesData.map(item => {
         const creature = creatures.find(c => c.id === item.creatureId);
@@ -29,335 +31,515 @@ try {
     error = e instanceof Error ? e.message : 'An unknown error occurred';
     console.error('Error loading likes:', e);
 }
-
-// Get base URL for links
-const baseUrl = import.meta.env.PROD ? 'https://prehistoricworld.vercel.app' : '';
 ---
 
-<Layout title="Like Statistics">
-    <div class="container">
-        <a href="/admin" class="back-link">← Back to Admin</a>
-        <h1>Like Statistics</h1>
+<AdminLayout title="Like Statistics">
+    <header class="page-header">
+        <div class="header-content">
+            <div>
+                <h1 class="page-title">Like Statistics</h1>
+                <p class="page-subtitle">Track engagement and popularity across creatures</p>
+            </div>
+        </div>
+    </header>
 
+    <div class="page-content">
         {error ? (
-            <div class="error-message">
-                <h2>Error Loading Likes</h2>
-                <p>{error}</p>
-                <p class="help-text">Please ensure your environment variables are properly configured and try again.</p>
+            <div class="error-card">
+                <div class="error-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <line x1="15" y1="9" x2="9" y2="15"/>
+                        <line x1="9" y1="9" x2="15" y2="15"/>
+                    </svg>
+                </div>
+                <div class="error-content">
+                    <h3>Error Loading Data</h3>
+                    <p>{error}</p>
+                    <p class="error-hint">Please check your Redis configuration and try again.</p>
+                </div>
             </div>
         ) : (
-            <div class="likes-container">
-                <div class="summary-stats">
+            <>
+                <!-- Stats Summary -->
+                <div class="stats-row">
                     <div class="stat-card">
-                        <h3>Total Creatures with Likes</h3>
-                        <p class="stat-number">{creatureLikesData.length}</p>
+                        <div class="stat-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                            </svg>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-value">{totalLikes}</span>
+                            <span class="stat-label">Total Likes</span>
+                        </div>
                     </div>
+
                     <div class="stat-card">
-                        <h3>Total Likes</h3>
-                        <p class="stat-number">{creatureLikesData.reduce((sum, item) => sum + item.totalLikes, 0)}</p>
+                        <div class="stat-icon green">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
+                                <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+                                <line x1="9" y1="9" x2="9.01" y2="9"/>
+                                <line x1="15" y1="9" x2="15.01" y2="9"/>
+                            </svg>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-value">{creatureLikesData.length}</span>
+                            <span class="stat-label">Creatures with Likes</span>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon orange">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="18" y1="20" x2="18" y2="10"/>
+                                <line x1="12" y1="20" x2="12" y2="4"/>
+                                <line x1="6" y1="20" x2="6" y2="14"/>
+                            </svg>
+                        </div>
+                        <div class="stat-info">
+                            <span class="stat-value">{creatureLikesData.length > 0 ? (totalLikes / creatureLikesData.length).toFixed(1) : 0}</span>
+                            <span class="stat-label">Avg. Likes per Creature</span>
+                        </div>
                     </div>
                 </div>
 
-                <div class="likes-table">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Rank</th>
-                                <th>Creature</th>
-                                <th>Likes</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {creatureLikesData.map((item, index) => (
+                <!-- Leaderboard -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Popularity Leaderboard</h2>
+                        <span class="badge">{creatureLikesData.length} creatures</span>
+                    </div>
+                    <div class="table-container">
+                        <table>
+                            <thead>
                                 <tr>
-                                    <td class="rank">#{index + 1}</td>
-                                    <td>
-                                        <a
-                                            href={`${baseUrl}/creature/${item.creatureId}`}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            class="creature-link"
-                                            title={`View ${item.name}`}
-                                        >
-                                            {item.name}
-                                            <span class="external-icon">↗</span>
-                                        </a>
-                                    </td>
-                                    <td class="likes-count">{item.totalLikes}</td>
-                                    <td>
-                                        <button
-                                            class="view-details-btn"
-                                            data-creature-id={item.creatureId}
-                                            data-creature-name={item.name}
-                                            data-ips={JSON.stringify(item.ips)}
-                                        >
-                                            View Details
-                                        </button>
-                                    </td>
+                                    <th style="width: 60px">Rank</th>
+                                    <th>Creature</th>
+                                    <th style="width: 120px">Likes</th>
+                                    <th style="width: 200px">Popularity</th>
+                                    <th style="width: 100px">Actions</th>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                {creatureLikesData.length === 0 ? (
+                                    <tr>
+                                        <td colspan="5" class="empty-state">
+                                            <div class="empty-icon">
+                                                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                                                </svg>
+                                            </div>
+                                            <p>No likes recorded yet</p>
+                                            <span>Likes will appear here when visitors engage with creatures</span>
+                                        </td>
+                                    </tr>
+                                ) : (
+                                    creatureLikesData.map((item, index) => {
+                                        const maxLikes = creatureLikesData[0]?.totalLikes || 1;
+                                        const percentage = (item.totalLikes / maxLikes) * 100;
+                                        return (
+                                            <tr>
+                                                <td>
+                                                    <span class={`rank ${index < 3 ? `rank-${index + 1}` : ''}`}>
+                                                        {index < 3 ? (
+                                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                                            </svg>
+                                                        ) : null}
+                                                        #{index + 1}
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <a href={`/creature/${item.creatureId}`} target="_blank" class="creature-link">
+                                                        {item.name}
+                                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                                                            <polyline points="15 3 21 3 21 9"/>
+                                                            <line x1="10" y1="14" x2="21" y2="3"/>
+                                                        </svg>
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <span class="likes-count">{item.totalLikes}</span>
+                                                </td>
+                                                <td>
+                                                    <div class="progress-bar">
+                                                        <div class="progress-fill" style={`width: ${percentage}%`}></div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <button
+                                                        class="btn btn-ghost btn-sm"
+                                                        data-creature-id={item.creatureId}
+                                                        data-creature-name={item.name}
+                                                        data-ips={JSON.stringify(item.ips)}
+                                                        onclick="showDetails(this)"
+                                                    >
+                                                        Details
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        );
+                                    })
+                                )}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-            </div>
+            </>
         )}
+    </div>
 
-        <!-- Details Modal -->
-        <div id="details-modal" class="modal hidden">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2>Like Details: <span id="modal-creature-name"></span></h2>
-                    <button class="close-modal">&times;</button>
-                </div>
-                <div class="modal-body">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>IP Address</th>
-                            </tr>
-                        </thead>
-                        <tbody id="modal-details">
-                        </tbody>
-                    </table>
-                </div>
+    <!-- Details Modal -->
+    <div id="details-modal" class="modal hidden">
+        <div class="modal-backdrop" onclick="closeModal()"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title">Like Details</h2>
+                <button class="modal-close" onclick="closeModal()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="modal-content"></div>
             </div>
         </div>
     </div>
-</Layout>
+</AdminLayout>
 
 <style>
-    .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 2rem 1rem;
-    }
-
-    .back-link {
-        display: inline-block;
-        color: var(--text-color);
-        text-decoration: none;
-        margin-bottom: 1rem;
-        transition: color 0.2s ease-in-out;
-    }
-
-    .back-link:hover {
-        color: var(--primary-color);
-    }
-
-    h1 {
-        font-size: 2rem;
-        font-weight: 600;
-        color: var(--primary-color);
-        text-align: center;
-        margin-bottom: 2rem;
-    }
-
-    .summary-stats {
+    /* Stats Row */
+    .stats-row {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        grid-template-columns: repeat(3, 1fr);
         gap: 1rem;
-        margin-bottom: 2rem;
+        margin-bottom: 1.5rem;
     }
 
     .stat-card {
-        background: white;
-        padding: 1.5rem;
+        background: var(--admin-surface);
+        border: 1px solid var(--admin-border);
         border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        text-align: center;
+        padding: 1.25rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
     }
 
-    .stat-card h3 {
-        font-size: 1rem;
-        color: var(--text-color);
-        margin-bottom: 0.5rem;
+    .stat-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(168, 85, 247, 0.15);
+        color: var(--color-engagement);
     }
 
-    .stat-number {
-        font-size: 2rem;
-        font-weight: bold;
-        color: var(--primary-color);
+    .stat-icon.green {
+        background: rgba(34, 197, 94, 0.15);
+        color: var(--admin-success);
     }
 
-    .likes-table {
-        background: white;
-        border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        overflow-x: auto;
+    .stat-icon.orange {
+        background: rgba(245, 158, 11, 0.15);
+        color: var(--admin-warning);
     }
 
-    table {
-        width: 100%;
-        border-collapse: collapse;
+    .stat-info {
+        display: flex;
+        flex-direction: column;
     }
 
-    th, td {
-        padding: 1rem;
-        text-align: left;
-        border-bottom: 1px solid #eee;
+    /* Card Styling */
+    .card-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
     }
 
-    th {
-        background: #f5f5f5;
-        font-weight: 600;
+    .badge {
+        background: var(--admin-surface-hover);
+        color: var(--admin-text-muted);
+        font-size: 0.75rem;
+        padding: 0.25rem 0.75rem;
+        border-radius: 999px;
     }
 
+    /* Table Enhancements */
     .rank {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.375rem;
+        font-family: var(--font-mono);
         font-weight: 600;
-        color: var(--primary-color);
+        color: var(--admin-text-muted);
     }
 
-    .likes-count {
-        font-weight: 600;
+    .rank-1 {
+        color: #fbbf24;
+    }
+
+    .rank-2 {
+        color: #9ca3af;
+    }
+
+    .rank-3 {
+        color: #d97706;
     }
 
     .creature-link {
-        color: var(--primary-color);
-        text-decoration: none;
         display: inline-flex;
         align-items: center;
-        gap: 0.25rem;
-        transition: color 0.2s ease;
+        gap: 0.5rem;
+        color: var(--admin-text);
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.15s ease;
     }
 
     .creature-link:hover {
-        color: var(--accent-color);
-        text-decoration: underline;
+        color: var(--admin-accent);
     }
 
-    .external-icon {
-        font-size: 0.75rem;
-        opacity: 0.7;
+    .creature-link svg {
+        opacity: 0;
+        transition: opacity 0.15s ease;
     }
 
-    .view-details-btn {
-        background: none;
-        border: 1px solid var(--primary-color);
-        color: var(--primary-color);
-        padding: 0.5rem 1rem;
+    .creature-link:hover svg {
+        opacity: 1;
+    }
+
+    .likes-count {
+        font-family: var(--font-mono);
+        font-weight: 600;
+        font-size: 1rem;
+        color: var(--color-engagement);
+    }
+
+    /* Progress Bar */
+    .progress-bar {
+        height: 8px;
+        background: var(--admin-border);
         border-radius: 4px;
-        cursor: pointer;
-        transition: all 0.2s ease;
+        overflow: hidden;
     }
 
-    .view-details-btn:hover {
-        background: var(--primary-color);
-        color: white;
-    }
-
-    .modal {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
+    .progress-fill {
         height: 100%;
-        background: rgba(0,0,0,0.5);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 1000;
+        background: linear-gradient(90deg, var(--color-engagement) 0%, #c084fc 100%);
+        border-radius: 4px;
+        transition: width 0.3s ease;
     }
 
-    .modal-content {
-        background: white;
-        border-radius: 8px;
-        width: 90%;
-        max-width: 800px;
-        max-height: 90vh;
-        overflow-y: auto;
+    /* Button Small */
+    .btn-sm {
+        padding: 0.375rem 0.75rem;
+        font-size: 0.75rem;
     }
 
-    .modal-header {
-        padding: 1rem;
-        border-bottom: 1px solid #eee;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+    /* Empty State */
+    .empty-state {
+        text-align: center;
+        padding: 3rem 1rem !important;
     }
 
-    .modal-header h2 {
-        margin: 0;
-        font-size: 1.25rem;
-    }
-
-    .close-modal {
-        background: none;
-        border: none;
-        font-size: 1.5rem;
-        cursor: pointer;
-        padding: 0.5rem;
-        line-height: 1;
-    }
-
-    .modal-body {
-        padding: 1rem;
-    }
-
-    .hidden {
-        display: none;
-    }
-
-    .error-message {
-        background: #fff3f3;
-        border: 1px solid #dc3545;
-        padding: 2rem;
-        border-radius: 8px;
-        margin-bottom: 2rem;
-    }
-
-    .error-message h2 {
-        color: #dc3545;
+    .empty-icon {
+        color: var(--admin-text-dim);
         margin-bottom: 1rem;
     }
 
-    .help-text {
-        margin-top: 1rem;
-        color: #666;
-        font-size: 0.9rem;
+    .empty-state p {
+        font-weight: 600;
+        color: var(--admin-text);
+        margin-bottom: 0.25rem;
     }
 
-    @media (max-width: 768px) {
-        .stat-card {
-            padding: 1rem;
-        }
+    .empty-state span {
+        font-size: 0.8125rem;
+        color: var(--admin-text-muted);
+    }
 
-        .stat-number {
-            font-size: 1.5rem;
+    /* Error Card */
+    .error-card {
+        background: rgba(239, 68, 68, 0.1);
+        border: 1px solid rgba(239, 68, 68, 0.3);
+        border-radius: 8px;
+        padding: 2rem;
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .error-icon {
+        color: var(--admin-danger);
+        flex-shrink: 0;
+    }
+
+    .error-content h3 {
+        color: var(--admin-danger);
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .error-content p {
+        color: var(--admin-text);
+        margin-bottom: 0.5rem;
+    }
+
+    .error-hint {
+        font-size: 0.8125rem;
+        color: var(--admin-text-muted);
+    }
+
+    /* Modal */
+    .modal {
+        position: fixed;
+        inset: 0;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .modal.hidden {
+        display: none;
+    }
+
+    .modal-backdrop {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(4px);
+    }
+
+    .modal-content {
+        position: relative;
+        background: var(--admin-surface);
+        border: 1px solid var(--admin-border);
+        border-radius: 12px;
+        width: 90%;
+        max-width: 500px;
+        max-height: 80vh;
+        overflow: hidden;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    }
+
+    .modal-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem 1.25rem;
+        border-bottom: 1px solid var(--admin-border);
+    }
+
+    .modal-header h2 {
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--admin-text);
+    }
+
+    .modal-close {
+        background: none;
+        border: none;
+        color: var(--admin-text-dim);
+        cursor: pointer;
+        padding: 0.25rem;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.15s ease;
+    }
+
+    .modal-close:hover {
+        background: var(--admin-surface-hover);
+        color: var(--admin-text);
+    }
+
+    .modal-body {
+        padding: 1.25rem;
+        max-height: 60vh;
+        overflow-y: auto;
+    }
+
+    .ip-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .ip-item {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.625rem 0.875rem;
+        background: var(--admin-bg);
+        border-radius: 6px;
+        font-family: var(--font-mono);
+        font-size: 0.8125rem;
+        color: var(--admin-text-muted);
+    }
+
+    .ip-item svg {
+        color: var(--admin-text-dim);
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+        .stats-row {
+            grid-template-columns: 1fr;
         }
     }
 </style>
 
-<script>
-    const viewDetailsButtons = document.querySelectorAll('.view-details-btn');
-    const modal = document.getElementById('details-modal');
-    const closeModal = document.querySelector('.close-modal');
-    const modalCreatureName = document.getElementById('modal-creature-name');
-    const modalDetails = document.getElementById('modal-details');
+<script is:inline>
+    function showDetails(button) {
+        const name = button.dataset.creatureName;
+        const ips = JSON.parse(button.dataset.ips || '[]');
 
-    viewDetailsButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const creatureName = button.getAttribute('data-creature-name');
-            const ips = JSON.parse(button.getAttribute('data-ips') || '[]');
+        document.getElementById('modal-title').textContent = `Likes for ${name}`;
 
-            if (modalCreatureName && modalDetails) {
-                modalCreatureName.textContent = creatureName || '';
-                modalDetails.innerHTML = ips
-                    .map((ip: string) => `<tr><td>${ip}</td></tr>`)
-                    .join('');
-
-                modal?.classList.remove('hidden');
-            }
-        });
-    });
-
-    closeModal?.addEventListener('click', () => {
-        modal?.classList.add('hidden');
-    });
-
-    modal?.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            modal.classList.add('hidden');
+        const content = document.getElementById('modal-content');
+        if (ips.length === 0) {
+            content.innerHTML = '<p style="color: var(--admin-text-muted)">No IP data available</p>';
+        } else {
+            content.innerHTML = `
+                <p style="margin-bottom: 1rem; color: var(--admin-text-muted); font-size: 0.8125rem;">
+                    ${ips.length} unique visitor${ips.length !== 1 ? 's' : ''} liked this creature
+                </p>
+                <div class="ip-list">
+                    ${ips.map(ip => `
+                        <div class="ip-item">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="2" y="2" width="20" height="8" rx="2" ry="2"/>
+                                <rect x="2" y="14" width="20" height="8" rx="2" ry="2"/>
+                                <line x1="6" y1="6" x2="6.01" y2="6"/>
+                                <line x1="6" y1="18" x2="6.01" y2="18"/>
+                            </svg>
+                            ${ip}
+                        </div>
+                    `).join('')}
+                </div>
+            `;
         }
+
+        document.getElementById('details-modal').classList.remove('hidden');
+    }
+
+    function closeModal() {
+        document.getElementById('details-modal').classList.add('hidden');
+    }
+
+    // Close on escape
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeModal();
     });
 </script>

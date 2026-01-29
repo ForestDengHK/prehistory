@@ -1,0 +1,690 @@
+---
+interface Props {
+    id: string;
+    name: string;
+    value?: string;
+    required?: boolean;
+    placeholder?: string;
+    rows?: number;
+}
+
+const { id, name, value = '', required = false, placeholder = '', rows = 12 } = Astro.props;
+
+const sectionTemplates = [
+    {
+        name: 'Full Template',
+        icon: '📋',
+        content: `## Overview
+[Brief introduction to this prehistoric creature - what makes it unique and significant]
+
+## Physical Characteristics
+[Describe size, distinctive features, body structure, and notable physical traits]
+
+## Behavior & Diet
+[Hunting patterns, social behavior, food sources, and lifestyle]
+
+## Discovery History
+[When and where fossils were found, key researchers, and scientific significance]
+
+## Fun Facts
+> **Did you know?** [Interesting fact 1]
+
+> **Remarkable:** [Interesting fact 2]`
+    },
+    {
+        name: 'Overview',
+        icon: '📖',
+        content: `## Overview
+[Brief introduction to this prehistoric creature]`
+    },
+    {
+        name: 'Physical',
+        icon: '📏',
+        content: `## Physical Characteristics
+[Size, features, distinctive traits]`
+    },
+    {
+        name: 'Behavior',
+        icon: '🦴',
+        content: `## Behavior & Diet
+[Hunting patterns, social behavior, food sources]`
+    },
+    {
+        name: 'Discovery',
+        icon: '🔍',
+        content: `## Discovery History
+[When/where fossils were found, key researchers]`
+    },
+    {
+        name: 'Fun Facts',
+        icon: '💡',
+        content: `## Fun Facts
+> **Did you know?** [Interesting fact]`
+    }
+];
+---
+
+<div class="markdown-editor" data-editor-id={id}>
+    <!-- Toolbar -->
+    <div class="editor-toolbar">
+        <div class="toolbar-group">
+            <button type="button" class="toolbar-btn" data-action="bold" title="Bold (Ctrl+B)">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M6 4h8a4 4 0 0 1 4 4 4 4 0 0 1-4 4H6z"/>
+                    <path d="M6 12h9a4 4 0 0 1 4 4 4 4 0 0 1-4 4H6z"/>
+                </svg>
+            </button>
+            <button type="button" class="toolbar-btn" data-action="italic" title="Italic (Ctrl+I)">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="19" y1="4" x2="10" y2="4"/>
+                    <line x1="14" y1="20" x2="5" y2="20"/>
+                    <line x1="15" y1="4" x2="9" y2="20"/>
+                </svg>
+            </button>
+        </div>
+
+        <div class="toolbar-divider"></div>
+
+        <div class="toolbar-group">
+            <button type="button" class="toolbar-btn" data-action="h2" title="Heading 2">
+                <span class="text-btn">H2</span>
+            </button>
+            <button type="button" class="toolbar-btn" data-action="h3" title="Heading 3">
+                <span class="text-btn">H3</span>
+            </button>
+        </div>
+
+        <div class="toolbar-divider"></div>
+
+        <div class="toolbar-group">
+            <button type="button" class="toolbar-btn" data-action="ul" title="Bullet List">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="8" y1="6" x2="21" y2="6"/>
+                    <line x1="8" y1="12" x2="21" y2="12"/>
+                    <line x1="8" y1="18" x2="21" y2="18"/>
+                    <circle cx="4" cy="6" r="1" fill="currentColor"/>
+                    <circle cx="4" cy="12" r="1" fill="currentColor"/>
+                    <circle cx="4" cy="18" r="1" fill="currentColor"/>
+                </svg>
+            </button>
+            <button type="button" class="toolbar-btn" data-action="ol" title="Numbered List">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="10" y1="6" x2="21" y2="6"/>
+                    <line x1="10" y1="12" x2="21" y2="12"/>
+                    <line x1="10" y1="18" x2="21" y2="18"/>
+                    <text x="3" y="8" font-size="8" fill="currentColor" stroke="none">1</text>
+                    <text x="3" y="14" font-size="8" fill="currentColor" stroke="none">2</text>
+                    <text x="3" y="20" font-size="8" fill="currentColor" stroke="none">3</text>
+                </svg>
+            </button>
+            <button type="button" class="toolbar-btn" data-action="quote" title="Blockquote">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V21z"/>
+                    <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3z"/>
+                </svg>
+            </button>
+            <button type="button" class="toolbar-btn" data-action="link" title="Link (Ctrl+K)">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+                </svg>
+            </button>
+        </div>
+
+        <div class="toolbar-divider"></div>
+
+        <!-- Section Templates Dropdown -->
+        <div class="toolbar-group">
+            <div class="dropdown">
+                <button type="button" class="toolbar-btn dropdown-trigger" title="Insert Section Template">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                        <line x1="3" y1="9" x2="21" y2="9"/>
+                        <line x1="9" y1="21" x2="9" y2="9"/>
+                    </svg>
+                    <span class="dropdown-label">Templates</span>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="6 9 12 15 18 9"/>
+                    </svg>
+                </button>
+                <div class="dropdown-menu">
+                    {sectionTemplates.map(template => (
+                        <button type="button" class="dropdown-item" data-template={template.content}>
+                            <span class="template-icon">{template.icon}</span>
+                            <span>{template.name}</span>
+                        </button>
+                    ))}
+                </div>
+            </div>
+        </div>
+
+        <div class="toolbar-spacer"></div>
+
+        <!-- View Toggle -->
+        <div class="toolbar-group view-toggle">
+            <button type="button" class="toolbar-btn view-btn active" data-view="split" title="Split View">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="18" height="18" rx="2"/>
+                    <line x1="12" y1="3" x2="12" y2="21"/>
+                </svg>
+            </button>
+            <button type="button" class="toolbar-btn view-btn" data-view="edit" title="Edit Only">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                </svg>
+            </button>
+            <button type="button" class="toolbar-btn view-btn" data-view="preview" title="Preview Only">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                    <circle cx="12" cy="12" r="3"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- Editor Content -->
+    <div class="editor-content" data-view="split">
+        <div class="editor-pane">
+            <textarea
+                id={id}
+                name={name}
+                class="editor-textarea"
+                required={required}
+                placeholder={placeholder}
+                rows={rows}
+            >{value}</textarea>
+            <div class="editor-status">
+                <span class="word-count">0 words</span>
+                <span class="char-count">0 characters</span>
+            </div>
+        </div>
+        <div class="preview-pane">
+            <div class="preview-label">Preview</div>
+            <div class="preview-content markdown-content"></div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .markdown-editor {
+        border: 1px solid var(--admin-border);
+        border-radius: 8px;
+        overflow: hidden;
+        background: var(--admin-bg);
+    }
+
+    /* Toolbar */
+    .editor-toolbar {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+        padding: 0.5rem 0.75rem;
+        background: var(--admin-surface);
+        border-bottom: 1px solid var(--admin-border);
+        flex-wrap: wrap;
+    }
+
+    .toolbar-group {
+        display: flex;
+        align-items: center;
+        gap: 0.125rem;
+    }
+
+    .toolbar-divider {
+        width: 1px;
+        height: 24px;
+        background: var(--admin-border);
+        margin: 0 0.375rem;
+    }
+
+    .toolbar-spacer {
+        flex: 1;
+    }
+
+    .toolbar-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.375rem;
+        padding: 0.375rem 0.5rem;
+        background: transparent;
+        border: none;
+        border-radius: 4px;
+        color: var(--admin-text-muted);
+        cursor: pointer;
+        transition: all 0.15s ease;
+    }
+
+    .toolbar-btn:hover {
+        background: var(--admin-surface-hover);
+        color: var(--admin-text);
+    }
+
+    .toolbar-btn.active {
+        background: var(--admin-accent);
+        color: white;
+    }
+
+    .text-btn {
+        font-size: 0.75rem;
+        font-weight: 700;
+        font-family: var(--font-mono);
+    }
+
+    /* Dropdown */
+    .dropdown {
+        position: relative;
+    }
+
+    .dropdown-trigger {
+        padding: 0.375rem 0.625rem;
+    }
+
+    .dropdown-label {
+        font-size: 0.75rem;
+        font-weight: 500;
+    }
+
+    .dropdown-menu {
+        position: absolute;
+        top: calc(100% + 4px);
+        left: 0;
+        min-width: 180px;
+        background: var(--admin-surface);
+        border: 1px solid var(--admin-border);
+        border-radius: 6px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        z-index: 100;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-8px);
+        transition: all 0.15s ease;
+    }
+
+    .dropdown:hover .dropdown-menu,
+    .dropdown.open .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    .dropdown-item {
+        display: flex;
+        align-items: center;
+        gap: 0.625rem;
+        width: 100%;
+        padding: 0.625rem 0.875rem;
+        background: none;
+        border: none;
+        color: var(--admin-text);
+        font-size: 0.8125rem;
+        text-align: left;
+        cursor: pointer;
+        transition: background 0.15s ease;
+    }
+
+    .dropdown-item:hover {
+        background: var(--admin-surface-hover);
+    }
+
+    .dropdown-item:first-child {
+        border-radius: 6px 6px 0 0;
+    }
+
+    .dropdown-item:last-child {
+        border-radius: 0 0 6px 6px;
+    }
+
+    .template-icon {
+        font-size: 1rem;
+    }
+
+    /* View Toggle */
+    .view-toggle {
+        background: var(--admin-bg);
+        border-radius: 4px;
+        padding: 0.125rem;
+    }
+
+    .view-btn {
+        padding: 0.25rem 0.5rem;
+    }
+
+    /* Editor Content */
+    .editor-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        min-height: 300px;
+    }
+
+    .editor-content[data-view="edit"] {
+        grid-template-columns: 1fr;
+    }
+
+    .editor-content[data-view="edit"] .preview-pane {
+        display: none;
+    }
+
+    .editor-content[data-view="preview"] {
+        grid-template-columns: 1fr;
+    }
+
+    .editor-content[data-view="preview"] .editor-pane {
+        display: none;
+    }
+
+    .editor-pane {
+        display: flex;
+        flex-direction: column;
+        border-right: 1px solid var(--admin-border);
+    }
+
+    .editor-content[data-view="edit"] .editor-pane,
+    .editor-content[data-view="preview"] .preview-pane {
+        border-right: none;
+    }
+
+    .editor-textarea {
+        flex: 1;
+        padding: 1rem;
+        background: var(--admin-bg);
+        border: none;
+        color: var(--admin-text);
+        font-family: var(--font-mono);
+        font-size: 0.875rem;
+        line-height: 1.6;
+        resize: none;
+    }
+
+    .editor-textarea:focus {
+        outline: none;
+    }
+
+    .editor-textarea::placeholder {
+        color: var(--admin-text-dim);
+    }
+
+    .editor-status {
+        display: flex;
+        justify-content: flex-end;
+        gap: 1rem;
+        padding: 0.5rem 1rem;
+        background: var(--admin-surface);
+        border-top: 1px solid var(--admin-border);
+        font-size: 0.6875rem;
+        color: var(--admin-text-dim);
+        font-family: var(--font-mono);
+    }
+
+    /* Preview Pane */
+    .preview-pane {
+        display: flex;
+        flex-direction: column;
+        background: var(--admin-surface);
+        overflow: hidden;
+    }
+
+    .preview-label {
+        padding: 0.5rem 1rem;
+        background: var(--admin-bg);
+        border-bottom: 1px solid var(--admin-border);
+        font-size: 0.6875rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--admin-text-dim);
+    }
+
+    .preview-content {
+        flex: 1;
+        padding: 1rem;
+        overflow-y: auto;
+        color: var(--admin-text);
+        font-size: 0.875rem;
+        line-height: 1.7;
+    }
+
+    /* Preview Content Styling */
+    .preview-content :global(h2) {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: var(--admin-text);
+        margin: 1.5rem 0 0.75rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid var(--admin-border);
+    }
+
+    .preview-content :global(h2:first-child) {
+        margin-top: 0;
+    }
+
+    .preview-content :global(h3) {
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--admin-text);
+        margin: 1.25rem 0 0.5rem;
+    }
+
+    .preview-content :global(p) {
+        margin-bottom: 0.875rem;
+    }
+
+    .preview-content :global(strong) {
+        font-weight: 600;
+        color: var(--admin-text);
+    }
+
+    .preview-content :global(em) {
+        font-style: italic;
+    }
+
+    .preview-content :global(ul),
+    .preview-content :global(ol) {
+        margin: 0.75rem 0;
+        padding-left: 1.5rem;
+    }
+
+    .preview-content :global(li) {
+        margin-bottom: 0.375rem;
+    }
+
+    .preview-content :global(blockquote) {
+        margin: 1rem 0;
+        padding: 0.75rem 1rem;
+        background: rgba(99, 102, 241, 0.1);
+        border-left: 3px solid var(--admin-accent);
+        border-radius: 0 6px 6px 0;
+        color: var(--admin-text-muted);
+    }
+
+    .preview-content :global(blockquote strong) {
+        color: var(--admin-accent);
+    }
+
+    .preview-content :global(a) {
+        color: var(--admin-accent);
+        text-decoration: none;
+    }
+
+    .preview-content :global(a:hover) {
+        text-decoration: underline;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .editor-content {
+            grid-template-columns: 1fr;
+        }
+
+        .editor-pane {
+            border-right: none;
+            border-bottom: 1px solid var(--admin-border);
+        }
+
+        .preview-pane {
+            max-height: 300px;
+        }
+
+        .toolbar-spacer {
+            display: none;
+        }
+
+        .view-toggle {
+            margin-left: auto;
+        }
+
+        .dropdown-label {
+            display: none;
+        }
+    }
+</style>
+
+<script>
+    import { marked } from 'marked';
+
+    document.querySelectorAll('.markdown-editor').forEach(editor => {
+        const textarea = editor.querySelector('.editor-textarea') as HTMLTextAreaElement;
+        const preview = editor.querySelector('.preview-content') as HTMLElement;
+        const wordCount = editor.querySelector('.word-count') as HTMLElement;
+        const charCount = editor.querySelector('.char-count') as HTMLElement;
+        const editorContent = editor.querySelector('.editor-content') as HTMLElement;
+        const viewButtons = editor.querySelectorAll('.view-btn');
+        const toolbarButtons = editor.querySelectorAll('.toolbar-btn[data-action]');
+        const templateButtons = editor.querySelectorAll('.dropdown-item[data-template]');
+
+        // Update preview and counts
+        function updatePreview() {
+            const text = textarea.value;
+            preview.innerHTML = marked(text) as string;
+
+            const words = text.trim() ? text.trim().split(/\s+/).length : 0;
+            const chars = text.length;
+            wordCount.textContent = `${words} word${words !== 1 ? 's' : ''}`;
+            charCount.textContent = `${chars} character${chars !== 1 ? 's' : ''}`;
+        }
+
+        // Insert text at cursor
+        function insertText(before: string, after: string = '', placeholder: string = '') {
+            const start = textarea.selectionStart;
+            const end = textarea.selectionEnd;
+            const selectedText = textarea.value.substring(start, end) || placeholder;
+
+            const newText = before + selectedText + after;
+            textarea.setRangeText(newText, start, end, 'select');
+
+            // Adjust selection to be inside the markers
+            if (!textarea.value.substring(start, end)) {
+                textarea.setSelectionRange(start + before.length, start + before.length + placeholder.length);
+            }
+
+            textarea.focus();
+            updatePreview();
+        }
+
+        // Insert at line start
+        function insertAtLineStart(prefix: string) {
+            const start = textarea.selectionStart;
+            const text = textarea.value;
+            const lineStart = text.lastIndexOf('\n', start - 1) + 1;
+
+            textarea.setSelectionRange(lineStart, lineStart);
+            textarea.setRangeText(prefix);
+            textarea.setSelectionRange(lineStart + prefix.length, lineStart + prefix.length);
+
+            textarea.focus();
+            updatePreview();
+        }
+
+        // Toolbar actions
+        const actions: Record<string, () => void> = {
+            bold: () => insertText('**', '**', 'bold text'),
+            italic: () => insertText('*', '*', 'italic text'),
+            h2: () => insertAtLineStart('## '),
+            h3: () => insertAtLineStart('### '),
+            ul: () => insertAtLineStart('- '),
+            ol: () => insertAtLineStart('1. '),
+            quote: () => insertAtLineStart('> '),
+            link: () => {
+                const url = prompt('Enter URL:');
+                if (url) {
+                    insertText('[', `](${url})`, 'link text');
+                }
+            }
+        };
+
+        // Attach toolbar button handlers
+        toolbarButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const action = btn.getAttribute('data-action');
+                if (action && actions[action]) {
+                    actions[action]();
+                }
+            });
+        });
+
+        // Attach template handlers
+        templateButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const template = btn.getAttribute('data-template');
+                if (template) {
+                    const start = textarea.selectionStart;
+                    const before = textarea.value.substring(0, start);
+                    const after = textarea.value.substring(start);
+
+                    // Add newlines if needed
+                    const prefix = before && !before.endsWith('\n\n') ? (before.endsWith('\n') ? '\n' : '\n\n') : '';
+                    const suffix = after && !after.startsWith('\n') ? '\n' : '';
+
+                    textarea.value = before + prefix + template + suffix + after;
+                    textarea.focus();
+                    updatePreview();
+                }
+            });
+        });
+
+        // View toggle
+        viewButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const view = btn.getAttribute('data-view');
+                if (view) {
+                    viewButtons.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    editorContent.setAttribute('data-view', view);
+                }
+            });
+        });
+
+        // Keyboard shortcuts
+        textarea.addEventListener('keydown', (e) => {
+            if (e.ctrlKey || e.metaKey) {
+                switch (e.key.toLowerCase()) {
+                    case 'b':
+                        e.preventDefault();
+                        actions.bold();
+                        break;
+                    case 'i':
+                        e.preventDefault();
+                        actions.italic();
+                        break;
+                    case 'k':
+                        e.preventDefault();
+                        actions.link();
+                        break;
+                }
+            }
+        });
+
+        // Tab key support
+        textarea.addEventListener('keydown', (e) => {
+            if (e.key === 'Tab') {
+                e.preventDefault();
+                insertText('  ', '', '');
+            }
+        });
+
+        // Initialize
+        textarea.addEventListener('input', updatePreview);
+        updatePreview();
+    });
+</script>
