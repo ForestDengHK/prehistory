@@ -333,26 +333,35 @@ const { creatureId, category, period } = Astro.props;
     color: inherit;
     border-left-color: var(--fun-purple);
     cursor: pointer;
-    align-items: center;
+    align-items: flex-start;
     justify-content: flex-start;
+  }
+
+  .achievements-link .card-icon {
+    margin-top: 0.125rem;
   }
 
   .achievements-link .card-content {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
     flex: 1;
   }
 
   .achievements-link .card-sublabel {
-    font-size: 0.875rem;
-    font-weight: 700;
-    color: var(--primary-color);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--secondary-color);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
   }
 
   .card-arrow {
     font-size: 1.25rem;
     color: var(--fun-purple);
     margin-left: auto;
+    align-self: flex-start;
+    margin-top: 0.125rem;
     transition: transform 0.2s ease;
   }
 
