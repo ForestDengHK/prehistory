@@ -51,6 +51,13 @@ const achievementCategories = [
   description="Track your prehistoric discovery achievements and milestones"
 >
   <div class="achievements-container">
+    <button class="back-button" onclick="history.back()" aria-label="Go back">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M19 12H5M12 19l-7-7 7-7"/>
+      </svg>
+      <span>Back</span>
+    </button>
+
     <div class="achievements-header">
       <h1>Your Achievements</h1>
       <p>Track your prehistoric discovery journey</p>
@@ -144,6 +151,38 @@ const achievementCategories = [
     max-width: 1200px;
     margin: 0 auto;
     padding: 2rem;
+  }
+
+  .back-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: white;
+    border: none;
+    padding: 0.625rem 1rem;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--secondary-color);
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
+    margin-bottom: 1.5rem;
+  }
+
+  .back-button:hover {
+    background: var(--primary-color);
+    color: white;
+    transform: translateX(-4px);
+  }
+
+  .back-button:focus-visible {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+  }
+
+  .back-button svg {
+    flex-shrink: 0;
   }
 
   .achievements-header {
