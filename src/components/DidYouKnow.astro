@@ -286,10 +286,16 @@ const numberOfIndicators = Math.ceil(facts.length / getInitialCardsPerView());
   function updateCarousel(newIndex: number, resetInterval = true) {
     const maxIndex = getMaxIndex();
     newIndex = Math.max(0, Math.min(newIndex, maxIndex));
-    
-    const translateX = newIndex * 100;
-    if (track) {
-      track.style.transform = `translateX(-${translateX}%)`;
+
+    // Calculate scroll position based on actual card positions
+    const cardsPerView = getCardsPerView();
+    const cardIndex = newIndex * cardsPerView;
+    const targetCard = cards[cardIndex] as HTMLElement;
+
+    if (track && targetCard) {
+      // Use the actual card offset for precise scrolling
+      const scrollAmount = targetCard.offsetLeft;
+      track.style.transform = `translateX(-${scrollAmount}px)`;
     }
 
     // Update active state
@@ -431,7 +437,10 @@ const numberOfIndicators = Math.ceil(facts.length / getInitialCardsPerView());
       updateIndicatorVisibility();
       const maxIndex = getMaxIndex();
       currentIndex = Math.min(currentIndex, maxIndex);
-      updateCarousel(currentIndex);
+      // Recalculate and update position after layout settles
+      requestAnimationFrame(() => {
+        updateCarousel(currentIndex, false);
+      });
     }, 250);
   });
 
