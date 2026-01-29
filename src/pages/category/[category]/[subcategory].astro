@@ -84,6 +84,7 @@ const subcategoryCreatures = creatures.filter(creature =>
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 2rem;
+    justify-content: center;
   }
 
   .creature-card {
@@ -132,12 +133,20 @@ const subcategoryCreatures = creatures.filter(creature =>
   }
 
   @media (max-width: 768px) {
+    .subcategory-container {
+      padding: 1rem;
+    }
+
     .subcategory-header h1 {
       font-size: 2rem;
     }
 
     .subcategory-header p {
       font-size: 1rem;
+    }
+
+    .creatures-grid {
+      grid-template-columns: 1fr;
     }
   }
 </style>

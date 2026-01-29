@@ -173,9 +173,10 @@ const { creatureId, category, period } = Astro.props;
           <a href="/achievements" class="tracker-card achievements-link">
             <div class="card-icon">🏅</div>
             <div class="card-content">
-              <div class="card-sublabel">Achievements</div>
+              <div class="card-value">View</div>
+              <div class="card-label">Achievements</div>
+              <div class="card-action">See all badges →</div>
             </div>
-            <div class="card-arrow">→</div>
           </a>
         </div>
       `;
@@ -333,39 +334,21 @@ const { creatureId, category, period } = Astro.props;
     color: inherit;
     border-left-color: var(--fun-purple);
     cursor: pointer;
-    align-items: flex-start;
-    justify-content: flex-start;
   }
 
-  .achievements-link .card-icon {
-    margin-top: 0.125rem;
-  }
-
-  .achievements-link .card-content {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    flex: 1;
-  }
-
-  .achievements-link .card-sublabel {
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: var(--secondary-color);
-    text-transform: uppercase;
-    letter-spacing: 0.02em;
-  }
-
-  .card-arrow {
-    font-size: 1.25rem;
+  .achievements-link .card-value {
     color: var(--fun-purple);
-    margin-left: auto;
-    align-self: flex-start;
-    margin-top: 0.125rem;
+  }
+
+  .card-action {
+    font-size: 0.625rem;
+    color: var(--fun-purple);
+    margin-top: 0.25rem;
+    font-weight: 600;
     transition: transform 0.2s ease;
   }
 
-  .achievements-link:hover .card-arrow {
+  .achievements-link:hover .card-action {
     transform: translateX(4px);
   }
 
