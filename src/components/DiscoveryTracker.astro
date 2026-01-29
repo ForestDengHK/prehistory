@@ -249,6 +249,7 @@ const { creatureId, category, period } = Astro.props;
     display: flex;
     gap: 0.75rem;
     flex-wrap: wrap;
+    align-items: stretch;
   }
 
   .tracker-card {
@@ -263,6 +264,7 @@ const { creatureId, category, period } = Astro.props;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
     flex: 1 1 auto;
     min-width: 140px;
+    min-height: 80px;
   }
 
   .tracker-card:hover {
@@ -332,11 +334,13 @@ const { creatureId, category, period } = Astro.props;
     border-left-color: var(--fun-purple);
     cursor: pointer;
     align-items: center;
+    justify-content: flex-start;
   }
 
   .achievements-link .card-content {
     display: flex;
     align-items: center;
+    flex: 1;
   }
 
   .achievements-link .card-sublabel {
