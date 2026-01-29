@@ -24,25 +24,24 @@ try {
         topCreature = { name: creature?.name || top.creatureId, likes: top.totalLikes };
     }
 
-    // Count comments - with safeguards against infinite loops
-    // IMPORTANT: Upstash returns cursor as STRING to handle large numbers
+    // Count comments
     const redis = getRedis();
-    let cursor = "0"; // Start with string "0"
+    let cursor: string | number = 0;
     let iterations = 0;
-    const MAX_ITERATIONS = 10; // Safeguard
+    const MAX_ITERATIONS = 10; // Safeguard against runaway loops
     do {
-        const scanResult = await redis.scan(Number(cursor), { match: '*:comments', count: 100 });
-        cursor = String(scanResult[0]); // Keep as string for safe comparison
+        const scanResult = await redis.scan(cursor, { match: '*:comments', count: 100 });
+        cursor = scanResult[0];
         for (const key of scanResult[1]) {
             const count = await redis.zcard(key);
             totalComments += count;
         }
         iterations++;
         if (iterations >= MAX_ITERATIONS) {
-            console.warn('Scan loop hit max iterations, breaking');
+            console.warn('[Redis] Dashboard scan hit max iterations, breaking to prevent runaway');
             break;
         }
-    } while (cursor !== "0"); // Compare string to string "0"
+    } while (cursor != 0);
 } catch (e) {
     console.error('Error loading stats:', e);
 }

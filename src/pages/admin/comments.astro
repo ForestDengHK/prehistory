@@ -24,27 +24,26 @@ async function getAllComments(): Promise<Comment[]> {
     const redis = getRedis();
     const comments: Comment[] = [];
 
-    // Scan for all comment sorted set keys - with safeguards against infinite loops
-    // IMPORTANT: Upstash returns cursor as STRING to handle large numbers
-    let cursor = "0"; // Start with string "0"
+    // Scan for all comment sorted set keys
+    let cursor: string | number = 0;
     const commentKeys: string[] = [];
     let iterations = 0;
-    const MAX_ITERATIONS = 10; // Safeguard
+    const MAX_ITERATIONS = 10; // Safeguard against runaway loops
 
     do {
-        const scanResult = await redis.scan(Number(cursor), {
+        const scanResult = await redis.scan(cursor, {
             match: '*:comments',
             count: 100
         });
-        cursor = String(scanResult[0]); // Keep as string for safe comparison
+        cursor = scanResult[0];
         const keys = scanResult[1];
         commentKeys.push(...keys);
         iterations++;
         if (iterations >= MAX_ITERATIONS) {
-            console.warn('Comments scan loop hit max iterations, breaking');
+            console.warn('[Redis] Comments scan hit max iterations, breaking to prevent runaway');
             break;
         }
-    } while (cursor !== "0"); // Compare string to string "0"
+    } while (cursor != 0);
 
     // Process each comment key
     for (const key of commentKeys) {
