@@ -27,3 +27,4 @@ pnpm-debug.log*
 /docs/*
 
 .env.development
+.playwright-mcp/

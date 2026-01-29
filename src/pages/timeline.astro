@@ -10,7 +10,7 @@ import { timelinePeriods } from '../data/timeline';
       {timelinePeriods.map(period => (
         <a href={`/timeline/${period.name.toLowerCase()}`} class="period-card">
           <div class="period-image">
-            <img src={period.image} alt={period.name} />
+            <img src={period.image} alt={period.name} width="400" height="200" loading="lazy" />
           </div>
           <div class="period-info">
             <h2>{period.name}</h2>
@@ -34,6 +34,7 @@ import { timelinePeriods } from '../data/timeline';
     color: var(--primary-color);
     margin-bottom: 2rem;
     text-align: center;
+    font-weight: 700;
   }
 
   .timeline-grid {
@@ -47,13 +48,19 @@ import { timelinePeriods } from '../data/timeline';
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
     text-decoration: none;
     color: inherit;
   }
 
   .period-card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+
+  .period-card:focus-visible {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
   }
 
   .period-image {
@@ -74,15 +81,17 @@ import { timelinePeriods } from '../data/timeline';
   h2 {
     color: var(--primary-color);
     margin-bottom: 0.5rem;
+    font-weight: 700;
   }
 
   .period-time {
     color: var(--accent-color);
-    font-weight: bold;
+    font-weight: 700;
     margin-bottom: 0.5rem;
   }
 
   .description {
-    color: var(--secondary-color);
+    color: var(--text-muted);
+    line-height: 1.6;
   }
 </style>

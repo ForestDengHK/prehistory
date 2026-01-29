@@ -31,8 +31,13 @@ const absoluteImageUrl = new URL(image, 'https://www.xinhao.eu').toString();
 		<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
 		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 		<link rel="manifest" href="/site.webmanifest" />
-		<meta name="theme-color" content="#ffffff" />
-		
+		<meta name="theme-color" content="#2c3e50" />
+
+		<!-- Google Fonts: Nunito for a friendly, kid-appealing look -->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+
 		<meta name="generator" content={Astro.generator} />
 		
 		<!-- Primary Meta Tags -->
@@ -131,13 +136,27 @@ const absoluteImageUrl = new URL(image, 'https://www.xinhao.eu').toString();
 
 <style is:global>
 	:root {
+		/* Clean, kid-friendly palette */
 		--primary-color: #2c3e50;
 		--secondary-color: #34495e;
 		--accent-color: #e74c3c;
+		--accent-hover: #c0392b;
 		--background-color: #ecf0f1;
 		--text-color: #2c3e50;
+		--text-muted: #7f8c8d;
+		--card-bg: #ffffff;
+		--card-border: #e0e0e0;
+
+		/* Fun colors for kids */
+		--fun-green: #27ae60;
+		--fun-blue: #3498db;
+		--fun-orange: #f39c12;
+		--fun-purple: #9b59b6;
+
+		/* Font */
+		--font-main: 'Nunito', -apple-system, BlinkMacSystemFont, sans-serif;
 	}
-	
+
 	* {
 		margin: 0;
 		padding: 0;
@@ -145,7 +164,7 @@ const absoluteImageUrl = new URL(image, 'https://www.xinhao.eu').toString();
 	}
 
 	html {
-		font-family: system-ui, sans-serif;
+		font-family: var(--font-main);
 		background: var(--background-color);
 		color: var(--text-color);
 	}
@@ -154,6 +173,12 @@ const absoluteImageUrl = new URL(image, 'https://www.xinhao.eu').toString();
 		min-height: 100vh;
 		display: flex;
 		flex-direction: column;
+	}
+
+	h1, h2, h3, h4, h5, h6 {
+		font-family: var(--font-main);
+		font-weight: 700;
+		color: var(--primary-color);
 	}
 
 	.main-header {
@@ -172,7 +197,7 @@ const absoluteImageUrl = new URL(image, 'https://www.xinhao.eu').toString();
 
 	.logo a {
 		font-size: 1.5rem;
-		font-weight: bold;
+		font-weight: 800;
 		color: white;
 		text-decoration: none;
 	}
@@ -185,11 +210,19 @@ const absoluteImageUrl = new URL(image, 'https://www.xinhao.eu').toString();
 	.nav-links a {
 		color: white;
 		text-decoration: none;
-		transition: color 0.3s ease;
+		font-weight: 600;
+		transition: color 0.2s ease;
 	}
 
 	.nav-links a:hover {
 		color: var(--accent-color);
+	}
+
+	/* Focus states for accessibility */
+	.nav-links a:focus-visible {
+		outline: 2px solid var(--accent-color);
+		outline-offset: 4px;
+		border-radius: 2px;
 	}
 
 	main {
@@ -208,6 +241,28 @@ const absoluteImageUrl = new URL(image, 'https://www.xinhao.eu').toString();
 		margin-top: auto;
 	}
 
+	/* Global link styling */
+	a {
+		color: var(--accent-color);
+		transition: color 0.2s ease;
+	}
+
+	a:hover {
+		color: var(--accent-hover);
+	}
+
+	a:focus-visible {
+		outline: 2px solid var(--accent-color);
+		outline-offset: 2px;
+		border-radius: 2px;
+	}
+
+	/* Buttons focus state */
+	button:focus-visible {
+		outline: 2px solid var(--accent-color);
+		outline-offset: 2px;
+	}
+
 	@media (max-width: 768px) {
 		nav {
 			flex-direction: column;
@@ -222,6 +277,15 @@ const absoluteImageUrl = new URL(image, 'https://www.xinhao.eu').toString();
 
 		.nav-links a {
 			font-size: 1.1rem;
+		}
+	}
+
+	/* Respect reduced motion preference */
+	@media (prefers-reduced-motion: reduce) {
+		*, *::before, *::after {
+			animation-duration: 0.01ms !important;
+			animation-iteration-count: 1 !important;
+			transition-duration: 0.01ms !important;
 		}
 	}
 </style>
