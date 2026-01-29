@@ -184,7 +184,7 @@ const structuredData = {
   }
 
   .detailed-description {
-    background: #f8f8f8;
+    background: var(--surface-elevated);
     padding: 2rem;
     border-radius: 8px;
     margin-top: 2rem;
@@ -212,11 +212,11 @@ const structuredData = {
   }
 
   .creature-card {
-    background: white;
+    background: var(--card-bg);
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease;
+    box-shadow: 0 2px 4px var(--shadow-color);
+    transition: transform 0.3s ease, background-color 0.3s ease;
     text-decoration: none;
     color: inherit;
   }
@@ -253,9 +253,9 @@ const structuredData = {
   .no-creatures {
     text-align: center;
     padding: 2rem;
-    background: #f8f8f8;
+    background: var(--surface-elevated);
     border-radius: 8px;
-    color: #666;
+    color: var(--text-muted);
   }
 
   @media (max-width: 768px) {

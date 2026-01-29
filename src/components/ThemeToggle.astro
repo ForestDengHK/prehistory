@@ -1,0 +1,304 @@
+---
+// ThemeToggle.astro - Day/Night mode toggle with prehistoric flair
+---
+
+<button
+  id="theme-toggle"
+  class="theme-toggle"
+  type="button"
+  aria-label="Toggle dark mode"
+  title="Toggle day/night mode"
+>
+  <div class="toggle-track">
+    <div class="toggle-thumb">
+      <svg class="sun-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="5" fill="currentColor"/>
+        <g class="sun-rays">
+          <line x1="12" y1="1" x2="12" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <line x1="12" y1="21" x2="12" y2="23" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <line x1="1" y1="12" x2="3" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <line x1="21" y1="12" x2="23" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </g>
+      </svg>
+      <svg class="moon-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="currentColor"/>
+        <circle class="star star-1" cx="19" cy="5" r="1" fill="currentColor"/>
+        <circle class="star star-2" cx="17" cy="9" r="0.5" fill="currentColor"/>
+        <circle class="star star-3" cx="22" cy="8" r="0.75" fill="currentColor"/>
+      </svg>
+    </div>
+  </div>
+  <span class="toggle-label">
+    <span class="label-light">Day</span>
+    <span class="label-dark">Night</span>
+  </span>
+</button>
+
+<script>
+  class ThemeToggle {
+    private button: HTMLButtonElement;
+    private static STORAGE_KEY = 'prehistory_theme';
+
+    constructor() {
+      this.button = document.getElementById('theme-toggle') as HTMLButtonElement;
+      if (this.button) {
+        this.button.addEventListener('click', () => this.toggle());
+        this.updateButtonState();
+      }
+
+      // Listen for system preference changes
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+        if (!localStorage.getItem(ThemeToggle.STORAGE_KEY)) {
+          this.setTheme(e.matches ? 'dark' : 'light', false);
+        }
+      });
+
+      // Sync across tabs
+      window.addEventListener('storage', (e) => {
+        if (e.key === ThemeToggle.STORAGE_KEY && e.newValue) {
+          this.setTheme(e.newValue as 'light' | 'dark', false);
+        }
+      });
+    }
+
+    private getCurrentTheme(): 'light' | 'dark' {
+      return document.documentElement.getAttribute('data-theme') as 'light' | 'dark' || 'light';
+    }
+
+    private toggle() {
+      const current = this.getCurrentTheme();
+      const next = current === 'light' ? 'dark' : 'light';
+      this.setTheme(next, true);
+    }
+
+    private setTheme(theme: 'light' | 'dark', save: boolean) {
+      document.documentElement.setAttribute('data-theme', theme);
+      if (save) {
+        localStorage.setItem(ThemeToggle.STORAGE_KEY, theme);
+      }
+      this.updateButtonState();
+
+      // Update meta theme-color for mobile browsers
+      const metaTheme = document.querySelector('meta[name="theme-color"]');
+      if (metaTheme) {
+        metaTheme.setAttribute('content', theme === 'dark' ? '#1a1d23' : '#2c3e50');
+      }
+    }
+
+    private updateButtonState() {
+      const theme = this.getCurrentTheme();
+      this.button.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false');
+      this.button.setAttribute('aria-label', `Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`);
+    }
+  }
+
+  // Initialize when DOM is ready
+  document.addEventListener('DOMContentLoaded', () => {
+    new ThemeToggle();
+  });
+</script>
+
+<style>
+  .theme-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: 999px;
+    transition: transform 0.2s ease;
+  }
+
+  .theme-toggle:hover {
+    transform: scale(1.05);
+  }
+
+  .theme-toggle:active {
+    transform: scale(0.95);
+  }
+
+  .toggle-track {
+    width: 52px;
+    height: 28px;
+    background: linear-gradient(135deg, #87CEEB 0%, #FFD700 100%);
+    border-radius: 999px;
+    padding: 3px;
+    position: relative;
+    transition: background 0.4s ease;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  :global([data-theme="dark"]) .toggle-track {
+    background: linear-gradient(135deg, #1a1d23 0%, #2d3748 100%);
+  }
+
+  .toggle-thumb {
+    width: 22px;
+    height: 22px;
+    background: white;
+    border-radius: 50%;
+    position: relative;
+    transform: translateX(0);
+    transition: transform 0.4s cubic-bezier(0.68, -0.15, 0.32, 1.15);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  :global([data-theme="dark"]) .toggle-thumb {
+    transform: translateX(24px);
+    background: #374151;
+  }
+
+  .sun-icon,
+  .moon-icon {
+    width: 14px;
+    height: 14px;
+    position: absolute;
+    transition: opacity 0.3s ease, transform 0.4s ease;
+  }
+
+  .sun-icon {
+    color: #f59e0b;
+    opacity: 1;
+    transform: rotate(0deg);
+  }
+
+  .moon-icon {
+    color: #fbbf24;
+    opacity: 0;
+    transform: rotate(-90deg);
+  }
+
+  :global([data-theme="dark"]) .sun-icon {
+    opacity: 0;
+    transform: rotate(90deg);
+  }
+
+  :global([data-theme="dark"]) .moon-icon {
+    opacity: 1;
+    transform: rotate(0deg);
+  }
+
+  /* Sun rays animation */
+  .sun-rays line {
+    transform-origin: center;
+    animation: pulse-rays 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-rays {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+  }
+
+  :global([data-theme="dark"]) .sun-rays line {
+    animation: none;
+  }
+
+  /* Stars twinkling in dark mode */
+  .star {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  :global([data-theme="dark"]) .star {
+    opacity: 1;
+    animation: twinkle 1.5s ease-in-out infinite;
+  }
+
+  :global([data-theme="dark"]) .star-1 {
+    animation-delay: 0s;
+  }
+
+  :global([data-theme="dark"]) .star-2 {
+    animation-delay: 0.5s;
+  }
+
+  :global([data-theme="dark"]) .star-3 {
+    animation-delay: 1s;
+  }
+
+  @keyframes twinkle {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  /* Label styling */
+  .toggle-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: white;
+    position: relative;
+    width: 36px;
+    height: 16px;
+  }
+
+  .label-light,
+  .label-dark {
+    position: absolute;
+    left: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  .label-light {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .label-dark {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  :global([data-theme="dark"]) .label-light {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
+  :global([data-theme="dark"]) .label-dark {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Focus state */
+  .theme-toggle:focus-visible {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 4px;
+  }
+
+  /* Mobile adjustments */
+  @media (max-width: 768px) {
+    .toggle-label {
+      display: none;
+    }
+
+    .toggle-track {
+      width: 48px;
+      height: 26px;
+    }
+
+    .toggle-thumb {
+      width: 20px;
+      height: 20px;
+    }
+
+    :global([data-theme="dark"]) .toggle-thumb {
+      transform: translateX(22px);
+    }
+
+    .sun-icon,
+    .moon-icon {
+      width: 12px;
+      height: 12px;
+    }
+  }
+</style>

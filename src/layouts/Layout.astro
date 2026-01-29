@@ -1,4 +1,6 @@
 ---
+import ThemeToggle from '../components/ThemeToggle.astro';
+
 interface Props {
 	title: string;
 	description?: string;
@@ -24,6 +26,16 @@ const absoluteImageUrl = new URL(image, 'https://www.xinhao.eu').toString();
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
+
+		<!-- Prevent flash of unstyled content for theme -->
+		<script is:inline>
+			(function() {
+				const stored = localStorage.getItem('prehistory_theme');
+				const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+				const theme = stored || (prefersDark ? 'dark' : 'light');
+				document.documentElement.setAttribute('data-theme', theme);
+			})();
+		</script>
 		
 		<!-- Favicon -->
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -123,6 +135,7 @@ const absoluteImageUrl = new URL(image, 'https://www.xinhao.eu').toString();
 					<a href="/search">Search</a>
 					<a href="/about">About</a>
 				</div>
+				<ThemeToggle />
 			</nav>
 		</header>
 		<main>
@@ -136,7 +149,7 @@ const absoluteImageUrl = new URL(image, 'https://www.xinhao.eu').toString();
 
 <style is:global>
 	:root {
-		/* Clean, kid-friendly palette */
+		/* Clean, kid-friendly palette - Light Mode */
 		--primary-color: #2c3e50;
 		--secondary-color: #34495e;
 		--accent-color: #e74c3c;
@@ -146,6 +159,10 @@ const absoluteImageUrl = new URL(image, 'https://www.xinhao.eu').toString();
 		--text-muted: #7f8c8d;
 		--card-bg: #ffffff;
 		--card-border: #e0e0e0;
+		--header-bg: #2c3e50;
+		--footer-bg: #2c3e50;
+		--surface-elevated: #ffffff;
+		--shadow-color: rgba(0, 0, 0, 0.1);
 
 		/* Fun colors for kids */
 		--fun-green: #27ae60;
@@ -155,6 +172,29 @@ const absoluteImageUrl = new URL(image, 'https://www.xinhao.eu').toString();
 
 		/* Font */
 		--font-main: 'Nunito', -apple-system, BlinkMacSystemFont, sans-serif;
+	}
+
+	/* Dark Mode - Volcanic/Cave atmosphere */
+	[data-theme="dark"] {
+		--primary-color: #e8e6e3;
+		--secondary-color: #b8b5b1;
+		--accent-color: #e74c3c;
+		--accent-hover: #ff6b5b;
+		--background-color: #1a1d23;
+		--text-color: #e8e6e3;
+		--text-muted: #9ca3af;
+		--card-bg: #252830;
+		--card-border: #3d4250;
+		--header-bg: #12141a;
+		--footer-bg: #12141a;
+		--surface-elevated: #2d3139;
+		--shadow-color: rgba(0, 0, 0, 0.3);
+
+		/* Adjusted fun colors for dark mode */
+		--fun-green: #34d399;
+		--fun-blue: #60a5fa;
+		--fun-orange: #fbbf24;
+		--fun-purple: #a78bfa;
 	}
 
 	* {
@@ -167,6 +207,14 @@ const absoluteImageUrl = new URL(image, 'https://www.xinhao.eu').toString();
 		font-family: var(--font-main);
 		background: var(--background-color);
 		color: var(--text-color);
+		transition: background-color 0.3s ease, color 0.3s ease;
+	}
+
+	/* Smooth transitions for themed elements */
+	html, body, header, footer, main, nav,
+	.creature-card, .category-card, .timeline-card,
+	h1, h2, h3, h4, h5, h6, a, p, span, div {
+		transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 	}
 
 	body {
@@ -181,8 +229,18 @@ const absoluteImageUrl = new URL(image, 'https://www.xinhao.eu').toString();
 		color: var(--primary-color);
 	}
 
+	/* In dark mode, headings should use accent or lighter color */
+	[data-theme="dark"] h1,
+	[data-theme="dark"] h2,
+	[data-theme="dark"] h3,
+	[data-theme="dark"] h4,
+	[data-theme="dark"] h5,
+	[data-theme="dark"] h6 {
+		color: var(--text-color);
+	}
+
 	.main-header {
-		background: var(--primary-color);
+		background: var(--header-bg);
 		padding: 1rem 2rem;
 		color: white;
 	}
@@ -234,7 +292,7 @@ const absoluteImageUrl = new URL(image, 'https://www.xinhao.eu').toString();
 	}
 
 	footer {
-		background: var(--primary-color);
+		background: var(--footer-bg);
 		color: white;
 		text-align: center;
 		padding: 1rem;
@@ -270,14 +328,75 @@ const absoluteImageUrl = new URL(image, 'https://www.xinhao.eu').toString();
 		}
 
 		.nav-links {
-			flex-direction: column;
+			flex-direction: row;
+			flex-wrap: wrap;
+			justify-content: center;
 			align-items: center;
-			gap: 1rem;
+			gap: 0.75rem 1.25rem;
 		}
 
 		.nav-links a {
-			font-size: 1.1rem;
+			font-size: 1rem;
 		}
+	}
+
+	@media (max-width: 480px) {
+		.nav-links {
+			gap: 0.5rem 1rem;
+		}
+
+		.nav-links a {
+			font-size: 0.9rem;
+		}
+	}
+
+	/* Global dark mode overrides for common patterns */
+	[data-theme="dark"] .creature-card,
+	[data-theme="dark"] .category-card,
+	[data-theme="dark"] .period-card,
+	[data-theme="dark"] .timeline-card,
+	[data-theme="dark"] .search-card,
+	[data-theme="dark"] .fact-card,
+	[data-theme="dark"] .info-card,
+	[data-theme="dark"] .detailed-description,
+	[data-theme="dark"] .no-creatures,
+	[data-theme="dark"] .content-section,
+	[data-theme="dark"] .stats-section,
+	[data-theme="dark"] .result-card,
+	[data-theme="dark"] .search-result,
+	[data-theme="dark"] .comment-card,
+	[data-theme="dark"] .about-card,
+	[data-theme="dark"] .quick-facts,
+	[data-theme="dark"] .creature-meta {
+		background: var(--card-bg) !important;
+		border-color: var(--card-border) !important;
+	}
+
+	[data-theme="dark"] .creature-info,
+	[data-theme="dark"] .card-content,
+	[data-theme="dark"] .info-section,
+	[data-theme="dark"] .detail-section {
+		background: var(--card-bg) !important;
+	}
+
+	/* Dark mode input styles */
+	[data-theme="dark"] input,
+	[data-theme="dark"] textarea,
+	[data-theme="dark"] select {
+		background: var(--surface-elevated) !important;
+		color: var(--text-color) !important;
+		border-color: var(--card-border) !important;
+	}
+
+	[data-theme="dark"] input::placeholder,
+	[data-theme="dark"] textarea::placeholder {
+		color: var(--text-muted) !important;
+	}
+
+	/* Dark mode for images container backgrounds */
+	[data-theme="dark"] .creature-image,
+	[data-theme="dark"] .card-image {
+		background: var(--surface-elevated);
 	}
 
 	/* Respect reduced motion preference */
