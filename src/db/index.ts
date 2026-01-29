@@ -66,16 +66,18 @@ export async function getAllCreaturesWithLikes(): Promise<Array<{
     try {
         const redis = getRedis();
 
-        // Scan for all like count keys
+        // Scan for all like count keys - with safeguard against infinite loops
         const results: Array<{ creatureId: string; totalLikes: number; ips: string[] }> = [];
-        let cursor: string | number = 0;
+        let cursor: number = 0;
+        let iterations = 0;
+        const MAX_ITERATIONS = 10; // Safeguard
 
         do {
             const scanResult = await redis.scan(cursor, {
                 match: 'creature:*:likes:count',
                 count: 100
             });
-            cursor = scanResult[0];
+            cursor = Number(scanResult[0]); // Ensure it's a number
             const keys = scanResult[1];
 
             for (const key of keys) {
@@ -95,7 +97,12 @@ export async function getAllCreaturesWithLikes(): Promise<Array<{
                     }
                 }
             }
-        } while (cursor != 0); // Use != to handle both string "0" and number 0
+            iterations++;
+            if (iterations >= MAX_ITERATIONS) {
+                console.warn('Likes scan loop hit max iterations, breaking');
+                break;
+            }
+        } while (cursor !== 0);
 
         // Sort by likes descending
         results.sort((a, b) => b.totalLikes - a.totalLikes);
