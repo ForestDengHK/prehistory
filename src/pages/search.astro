@@ -322,14 +322,16 @@ const allCreaturesData = creatures.map(creature => ({
   input {
     flex: 1;
     padding: 0.75rem;
-    border: 2px solid #ddd;
+    border: 2px solid var(--card-border);
     border-radius: 4px;
     font-size: 1rem;
+    background: var(--card-bg);
+    color: var(--text-color);
   }
 
   button {
     padding: 0.75rem 1.5rem;
-    background: #333;
+    background: var(--primary-color);
     color: white;
     border: none;
     border-radius: 4px;
@@ -338,13 +340,13 @@ const allCreaturesData = creatures.map(creature => ({
   }
 
   button:hover {
-    background: #444;
+    background: var(--accent-color);
   }
 
   .results-info {
     text-align: center;
     margin-bottom: 2rem;
-    color: #666;
+    color: var(--text-muted);
   }
 
   .results-grid {
@@ -361,18 +363,18 @@ const allCreaturesData = creatures.map(creature => ({
   }
 
   .creature-card {
-    border: 1px solid #ddd;
+    border: 1px solid var(--card-border);
     border-radius: 8px;
     overflow: hidden;
-    transition: transform 0.2s;
+    transition: transform 0.2s, background-color 0.3s;
     display: flex;
     flex-direction: column;
-    background: white;
+    background: var(--card-bg);
   }
 
   .creature-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 12px var(--shadow-color);
   }
 
   .creature-card img {
@@ -390,20 +392,20 @@ const allCreaturesData = creatures.map(creature => ({
 
   h2 {
     margin: 0 0 0.5rem 0;
-    color: #333;
+    color: var(--primary-color);
     font-size: 1.5rem;
   }
 
   .scientific-name {
     font-style: italic;
-    color: #666;
+    color: var(--text-muted);
     margin: 0 0 0.5rem 0;
   }
 
   .description {
     margin: 0 0 1rem 0;
     line-height: 1.4;
-    color: #444;
+    color: var(--text-color);
     flex-grow: 1;
   }
 
@@ -414,20 +416,20 @@ const allCreaturesData = creatures.map(creature => ({
   }
 
   .tag {
-    background: #f0f0f0;
+    background: var(--surface-elevated);
     padding: 0.25rem 0.5rem;
     border-radius: 4px;
     font-size: 0.9rem;
-    color: #666;
+    color: var(--text-muted);
   }
 
   .no-results {
     grid-column: 1 / -1;
     text-align: center;
     padding: 2rem;
-    background: #f8f8f8;
+    background: var(--surface-elevated);
     border-radius: 8px;
-    color: #666;
+    color: var(--text-muted);
   }
 
   .learn-more {
@@ -479,14 +481,14 @@ const allCreaturesData = creatures.map(creature => ({
     height: 2.75rem;
     padding: 0 0.875rem;
     border: none;
-    background: white;
+    background: var(--card-bg);
     color: var(--primary-color);
     font-family: 'Nunito', sans-serif;
     font-weight: 800;
     font-size: 1rem;
     border-radius: 12px;
     text-decoration: none;
-    box-shadow: 0 2px 8px rgba(44, 62, 80, 0.15);
+    box-shadow: 0 2px 8px var(--shadow-color);
     transition: all 0.2s ease;
   }
 
@@ -527,16 +529,17 @@ const allCreaturesData = creatures.map(creature => ({
   }
 
   :global(.pagination a[disabled]) {
-    background: #f0f0f0;
-    color: #bbb;
+    background: var(--surface-elevated);
+    color: var(--text-muted);
     cursor: not-allowed;
     box-shadow: none;
+    opacity: 0.6;
   }
 
   :global(.pagination a[disabled]:hover) {
     transform: none;
-    background: #f0f0f0;
-    color: #bbb;
+    background: var(--surface-elevated);
+    color: var(--text-muted);
   }
 
   /* Nav buttons - Prev/Next */
