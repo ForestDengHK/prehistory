@@ -2,7 +2,10 @@ import { creatures } from '../../data/creatures';
 import type { APIRoute } from 'astro';
 
 function truncateDescription(description: string) {
-    const tempText = description.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    // Strip markdown headers (# ## ### etc.)
+    let tempText = description.replace(/^#{1,6}\s+/gm, '').replace(/\s#{1,6}\s+/g, ' ');
+    // Convert markdown bold to HTML
+    tempText = tempText.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
     const words = tempText.split(' ');
     
     if (words.length <= 20) return description;

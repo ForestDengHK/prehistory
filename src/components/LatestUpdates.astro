@@ -4,8 +4,10 @@ import { creatures } from '../data/creatures';
 
 // Function to truncate description while preserving HTML/markdown tags
 function truncateDescription(description: string) {
+  // Strip markdown headers (# ## ### etc.)
+  let tempText = description.replace(/^#{1,6}\s+/gm, '').replace(/\s#{1,6}\s+/g, ' ');
   // Convert markdown bold to HTML
-  const tempText = description.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+  tempText = tempText.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
   const words = tempText.split(' ');
   
   if (words.length <= 20) return description;
