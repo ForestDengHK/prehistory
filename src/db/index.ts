@@ -66,18 +66,20 @@ export async function getAllCreaturesWithLikes(): Promise<Array<{
     try {
         const redis = getRedis();
 
-        // Scan for all like count keys - with safeguard against infinite loops
+        // Scan for all like count keys - with safeguards against infinite loops
+        // IMPORTANT: Upstash returns cursor as STRING to handle large numbers
+        // that exceed JavaScript's Number.MAX_SAFE_INTEGER
         const results: Array<{ creatureId: string; totalLikes: number; ips: string[] }> = [];
-        let cursor: number = 0;
+        let cursor = "0"; // Start with string "0"
         let iterations = 0;
-        const MAX_ITERATIONS = 10; // Safeguard
+        const MAX_ITERATIONS = 10; // Safeguard against infinite loops
 
         do {
-            const scanResult = await redis.scan(cursor, {
+            const scanResult = await redis.scan(Number(cursor), {
                 match: 'creature:*:likes:count',
                 count: 100
             });
-            cursor = Number(scanResult[0]); // Ensure it's a number
+            cursor = String(scanResult[0]); // Keep as string for safe comparison
             const keys = scanResult[1];
 
             for (const key of keys) {
@@ -102,7 +104,7 @@ export async function getAllCreaturesWithLikes(): Promise<Array<{
                 console.warn('Likes scan loop hit max iterations, breaking');
                 break;
             }
-        } while (cursor !== 0);
+        } while (cursor !== "0"); // Compare string to string "0"
 
         // Sort by likes descending
         results.sort((a, b) => b.totalLikes - a.totalLikes);
