@@ -48,8 +48,13 @@ const hasStructuredSections = headings.length >= 2;
 
         {showTableOfContents && hasStructuredSections && (
             <nav class="toc" aria-label="Table of contents">
-                <span class="toc-label">Contents</span>
-                <ul class="toc-list">
+                <button class="toc-toggle" aria-expanded="false" aria-controls="toc-list">
+                    <span class="toc-label">Contents</span>
+                    <svg class="toc-toggle-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <polyline points="6 9 12 15 18 9"/>
+                    </svg>
+                </button>
+                <ul class="toc-list" id="toc-list">
                     {headings.filter(h => h.level === 2).map(heading => (
                         <li>
                             <a href={`#${heading.id}`}>{heading.text}</a>
@@ -111,6 +116,29 @@ const hasStructuredSections = headings.length >= 2;
         margin-bottom: 1.5rem;
         box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
         border: 1px solid rgba(0, 0, 0, 0.04);
+    }
+
+    /* TOC Toggle button (for mobile) */
+    .toc-toggle {
+        display: none;
+        width: 100%;
+        align-items: center;
+        justify-content: space-between;
+        background: none;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        font-family: inherit;
+    }
+
+    .toc-toggle-icon {
+        transition: transform 0.2s ease;
+        color: var(--primary-color);
+        display: none;
+    }
+
+    .toc-toggle[aria-expanded="true"] .toc-toggle-icon {
+        transform: rotate(180deg);
     }
 
     .toc-label {
@@ -428,9 +456,37 @@ const hasStructuredSections = headings.length >= 2;
     }
 
     @media (max-width: 480px) {
+        /* Collapsible TOC on mobile */
+        .toc {
+            padding: 0.75rem 1rem;
+        }
+
+        .toc-toggle {
+            display: flex;
+        }
+
+        .toc-toggle-icon {
+            display: block;
+        }
+
+        .toc-label {
+            margin-bottom: 0;
+        }
+
         .toc-list {
             flex-direction: column;
             align-items: stretch;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            margin-top: 0;
+            transition: max-height 0.3s ease, opacity 0.2s ease, margin-top 0.3s ease;
+        }
+
+        .toc.expanded .toc-list {
+            max-height: 500px;
+            opacity: 1;
+            margin-top: 0.75rem;
         }
 
         .toc-list a {
@@ -448,6 +504,28 @@ const hasStructuredSections = headings.length >= 2;
             btn.setAttribute('aria-expanded', String(isExpanded));
         });
     });
+
+    // TOC toggle for mobile
+    const tocToggle = document.querySelector('.toc-toggle');
+    const toc = document.querySelector('.toc');
+
+    if (tocToggle && toc) {
+        tocToggle.addEventListener('click', () => {
+            const isExpanded = toc.classList.toggle('expanded');
+            tocToggle.setAttribute('aria-expanded', String(isExpanded));
+        });
+    }
+
+    // Check if we're on mobile
+    const isMobile = () => window.innerWidth <= 480;
+
+    // Collapse TOC on mobile
+    const collapseTocOnMobile = () => {
+        if (isMobile() && toc && tocToggle) {
+            toc.classList.remove('expanded');
+            tocToggle.setAttribute('aria-expanded', 'false');
+        }
+    };
 
     // Smooth scroll for TOC links with reduced motion support
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -509,6 +587,9 @@ const hasStructuredSections = headings.length >= 2;
 
                 // Update URL without scrolling
                 history.pushState(null, '', href);
+
+                // Collapse TOC on mobile after clicking a link
+                collapseTocOnMobile();
             }
         });
     });
