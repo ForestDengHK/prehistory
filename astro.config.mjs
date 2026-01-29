@@ -22,6 +22,6 @@ export default defineConfig({
     port: 4321,
   },
   vite: {
-    envPrefix: ['PUBLIC_', 'BLOB_', 'ADMIN_']
+    envPrefix: ['PUBLIC_', 'BLOB_', 'ADMIN_', 'UPSTASH_']
   }
 });

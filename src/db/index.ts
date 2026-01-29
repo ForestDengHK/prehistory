@@ -1,41 +1,14 @@
-import { put, list } from '@vercel/blob';
-import { nanoid } from 'nanoid';
+import { getRedis } from '../lib/redis';
 
-interface Like {
-    id: string;
-    creatureId: string;
-    clientIp: string;
-    createdAt: string;
-}
+// Redis key patterns:
+// creature:{id}:likes:count  → Integer (atomic counter)
+// creature:{id}:likes:ips    → Set (IP deduplication)
 
 export async function getLikes(creatureId: string): Promise<number> {
     try {
-        const { blobs } = await list();
-        // Find all like files for this creature
-        const likeBlobs = blobs.filter(blob => 
-            blob.pathname.startsWith(`likes/${creatureId}`) &&
-            blob.pathname.endsWith('.json')
-        );
-        
-        if (likeBlobs.length === 0) return 0;
-        
-        // Get the most recent file based on uploadedAt timestamp
-        const latestBlob = likeBlobs.reduce((latest, current) => {
-            return !latest || current.uploadedAt > latest.uploadedAt ? current : latest;
-        });
-        
-        const response = await fetch(latestBlob.url);
-        if (!response.ok) return 0;
-        
-        const text = await response.text();
-        const likes: Like[] = JSON.parse(text);
-
-        // If this isn't the standard filename, migrate the likes
-        if (latestBlob.pathname !== `likes/${creatureId}.json`) {
-            await writeLikes(creatureId, likes);
-        }
-
-        return likes.length;
+        const redis = getRedis();
+        const count = await redis.get<number>(`creature:${creatureId}:likes:count`);
+        return count || 0;
     } catch (error) {
         console.error('Error fetching likes:', error);
         return 0;
@@ -44,95 +17,92 @@ export async function getLikes(creatureId: string): Promise<number> {
 
 export async function hasLiked(creatureId: string, clientIp: string): Promise<boolean> {
     try {
-        const { blobs } = await list();
-        // Find all like files for this creature
-        const likeBlobs = blobs.filter(blob => 
-            blob.pathname.startsWith(`likes/${creatureId}`) &&
-            blob.pathname.endsWith('.json')
-        );
-        
-        if (likeBlobs.length === 0) return false;
-        
-        // Get the most recent file based on uploadedAt timestamp
-        const latestBlob = likeBlobs.reduce((latest, current) => {
-            return !latest || current.uploadedAt > latest.uploadedAt ? current : latest;
-        });
-        
-        const response = await fetch(latestBlob.url);
-        if (!response.ok) return false;
-        
-        const text = await response.text();
-        const likes: Like[] = JSON.parse(text);
-        return likes.some(like => like.clientIp === clientIp);
+        const redis = getRedis();
+        const isMember = await redis.sismember(`creature:${creatureId}:likes:ips`, clientIp);
+        return isMember === 1;
     } catch (error) {
         console.error('Error checking like status:', error);
         return false;
     }
 }
 
-async function writeLikes(creatureId: string, likes: Like[]) {
-    try {
-        // Use timestamp in filename to maintain history
-        const timestamp = new Date().toISOString().split('T')[0];
-        const pathname = `likes/${creatureId}-${timestamp}.json`;
-        const json = JSON.stringify(likes, null, 2);
-        await put(pathname, json, {
-            contentType: 'application/json',
-            access: 'public'
-        });
-    } catch (error) {
-        console.error('Error writing likes:', error);
-        throw error;
-    }
-}
-
 export async function toggleLike(creatureId: string, clientIp: string): Promise<{ likes: number; hasLiked: boolean }> {
     try {
-        let likes: Like[] = [];
-        const { blobs } = await list();
-        // Find all like files for this creature
-        const likeBlobs = blobs.filter(blob => 
-            blob.pathname.startsWith(`likes/${creatureId}`) &&
-            blob.pathname.endsWith('.json')
-        );
-        
-        if (likeBlobs.length > 0) {
-            // Get the most recent file based on uploadedAt timestamp
-            const latestBlob = likeBlobs.reduce((latest, current) => {
-                return !latest || current.uploadedAt > latest.uploadedAt ? current : latest;
-            });
-            
-            const response = await fetch(latestBlob.url);
-            if (response.ok) {
-                const text = await response.text();
-                likes = JSON.parse(text);
-            }
-        }
+        const redis = getRedis();
+        const ipsKey = `creature:${creatureId}:likes:ips`;
+        const countKey = `creature:${creatureId}:likes:count`;
 
-        const existingLikeIndex = likes.findIndex(like => like.clientIp === clientIp);
-        
-        if (existingLikeIndex !== -1) {
+        // Check if already liked
+        const alreadyLiked = await redis.sismember(ipsKey, clientIp) === 1;
+
+        if (alreadyLiked) {
             // Remove like
-            likes.splice(existingLikeIndex, 1);
+            await redis.srem(ipsKey, clientIp);
+            await redis.decr(countKey);
         } else {
             // Add like
-            likes.push({
-                id: nanoid(),
-                creatureId,
-                clientIp,
-                createdAt: new Date().toISOString()
-            });
+            await redis.sadd(ipsKey, clientIp);
+            await redis.incr(countKey);
         }
 
-        // Save to Vercel Blob with timestamp
-        await writeLikes(creatureId, likes);
+        const newCount = await redis.get<number>(countKey) || 0;
 
         return {
-            likes: likes.length,
-            hasLiked: existingLikeIndex === -1
+            likes: Math.max(0, newCount), // Ensure non-negative
+            hasLiked: !alreadyLiked
         };
     } catch (error) {
         console.error('Error updating likes:', error);
         throw error;
     }
-} 
+}
+
+// For admin dashboard - get all creatures with likes
+export async function getAllCreaturesWithLikes(): Promise<Array<{
+    creatureId: string;
+    totalLikes: number;
+    ips: string[];
+}>> {
+    try {
+        const redis = getRedis();
+
+        // Scan for all like count keys
+        const results: Array<{ creatureId: string; totalLikes: number; ips: string[] }> = [];
+        let cursor: string | number = 0;
+
+        do {
+            const scanResult = await redis.scan(cursor, {
+                match: 'creature:*:likes:count',
+                count: 100
+            });
+            cursor = scanResult[0];
+            const keys = scanResult[1];
+
+            for (const key of keys) {
+                // Extract creature ID from key
+                const match = key.match(/^creature:(.+):likes:count$/);
+                if (match) {
+                    const creatureId = match[1];
+                    const count = await redis.get<number>(key) || 0;
+                    const ips = await redis.smembers(`creature:${creatureId}:likes:ips`) || [];
+
+                    if (count > 0) {
+                        results.push({
+                            creatureId,
+                            totalLikes: count,
+                            ips: ips as string[]
+                        });
+                    }
+                }
+            }
+        } while (cursor != 0); // Use != to handle both string "0" and number 0
+
+        // Sort by likes descending
+        results.sort((a, b) => b.totalLikes - a.totalLikes);
+
+        return results;
+    } catch (error) {
+        console.error('Error fetching all likes:', error);
+        return [];
+    }
+}

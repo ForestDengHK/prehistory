@@ -1,80 +1,30 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { list } from '@vercel/blob';
+import { getAllCreaturesWithLikes } from '../../db/index';
 import { creatures } from '../../data/creatures';
-
-interface Like {
-    id: string;
-    creatureId: string;
-    clientIp: string;
-    createdAt: string;
-}
 
 interface CreatureLikes {
     creatureId: string;
     name: string;
     totalLikes: number;
-    details: Like[];
+    ips: string[];
 }
 
 let creatureLikesData: CreatureLikes[] = [];
 let error: string | null = null;
 
 try {
-    // Check if we have the blob token
-    const blobToken = import.meta.env.BLOB_READ_WRITE_TOKEN;
-    if (!blobToken) {
-        throw new Error('Blob storage token not configured. Please check your environment variables.');
-    }
+    const likesData = await getAllCreaturesWithLikes();
 
-    // Fetch all like files
-    const { blobs } = await list({ token: blobToken });
-    const likeBlobs = blobs.filter(blob => 
-        blob.pathname.startsWith('likes/') && 
-        blob.pathname.endsWith('.json')
-    );
-
-    // Group blobs by creature ID
-    const blobsByCreature = likeBlobs.reduce((acc, blob) => {
-        const creatureId = blob.pathname
-            .replace('likes/', '')
-            .replace(/\.json$/, '')
-            .replace(/-\d{4}-\d{2}-\d{2}$/, ''); // Remove date suffix if present
-        if (!acc[creatureId]) {
-            acc[creatureId] = [];
-        }
-        acc[creatureId].push(blob);
-        return acc;
-    }, {} as Record<string, typeof blobs>);
-
-    // Process each creature's likes
-    for (const [creatureId, creatureBlobs] of Object.entries(blobsByCreature)) {
-        try {
-            // Get the latest blob for this creature
-            const latestBlob = creatureBlobs.reduce((latest, current) => {
-                return !latest || current.uploadedAt > latest.uploadedAt ? current : latest;
-            });
-
-            const response = await fetch(latestBlob.url);
-            if (response.ok) {
-                const likes: Like[] = await response.json();
-                const creature = creatures.find(c => c.id === creatureId);
-                
-                creatureLikesData.push({
-                    creatureId,
-                    name: creature?.name || creatureId,
-                    totalLikes: likes.length,
-                    details: likes
-                });
-            }
-        } catch (error) {
-            console.error(`Error fetching likes for creature ${creatureId}:`, error);
-        }
-    }
-
-    // Sort creatures by number of likes (descending)
-    creatureLikesData.sort((a, b) => b.totalLikes - a.totalLikes);
-
+    creatureLikesData = likesData.map(item => {
+        const creature = creatures.find(c => c.id === item.creatureId);
+        return {
+            creatureId: item.creatureId,
+            name: creature?.name || item.creatureId,
+            totalLikes: item.totalLikes,
+            ips: item.ips
+        };
+    });
 } catch (e) {
     error = e instanceof Error ? e.message : 'An unknown error occurred';
     console.error('Error loading likes:', e);
@@ -88,7 +38,7 @@ const baseUrl = import.meta.env.PROD ? 'https://prehistoricworld.vercel.app' : '
     <div class="container">
         <a href="/admin" class="back-link">← Back to Admin</a>
         <h1>Like Statistics</h1>
-        
+
         {error ? (
             <div class="error-message">
                 <h2>Error Loading Likes</h2>
@@ -115,7 +65,6 @@ const baseUrl = import.meta.env.PROD ? 'https://prehistoricworld.vercel.app' : '
                                 <th>Rank</th>
                                 <th>Creature</th>
                                 <th>Likes</th>
-                                <th>Last Like</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -124,7 +73,7 @@ const baseUrl = import.meta.env.PROD ? 'https://prehistoricworld.vercel.app' : '
                                 <tr>
                                     <td class="rank">#{index + 1}</td>
                                     <td>
-                                        <a 
+                                        <a
                                             href={`${baseUrl}/creature/${item.creatureId}`}
                                             target="_blank"
                                             rel="noopener noreferrer"
@@ -137,16 +86,11 @@ const baseUrl = import.meta.env.PROD ? 'https://prehistoricworld.vercel.app' : '
                                     </td>
                                     <td class="likes-count">{item.totalLikes}</td>
                                     <td>
-                                        {item.details.length > 0 
-                                            ? new Date(Math.max(...item.details.map(d => new Date(d.createdAt).getTime()))).toLocaleString()
-                                            : '-'
-                                        }
-                                    </td>
-                                    <td>
-                                        <button 
+                                        <button
                                             class="view-details-btn"
                                             data-creature-id={item.creatureId}
-                                            data-details={JSON.stringify(item.details)}
+                                            data-creature-name={item.name}
+                                            data-ips={JSON.stringify(item.ips)}
                                         >
                                             View Details
                                         </button>
@@ -170,7 +114,6 @@ const baseUrl = import.meta.env.PROD ? 'https://prehistoricworld.vercel.app' : '
                     <table>
                         <thead>
                             <tr>
-                                <th>Date</th>
                                 <th>IP Address</th>
                             </tr>
                         </thead>
@@ -355,6 +298,25 @@ const baseUrl = import.meta.env.PROD ? 'https://prehistoricworld.vercel.app' : '
         display: none;
     }
 
+    .error-message {
+        background: #fff3f3;
+        border: 1px solid #dc3545;
+        padding: 2rem;
+        border-radius: 8px;
+        margin-bottom: 2rem;
+    }
+
+    .error-message h2 {
+        color: #dc3545;
+        margin-bottom: 1rem;
+    }
+
+    .help-text {
+        margin-top: 1rem;
+        color: #666;
+        font-size: 0.9rem;
+    }
+
     @media (max-width: 768px) {
         .stat-card {
             padding: 1rem;
@@ -372,25 +334,18 @@ const baseUrl = import.meta.env.PROD ? 'https://prehistoricworld.vercel.app' : '
     const closeModal = document.querySelector('.close-modal');
     const modalCreatureName = document.getElementById('modal-creature-name');
     const modalDetails = document.getElementById('modal-details');
-    const creatures = new Map(window.creatures?.map(c => [c.id, c.name]) || []);
 
     viewDetailsButtons.forEach(button => {
         button.addEventListener('click', () => {
-            const creatureId = button.getAttribute('data-creature-id');
-            const details = JSON.parse(button.getAttribute('data-details') || '[]');
-            
-            if (modalCreatureName && modalDetails && creatureId) {
-                modalCreatureName.textContent = creatures.get(creatureId) || creatureId;
-                modalDetails.innerHTML = details
-                    .sort((a: any, b: any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
-                    .map((like: any) => `
-                        <tr>
-                            <td>${new Date(like.createdAt).toLocaleString()}</td>
-                            <td>${like.clientIp}</td>
-                        </tr>
-                    `)
+            const creatureName = button.getAttribute('data-creature-name');
+            const ips = JSON.parse(button.getAttribute('data-ips') || '[]');
+
+            if (modalCreatureName && modalDetails) {
+                modalCreatureName.textContent = creatureName || '';
+                modalDetails.innerHTML = ips
+                    .map((ip: string) => `<tr><td>${ip}</td></tr>`)
                     .join('');
-                
+
                 modal?.classList.remove('hidden');
             }
         });
@@ -405,4 +360,4 @@ const baseUrl = import.meta.env.PROD ? 'https://prehistoricworld.vercel.app' : '
             modal.classList.add('hidden');
         }
     });
-</script> 
+</script>

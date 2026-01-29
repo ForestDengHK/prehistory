@@ -1,6 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { list } from '@vercel/blob';
+import { getRedis } from '../../lib/redis';
 import { creatures } from '../../data/creatures';
 
 let allComments: Comment[] = [];
@@ -21,54 +21,60 @@ const baseUrl = import.meta.env.PROD ? 'https://prehistoricworld.vercel.app' : '
 // Create a map of creature IDs to names for quick lookup
 const creatureMap = new Map(creatures.map(c => [c.id, c.name]));
 
-try {
-    // Check if we have the blob token
-    const blobToken = import.meta.env.BLOB_READ_WRITE_TOKEN;
-    if (!blobToken) {
-        throw new Error('Blob storage token not configured. Please check your environment variables.');
-    }
+// Function to get all comments from Redis
+async function getAllComments(): Promise<Comment[]> {
+    const redis = getRedis();
+    const comments: Comment[] = [];
 
-    // Fetch all comment files
-    const { blobs } = await list({ token: blobToken });
-    const commentBlobs = blobs.filter(blob => 
-        blob.pathname.startsWith('comments/') && 
-        blob.pathname.endsWith('.json')
-    );
+    // Scan for all comment sorted set keys
+    let cursor: string | number = 0;
+    const commentKeys: string[] = [];
 
-    // Group blobs by creature ID
-    const blobsByCreature = commentBlobs.reduce((acc, blob) => {
-        const creatureId = blob.pathname
-            .replace('comments/', '')
-            .replace('.json', '');
-        if (!acc[creatureId]) {
-            acc[creatureId] = [];
+    do {
+        const scanResult = await redis.scan(cursor, {
+            match: '*:comments',
+            count: 100
+        });
+        cursor = scanResult[0];
+        const keys = scanResult[1];
+        commentKeys.push(...keys);
+    } while (cursor != 0); // Use != to handle both string "0" and number 0
+
+    // Process each comment key
+    for (const key of commentKeys) {
+        // Extract creature ID from key
+        let creatureId: string;
+        if (key === 'about:comments') {
+            creatureId = 'about';
+        } else {
+            const match = key.match(/^creature:(.+):comments$/);
+            if (!match) continue;
+            creatureId = match[1];
         }
-        acc[creatureId].push(blob);
-        return acc;
-    }, {} as Record<string, typeof blobs>);
 
-    // Fetch and parse comments from the latest file for each creature
-    for (const [creatureId, creatureBlobs] of Object.entries(blobsByCreature)) {
-        try {
-            const latestBlob = creatureBlobs.reduce((latest, current) => {
-                return !latest || current.uploadedAt > latest.uploadedAt ? current : latest;
-            });
+        // Get all comment IDs from the sorted set
+        const commentIds = await redis.zrange(key, 0, -1, { rev: true });
 
-            const response = await fetch(latestBlob.url);
-            if (response.ok) {
-                const comments: Comment[] = await response.json();
-                comments.forEach(comment => {
-                    comment.creatureId = creatureId;
+        // Fetch each comment
+        for (const id of commentIds) {
+            const comment = await redis.get<Comment>(`comment:${id}`);
+            if (comment) {
+                comments.push({
+                    ...comment,
+                    creatureId
                 });
-                allComments.push(...comments);
             }
-        } catch (error) {
-            console.error(`Error fetching comments for creature ${creatureId}:`, error);
         }
     }
 
-    // Sort comments by date
-    allComments.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+    // Sort by date
+    comments.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+
+    return comments;
+}
+
+try {
+    allComments = await getAllComments();
 } catch (e) {
     error = e instanceof Error ? e.message : 'An unknown error occurred';
     console.error('Error loading comments:', e);
@@ -79,7 +85,7 @@ try {
     <div class="container">
         <a href="/admin" class="back-link">← Back to Admin</a>
         <h1>Manage Comments</h1>
-        
+
         {error ? (
             <div class="error-message">
                 <h2>Error Loading Comments</h2>
@@ -103,28 +109,28 @@ try {
                         {allComments.map(comment => (
                             <tr>
                                 <td>
-                                    <input 
-                                        type="checkbox" 
-                                        class="comment-checkbox" 
+                                    <input
+                                        type="checkbox"
+                                        class="comment-checkbox"
                                         data-id={comment.id}
                                         data-creature-id={comment.creatureId}
                                     />
                                 </td>
                                 <td>
-                                    <a 
-                                        href={comment.creatureId.startsWith('about') 
+                                    <a
+                                        href={comment.creatureId === 'about'
                                             ? `${baseUrl}/about`
                                             : `${baseUrl}/creature/${comment.creatureId}`}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         class="creature-link"
-                                        title={comment.creatureId.startsWith('about') 
+                                        title={comment.creatureId === 'about'
                                             ? 'View About Page'
-                                            : `View ${creatureMap.get(comment.creatureId) || 'creature'}`}
+                                            : `View ${creatureMap.get(comment.creatureId!) || 'creature'}`}
                                     >
-                                        {comment.creatureId.startsWith('about') 
+                                        {comment.creatureId === 'about'
                                             ? 'About Page'
-                                            : creatureMap.get(comment.creatureId) || comment.creatureId}
+                                            : creatureMap.get(comment.creatureId!) || comment.creatureId}
                                         <span class="external-icon">↗</span>
                                     </a>
                                 </td>
@@ -138,7 +144,7 @@ try {
                 </table>
             </div>
         )}
-        
+
         {!error && (
             <div class="actions">
                 <button id="delete-selected" class="delete-button" disabled>Delete Selected</button>
@@ -339,4 +345,4 @@ try {
             alert('Failed to delete comments. Please try again.');
         }
     });
-</script> 
+</script>

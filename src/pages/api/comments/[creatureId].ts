@@ -1,11 +1,6 @@
 import type { APIRoute } from 'astro';
-import { put, list, del } from '@vercel/blob';
-import 'dotenv/config';
-
-// Verify Blob token is configured
-if (!process.env.BLOB_READ_WRITE_TOKEN) {
-    console.error('BLOB_READ_WRITE_TOKEN is not configured. Comments will not work locally.');
-}
+import { getRedis } from '../../../lib/redis';
+import { getCommentRateLimiter } from '../../../lib/ratelimit';
 
 interface Comment {
     id: string;
@@ -16,64 +11,51 @@ interface Comment {
     emoji?: string;
 }
 
-// Read comments from Blob
+// Redis key patterns:
+// comment:{id}               → JSON string (full comment)
+// creature:{id}:comments     → Sorted Set (comment IDs by timestamp)
+
 async function readComments(creatureId: string): Promise<Comment[]> {
     try {
-        if (!process.env.BLOB_READ_WRITE_TOKEN) {
-            console.error('BLOB_READ_WRITE_TOKEN is not configured');
+        const redis = getRedis();
+        const commentsKey = `creature:${creatureId}:comments`;
+
+        // Get all comment IDs, sorted by timestamp (newest first)
+        const commentIds = await redis.zrange(commentsKey, 0, -1, { rev: true });
+
+        if (!commentIds || commentIds.length === 0) {
             return [];
         }
 
-        const { blobs } = await list();
-        // Find all files for this creature
-        const creatureBlobs = blobs.filter(blob => 
-            blob.pathname.startsWith(`comments/${creatureId}`) &&
-            blob.pathname.endsWith('.json')
+        // Fetch all comments in parallel
+        const comments = await Promise.all(
+            commentIds.map(async (id) => {
+                const comment = await redis.get<Comment>(`comment:${id}`);
+                return comment;
+            })
         );
 
-        if (creatureBlobs.length === 0) {
-            return [];
-        }
-
-        // Get the most recent file based on uploadedAt timestamp
-        const latestBlob = creatureBlobs.reduce((latest, current) => {
-            return !latest || current.uploadedAt > latest.uploadedAt ? current : latest;
-        });
-        
-        const response = await fetch(latestBlob.url);
-        if (!response.ok) {
-            console.error(`Failed to fetch comments: ${response.statusText}`);
-            return [];
-        }
-        
-        const text = await response.text();
-        const comments = JSON.parse(text);
-
-        // If this isn't the standard filename, migrate the comments
-        if (latestBlob.pathname !== `comments/${creatureId}.json`) {
-            await writeComments(creatureId, comments);
-            // Delete the old file
-            await del(latestBlob.pathname);
-        }
-
-        return comments;
+        return comments.filter((c): c is Comment => c !== null);
     } catch (error) {
         console.error('Error reading comments:', error);
         return [];
     }
 }
 
-// Write comments to Blob
-async function writeComments(creatureId: string, comments: Comment[]) {
+async function writeComment(creatureId: string, comment: Comment): Promise<void> {
     try {
-        const pathname = `comments/${creatureId}.json`;
-        const json = JSON.stringify(comments, null, 2);
-        await put(pathname, json, {
-            contentType: 'application/json',
-            access: 'public'
-        });
+        const redis = getRedis();
+        const commentKey = `comment:${comment.id}`;
+        const commentsKey = `creature:${creatureId}:comments`;
+
+        // Store the comment
+        await redis.set(commentKey, comment);
+
+        // Add to sorted set with timestamp as score
+        const timestamp = new Date(comment.createdAt).getTime();
+        await redis.zadd(commentsKey, { score: timestamp, member: comment.id });
     } catch (error) {
-        console.error('Error writing comments:', error);
+        console.error('Error writing comment:', error);
         throw error;
     }
 }
@@ -84,7 +66,7 @@ function validateCaptcha(token: string, answer: number): boolean {
         const decoded = atob(token);
         const [timestamp, correctAnswer] = decoded.split('-');
         const timeElapsed = Date.now() - parseInt(timestamp);
-        
+
         // Token expires after 5 minutes
         if (timeElapsed > 5 * 60 * 1000) {
             return false;
@@ -121,6 +103,26 @@ export const POST: APIRoute = async ({ request, params }) => {
         });
     }
 
+    // Check rate limit
+    const clientIP = request.headers.get('x-forwarded-for') || 'unknown';
+    try {
+        const rateLimiter = getCommentRateLimiter();
+        const { success, remaining } = await rateLimiter.limit(clientIP);
+
+        if (!success) {
+            return new Response(JSON.stringify({ error: 'Too many comments. Please try again later.' }), {
+                status: 429,
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-RateLimit-Remaining': remaining.toString()
+                }
+            });
+        }
+    } catch (error) {
+        console.error('Rate limit check failed:', error);
+        // Continue without rate limiting if it fails
+    }
+
     try {
         const body = await request.json();
         const { name, comment, email, emoji, captchaToken, captchaAnswer } = body;
@@ -148,19 +150,16 @@ export const POST: APIRoute = async ({ request, params }) => {
             });
         }
 
-        const comments = await readComments(creatureId);
-
         const newComment: Comment = {
             id: Date.now().toString(),
             name,
             comment,
             email,
-            emoji: emoji || '👤',
+            emoji: emoji || '',
             createdAt: new Date().toISOString()
         };
 
-        comments.unshift(newComment);
-        await writeComments(creatureId, comments);
+        await writeComment(creatureId, newComment);
 
         return new Response(JSON.stringify(newComment), {
             status: 201,
@@ -172,4 +171,4 @@ export const POST: APIRoute = async ({ request, params }) => {
             headers: { 'Content-Type': 'application/json' }
         });
     }
-}; 
+};

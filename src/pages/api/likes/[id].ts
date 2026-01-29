@@ -1,5 +1,6 @@
 import type { APIRoute } from 'astro';
 import { getLikes, hasLiked, toggleLike } from '../../../db';
+import { getLikeRateLimiter } from '../../../lib/ratelimit';
 
 export const GET: APIRoute = async ({ params, request }) => {
     const creatureId = params.id!;
@@ -36,6 +37,20 @@ export const POST: APIRoute = async ({ params, request }) => {
     const clientIP = request.headers.get('x-forwarded-for') || 'unknown';
 
     try {
+        // Check rate limit
+        const rateLimiter = getLikeRateLimiter();
+        const { success, remaining } = await rateLimiter.limit(clientIP);
+
+        if (!success) {
+            return new Response(JSON.stringify({ error: 'Too many requests. Please try again later.' }), {
+                status: 429,
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-RateLimit-Remaining': remaining.toString()
+                }
+            });
+        }
+
         const result = await toggleLike(creatureId, clientIP);
         
         return new Response(JSON.stringify(result), {
