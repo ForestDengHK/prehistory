@@ -39,7 +39,6 @@ const categoryEntries = Object.entries(categories).map(([name, subcategories]) =
   .categories-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 2rem;
   }
 
   h1 {
@@ -53,6 +52,13 @@ const categoryEntries = Object.entries(categories).map(([name, subcategories]) =
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 2rem;
+    justify-content: center;
+  }
+
+  @media (max-width: 768px) {
+    .categories-grid {
+      grid-template-columns: 1fr;
+    }
   }
 
   .category-card {
