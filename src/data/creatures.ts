@@ -33,7 +33,7 @@ export interface SearchResult extends Creature {
 }
 
 export const creatures: Creature[] = [
-                                                {
+  {
     id: 'tyrannosaurus-rex',
     name: 'Tyrannosaurus Rex',
     scientificName: 'Tyrannosaurus rex',
@@ -50,7 +50,7 @@ export const creatures: Creature[] = [
     modelId: '30e9e38ac7554062be7406658881d105',
     lastUpdated: 1769712811279
   },
-                    {
+  {
     id: 'megalodon',
     name: 'Otodus Megalodon',
     scientificName: 'Otodus megalodon',
@@ -67,7 +67,7 @@ export const creatures: Creature[] = [
     modelId: 'dc2b75f091964c26b05544f6a990e7ac',
     lastUpdated: 1739215341648
   },
-                      {
+  {
     id: 'nanotyrannus',
     name: 'Nanotyrannus lancensis',
     scientificName: 'Nanotyrannus lancensis',
@@ -83,7 +83,7 @@ export const creatures: Creature[] = [
     family: 'Tyrannosauridae',
     lastUpdated: 1739215400774
   },
-              {
+  {
     id: 'raptorex',
     name: 'Raptorex lancensis',
     scientificName: 'Raptorex kriegsteini',
@@ -99,7 +99,7 @@ export const creatures: Creature[] = [
     family: 'Tyrannosauridae',
     lastUpdated: 1712284800000 // 2024-04-01
   },
-                {
+  {
     id: 'stegosaurus',
     name: 'Stegosaurus stenops',
     scientificName: 'Stegosaurus stenops',
@@ -116,7 +116,7 @@ export const creatures: Creature[] = [
     modelId: '6e9a2f36f0a447758d71c2134512580e',
     lastUpdated: 1739215460087
   },
-            {
+  {
     id: 'velociraptor',
     name: 'Velociraptor mongoliensis',
     scientificName: 'Velociraptor mongoliensis',
@@ -133,7 +133,7 @@ export const creatures: Creature[] = [
     modelId: '40412e7e70624086860fc1172f465561',
     lastUpdated: 1739215508906
   },
-              {
+  {
     id: 'triceratops',
     name: 'Triceratops horridus',
     scientificName: 'Triceratops horridus',
@@ -150,7 +150,7 @@ export const creatures: Creature[] = [
     modelId: 'd16aabe33dc24f8ab37e3df50c068265',
     lastUpdated: 1739215561359
   },
-          {
+  {
     id: 'pterodactyl',
     name: 'Pterodactyl antiquus',
     scientificName: 'Pterodactylus antiquus',
@@ -166,7 +166,7 @@ export const creatures: Creature[] = [
     family: 'Pterodactylidae',
     lastUpdated: 1739215603384
   },
-              {
+  {
     id: 'archaeopteryx',
     name: 'Archaeopteryx lithographica',
     scientificName: 'Archaeopteryx lithographica',
@@ -183,7 +183,7 @@ export const creatures: Creature[] = [
     modelId: '27e8aafc63e045839ff20d45b1a9a70d',
     lastUpdated: 1739215660664
   },
-          {
+  {
     id: 'dreadnoughtus',
     name: 'Dreadnoughtus schrani',
     scientificName: 'Dreadnoughtus schrani',
@@ -199,7 +199,7 @@ export const creatures: Creature[] = [
     family: 'Titanosauridae',
     lastUpdated: 1739215714949
   },
-              {
+  {
     id: 'spinosaurus',
     name: 'Spinosaurus aegyptiacus',
     scientificName: 'Spinosaurus aegyptiacus',
@@ -216,7 +216,7 @@ export const creatures: Creature[] = [
     modelId: 'f136cb45937b4695af705ffd032809d9',
     lastUpdated: 1739215885614
   },
-            {
+  {
     id: 'stromatolite-bacteria',
     name: 'Stromatolite Bacteria',
     scientificName: 'Cyanobacteria (Stromatolite-forming species)',
@@ -232,7 +232,7 @@ export const creatures: Creature[] = [
     family: 'Cyanobacteria',
     lastUpdated: 1712284800000 // 2024-04-01
   },
-    {
+  {
     id: 'morganucodon',
     name: 'Morganucodon watsoni',
     scientificName: 'Morganucodon watsoni',
@@ -248,7 +248,7 @@ export const creatures: Creature[] = [
     family: 'Morganucodontidae',
     lastUpdated: 1712284800000 // 2024-04-01
   },
-    {
+  {
     id: 'giganotosaurus-carolinii',
     name: 'Giganotosaurus carolinii',
     scientificName: 'Giganotosaurus carolinii',
@@ -265,7 +265,7 @@ export const creatures: Creature[] = [
     modelId: 'a19074c7a9944c648ee634599b25afd3',
     lastUpdated: 1717545600000 // 2024-06-02
   },
-        {
+  {
     id: 'stegosaurus-ungulatus',
     name: 'stegosaurus ungulatus',
     scientificName: 'stegosaurus ungulatus',
@@ -283,7 +283,7 @@ export const creatures: Creature[] = [
     //2024-06-03
     lastUpdated: 1717545600000
   },
-    {
+  {
     id: 'helicoprion-bessonowi',
     name: 'Helicoprion bessonowi',
     scientificName: 'Helicoprion bessonowi',
@@ -301,7 +301,7 @@ export const creatures: Creature[] = [
     //2024-06-04
     lastUpdated: 1717718400000
   },
-          {
+  {
     id: 'anomalocaris-canadensis',
     name: 'Anomalocaris canadensis',
     scientificName: 'Anomalocaris canadensis',
@@ -318,7 +318,7 @@ export const creatures: Creature[] = [
     modelId: '9550c5f52fd041788909f49e55a8c714',
     lastUpdated: 1739129385606
   },
-                  {
+  {
     id: 'liopleurodon-ferox',
     name: 'Liopleurodon ferox',
     scientificName: 'Liopleurodon ferox',
@@ -335,7 +335,7 @@ export const creatures: Creature[] = [
     modelId: '522e811044bc4e09bf84431e6c1cc109',
     lastUpdated: 1739128243561
   },
-            {
+  {
     id: 'mosasaurus-hoffmannii',
     name: 'Mosasaurus hoffmannii',
     scientificName: 'Mosasaurus hoffmannii',
@@ -352,7 +352,7 @@ export const creatures: Creature[] = [
     modelId: '245cd26f2cf54e88826e9c845dfcf92d',
     lastUpdated: 1739128571040
   },
-        {
+  {
     id: 'sarcoprion-edax',
     name: 'Sarcoprion edax',
     scientificName: 'Sarcoprion edax',
@@ -367,7 +367,7 @@ export const creatures: Creature[] = [
     subcategory: 'Prehistoric Sharks',
     family: 'Sarcoprionidae'
   },
-        {
+  {
     id: 'dunkleosteus-terrelli',
     name: 'dunkleosteus terrelli',
     scientificName: 'dunkleosteus terrelli',
@@ -385,7 +385,7 @@ export const creatures: Creature[] = [
     //2024-06-08
     lastUpdated: 1718409600000
   },
-      {
+  {
     id: 'shonisaurus-popularis',
     name: 'Shonisaurus popularis',
     scientificName: 'Shonisaurus popularis',
@@ -401,7 +401,7 @@ export const creatures: Creature[] = [
     family: 'Shonisauridae',
     lastUpdated: 1739128964970
   },
-        {
+  {
     id: 'ichthyotitan-severnensis',
     name: 'Ichthyotitan severnensis',
     scientificName: 'Ichthyotitan severnensis',
@@ -417,7 +417,7 @@ export const creatures: Creature[] = [
     family: 'Ichthyosauridae',
     lastUpdated: 1739128946652
   },
-      {
+  {
     id: 'pinosaurus-maroccanus',
     name: 'Spinosaurus maroccanus',
     scientificName: 'Spinosaurus maroccanus',
@@ -434,7 +434,7 @@ export const creatures: Creature[] = [
     //2024-06-11
     lastUpdated: 1718928000000
   },
-              {
+  {
     id: 'carcharodontosaurus-saharicus',
     name: 'Carcharodontosaurus saharicus',
     scientificName: 'Carcharodontosaurus saharicus',
@@ -452,7 +452,7 @@ export const creatures: Creature[] = [
     //2024-06-12
     lastUpdated: 1719100800000
   },
-      {
+  {
     id: 'ceratosaurus-nasicornis',
     name: 'Ceratosaurus nasicornis',
     scientificName: 'Ceratosaurus nasicornis',
@@ -487,7 +487,7 @@ export const creatures: Creature[] = [
     //2024-06-14
     lastUpdated: 1719446400000
   },
-        {
+  {
     id: 'allosaurus-fragilis',
     name: 'Allosaurus fragilis',
     scientificName: 'Allosaurus fragilis',
@@ -505,7 +505,7 @@ export const creatures: Creature[] = [
     //2024-06-15
     lastUpdated: 1719619200000
   },
-      {
+  {
     id: 'cryolophosaurus-ellioti',
     name: 'Cryolophosaurus ellioti',
     scientificName: 'Cryolophosaurus ellioti',
@@ -523,7 +523,7 @@ export const creatures: Creature[] = [
     //2024-06-16
     lastUpdated: 1719792000000
   },
-      {
+  {
     id: 'argentinosaurus-huinculensis',
     name: 'Argentinosaurus huinculensis',
     scientificName: 'Argentinosaurus huinculensis',
@@ -541,7 +541,7 @@ export const creatures: Creature[] = [
     //2024-06-17
     lastUpdated: 1719964800000
   },
-    {
+  {
     id: 'quetzalcoatlus-northropi',
     name: 'Quetzalcoatlus northropi',
     scientificName: 'Quetzalcoatlus northropi',
@@ -559,7 +559,7 @@ export const creatures: Creature[] = [
     //2024-06-18
     lastUpdated: 1720137600000
   },
-          {
+  {
     id: 'brachiosaurus-altithorax',
     name: 'Brachiosaurus altithorax',
     scientificName: 'Brachiosaurus altithorax',
@@ -577,7 +577,7 @@ export const creatures: Creature[] = [
     //2024-06-19
     lastUpdated: 1720310400000
   },
-    {
+  {
     id: '-livyatan-melvillei',
     name: ' Livyatan melvillei',
     scientificName: ' Livyatan melvillei',
@@ -595,7 +595,7 @@ export const creatures: Creature[] = [
     //2024-06-20
     lastUpdated: 1720483200000
   },
-    {
+  {
     id: 'carcharocles-megalodon',
     name: 'carcharocles megalodon',
     scientificName: 'carcharocles megalodon',
@@ -613,7 +613,7 @@ export const creatures: Creature[] = [
     //2024-06-21
     lastUpdated: 1720656000000
   },
-    {
+  {
     id: 'basilosaurus-cetoides',
     name: 'Basilosaurus cetoides',
     scientificName: 'Basilosaurus cetoides',
@@ -648,7 +648,7 @@ export const creatures: Creature[] = [
     //2024-06-23
     lastUpdated: 1721001600000
   },
-      {
+  {
     id: 'parahelicoprion-clerci',
     name: 'Parahelicoprion clerci',
     scientificName: 'Parahelicoprion clerci',
@@ -665,7 +665,7 @@ export const creatures: Creature[] = [
     //2024-06-24
     lastUpdated: 1721174400000
   },
-      {
+  {
     id: 'concavenator-corcovatus',
     name: 'Concavenator corcovatus',
     scientificName: 'Concavenator corcovatus',
@@ -683,7 +683,7 @@ export const creatures: Creature[] = [
     //2024-06-25
     lastUpdated: 1721347200000
   },
-    {
+  {
     id: 'troodon-formosus',
     name: 'Troodon formosus',
     scientificName: 'Troodon formosus',
@@ -700,7 +700,7 @@ export const creatures: Creature[] = [
     //2024-06-26
     lastUpdated: 1721520000000
   },
-    {
+  {
     id: 'mapusaurus-roseae',
     name: 'mapusaurus roseae',
     scientificName: 'mapusaurus roseae',
@@ -717,7 +717,7 @@ export const creatures: Creature[] = [
     //2024-06-27
     lastUpdated: 1721692800000
   },
-      {
+  {
     id: 'acrocanthosaurus-atokensis',
     name: 'Acrocanthosaurus atokensis',
     scientificName: 'Acrocanthosaurus atokensis',
@@ -735,7 +735,7 @@ export const creatures: Creature[] = [
     //2024-06-28
     lastUpdated: 1721865600000
   },
-    {
+  {
     id: 'tyrannotitan-chubutensis',
     name: 'Tyrannotitan chubutensis',
     scientificName: 'Tyrannotitan chubutensis',
@@ -752,7 +752,7 @@ export const creatures: Creature[] = [
     //2024-06-29
     lastUpdated: 1722038400000
   },
-      {
+  {
     id: 'baryonyx-walkeri',
     name: 'Baryonyx walkeri',
     scientificName: 'Baryonyx walkeri',
@@ -769,8 +769,8 @@ export const creatures: Creature[] = [
     modelId: 'c1c536b1928c4dba8e94dcd8c15b0815',
     //2024-06-30
     lastUpdated: 1722211200000
-  },  
-      {
+  },
+  {
     id: 'suchomimus-tenerensis',
     name: 'Suchomimus tenerensis',
     scientificName: 'Suchomimus tenerensis',
@@ -788,7 +788,7 @@ export const creatures: Creature[] = [
     //2024-07-01
     lastUpdated: 1722384000000
   },
-      {
+  {
     id: 'irritator-challengeri',
     name: 'Irritator challengeri',
     scientificName: 'Irritator challengeri',
@@ -806,7 +806,7 @@ export const creatures: Creature[] = [
     //2024-07-02
     lastUpdated: 1722556800000
   },
-      {
+  {
     id: 'siamosaurus-suteethorni',
     name: 'Siamosaurus suteethorni',
     scientificName: 'Siamosaurus suteethorni',
@@ -823,7 +823,7 @@ export const creatures: Creature[] = [
     //2024-07-03
     lastUpdated: 1722729600000
   },
-          {
+  {
     id: 'oxalaia-quilombensis',
     name: 'Oxalaia quilombensis',
     scientificName: 'Oxalaia quilombensis',
@@ -839,7 +839,7 @@ export const creatures: Creature[] = [
     family: 'Spinosauridae',
     lastUpdated: 1739042139906
   },
-    {
+  {
     id: 'ichthyovenator-laosensis',
     name: 'Ichthyovenator laosensis',
     scientificName: 'Ichthyovenator laosensis',
@@ -857,7 +857,7 @@ export const creatures: Creature[] = [
     //2024-07-05
     lastUpdated: 1723075200000
   },
-    {
+  {
     id: 'majungasaurus-crenatissimus',
     name: 'Majungasaurus crenatissimus',
     scientificName: 'Majungasaurus crenatissimus',
@@ -875,7 +875,7 @@ export const creatures: Creature[] = [
     //2024-07-06
     lastUpdated: 1723248000000
   },
-      {
+  {
     id: 'carnotaurus-sastrei',
     name: 'Carnotaurus sastrei',
     scientificName: 'Carnotaurus sastrei',
@@ -893,7 +893,7 @@ export const creatures: Creature[] = [
     //2024-07-07
     lastUpdated: 1723420800000
   },
-          {
+  {
     id: 'therizinosaurus-cheloniformis',
     name: 'Therizinosaurus cheloniformis',
     scientificName: 'Therizinosaurus cheloniformis',
@@ -928,7 +928,7 @@ export const creatures: Creature[] = [
     //2024-07-09
     lastUpdated: 1723766400000
   },
-    {
+  {
     id: 'dimorphodon-macronyx',
     name: 'Dimorphodon macronyx',
     scientificName: 'Dimorphodon macronyx',
@@ -946,7 +946,7 @@ export const creatures: Creature[] = [
     //2024-07-10
     lastUpdated: 1723939200000
   },
-    {
+  {
     id: 'pteranodon-longiceps',
     name: 'Pteranodon longiceps',
     scientificName: 'Pteranodon longiceps',
@@ -964,7 +964,7 @@ export const creatures: Creature[] = [
     //2024-07-11
     lastUpdated: 1724112000000
   },
-        {
+  {
     id: 'ophthalmosaurus-discus',
     name: 'Ophthalmosaurus discus',
     scientificName: 'Ophthalmosaurus discus',
@@ -981,7 +981,7 @@ export const creatures: Creature[] = [
     modelId: 'a1b8a09cb1674efeb51a16cb1f47670d',
     lastUpdated: 1739129036048
   },
-      {
+  {
     id: 'vasuki-indicus',
     name: 'Vasuki indicus',
     scientificName: 'Vasuki indicus',
@@ -998,7 +998,7 @@ export const creatures: Creature[] = [
     //2024-07-13
     lastUpdated: 1724457600000
   },
-    {
+  {
     id: 'titanoboa-cerrejonensis',
     name: 'Titanoboa Cerrejonensis',
     scientificName: 'Titanoboa Cerrejonensis',
@@ -1016,7 +1016,7 @@ export const creatures: Creature[] = [
     //2024-07-14
     lastUpdated: 1724630400000
   },
-        {
+  {
     id: 'ground-sloth',
     name: 'Megatherium americanum',
     scientificName: 'Megatherium americanum',
@@ -1085,7 +1085,7 @@ export const creatures: Creature[] = [
     //2024-07-18
     lastUpdated: 1725321600000
   },
-          {
+  {
     id: 'pterosphenus-schucherti',
     name: 'Pterosphenus schucherti',
     scientificName: 'Pterosphenus schucherti',
@@ -1153,7 +1153,7 @@ export const creatures: Creature[] = [
     //2024-07-22
     lastUpdated: 1726012800000
   },
-        {
+  {
     id: 'megalania',
     name: 'Megalania',
     scientificName: 'Varanus priscus',
@@ -1171,7 +1171,7 @@ export const creatures: Creature[] = [
     //2024-07-23
     lastUpdated: 1726185600000
   },
-    {
+  {
     id: 'plesiosaurus-dolichodeirus',
     name: 'Plesiosaurus dolichodeirus',
     scientificName: 'Plesiosaurus dolichodeirus',
@@ -1188,7 +1188,7 @@ export const creatures: Creature[] = [
     modelId: '87ef96b102aa4f4781ee2acc8de004d6',
     lastUpdated: 1739128607062
   },
-        {
+  {
     id: 'nigersaurus-taqueti',
     name: 'Nigersaurus taqueti',
     scientificName: 'Nigersaurus taqueti',
@@ -1206,7 +1206,7 @@ export const creatures: Creature[] = [
     //2024-07-25
     lastUpdated: 1726531200000
   },
-      {
+  {
     id: 'dilophosaurus-wetherilli',
     name: 'Dilophosaurus wetherilli',
     scientificName: 'Dilophosaurus wetherilli',
@@ -1260,7 +1260,7 @@ export const creatures: Creature[] = [
     //2024-07-28
     lastUpdated: 1727049600000
   },
-    {
+  {
     id: 'sauroposeidon-proteles',
     name: 'Sauroposeidon proteles',
     scientificName: 'Sauroposeidon proteles',
@@ -1330,7 +1330,7 @@ export const creatures: Creature[] = [
     //2025-01-27
     lastUpdated: 1727740800000
   },
-    {
+  {
     id: 'pachycephalosaurus-grangeri',
     name: 'Pachycephalosaurus grangeri',
     scientificName: 'Pachycephalosaurus grangeri',
@@ -1364,7 +1364,7 @@ export const creatures: Creature[] = [
     //2025-01-29
     lastUpdated: 1728086400000
   },
-    {
+  {
     id: 'micropachycephalosaurus-hongtuyanensis',
     name: 'Micropachycephalosaurus hongtuyanensis',
     scientificName: 'Micropachycephalosaurus hongtuyanensis',
@@ -1374,7 +1374,7 @@ export const creatures: Creature[] = [
     weight: '2.3 – 4.5 kg',
     diet: 'Herbivore',
     image: '/images/creatures/Micropachycephalosaurus.webp',
-    description: 'ChatGPT\nMicropachycephalosaurus, a relatively small and somewhat unusual dinosaur, was a herbivorous species that lived during the Late Cretaceous period, around 75 million years ago, in what is now modern-day China. With a name that translates to “small thick-headed lizard,” this dinosaur was part of the Pachycephalosauridae family, known for its distinctive, thick skulls, though in Micropachycephalosaurus, the skull wasn’t as heavily domed as those of its larger relatives. Growing to only about 1 meters (3 feet) in length, it was much smaller than other pachycephalosaurs, which were often much larger and more robust. Its relatively lightweight frame, with a small, bipedal body, suggests it was a quick and agile dinosaur, likely using its speed to evade predators rather than relying on its skull for combat, unlike the more aggressive, headbutting pachycephalosaurs. The thickened portion of its skull, though not as pronounced, was still likely used in defense or in intraspecific competition, where individuals might have used their skulls to push or fight over territory, mates, or social status. The environment it inhabited would have been a mix of forested and open areas, with a diet likely consisting of low-lying plants, ferns, and possibly small shrubs. Micropachycephalosaurus’ relatively small size and unusual features make it a fascinating example of the diversity within the Pachycephalosaur group, showing how adaptations can vary even within closely related species. It is also the dinosaur with the longest name with 23 letters.',
+    description: 'Micropachycephalosaurus, a relatively small and somewhat unusual dinosaur, was a herbivorous species that lived during the Late Cretaceous period, around 75 million years ago, in what is now modern-day China. With a name that translates to “small thick-headed lizard,” this dinosaur was part of the Pachycephalosauridae family, known for its distinctive, thick skulls, though in Micropachycephalosaurus, the skull wasn’t as heavily domed as those of its larger relatives. Growing to only about 1 meters (3 feet) in length, it was much smaller than other pachycephalosaurs, which were often much larger and more robust. Its relatively lightweight frame, with a small, bipedal body, suggests it was a quick and agile dinosaur, likely using its speed to evade predators rather than relying on its skull for combat, unlike the more aggressive, headbutting pachycephalosaurs. The thickened portion of its skull, though not as pronounced, was still likely used in defense or in intraspecific competition, where individuals might have used their skulls to push or fight over territory, mates, or social status. The environment it inhabited would have been a mix of forested and open areas, with a diet likely consisting of low-lying plants, ferns, and possibly small shrubs. Micropachycephalosaurus’ relatively small size and unusual features make it a fascinating example of the diversity within the Pachycephalosaur group, showing how adaptations can vary even within closely related species. It is also the dinosaur with the longest name with 23 letters.',
     category: 'Dinosaurs',
     subcategory: 'Ceratopsians',
     family: 'Marginocephalia',
@@ -1398,7 +1398,7 @@ export const creatures: Creature[] = [
     //2025-01-31
     lastUpdated: 1728432000000
   },
-    {
+  {
     id: 'tarbosaurus-bataar',
     name: 'Tarbosaurus bataar',
     scientificName: 'Tarbosaurus bataar',
@@ -1416,7 +1416,7 @@ export const creatures: Creature[] = [
     //2025-02-01
     lastUpdated: 1728604800000
   },
-      {
+  {
     id: 'aegirocassis-benmoulai',
     name: 'Aegirocassis benmoulai',
     scientificName: 'Aegirocassis benmoulai',
@@ -1433,7 +1433,7 @@ export const creatures: Creature[] = [
     modelId: '1fbcf81543134fb9b39457546b77a573',
     lastUpdated: 1738615564457
   },
-        {
+  {
     id: 'elasmosaurus-platyurus',
     name: 'Elasmosaurus platyurus',
     scientificName: 'Elasmosaurus platyurus',
@@ -1450,7 +1450,7 @@ export const creatures: Creature[] = [
     modelId: '54416e11ea5e495fb2d7cf3d8d856b99',
     lastUpdated: 1739128836107
   },
-    {
+  {
     id: 'styxosaurus-snowii',
     name: 'Styxosaurus snowii',
     scientificName: 'Styxosaurus snowii',
@@ -1466,7 +1466,7 @@ export const creatures: Creature[] = [
     family: 'Elasmosauridae',
     lastUpdated: 1739128851236
   },
-      {
+  {
     id: 'irish-elk',
     name: 'Irish elk',
     scientificName: 'Megaloceros giganteus',
@@ -1483,7 +1483,7 @@ export const creatures: Creature[] = [
     modelId: '33b64def1e7d40048224f589d49d68ec',
     lastUpdated: 1738616290061
   },
-          {
+  {
     id: 'yi-qi',
     name: 'Yi qi',
     scientificName: 'Yi qi',
@@ -1499,7 +1499,7 @@ export const creatures: Creature[] = [
     family: 'Scansoriopterygidae',
     lastUpdated: 1738947541353
   },
-    {
+  {
     id: 'parasaurolophus-walkeri',
     name: 'Parasaurolophus walkeri',
     scientificName: 'Parasaurolophus walkeri',
@@ -1630,7 +1630,7 @@ export const creatures: Creature[] = [
     family: 'Hadrosauridae',
     lastUpdated: 1739558068418
   },
-    {
+  {
     id: 'dimetrodon-limbatus',
     name: 'Dimetrodon limbatus',
     scientificName: 'Dimetrodon limbatus',
@@ -1654,7 +1654,7 @@ export const searchCreatures = (searchQuery: string): SearchResult[] => {
   }
 
   const query = searchQuery.toLowerCase().trim();
-  
+
   return creatures.map(creature => {
     const searchableText = [
       creature.name,
@@ -1668,7 +1668,7 @@ export const searchCreatures = (searchQuery: string): SearchResult[] => {
     ].join(' ').toLowerCase();
 
     const isMatch = searchableText.includes(query);
-    
+
     if (!isMatch) {
       return null;
     }
