@@ -1,5 +1,6 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
+import Pagination from '../../../components/Pagination.astro';
 import { categories } from '../../../data/categories';
 import { creatures } from '../../../data/creatures';
 
@@ -23,20 +24,6 @@ const pageSize = 18;
 const totalCreatures = allCategoryCreatures.length;
 const totalPages = Math.ceil(totalCreatures / pageSize);
 const categoryCreatures = allCategoryCreatures.slice((page - 1) * pageSize, page * pageSize);
-
-function createPagination(total: number, pageSize: number, currentPage: number) {
-  const totalPages = Math.ceil(total / pageSize);
-  const pages = [];
-  for (let i = 1; i <= totalPages; i++) {
-    pages.push({
-      number: i,
-      isCurrent: i === currentPage,
-    });
-  }
-  return pages;
-}
-
-const pagination = createPagination(totalCreatures, pageSize, page);
 
 const categoryImage = `/images/categories/${categoryName.toLowerCase().replace(/\s+/g, '-')}.jpg`;
 const categoryDescription = `Explore ${categoryName} from prehistoric times.`;
@@ -73,29 +60,7 @@ const categoryDescription = `Explore ${categoryName} from prehistoric times.`;
       ))}
     </div>
 
-    {pagination.length > 1 && (
-      <div class="pagination">
-        <a
-          href={`?page=${Math.max(1, page - 1)}`}
-          class={`nav-link prev ${page === 1 ? 'disabled' : ''}`}
-          aria-label="Previous page"
-        >
-          <span class="arrow">←</span><span class="text">Prev</span>
-        </a>
-        {pagination.map(pageItem =>
-          pageItem.isCurrent
-            ? <span class="current" aria-current="page">{pageItem.number}</span>
-            : <a href={`?page=${pageItem.number}`} aria-label={`Page ${pageItem.number}`}>{pageItem.number}</a>
-        )}
-        <a
-          href={`?page=${Math.min(totalPages, page + 1)}`}
-          class={`nav-link next ${page === totalPages ? 'disabled' : ''}`}
-          aria-label="Next page"
-        >
-          <span class="text">Next</span><span class="arrow">→</span>
-        </a>
-      </div>
-    )}
+    <Pagination currentPage={page} totalPages={totalPages} />
   </div>
 </Layout>
 
@@ -215,152 +180,6 @@ const categoryDescription = `Explore ${categoryName} from prehistoric times.`;
 
     .subcategories {
       padding: 1rem;
-    }
-  }
-
-  /* Pagination */
-  .pagination {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 2rem auto 3rem;
-    gap: 0.75rem;
-    flex-wrap: wrap;
-    max-width: 1200px;
-    padding: 0 2rem;
-  }
-
-  .pagination a,
-  .pagination span {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 2.75rem;
-    height: 2.75rem;
-    padding: 0 0.875rem;
-    border: none;
-    background: white;
-    color: var(--primary-color);
-    font-family: 'Nunito', sans-serif;
-    font-weight: 800;
-    font-size: 1rem;
-    border-radius: 12px;
-    text-decoration: none;
-    box-shadow: 0 2px 8px rgba(44, 62, 80, 0.15);
-    transition: all 0.2s ease;
-  }
-
-  .pagination .arrow,
-  .pagination .text {
-    display: inline;
-    min-width: auto;
-    height: auto;
-    padding: 0;
-    background: transparent;
-    box-shadow: none;
-    border-radius: 0;
-  }
-
-  .pagination a:hover:not(.disabled) {
-    background: var(--accent-color);
-    color: white;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
-  }
-
-  .pagination .current {
-    background: var(--primary-color);
-    color: white;
-    box-shadow: 0 2px 8px rgba(44, 62, 80, 0.25);
-    cursor: default;
-  }
-
-  .pagination .disabled {
-    background: #f0f0f0;
-    color: #bbb;
-    cursor: not-allowed;
-    box-shadow: none;
-  }
-
-  .pagination .disabled:hover {
-    transform: none;
-    background: #f0f0f0;
-    color: #bbb;
-  }
-
-  .pagination .prev,
-  .pagination .next {
-    padding: 0 1rem;
-    background: var(--primary-color);
-    color: white;
-    box-shadow: 0 2px 8px rgba(44, 62, 80, 0.2);
-  }
-
-  .pagination .prev:hover:not(.disabled),
-  .pagination .next:hover:not(.disabled) {
-    background: var(--accent-color);
-    box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
-  }
-
-  .pagination .prev .arrow {
-    margin-right: 0.25rem;
-  }
-
-  .pagination .next .arrow {
-    margin-left: 0.25rem;
-  }
-
-  @media (max-width: 768px) {
-    .pagination {
-      gap: 0.25rem;
-      padding: 0 1rem;
-    }
-
-    .pagination a,
-    .pagination span {
-      min-width: 2rem;
-      height: 2rem;
-      font-size: 0.8rem;
-      padding: 0 0.5rem;
-      border-radius: 8px;
-    }
-
-    .pagination .prev,
-    .pagination .next {
-      padding: 0 0.5rem;
-      font-size: 0.75rem;
-    }
-  }
-
-  @media (max-width: 420px) {
-    .pagination {
-      gap: 0.2rem;
-      padding: 0 0.5rem;
-    }
-
-    .pagination a,
-    .pagination span {
-      min-width: 1.6rem;
-      height: 1.6rem;
-      font-size: 0.7rem;
-      padding: 0 0.3rem;
-      border-radius: 6px;
-    }
-
-    .pagination .prev,
-    .pagination .next {
-      min-width: 1.6rem;
-      padding: 0 0.3rem;
-      font-size: 0.8rem;
-    }
-
-    .pagination .text {
-      display: none !important;
-    }
-
-    .pagination .prev .arrow,
-    .pagination .next .arrow {
-      margin: 0;
     }
   }
 </style>
