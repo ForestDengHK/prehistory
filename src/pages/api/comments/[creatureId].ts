@@ -1,6 +1,5 @@
 import type { APIRoute } from 'astro';
 import { getRedis } from '../../../lib/redis';
-import { getCommentRateLimiter } from '../../../lib/ratelimit';
 
 interface Comment {
     id: string;
@@ -90,7 +89,10 @@ export const GET: APIRoute = async ({ params }) => {
     const comments = await readComments(creatureId);
     return new Response(JSON.stringify(comments), {
         status: 200,
-        headers: { 'Content-Type': 'application/json' }
+        headers: {
+            'Content-Type': 'application/json',
+            'Cache-Control': 'public, max-age=60'
+        }
     });
 };
 
@@ -101,26 +103,6 @@ export const POST: APIRoute = async ({ request, params }) => {
             status: 400,
             headers: { 'Content-Type': 'application/json' }
         });
-    }
-
-    // Check rate limit
-    const clientIP = request.headers.get('x-forwarded-for') || 'unknown';
-    try {
-        const rateLimiter = getCommentRateLimiter();
-        const { success, remaining } = await rateLimiter.limit(clientIP);
-
-        if (!success) {
-            return new Response(JSON.stringify({ error: 'Too many comments. Please try again later.' }), {
-                status: 429,
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-RateLimit-Remaining': remaining.toString()
-                }
-            });
-        }
-    } catch (error) {
-        console.error('Rate limit check failed:', error);
-        // Continue without rate limiting if it fails
     }
 
     try {
