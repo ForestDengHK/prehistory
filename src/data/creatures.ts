@@ -1694,6 +1694,306 @@ export const creatures: Creature[] = [
     subcategory: 'Marine Arthropods',
     family: 'Pterygotidae',
     lastUpdated: 1770051800000
+  },
+  {
+    id: 'hallucigenia',
+    name: 'Hallucigenia',
+    scientificName: 'Hallucigenia sparsa',
+    period: 'Cambrian',
+    location: 'Canada (Burgess Shale), China',
+    length: '0.5-5.5 cm',
+    weight: 'Less than 1 gram',
+    diet: 'Detritivore/Filter feeder',
+    image: '/images/hallucigenia.webp',
+    description: `# Hallucigenia sparsa
+
+## Overview
+**Hallucigenia** is one of the most **bizarre creatures** ever discovered! This tiny Cambrian animal was so strange that scientists couldn't figure out which end was up—or even which side was which! Living approximately **508 million years ago**, Hallucigenia looked like something from a nightmare or a dream, which is exactly how it got its name.
+
+---
+
+## Taxonomy & Classification
+- **Phylum:** Onychophora (velvet worm relatives)
+- **Family:** Hallucigeniidae
+- **Diet:** Probably detritivore or filter feeder
+- **Locomotion:** Walking on legs
+
+Hallucigenia is related to modern **velvet worms** (Onychophora), which still exist today!
+
+---
+
+## Physical Characteristics
+
+### Tiny Size
+- **Length:** 0.5-5.5 cm (up to 2 inches)
+- **Weight:** Less than 1 gram
+- **Comparison:** About the size of your fingernail!
+
+### Bizarre Anatomy
+- **Tubular body** (worm-like)
+- **7 pairs of rigid spines** on the back
+- **7-8 pairs of soft legs** underneath
+- **Elongated head** with simple eyes
+- **Claws** on each leg
+
+---
+
+## The Mix-Up
+
+### Upside Down for Decades!
+Hallucigenia has a confusing history:
+- **1977:** First reconstructed **upside down**!
+- Scientists thought the spines were **legs**
+- And the legs were **tentacles** on top
+- **1991:** Turned right-side up
+- **2015:** Head and tail finally identified correctly
+
+It took **almost 40 years** to figure out this animal!
+
+---
+
+## Why "Hallucigenia"?
+
+### A Dreamlike Name
+The name comes from "**hallucination**" because:
+- The animal looked **unreal**
+- Its body plan seemed **impossible**
+- Simon Conway Morris named it in 1977
+- He thought it was "**bizarre and dreamlike**"
+
+---
+
+## Spines vs. Legs
+
+### Defense and Movement
+The body parts serve different purposes:
+
+**The Spines (Top):**
+- Made of **tough material** (chitin)
+- Used for **defense**
+- Protected against predators
+- Could not move independently
+
+**The Legs (Bottom):**
+- Soft and flexible
+- Ended in **small claws**
+- Used for **walking**
+- Similar to velvet worm legs
+
+---
+
+## Finding the Head
+
+### A 2015 Discovery
+The head was finally identified when scientists:
+- Used **electron microscopes**
+- Found **two simple eyes**
+- Discovered a **smiling mouth** with teeth
+- Located a **throat** with teeth too!
+- Realized which end was front
+
+---
+
+## Diet & Lifestyle
+
+### Bottom Dweller
+Hallucigenia probably:
+- Lived on the **seafloor**
+- Ate **organic debris** (detritus)
+- May have been a **filter feeder**
+- Walked slowly on its legs
+- Used spines for **protection**
+
+---
+
+## Living Relatives
+
+### Velvet Worms Today
+Hallucigenia is related to **velvet worms**:
+- Also called **Onychophora**
+- Still exist in tropical forests
+- Have similar leg structure
+- Hallucigenia is like a **spiny ancestor**
+
+---
+
+## Burgess Shale Star
+
+### Famous Fossil Site
+Hallucigenia is one of the **stars** of the Burgess Shale:
+- Hundreds of specimens found
+- Exceptional preservation
+- Shows soft body details
+- Key to understanding Cambrian life
+
+---
+
+## Cool Facts
+
+- Scientists reconstructed Hallucigenia **upside down** for almost 40 years!
+- The name means "**wandering of the mind**" (hallucination)
+- It had **teeth in its throat** as well as its mouth
+- Related to modern **velvet worms** still alive today
+- Only about **5 cm long**—smaller than your pinky finger
+- Had **7 pairs of spines** for defense
+- The head wasn't correctly identified until **2015**
+- One of the most **misunderstood fossils** in history
+
+---
+
+*Hallucigenia reminds us that life on Earth can take forms we never imagined—and that even scientists can be fooled by creatures from half a billion years ago!*`,
+    category: 'Marine Creatures',
+    subcategory: 'Invertebrates',
+    family: 'Hallucigeniidae',
+    modelId: 'fad8306e863a4960b48e49c16c3806cf',
+    lastUpdated: 1770052636586
+  },
+  {
+    id: 'opabinia',
+    name: 'Opabinia',
+    scientificName: 'Opabinia regalis',
+    period: 'Cambrian',
+    location: 'Canada (Burgess Shale)',
+    length: '4-7 cm',
+    weight: 'A few grams',
+    diet: 'Carnivore/Scavenger',
+    image: '/images/opabinia.webp',
+    description: `# Opabinia regalis
+
+## Overview
+**Opabinia** is one of the strangest animals ever discovered—so strange that when it was first presented to scientists in 1972, the audience **burst out laughing** because they thought it was a joke! With **five eyes** and a **trunk-like proboscis**, this bizarre Cambrian creature looked like something from science fiction. It lived approximately **505 million years ago** in the ancient seas.
+
+---
+
+## Taxonomy & Classification
+- **Phylum:** Arthropoda (stem group)
+- **Class:** Dinocaridida
+- **Family:** Opabiniidae
+- **Diet:** Carnivore/Scavenger
+- **Locomotion:** Swimming
+
+Opabinia is related to Anomalocaris and other early arthropod relatives.
+
+---
+
+## Physical Characteristics
+
+### Modest Size
+- **Length:** 4-7 cm (about 2-3 inches)
+- **Weight:** A few grams
+- **Comparison:** About the size of your thumb
+
+### Unique Features
+- **FIVE eyes** on stalks
+- **Long proboscis** (trunk) with a claw
+- **Segmented body** with lateral lobes
+- **Fan-shaped tail**
+- **No legs**—just swimming lobes
+
+---
+
+## Five Eyes!
+
+### Unprecedented Vision
+Opabinia's five eyes are unique:
+- **Two pairs** on the sides of the head
+- **One eye** in the middle
+- All on short **stalks**
+- Probably provided **wide field of view**
+- No other known animal has exactly this arrangement!
+
+---
+
+## The Proboscis
+
+### A Built-In Tool
+The most striking feature is the **proboscis**:
+- **Flexible trunk-like appendage**
+- Extended from **under the head**
+- Ended in a **grasping claw**
+- Could reach **backward** to the mouth
+- Used to grab food from the seafloor
+
+---
+
+## How It Fed
+
+### Vacuum Cleaner of the Cambrian
+Opabinia likely fed by:
+- Probing the **seafloor** with its proboscis
+- Grabbing **small prey** or food particles
+- Passing food **back to its mouth**
+- The claw could grip **soft-bodied animals**
+- May have been a **scavenger** too
+
+---
+
+## Swimming Style
+
+### Graceful Movement
+Unlike walking animals, Opabinia:
+- Had **lateral lobes** along its body
+- Used lobes for **swimming**
+- Similar to modern cuttlefish movement
+- The **fan tail** helped with steering
+- Probably swam **just above the seafloor**
+
+---
+
+## The 1972 Presentation
+
+### A Memorable Moment
+When Harry Whittington presented Opabinia:
+- Scientists at the meeting **laughed out loud**
+- They thought the reconstruction was **a joke**
+- The animal seemed **too bizarre** to be real
+- It became a famous moment in paleontology
+- Proved that Cambrian life was **truly weird**
+
+---
+
+## Scientific Importance
+
+### Cambrian Explosion Evidence
+Opabinia shows us that:
+- The **Cambrian Explosion** produced incredible diversity
+- Body plans were **experimental**
+- Not all designs survived
+- Evolution tried **many combinations**
+- Life can take forms we can't imagine
+
+---
+
+## Rare Fossils
+
+### Limited Specimens
+Opabinia is known from:
+- Only about **20 specimens**
+- All from the **Burgess Shale**, Canada
+- Exceptional soft-body preservation
+- One of the rarest Burgess Shale animals
+
+---
+
+## Cool Facts
+
+- Opabinia has **FIVE EYES**—no other known animal has this exact number!
+- Scientists **laughed** when they first saw it, thinking it was a joke
+- Its **trunk-like proboscis** could grab food and pass it backward to its mouth
+- Only about **20 fossils** have ever been found
+- Lived **505 million years ago** during the Cambrian Explosion
+- Had **no legs**—it swam using body lobes
+- The proboscis ended in a **grasping claw**
+- Related to the giant predator **Anomalocaris**
+
+---
+
+*Opabinia is proof that evolution has no limits to creativity—this five-eyed wonder of the Cambrian seas reminds us that the history of life is stranger than any fiction!*`,
+    category: 'Marine Creatures',
+    subcategory: 'Invertebrates',
+    family: 'Opabiniidae',
+    modelId: '29e1224f9b254c028c3480d634dd191b',
+    lastUpdated: 1770051900000
   }];
 
 export const searchCreatures = (searchQuery: string): SearchResult[] => {
