@@ -141,15 +141,15 @@ const latestCreature = creatures
 
   .discovery-card {
     display: flex;
-    background: white;
+    background: var(--card-bg);
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px var(--shadow-color);
   }
 
   .image-section {
     flex: 1;
-    background: #f3f4f6;
+    background: var(--surface-elevated);
     min-height: 400px;
   }
 
@@ -213,7 +213,7 @@ const latestCreature = creatures
   .read-more {
     display: inline-flex;
     align-items: center;
-    background: var(--primary-color);
+    background: var(--accent-color);
     color: white;
     padding: 0.5rem 1rem;
     border-radius: 6px;
@@ -222,11 +222,11 @@ const latestCreature = creatures
     font-weight: 700;
     width: fit-content;
     margin-top: auto;
-    transition: background-color 0.2s ease;
+    transition: opacity 0.2s ease;
   }
 
   .read-more:hover {
-    background: var(--accent-color);
+    opacity: 0.85;
   }
 
   .read-more:focus-visible {
