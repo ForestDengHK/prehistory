@@ -3482,7 +3482,7 @@ Terror birds' closest living relatives are:
     id: 'dickinsonia',
     name: 'Dickinsonia',
     scientificName: 'Dickinsonia costata',
-    period: 'Archean',
+    period: 'Proterozoic',
     location: 'Australia, Russia, Ukraine',
     length: '1.4 meters',
     weight: 'Very light (flat body)',
