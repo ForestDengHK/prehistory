@@ -1994,6 +1994,760 @@ Opabinia is known from:
     family: 'Opabiniidae',
     modelId: '29e1224f9b254c028c3480d634dd191b',
     lastUpdated: 1770051900000
+  },
+  {
+    id: 'meganeura',
+    name: 'Meganeura',
+    scientificName: 'Meganeura monyi',
+    period: 'Carboniferous',
+    location: 'Europe (France, England)',
+    length: '30-40 cm body, 70 cm wingspan',
+    weight: '150-450 grams',
+    diet: 'Carnivore',
+    image: '/images/meganeura.webp',
+    description: `# Meganeura monyi
+
+## Overview
+**Meganeura** was a **giant dragonfly-like insect** that ruled the skies during the **Carboniferous period**, approximately **300 million years ago**! With a wingspan of up to **70 cm (28 inches)**—about the size of a modern hawk—it was one of the **largest flying insects ever** to exist. Imagine a dragonfly the size of a bird swooping through ancient swamp forests!
+
+---
+
+## Taxonomy & Classification
+- **Phylum:** Arthropoda
+- **Class:** Insecta
+- **Order:** Meganisoptera (griffinflies)
+- **Family:** Meganeuridae
+- **Diet:** Carnivorous
+
+Despite looking like a dragonfly, Meganeura belonged to a related but extinct group called **griffinflies**.
+
+---
+
+## Physical Characteristics
+
+### Impressive Size
+- **Wingspan:** Up to 70 cm (28 inches)
+- **Body length:** 30-40 cm (12-16 inches)
+- **Weight:** Estimated 150-450 grams
+- **Comparison:** Wingspan similar to a crow!
+
+### Anatomy
+- **Four large wings** with intricate veining
+- **Huge compound eyes** for hunting
+- **Strong mandibles** to catch prey
+- **Long segmented abdomen**
+- **Six spiny legs** for grabbing prey mid-flight
+
+---
+
+## Why So Big?
+
+### The Oxygen Theory
+Meganeura grew so large because of **high oxygen levels**:
+- Carboniferous atmosphere had **35% oxygen** (today: 21%)
+- Insects breathe through tubes called **tracheae**
+- More oxygen = larger bodies possible
+- This is the **leading explanation** for giant insects
+
+### The Giant Insect Era
+The Carboniferous was the **age of giant insects**:
+- Giant dragonflies (Meganeura)
+- Giant millipedes (Arthropleura)
+- Giant cockroaches
+- Giant scorpions
+
+---
+
+## Hunting & Diet
+
+### Aerial Predator
+Meganeura was a **fierce hunter**:
+- Caught prey **in mid-flight**
+- Ate other **insects**
+- May have eaten small **amphibians**
+- Used excellent **vision** to spot prey
+- Could fly at high speeds
+
+### Hunting Style
+- **Ambush predator** from perches
+- **Pursuit hunter** in open air
+- Grabbed prey with **spiny legs**
+- Crushed victims with **strong mandibles**
+
+---
+
+## Habitat
+
+### Carboniferous Swamps
+Meganeura lived in:
+- **Coal swamp forests**
+- Areas with giant **ferns** and **horsetails**
+- Warm, humid **tropical climate**
+- Near water for **breeding**
+
+These ancient forests eventually became **coal deposits**!
+
+---
+
+## Discovery
+
+### First Fossils
+- Discovered in **1880** in France
+- Named by Charles Brongniart in **1885**
+- Fossils found in **Commentry, France**
+- Also found in **England**
+- Beautifully preserved wing impressions
+
+---
+
+## Not Actually a Dragonfly!
+
+### Griffinflies vs Dragonflies
+Meganeura was a **griffinfly**, not a true dragonfly:
+- Griffinflies are an **extinct order**
+- Related to but **different from** modern dragonflies
+- Had different **wing vein patterns**
+- Lived **before** true dragonflies evolved
+
+---
+
+## Extinction
+
+### End of the Giants
+Giant insects disappeared because:
+- **Oxygen levels dropped** after the Carboniferous
+- **Birds evolved** and competed for food
+- **Climate changed** from tropical to drier
+- Could no longer support such **large bodies**
+
+---
+
+## Cool Facts
+
+- Meganeura had a **70 cm wingspan**—as wide as a small child's arm span!
+- It lived when oxygen was **35%** of the atmosphere (vs 21% today)
+- Despite its size, it was a **skilled flier**
+- Not actually a dragonfly—it was a **griffinfly**
+- The Carboniferous period is named after **coal** (carbon) from these forests
+- Meganeura fossils show **incredible wing detail**
+- It was the **apex aerial predator** of its time
+- Could have caught and eaten animals the size of **frogs**
+
+---
+
+*Meganeura shows us a time when giant insects ruled the skies—a world so different from ours that dragonfly-like creatures grew to the size of hawks!*`,
+    category: 'Flying Creatures',
+    subcategory: 'Flying Insects',
+    family: 'Meganeuridae',
+    modelId: '5b5fc22de1434c018b71cac6bc7992a3',
+    lastUpdated: 1770053239733
+  },
+  {
+    id: 'arthropleura',
+    name: 'Arthropleura',
+    scientificName: 'Arthropleura armata',
+    period: 'Carboniferous',
+    location: 'Europe, North America',
+    length: '2-2.6 meters',
+    weight: '50 kg',
+    diet: 'Herbivore/Detritivore',
+    image: '/images/arthropleura.webp',
+    description: `# Arthropleura armata
+
+## Overview
+**Arthropleura** was the **largest land invertebrate ever** to exist! This giant millipede-like creature lived during the **Carboniferous period**, approximately **300 million years ago**, and could grow up to **2.6 meters (8.5 feet)** long—longer than most humans are tall! Despite its terrifying size, this gentle giant was probably a **herbivore** that munched on fallen leaves.
+
+---
+
+## Taxonomy & Classification
+- **Phylum:** Arthropoda
+- **Class:** Diplopoda (millipedes) or Arthropleuridea
+- **Order:** Arthropleurida
+- **Family:** Arthropleuridae
+- **Diet:** Herbivore/Detritivore
+
+Scientists debate whether Arthropleura was a true millipede or a related group.
+
+---
+
+## Physical Characteristics
+
+### Record-Breaking Size
+- **Length:** Up to 2.6 meters (8.5 feet)
+- **Width:** Up to 50 cm (20 inches)
+- **Weight:** Estimated 50 kg (110 lbs)
+- **Status:** **LARGEST LAND INVERTEBRATE EVER**
+
+### Body Structure
+- **About 30 armored segments**
+- **Two pairs of legs per segment** (like millipedes)
+- **Heavily armored plates** on top
+- **Small head** with antennae
+- Built like a **living tank**
+
+---
+
+## Largest Land Invertebrate Ever!
+
+### Size Comparison
+To understand how big Arthropleura was:
+- **Longer than a king-size bed**
+- **Wider than a dinner plate**
+- **Heavier than a large dog**
+- Could take up an **entire sidewalk**
+
+No land invertebrate before or since has matched this size!
+
+---
+
+## Why So Big?
+
+### High Oxygen Levels
+Like other Carboniferous giants, Arthropleura grew huge because:
+- **35% oxygen** in the atmosphere
+- Arthropods breathe through **tracheae** (tubes)
+- More oxygen = **larger bodies possible**
+- Also had **no large predators** to worry about
+
+---
+
+## Diet & Lifestyle
+
+### Gentle Giant
+Despite its scary appearance:
+- Probably ate **dead plant matter** (detritivore)
+- May have eaten **fallen leaves** and **rotting wood**
+- Fossils found with **plant spores** in gut area
+- **Not a predator**—too slow to catch prey
+
+### Forest Floor Dweller
+- Lived in **coal swamp forests**
+- Crawled through **leaf litter**
+- May have been **nocturnal**
+- Left **trackways** we can still find today!
+
+---
+
+## Fossil Trackways
+
+### Ancient Footprints
+We know about Arthropleura from:
+- **Body fossils** (rare, usually fragments)
+- **Trackways** (fossilized footprints)
+- Tracks show it could **climb over obstacles**
+- Found in **Scotland, England, North America**
+
+In 2021, a **giant trackway** was found in England!
+
+---
+
+## Discovery
+
+### Piecing Together a Giant
+- First described in **1854**
+- Only known from **fragments** for decades
+- Complete picture took **150+ years** to assemble
+- Most fossils are **armor plates** and **trackways**
+- No complete specimen exists!
+
+---
+
+## Habitat
+
+### Carboniferous Forests
+Arthropleura lived in:
+- **Warm, humid swamp forests**
+- Forests of giant **ferns, horsetails, clubmosses**
+- Near the **equator** (which was in different positions then)
+- Areas that became **coal deposits**
+
+---
+
+## Extinction
+
+### End of the Giants
+Arthropleura disappeared because:
+- **Oxygen levels dropped**
+- **Climate became drier**
+- Forests **shrank** and changed
+- **Reptiles evolved** and may have competed
+- By the **Permian**, they were gone
+
+---
+
+## Cool Facts
+
+- Arthropleura is the **LARGEST LAND INVERTEBRATE EVER**—bigger than any bug, millipede, or crab alive today!
+- It was up to **2.6 meters long**—taller than most NBA players!
+- Despite its size, it was probably a **peaceful herbivore**
+- We've found its **fossilized trackways** showing how it walked
+- It had about **30 body segments** with armored plates
+- Lived when oxygen levels were **35%** (much higher than today's 21%)
+- A **2021 discovery** in England found one of the largest trackways ever
+- No complete skeleton has ever been found—we piece it together from fragments!
+
+---
+
+*Arthropleura reminds us that the rules of life were different 300 million years ago—when a millipede could grow longer than a car and wander through forests that would become our coal!*`,
+    category: 'Prehistoric Reptiles',
+    subcategory: 'Other Reptiles',
+    family: 'Arthropleuridae',
+    lastUpdated: 1770053200000
+  },
+  {
+    id: 'cameroceras',
+    name: 'Cameroceras',
+    scientificName: 'Cameroceras trentonense',
+    period: 'Ordovician',
+    location: 'North America, Europe',
+    length: '6-9 meters',
+    weight: '200-500 kg',
+    diet: 'Carnivore',
+    image: '/images/cameroceras.webp',
+    description: `# Cameroceras trentonense
+
+## Overview
+**Cameroceras** was one of the **largest animals of the Ordovician period** and possibly the **largest cephalopod ever**! Living approximately **470-440 million years ago**, this giant nautiloid had a straight, cone-shaped shell that may have reached **6 to 9 meters (20-30 feet)** in length. It was the "whale" of the Ordovician seas—a massive predator in a world before fish had jaws!
+
+---
+
+## Taxonomy & Classification
+- **Phylum:** Mollusca
+- **Class:** Cephalopoda
+- **Order:** Endocerida
+- **Family:** Endoceratidae
+- **Diet:** Carnivorous
+
+Cameroceras was a **nautiloid**, related to the modern nautilus but with a straight shell instead of a coiled one.
+
+---
+
+## Physical Characteristics
+
+### Massive Size
+- **Shell length:** Up to 6-9 meters (20-30 feet)
+- **Shell width:** Up to 30 cm (1 foot) at the opening
+- **Total weight:** Estimated 200-500 kg
+- **Status:** One of the **largest animals** of its time!
+
+### The Giant Shell
+- **Straight conical shape** (orthocone)
+- **Chambered** interior for buoyancy control
+- **Siphuncle** (tube) running through chambers
+- Made of **calcium carbonate** (like modern shells)
+
+### The Animal Inside
+- Lived in the **largest chamber** at the open end
+- Had **large eyes** for hunting
+- Multiple **tentacles** for catching prey
+- Could jet-propel by **squirting water**
+
+---
+
+## Apex Predator of the Ordovician
+
+### Ruler of the Seas
+Before fish had jaws, Cameroceras was supreme:
+- **Largest predator** in Ordovician oceans
+- Hunted **trilobites** and other arthropods
+- Ate **smaller cephalopods**
+- Preyed on **early fish** (jawless)
+- Had **no natural predators** as an adult
+
+---
+
+## How It Moved
+
+### Jet Propulsion
+Cameroceras moved by:
+- **Filling chambers** with gas for buoyancy
+- **Squirting water** through a siphon for propulsion
+- Probably swam **shell-first** (backwards)
+- Could hover in the water column
+- Not a fast swimmer, but **powerful**
+
+---
+
+## Size Debate
+
+### How Big Was It Really?
+Scientists debate the maximum size:
+- **Conservative estimates:** 6 meters (20 feet)
+- **Maximum estimates:** Up to 9+ meters (30 feet)
+- Fossils are usually **fragments**
+- Complete specimens are **extremely rare**
+- Still the **largest Ordovician animal** either way!
+
+---
+
+## Habitat
+
+### Ordovician Oceans
+Cameroceras lived in:
+- **Shallow continental seas**
+- Warm **tropical waters**
+- Areas that are now **North America and Europe**
+- Near the **seafloor** hunting for prey
+
+---
+
+## Discovery
+
+### Piecing Together a Giant
+- First described in the **1800s**
+- Known mainly from **shell fragments**
+- Size estimates based on **chamber proportions**
+- Found in rocks of the **Trenton Group** (New York)
+- Also found in **Scandinavia**
+
+---
+
+## Related to Modern Nautilus
+
+### Ancient Relatives
+Cameroceras is distantly related to:
+- **Modern nautilus** (coiled shell, still alive!)
+- **Squid and octopus** (lost their shells)
+- **Cuttlefish** (internal shell)
+
+All are cephalopods—"head-footed" mollusks!
+
+---
+
+## Extinction
+
+### End of the Giants
+Giant orthocones like Cameroceras declined due to:
+- **Competition** from other predators
+- Rise of **jawed fish** in the Silurian
+- **Climate changes** at end of Ordovician
+- Mass extinction event **444 million years ago**
+
+---
+
+## Cool Facts
+
+- Cameroceras may have been up to **9 meters long**—longer than a school bus!
+- It was the **apex predator** of Ordovician seas
+- Related to the **modern nautilus** (which still exists)
+- Had a **straight shell**, not coiled like today's nautilus
+- Lived **470-440 million years ago**—before any dinosaurs!
+- Used **jet propulsion** to move through the water
+- Probably swam **backwards** with its shell pointing forward
+- No complete fossil has ever been found—we estimate size from **fragments**
+
+---
+
+*Cameroceras was the giant of the Ordovician seas—a massive cephalopod that ruled the oceans hundreds of millions of years before whales, sharks, or even bony fish existed!*`,
+    category: 'Marine Creatures',
+    subcategory: 'Invertebrates',
+    family: 'Endoceratidae',
+    modelId: 'c5ac67a75f7c4c34870702f35b71750f',
+    lastUpdated: 1770053373815
+  },
+  {
+    id: 'postosuchus',
+    name: 'Postosuchus',
+    scientificName: 'Postosuchus kirkpatricki',
+    period: 'Triassic',
+    location: 'North America (Texas, Arizona, New Mexico)',
+    length: '4-5 meters',
+    weight: '250-300 kg',
+    diet: 'Carnivore',
+    image: '/images/postosuchus.webp',
+    description: `# Postosuchus kirkpatricki
+
+## Overview
+**Postosuchus** was one of the **top predators of the Late Triassic**, approximately **228-202 million years ago**! This massive archosaur was **not a dinosaur**, but it filled the same ecological role as large theropods would later. At up to 5 meters long and weighing as much as a grizzly bear, Postosuchus was the "T. rex before T. rex"!
+
+---
+
+## Taxonomy & Classification
+- **Phylum:** Chordata
+- **Class:** Reptilia
+- **Order:** Rauisuchia
+- **Family:** Poposauridae
+- **Diet:** Carnivorous (apex predator)
+
+Postosuchus was a **rauisuchian**—a group of crocodile-line archosaurs that were the dominant predators before dinosaurs took over.
+
+---
+
+## Physical Characteristics
+
+### Impressive Size
+- **Length:** 4-5 meters (13-16 feet)
+- **Height:** About 2 meters (6.5 feet) at the hip
+- **Weight:** 250-300 kg (550-660 lbs)
+- **Comparison:** Size of a large alligator, but more upright!
+
+### Fearsome Features
+- **Massive skull** with powerful jaws
+- **Serrated teeth** like steak knives
+- **Armored back** with bony scutes (osteoderms)
+- **Strong legs** positioned under the body
+- Could possibly walk on **two legs** sometimes!
+
+---
+
+## Not a Dinosaur!
+
+### A Common Confusion
+Postosuchus looked like a dinosaur but wasn't:
+- It was a **rauisuchian** (crocodile-line archosaur)
+- Dinosaurs are **bird-line archosaurs**
+- They're related but **different branches**
+- Think of it as a "**cousin**" to dinosaurs
+
+---
+
+## Walking Style
+
+### Upright Posture
+Unlike modern crocodiles:
+- Legs positioned **under the body** (not sprawling)
+- Could walk **efficiently** for long distances
+- May have been able to **run** bipedally
+- More like a **dinosaur** in stance
+- This is called "**pillar-erect**" posture
+
+---
+
+## Apex Predator
+
+### Terror of the Triassic
+Postosuchus was at the **top of the food chain**:
+- Hunted **early dinosaurs** (which were small then!)
+- Preyed on **dicynodonts** and other herbivores
+- Could take down prey **larger than itself**
+- Had **no natural predators** as an adult
+- Ruled before dinosaurs became dominant
+
+---
+
+## Discovery
+
+### Texas Fossils
+- First discovered in **1980** in Texas
+- Named in **1985** by Sankar Chatterjee
+- Name means "**Crocodile from Post**" (Post, Texas)
+- Multiple specimens found
+- One of the **best-known** Triassic predators
+
+---
+
+## Habitat
+
+### Triassic North America
+Postosuchus lived in:
+- **Semi-arid environments**
+- Areas that are now **Texas, Arizona, New Mexico**
+- Landscapes with **seasonal rivers** and **floodplains**
+- Forests of **conifers** and **ferns**
+
+---
+
+## Competition with Dinosaurs
+
+### The Rivals
+During the Late Triassic:
+- Postosuchus was the **dominant predator**
+- Early dinosaurs like Coelophysis were **small**
+- Rauisuchians **outcompeted** early dinosaurs
+- Only after rauisuchians went extinct did dinosaurs take over!
+
+---
+
+## Extinction
+
+### End-Triassic Mass Extinction
+Postosuchus disappeared due to:
+- **Mass extinction** at the end of the Triassic
+- **201 million years ago**
+- Volcanic eruptions and **climate change**
+- This cleared the way for **dinosaur dominance**
+
+---
+
+## Cool Facts
+
+- Postosuchus was the **apex predator before dinosaurs** took that role!
+- It was **NOT a dinosaur**—it was more closely related to crocodiles
+- Could grow up to **5 meters long**—as long as a car!
+- May have been able to **run on two legs**
+- Had **armored plates** on its back for protection
+- Named after **Post, Texas** where it was discovered
+- Its extinction helped dinosaurs become the **dominant predators**
+- Featured in the BBC documentary "**Walking with Dinosaurs**"
+
+---
+
+*Postosuchus shows us that before dinosaurs ruled the Earth, other incredible predators dominated—and it took a mass extinction to clear the way for the dinosaur age!*`,
+    category: 'Prehistoric Reptiles',
+    subcategory: 'Crocodilians',
+    family: 'Poposauridae',
+    modelId: 'a32180293e5b4158b31c7f0aa09e45db',
+    lastUpdated: 1770053473033
+  },
+  {
+    id: 'tanystropheus',
+    name: 'Tanystropheus',
+    scientificName: 'Tanystropheus longobardicus',
+    period: 'Triassic',
+    location: 'Europe (Switzerland, Italy), Middle East, China',
+    length: '5-6 meters',
+    weight: '100-150 kg',
+    diet: 'Carnivore (fish, cephalopods)',
+    image: '/images/tanystropheus.webp',
+    description: `# Tanystropheus longobardicus
+
+## Overview
+**Tanystropheus** is one of the **strangest reptiles ever discovered**! Living during the **Middle Triassic**, approximately **242-235 million years ago**, this bizarre creature had a neck that was **longer than its body and tail combined**! At up to 6 meters long, with a 3-meter neck, Tanystropheus looked like something from a fever dream—but it was very real.
+
+---
+
+## Taxonomy & Classification
+- **Phylum:** Chordata
+- **Class:** Reptilia
+- **Order:** Protorosauria
+- **Family:** Tanystropheidae
+- **Diet:** Carnivorous (fish eater)
+
+Tanystropheus belongs to an extinct group of reptiles called **protorosaurs** or **tanystropheids**.
+
+---
+
+## Physical Characteristics
+
+### Extreme Proportions
+- **Total length:** 5-6 meters (16-20 feet)
+- **Neck length:** Up to 3 meters (10 feet)!
+- **Body:** Relatively small and compact
+- **Weight:** Estimated 100-150 kg
+
+### The Incredible Neck
+- **Longer than body + tail** combined!
+- Only **12-13 vertebrae** (but each very elongated)
+- Relatively **stiff** and not very flexible
+- Could move **up and down** more than side to side
+
+### Other Features
+- **Small head** with sharp teeth
+- **Four legs** of moderate size
+- **Long tail** for balance
+- Teeth suggest a **fish-eating** diet
+
+---
+
+## Why Such a Long Neck?
+
+### The Big Question
+Scientists have debated this for decades:
+- **Fishing tool?** Reach into water from shore
+- **Ambush hunting?** Hide body, strike with head
+- **Aquatic lifestyle?** Swim and hunt fish
+- **Display?** Attract mates
+- Probably a combination of **hunting and lifestyle**!
+
+---
+
+## Lifestyle Debate
+
+### Land vs. Water
+Scientists now believe Tanystropheus was **semi-aquatic**:
+- Probably lived **near water** (coastlines, lagoons)
+- May have spent time **in shallow water**
+- Used neck to **catch fish** without swimming
+- Could also hunt from **shore**
+- 2020 study confirmed it was likely **aquatic**
+
+---
+
+## Stiff, Not Flexible
+
+### A Rigid Neck
+Unlike a snake or swan:
+- The neck was relatively **stiff**
+- Long vertebrae had **limited mobility**
+- Moved more like a **fishing rod** than a hose
+- Couldn't coil or curve dramatically
+- This was a **precision hunting tool**
+
+---
+
+## Diet
+
+### Fish Hunter
+Tanystropheus ate:
+- **Fish** (main prey)
+- **Cephalopods** (squid-like animals)
+- **Small marine creatures**
+- Evidence from **tooth shape** and **gut contents**
+
+---
+
+## Discovery
+
+### Confusing Fossils
+- First fossils found in **1800s**
+- Long neck bones were thought to be **wing bones**!
+- Initially mistaken for a **pterosaur**
+- Correctly identified in **1886** by Francesco Bassani
+- Name means "**long vertebra**"
+
+---
+
+## Two Species?
+
+### Big and Small
+Recent research suggests:
+- **Large adults:** Up to 6 meters, ate fish
+- **Small forms:** May be juveniles OR separate species
+- The small ones had **different teeth** (for eating invertebrates)
+- This is still being **debated** by scientists!
+
+---
+
+## Habitat
+
+### Triassic Coastlines
+Tanystropheus lived along:
+- **Shallow tropical seas**
+- **Lagoons** and coastlines
+- Areas that are now **Switzerland** and **Italy**
+- Also found in **Middle East** and **China**
+
+---
+
+## Extinction
+
+### End of the Line
+Tanystropheus disappeared:
+- During the **Late Triassic**
+- As **marine ecosystems** changed
+- Before the **end-Triassic extinction**
+- No direct descendants survived
+
+---
+
+## Cool Facts
+
+- Tanystropheus had a neck **longer than its body and tail combined**!
+- The neck had only **12-13 vertebrae**—but each was extremely long
+- Scientists first thought its neck bones were **pterosaur wings**!
+- It was probably **semi-aquatic**, living near water
+- The neck was relatively **stiff**, not flexible like a snake
+- Adults could reach **6 meters** (20 feet) in total length
+- Its name means "**long vertebra**" in Greek
+- Recent 3D scanning revealed it was more **aquatic** than previously thought
+
+---
+
+*Tanystropheus is proof that evolution can produce truly bizarre body plans—a fishing reptile with a neck so long it defies imagination!*`,
+    category: 'Prehistoric Reptiles',
+    subcategory: 'Other Reptiles',
+    family: 'Tanystropheidae',
+    lastUpdated: 1770053450000
   }];
 
 export const searchCreatures = (searchQuery: string): SearchResult[] => {
