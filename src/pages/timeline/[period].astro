@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import Pagination from '../../components/Pagination.astro';
 import { timelinePeriods } from '../../data/timeline';
 import { creatures } from '../../data/creatures';
 import { marked } from 'marked';
@@ -18,15 +19,22 @@ if (!period) {
 }
 
 // Filter creatures for this period
-const periodCreatures = creatures.filter(creature =>
+const allPeriodCreatures = creatures.filter(creature =>
   creature.period && creature.period.toLowerCase().includes(period.name.toLowerCase())
 );
+
+// Pagination
+const ITEMS_PER_PAGE = 18;
+const page = Math.max(1, parseInt(Astro.url.searchParams.get('page') || '1'));
+const totalPages = Math.ceil(allPeriodCreatures.length / ITEMS_PER_PAGE);
+const startIndex = (page - 1) * ITEMS_PER_PAGE;
+const periodCreatures = allPeriodCreatures.slice(startIndex, startIndex + ITEMS_PER_PAGE);
 
 // Parse markdown description
 const detailedDescriptionHtml = marked(period.detailedDescription) as string;
 
 // Create SEO description
-const seoDescription = `Explore the ${period.name} Period (${period.period}). ${period.description}. Discover ${periodCreatures.length} fascinating creatures that lived during this time.`;
+const seoDescription = `Explore the ${period.name} Period (${period.period}). ${period.description}. Discover ${allPeriodCreatures.length} fascinating creatures that lived during this time.`;
 
 // Create structured data for the period
 const structuredData = {
@@ -66,7 +74,7 @@ const structuredData = {
     "prehistoric creatures",
     "ancient Earth",
     "evolution",
-    ...periodCreatures.map(c => c.name)
+    ...allPeriodCreatures.map(c => c.name)
   ].join(", ")
 };
 ---
@@ -95,7 +103,7 @@ const structuredData = {
       </section>
 
       <section class="period-creatures">
-        <h2>Creatures from this Period</h2>
+        <h2>Creatures from this Period ({allPeriodCreatures.length})</h2>
         {periodCreatures.length > 0 ? (
           <div class="creatures-grid">
             {periodCreatures.map(creature => (
@@ -113,6 +121,7 @@ const structuredData = {
         ) : (
           <p class="no-creatures">No creatures found from this period.</p>
         )}
+        <Pagination currentPage={page} totalPages={totalPages} />
       </section>
     </div>
   </div>
