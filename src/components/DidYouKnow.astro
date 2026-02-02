@@ -2,8 +2,13 @@
 import type { PrehistoricFact } from '../data/facts';
 import { getRandomFacts } from '../data/facts';
 
-// Get up to 10 random facts
-const facts = getRandomFacts(10);
+interface Props {
+  count?: number;
+}
+
+// Configuration - number of facts to display (default: 10)
+const { count = 24 } = Astro.props;
+const facts = getRandomFacts(count);
 
 // Calculate number of indicators needed based on screen size
 function getInitialCardsPerView() {
@@ -191,6 +196,12 @@ const numberOfIndicators = Math.ceil(facts.length / getInitialCardsPerView());
     font-size: 1.3rem;
     font-weight: 700;
     margin-bottom: 1rem;
+    /* Fixed height for alignment across cards */
+    min-height: 3.2rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 
   .fact-content p {
