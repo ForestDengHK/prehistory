@@ -86,11 +86,12 @@ const hasStructuredSections = headings.length >= 2;
 
     /* Description Content */
     .description-content {
-        background: white;
+        background: var(--card-bg);
         padding: 2rem;
         border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 2px 4px var(--shadow-color);
         position: relative;
+        transition: background 0.3s ease;
     }
 
     .description-content.has-read-more:not(.expanded) {
@@ -110,12 +111,13 @@ const hasStructuredSections = headings.length >= 2;
         position: sticky;
         top: 1rem;
         z-index: 10;
-        background: white;
+        background: var(--surface-elevated);
         border-radius: 12px;
         padding: 1rem 1.25rem;
         margin-bottom: 1.5rem;
-        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-        border: 1px solid rgba(0, 0, 0, 0.04);
+        box-shadow: 0 2px 12px var(--shadow-color);
+        border: 1px solid var(--card-border);
+        transition: background 0.3s ease, border-color 0.3s ease;
     }
 
     /* TOC Toggle button (for mobile) */
@@ -254,7 +256,7 @@ const hasStructuredSections = headings.length >= 2;
         color: var(--primary-color);
         margin: 2rem 0 1rem;
         padding-top: 1.5rem;
-        border-top: 1px solid rgba(0, 0, 0, 0.08);
+        border-top: 1px solid var(--card-border);
         scroll-margin-top: 2rem;
     }
 
@@ -314,7 +316,7 @@ const hasStructuredSections = headings.length >= 2;
     /* Horizontal rules */
     .markdown-content :global(hr) {
         border: none;
-        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        border-top: 1px solid var(--card-border);
         margin: 2rem 0;
     }
 
@@ -363,7 +365,7 @@ const hasStructuredSections = headings.length >= 2;
         left: 0;
         right: 0;
         height: 120px;
-        background: linear-gradient(to bottom, transparent, white 50%);
+        background: linear-gradient(to bottom, transparent, var(--card-bg) 50%);
         display: flex;
         align-items: flex-end;
         justify-content: center;
