@@ -316,6 +316,118 @@ export const prehistoricFacts: PrehistoricFact[] = [
     fact: 'Thousands of dinosaur trackways have been found on every continent! Some tracks in Colorado show dinosaurs walking together in herds, and some footprints are over a meter wide.',
     image: '/images/facts/dino-footprints.webp',
     category: 'discovery'
+  },
+  {
+    id: 'fact-45',
+    title: 'Longest Claws Ever: 1 Meter!',
+    fact: 'Therizinosaurus had the longest claws of any animal ever—up to 1 meter (3.3 feet) long! Despite looking terrifying, this dinosaur was likely a plant-eater that used its claws for grabbing vegetation.',
+    image: '/images/facts/therizinosaurus-claws.webp',
+    category: 'dinosaur'
+  },
+  {
+    id: 'fact-46',
+    title: 'Blue Whales: Bigger Than Any Dinosaur',
+    fact: 'The blue whale is the largest animal EVER—bigger than any dinosaur! At 200 tons, it weighs twice as much as the largest dinosaurs. Some dinosaurs were longer, but none were heavier.',
+    image: '/images/facts/blue-whale-size.webp',
+    category: 'evolution'
+  },
+  {
+    id: 'fact-47',
+    title: 'The Crater That Ended the Dinosaurs',
+    fact: 'The Chicxulub crater in Mexico is 200 km (124 miles) wide—created by an asteroid 10-15 km across traveling at 20 km/second. The impact released energy equal to 4.5 billion atomic bombs!',
+    image: '/images/facts/chicxulub-crater.webp',
+    category: 'environment'
+  },
+  {
+    id: 'fact-48',
+    title: 'SUE: The Most Famous T-Rex',
+    fact: 'SUE is the largest and most complete T-Rex ever found—90% of the skeleton! The Field Museum paid $8.4 million for SUE in 1997, the most ever paid for a fossil at auction.',
+    image: '/images/facts/sue-trex.webp',
+    category: 'discovery'
+  },
+  {
+    id: 'fact-49',
+    title: 'Ankylosaurus: The Living Tank',
+    fact: 'Ankylosaurus had a tail club that could swing with 7,000-8,000 Newtons of force—enough to shatter bones, even a T-Rex\'s! The club was made of fused bone and could weigh over 20 kg.',
+    image: '/images/facts/ankylosaurus-club.webp',
+    category: 'dinosaur'
+  },
+  {
+    id: 'fact-50',
+    title: 'Dinosaurs Got Cancer Too',
+    fact: 'Scientists diagnosed a 76-million-year-old Centrosaurus with bone cancer (osteosarcoma)—the same cancer that affects humans today! This shows cancer has been around for millions of years.',
+    image: '/images/facts/dinosaur-cancer.webp',
+    category: 'discovery'
+  },
+  {
+    id: 'fact-51',
+    title: 'T-Rex vs Triceratops: Real Rivals',
+    fact: 'T-Rex and Triceratops actually lived at the same time and place! The Hell Creek Formation contains both—Triceratops makes up 40% of fossils there, T-Rex 24%. They definitely encountered each other.',
+    image: '/images/facts/trex-triceratops.webp',
+    category: 'dinosaur'
+  },
+  {
+    id: 'fact-52',
+    title: 'Horseshoe Crabs: 450 Million Years Old',
+    fact: 'Horseshoe crabs have remained virtually unchanged for 450 million years—they existed before dinosaurs, survived all mass extinctions, and still live today! They\'re older than trees and sharks.',
+    image: '/images/facts/horseshoe-crab.webp',
+    category: 'evolution'
+  },
+  {
+    id: 'fact-53',
+    title: 'Dinosaurs Were Caring Parents',
+    fact: 'Fossils show dinosaurs brooding their eggs like birds! A 70-million-year-old Oviraptor was found sitting on a nest of 24 eggs, proving dinosaurs were devoted parents who cared for their young.',
+    image: '/images/facts/dinosaur-nesting.webp',
+    category: 'discovery'
+  },
+  {
+    id: 'fact-54',
+    title: 'The Fish That Came Back From Extinction',
+    fact: 'The coelacanth was thought extinct for 65 million years—until one was caught in 1938! Called a "living fossil," it has barely changed in 400 million years and was like finding a living dinosaur.',
+    image: '/images/facts/coelacanth.webp',
+    category: 'discovery'
+  },
+  {
+    id: 'fact-55',
+    title: 'Longest Dinosaur: 42 Meters!',
+    fact: 'Supersaurus may be the longest dinosaur ever at up to 42 meters (138 feet)—longer than three school buses! Its neck alone was over 15 meters, and its tail stretched 18+ meters.',
+    image: '/images/facts/supersaurus-length.webp',
+    category: 'dinosaur'
+  },
+  {
+    id: 'fact-56',
+    title: 'Dinosaurs Traveled in Herds',
+    fact: 'Trackway evidence proves many dinosaurs traveled in herds! Parallel footprints in Texas and Colorado show sauropods moving together, and the "Dinosaur Freeway" in Colorado stretches 40 miles.',
+    image: '/images/facts/dinosaur-herds.webp',
+    category: 'discovery'
+  },
+  {
+    id: 'fact-57',
+    title: 'T-Rex Teens Gained 45 lbs Per Week',
+    fact: 'During their teenage growth spurt, T-Rex gained 35-45 pounds PER WEEK until reaching adult size around age 20! Growth rings in SUE\'s bones revealed this incredible growth rate.',
+    image: '/images/facts/trex-growth.webp',
+    category: 'dinosaur'
+  },
+  {
+    id: 'fact-58',
+    title: 'Dinosaurs Lived in Polar Regions',
+    fact: 'Dinosaur fossils have been found in Alaska and Antarctica! These polar dinosaurs survived months of darkness and near-freezing temperatures, possibly having feathers for warmth.',
+    image: '/images/facts/polar-dinosaurs.webp',
+    category: 'discovery'
+  },
+  {
+    id: 'fact-59',
+    title: 'Dinosaur Herding Started 193 Million Years Ago',
+    fact: 'The earliest evidence of herd behavior dates to 193 million years ago! Over 100 Mussaurus eggs and 80 skeletons were found together in Patagonia, showing complex social behavior.',
+    image: '/images/facts/early-herding.webp',
+    category: 'discovery'
+  },
+  {
+    id: 'fact-60',
+    title: 'The "Dueling Dinosaurs" Fossil',
+    fact: 'A T-Rex and Triceratops were found fossilized together, possibly killed while fighting! The Triceratops has a T-Rex tooth embedded in its body—evidence of a real prehistoric battle.',
+    image: '/images/facts/dueling-dinosaurs.webp',
+    category: 'discovery'
   }];
 
 export function getRandomFacts(count: number = 10): PrehistoricFact[] {
