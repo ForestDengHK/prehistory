@@ -2748,6 +2748,446 @@ Tanystropheus disappeared:
     subcategory: 'Other Reptiles',
     family: 'Tanystropheidae',
     lastUpdated: 1770053450000
+  },
+  {
+    id: 'smilodon',
+    name: 'Smilodon',
+    scientificName: 'Smilodon fatalis',
+    period: 'Quaternary',
+    location: 'North and South America',
+    length: '1.5-2.5 meters',
+    weight: '160-280 kg',
+    diet: 'Carnivore',
+    image: '/images/smilodon.webp',
+    description: `# Smilodon fatalis
+
+## Overview
+**Smilodon**, the famous "**saber-toothed cat**," was one of the most iconic predators of the Ice Age! Living from about **2.5 million to 10,000 years ago**, this powerful cat had enormous canine teeth that could reach **28 cm (11 inches)** in length. Despite its nickname, Smilodon was not closely related to modern tigers—it was on its own unique branch of the cat family.
+
+---
+
+## Taxonomy & Classification
+- **Family:** Felidae
+- **Subfamily:** Machairodontinae (saber-toothed cats)
+- **Genus:** Smilodon
+- **Diet:** Hypercarnivore
+
+Smilodon means "**scalpel tooth**" in Greek, referring to its knife-like canines.
+
+---
+
+## Physical Characteristics
+
+### Size & Build
+- **Length:** 1.5-2.5 meters (5-8 feet)
+- **Height:** About 1 meter (3.3 feet) at shoulder
+- **Weight:** 160-280 kg (350-620 lbs)
+- **Build:** Stocky and muscular, especially the front legs
+
+### The Famous Saber Teeth
+- **Length:** Up to 28 cm (11 inches)!
+- **Shape:** Curved, serrated on edges
+- **Fragile:** Could break if used carelessly
+- **Grew throughout life**
+
+### Other Features
+- **Powerful forelimbs** for holding prey
+- **Shorter tail** than modern big cats
+- **Shorter legs** but very muscular
+- **Wide gape:** Could open mouth 120 degrees!
+
+---
+
+## Hunting Strategy
+
+### Ambush Predator
+Smilodon was built for **power, not speed**:
+- **Ambush hunter** rather than pursuit predator
+- Used powerful front legs to **wrestle prey down**
+- Pinned prey before delivering **precise bite**
+- Teeth were used for **slicing**, not crushing
+
+### The Killing Bite
+Scientists debate exactly how Smilodon killed:
+- **Throat bite:** Severed blood vessels
+- **Belly bite:** Caused massive bleeding
+- Had to be **precise** to avoid breaking teeth
+- Likely killed prey quickly to minimize struggle
+
+---
+
+## Prey
+
+### Ice Age Megafauna
+Smilodon hunted large animals:
+- **Bison** and **horses**
+- **Giant ground sloths**
+- **Young mammoths** and mastodons
+- **Camels** (yes, camels lived in America!)
+- **Deer** and other herbivores
+
+---
+
+## La Brea Tar Pits
+
+### Fossil Goldmine
+The most famous Smilodon fossils come from:
+- **La Brea Tar Pits** in Los Angeles
+- Over **2,000 individuals** found!
+- Predators got stuck chasing trapped prey
+- Exceptional preservation
+- California's **state fossil**
+
+---
+
+## Social Behavior
+
+### Did They Live in Groups?
+Evidence suggests Smilodon may have been **social**:
+- Healed injuries on fossils suggest **care from others**
+- Difficult to survive alone while injured
+- May have lived in **prides** like lions
+- Possibly hunted **cooperatively**
+
+---
+
+## Extinction
+
+### End of the Ice Age
+Smilodon went extinct about **10,000 years ago**:
+- **Climate change** at end of Ice Age
+- Large prey animals **disappeared**
+- Couldn't adapt to hunting **smaller, faster prey**
+- **Human hunters** competed for same prey
+- Specialized teeth were a **disadvantage** when prey changed
+
+---
+
+## Smilodon Species
+
+### Three Known Species
+| Species | Location | Size |
+|---------|----------|------|
+| S. gracilis | North America | Smallest |
+| S. fatalis | Americas | Medium |
+| S. populator | South America | Largest (400kg!) |
+
+---
+
+## Cool Facts
+
+- Smilodon's teeth were **serrated like steak knives**!
+- It could open its mouth **120 degrees** wide
+- Over **2,000 individuals** found at La Brea Tar Pits
+- Despite the name, it was **NOT a tiger**
+- Its front legs were **incredibly powerful** for wrestling prey
+- Smilodon may have been **social** like lions
+- California named it the **state fossil**
+- The teeth were actually **fragile** and could break
+- Baby Smilodon had **milk saber teeth** that fell out!
+
+---
+
+*Smilodon was the ultimate Ice Age predator—a powerful cat with deadly precision that has captured human imagination since we first discovered its fossils!*`,
+    category: 'Early Mammals',
+    subcategory: 'Ice Age Mammals',
+    family: 'Felidae',
+    modelId: '2201006a18934800b03e4f0d8a8fd614',
+    lastUpdated: 1770055500000
+  },
+  {
+    id: 'woolly-rhinoceros',
+    name: 'Woolly Rhinoceros',
+    scientificName: 'Coelodonta antiquitatis',
+    period: 'Quaternary',
+    location: 'Europe, Asia',
+    length: '3-3.8 meters',
+    weight: '1,800-2,700 kg',
+    diet: 'Herbivore',
+    image: '/images/woolly-rhino.webp',
+    description: `# Coelodonta antiquitatis
+
+## Overview
+The **Woolly Rhinoceros** was a massive, shaggy beast that roamed the frozen steppes of Ice Age Europe and Asia! Living from about **350,000 to 10,000 years ago**, this incredible animal was perfectly adapted to the harsh glacial climate with its thick fur coat and huge horn. Cave paintings by early humans show they knew this animal well.
+
+---
+
+## Taxonomy & Classification
+- **Family:** Rhinocerotidae
+- **Genus:** Coelodonta
+- **Diet:** Herbivore (grazer)
+- **Era:** Pleistocene
+
+The woolly rhino was related to modern rhinos but adapted for **extreme cold**.
+
+---
+
+## Physical Characteristics
+
+### Size & Build
+- **Length:** 3-3.8 meters (10-12.5 feet)
+- **Height:** 1.6-2 meters (5-6.5 feet) at shoulder
+- **Weight:** 1,800-2,700 kg (2-3 tons)
+- **Build:** Stocky, barrel-shaped body
+
+### The Horns
+- **Two horns** made of keratin (like fingernails)
+- Front horn: Up to **1 meter (3 feet)** long!
+- Flattened from side to side
+- Used for **sweeping snow** to find food
+- Also used for **defense** and display
+
+### Cold Weather Adaptations
+- **Thick woolly fur** (up to 15 cm long!)
+- **Two layers:** coarse outer, soft under-layer
+- **Small ears** to reduce heat loss
+- **Short legs** and stocky build
+- **Fat reserves** for harsh winters
+
+---
+
+## Habitat & Lifestyle
+
+### Mammoth Steppe
+The woolly rhino lived on the **"mammoth steppe"**:
+- Vast grasslands across Europe and Asia
+- Cold, dry climate
+- Similar to today's Siberian tundra
+- Shared habitat with **mammoths, bison, horses**
+
+### Diet
+As a grazer, the woolly rhino ate:
+- **Grasses** and **sedges**
+- **Herbaceous plants**
+- Used its flat horn to **sweep away snow**
+- Head held **low to the ground** while feeding
+
+---
+
+## Preserved Specimens
+
+### Frozen in Time
+The woolly rhino is exceptionally well-known because:
+- **Frozen carcasses** found in Siberia
+- Preserved **skin, fur, and organs**
+- We know exactly what they **looked like**
+- Even **stomach contents** preserved!
+- Some found with **last meal** still inside
+
+### Famous Finds
+- **"Sasha":** Baby woolly rhino found in 2014
+- Multiple adults found in **permafrost**
+- Cave paintings in **France and Spain**
+- Carcasses found by **gold miners** in Siberia
+
+---
+
+## Cave Art
+
+### Ice Age Artists
+Early humans drew woolly rhinos:
+- **Chauvet Cave** (France): 30,000+ years old
+- **Lascaux Cave** (France)
+- Detailed images show **two horns** and **shaggy fur**
+- Humans clearly **knew these animals well**
+- May have **hunted them**
+
+---
+
+## Extinction
+
+### Why Did They Disappear?
+Woolly rhinos went extinct about **10,000 years ago**:
+
+**Climate Change:**
+- Ice Age ended, climate warmed
+- Grasslands became **forests**
+- Food sources **changed**
+
+**Human Hunting:**
+- Humans hunted them for **meat and hides**
+- Cave art shows humans **knew them well**
+- Combined pressure was too much
+
+---
+
+## Woolly Rhino vs. Modern Rhinos
+
+| Feature | Woolly Rhino | White Rhino |
+|---------|--------------|-------------|
+| Fur | Thick, woolly | Nearly hairless |
+| Horns | 2, flattened | 2, rounded |
+| Climate | Ice Age cold | Tropical/warm |
+| Size | 2-3 tons | 2-2.5 tons |
+| Range | Eurasia | Africa |
+
+---
+
+## Cool Facts
+
+- Frozen woolly rhinos have been found with **fur still intact**!
+- Their front horn could be **1 meter (3 feet)** long
+- They used their horn like a **snow plow** to find food
+- Cave paintings show humans **drew them accurately** 30,000 years ago
+- Baby "Sasha" was found **perfectly preserved** in Siberian ice
+- Their closest living relative is the **Sumatran rhinoceros**
+- Scientists have extracted **DNA** from frozen specimens
+- They could survive temperatures of **-40°C (-40°F)**!
+
+---
+
+*The Woolly Rhinoceros was a magnificent Ice Age giant—a testament to how life can adapt to even the harshest conditions on Earth!*`,
+    category: 'Early Mammals',
+    subcategory: 'Ice Age Mammals',
+    family: 'Rhinocerotidae',
+    modelId: '6c7544af3fd645e38c5e91f2a66a489a',
+    lastUpdated: 1770055450000
+  },
+  {
+    id: 'gorgonops',
+    name: 'Gorgonops',
+    scientificName: 'Gorgonops torvus',
+    period: 'Permian',
+    location: 'South Africa',
+    length: '2-3 meters',
+    weight: '100-400 kg',
+    diet: 'Carnivore',
+    image: '/images/gorgonops.webp',
+    description: `# Gorgonops torvus
+
+## Overview
+**Gorgonops** was one of the most fearsome predators of the Late Permian period, approximately **260-252 million years ago**! Named after the **Gorgons** of Greek mythology (monsters with snakes for hair), this saber-toothed beast was not a dinosaur—it was a **synapsid**, more closely related to modern mammals than to reptiles!
+
+---
+
+## Taxonomy & Classification
+- **Clade:** Synapsida
+- **Order:** Therapsida
+- **Family:** Gorgonopsidae
+- **Diet:** Carnivore (apex predator)
+
+Gorgonops was a **therapsid**—part of the lineage that would eventually evolve into **mammals**.
+
+---
+
+## Physical Characteristics
+
+### Size & Build
+- **Length:** 2-3 meters (6.5-10 feet)
+- **Height:** About 1 meter at the hip
+- **Weight:** 100-400 kg depending on species
+- **Build:** Dog-like body with powerful legs
+
+### The Saber Teeth
+- **Large canine teeth** like saber-toothed cats
+- Up to **12 cm (5 inches)** long
+- Used for **stabbing and slicing** prey
+- Evolved **independently** from cat saber teeth
+- Predates Smilodon by **250 million years**!
+
+### Body Features
+- **Large skull** with strong jaw muscles
+- **Forward-facing eyes** for depth perception
+- **Powerful legs** positioned under the body
+- May have had some **fur or hair**
+- More upright posture than earlier synapsids
+
+---
+
+## Not a Dinosaur!
+
+### A Different Lineage
+Gorgonops is often confused with dinosaurs, but:
+- Lived **30 million years BEFORE** dinosaurs
+- Was a **synapsid** (mammal ancestor line)
+- Dinosaurs are **archosaurs** (different group)
+- More closely related to **YOU** than to any dinosaur!
+
+---
+
+## Hunting & Diet
+
+### Apex Predator
+Gorgonops was the **top predator** of its ecosystem:
+- Hunted large **herbivorous synapsids**
+- Prey included **Dicynodon** and other therapsids
+- Used saber teeth to deliver **fatal wounds**
+- Probably an **ambush predator**
+- Could take down prey **larger than itself**
+
+### Hunting Strategy
+- Likely **stalked** prey
+- Quick **pounce** to grab victim
+- Used saber teeth to **slash** at throat or belly
+- Let prey **bleed out** if not immediately killed
+
+---
+
+## Environment
+
+### Late Permian World
+Gorgonops lived in a very different world:
+- All continents joined as **Pangaea**
+- Climate was **warm and dry**
+- No grass or flowering plants yet
+- Forests of **ferns and conifers**
+- South Africa was near the **South Pole** but warmer
+
+---
+
+## Extinction
+
+### The Great Dying
+Gorgonops went extinct in the **Permian-Triassic extinction**:
+- **252 million years ago**
+- Worst mass extinction in Earth's history
+- **90% of all species** died
+- Caused by massive **volcanic eruptions** in Siberia
+- Cleared the way for **dinosaurs** to rise
+
+---
+
+## Evolutionary Importance
+
+### Road to Mammals
+Gorgonops shows important evolutionary steps:
+- **Differentiated teeth** (incisors, canines, molars)
+- Legs positioned **under body** (not sprawling)
+- Possible **warm-bloodedness** (debated)
+- May have had **whiskers** and some fur
+- Shows the transition toward **mammal features**
+
+---
+
+## Discovery
+
+### South African Fossils
+- First discovered in **1876** in South Africa
+- Named after the **Gorgons** of Greek myth
+- Many specimens from the **Karoo Basin**
+- Well-preserved skulls show tooth details
+- Multiple species now recognized
+
+---
+
+## Cool Facts
+
+- Gorgonops had **saber teeth 250 million years BEFORE** Smilodon!
+- Named after the **snake-haired monsters** of Greek mythology
+- More closely related to **humans** than to dinosaurs
+- Was the **apex predator** of the Late Permian
+- Went extinct in the **worst mass extinction ever**
+- May have been **partially warm-blooded**
+- Scientists think it might have had **some fur**
+- Lived when all continents were **joined together** as Pangaea
+
+---
+
+*Gorgonops was a terrifying predator that shows us what life was like before the age of dinosaurs—and reminds us that our own ancestors were once the top predators of their world!*`,
+    category: 'Prehistoric Reptiles',
+    subcategory: 'Synapsids',
+    family: 'Gorgonopsidae',
+    lastUpdated: 1770055400000
   }];
 
 export const searchCreatures = (searchQuery: string): SearchResult[] => {
