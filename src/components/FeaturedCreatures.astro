@@ -9,8 +9,10 @@ function getRandomCreatures(count: number) {
 
 // Function to truncate description while preserving HTML/markdown tags
 function truncateDescription(description: string) {
-	// Strip markdown headers (# ## ### etc.)
-	let tempText = description.replace(/^#{1,6}\s+/gm, '').replace(/\s#{1,6}\s+/g, ' ');
+	// Skip the header boilerplate (# Title and ## Overview) - start from actual content
+	let tempText = description.replace(/^#[^#]*?##\s*Overview\s*\n+/s, '');
+	// Also handle horizontal rules
+	tempText = tempText.replace(/^---\s*\n+/gm, '');
 	// Convert markdown bold to HTML
 	tempText = tempText.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
 	const words = tempText.split(' ');
