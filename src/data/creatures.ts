@@ -3188,6 +3188,749 @@ Gorgonops shows important evolutionary steps:
     subcategory: 'Synapsids',
     family: 'Gorgonopsidae',
     lastUpdated: 1770055400000
+  },
+  {
+    id: 'tiktaalik',
+    name: 'Tiktaalik',
+    scientificName: 'Tiktaalik roseae',
+    period: 'Devonian',
+    location: 'Arctic Canada (Ellesmere Island)',
+    length: '1.5-2.7 meters',
+    weight: '50-100 kg',
+    diet: 'Carnivore',
+    image: '/images/tiktaalik.webp',
+    description: `# Tiktaalik roseae
+
+## Overview
+**Tiktaalik** is one of the most important fossils ever discovered—a **375-million-year-old "fishapod"** that shows the transition from fish to land animals! Found in the Canadian Arctic in 2004, this remarkable creature had **fish features** (scales, fins, gills) but also **tetrapod features** (flat head, neck, proto-wrists). It's often called the "**fish that walked**."
+
+---
+
+## Taxonomy & Classification
+- **Phylum:** Chordata
+- **Class:** Sarcopterygii (lobe-finned fish)
+- **Genus:** Tiktaalik
+- **Diet:** Carnivore
+
+Tiktaalik is a **transitional fossil**—showing features of both fish and early four-legged animals (tetrapods).
+
+---
+
+## Physical Characteristics
+
+### Size & Build
+- **Length:** 1.5-2.7 meters (5-9 feet)
+- **Weight:** Estimated 50-100 kg
+- **Body:** Fish-like but with key tetrapod features
+
+### Fish Features
+- **Scales** covering the body
+- **Fins** (though modified)
+- **Gills** for breathing in water
+- **Fish-like tail**
+
+### Tetrapod Features
+- **Flat, crocodile-like head**
+- **Eyes on top of head** (like a crocodile)
+- **Neck** that could move independently (fish don't have necks!)
+- **Ribs** that could support body out of water
+- **Wrist-like bones** in fins
+
+---
+
+## The Revolutionary Fins
+
+### Fins That Could "Walk"
+Tiktaalik's front fins were remarkable:
+- Had **bones equivalent to** shoulder, upper arm, forearm, and wrist
+- Could **bend at the "elbow" and "wrist"**
+- Could **prop up** the front of the body
+- Could **push** against the ground
+- Basically **proto-legs** still shaped like fins!
+
+---
+
+## A Life Between Worlds
+
+### Shallow Water Specialist
+Tiktaalik lived in a unique environment:
+- **Shallow streams** and **tidal flats**
+- Could **lurk in shallows** like a crocodile
+- Eyes on top let it **see above water**
+- Could **breathe air** (had both gills AND primitive lungs)
+- May have **crawled** onto land briefly
+
+---
+
+## Why Tiktaalik Matters
+
+### The Missing Link
+Tiktaalik fills a crucial gap:
+- Shows **how fish evolved into land animals**
+- Lived at the **right time** (375 million years ago)
+- Has **exactly the features** we'd expect in a transitional form
+- Scientists **predicted** where to find it—and were right!
+
+### Evolutionary Significance
+- Fish like Eusthenopteron → **Tiktaalik** → Early tetrapods like Acanthostega
+- Shows evolution happened **gradually**
+- Not a sudden jump from fins to legs
+
+---
+
+## The Discovery
+
+### Finding the "Missing Link"
+The discovery was remarkable:
+- Scientists **predicted** where to find a transitional fossil
+- Searched rocks from the **right time period** (375 MYA)
+- Found Tiktaalik in **2004** on Ellesmere Island, Arctic Canada
+- Named "Tiktaalik" (Inuktitut for "**large freshwater fish**")
+- Published in **Nature** in 2006
+
+---
+
+## The Devonian World
+
+### When Fish Ruled
+Tiktaalik lived during the Late Devonian:
+- Called the "**Age of Fishes**"
+- Warm climate, high oxygen levels
+- Where Tiktaalik lived was **near the equator** (continents have moved!)
+- Forests of early plants were spreading
+- Perfect conditions for **fish to venture onto land**
+
+---
+
+## What Made Land Possible?
+
+### Why Leave the Water?
+Several advantages to coming onto land:
+- **Escape predators** in the water
+- **Find new food** sources
+- **Avoid competition** with other fish
+- Move between **drying pools**
+- Land had **more oxygen** available
+
+---
+
+## Cool Facts
+
+- Tiktaalik means "**large freshwater fish**" in Inuktitut (Inuit language)
+- Scientists **predicted** they would find it—and did!
+- It had **wrists** 375 million years ago—before there were even hands!
+- Could do **push-ups** with its front fins
+- Had a **neck**—fish don't have necks!
+- Its discovery was featured in the book "**Your Inner Fish**"
+- The fossil site was once near the **equator**, not the Arctic!
+- Every land animal with four limbs—including YOU—descends from creatures like Tiktaalik
+
+---
+
+*Tiktaalik is one of evolution's greatest stories—a fish that took the first "steps" toward life on land, paving the way for all amphibians, reptiles, mammals, and eventually us!*`,
+    category: 'Marine Creatures',
+    subcategory: 'Prehistoric Fish',
+    family: 'Elpistostegidae',
+    modelId: '4bcd9214503e402d88014f6a37297154',
+    lastUpdated: 1770056900000
+  },
+  {
+    id: 'phorusrhacos',
+    name: 'Phorusrhacos',
+    scientificName: 'Phorusrhacos longissimus',
+    period: 'Neogene',
+    location: 'South America (Argentina)',
+    length: '2.5 meters tall',
+    weight: '130 kg',
+    diet: 'Carnivore',
+    image: '/images/phorusrhacos.webp',
+    description: `# Phorusrhacos longissimus
+
+## Overview
+**Phorusrhacos** was one of the most terrifying **"terror birds"**—giant flightless predatory birds that ruled South America for millions of years! Standing **2.5 meters (8 feet) tall** with a massive hooked beak, this apex predator lived during the **Miocene epoch**, approximately **20-13 million years ago**. It was essentially a **carnivorous ostrich** with the head of an eagle!
+
+---
+
+## Taxonomy & Classification
+- **Class:** Aves (Birds)
+- **Family:** Phorusrhacidae (Terror Birds)
+- **Order:** Cariamiformes
+- **Diet:** Carnivore (apex predator)
+
+Terror birds were the **dominant predators** of South America while it was an isolated continent.
+
+---
+
+## Physical Characteristics
+
+### Impressive Size
+- **Height:** 2.5 meters (8 feet) tall
+- **Weight:** About 130 kg (290 lbs)
+- **Skull:** 60 cm (2 feet) long!
+- **Build:** Powerful legs, small wings
+
+### The Killer Beak
+- **Massive hooked beak** like an eagle's
+- Up to **45 cm (18 inches)** long
+- Could deliver **devastating strikes**
+- Used to **kill and tear apart prey**
+- Possibly used like a **pickaxe**
+
+### Body Features
+- **Powerful legs** for running and kicking
+- **Sharp claws** on feet
+- **Tiny, useless wings**
+- **Long neck** for striking at prey
+
+---
+
+## Hunting Style
+
+### Apex Predator
+Phorusrhacos was a fearsome hunter:
+- **Chased down prey** on powerful legs
+- Could run at speeds up to **50 km/h (30 mph)**
+- Struck prey with **massive beak**
+- May have **shaken** small prey to death
+- Could **kick** with powerful legs
+
+### Prey
+Phorusrhacos likely ate:
+- **Rodents** and small mammals
+- **Notoungulates** (South American hoofed mammals)
+- **Other birds** and reptiles
+- Basically anything it could **catch and kill**
+
+---
+
+## South America's Isolation
+
+### Island Continent
+Terror birds evolved because South America was **isolated**:
+- Separated from other continents for **60+ million years**
+- No large mammalian predators
+- Birds evolved to fill the **top predator role**
+- Similar to how large flightless birds dominated other islands
+
+---
+
+## The Terror Bird Family
+
+### Not Alone
+Phorusrhacos was part of a diverse family:
+- **Titanis:** Reached North America!
+- **Kelenken:** Even larger skull (71 cm!)
+- **Andalgalornis:** Well-studied species
+- Terror birds existed for **60 million years**
+
+---
+
+## Decline and Extinction
+
+### End of the Terror Birds
+Terror birds eventually disappeared:
+- South America **connected to North America** (3 MYA)
+- Mammalian predators (**saber-toothed cats**, wolves) arrived
+- **Competition** from new predators
+- Most terror birds extinct by **2 million years ago**
+- One species (Titanis) actually **invaded** North America first!
+
+---
+
+## Discovery
+
+### Argentine Fossils
+- First discovered in **Argentina** in 1887
+- Named by Florentino Ameghino
+- Name means "**rag bearer**" (from Greek)
+- Many fossils found in **Patagonia**
+- One of the first terror birds described
+
+---
+
+## Living Relatives
+
+### Modern Connections
+Terror birds' closest living relatives are:
+- **Seriemas** (South American birds)
+- Only about **75 cm tall** today
+- Still **carnivorous** and hunt on foot
+- Show similar behaviors to their giant ancestors
+
+---
+
+## Cool Facts
+
+- Phorusrhacos stood **taller than most humans**!
+- Its skull was **60 cm (2 feet) long**—bigger than a horse's!
+- Terror birds ruled South America for **60 million years**
+- Could run at **50 km/h (30 mph)**—faster than Usain Bolt!
+- Its closest living relatives are the **seriemas**
+- One terror bird species (**Titanis**) actually made it to **North America**
+- The hooked beak could strike like a **pickaxe**
+- South America was an "**island continent**" where birds became apex predators
+
+---
+
+*Phorusrhacos was the nightmare of Miocene South America—proof that when given the chance, birds can evolve into absolutely terrifying apex predators!*`,
+    category: 'Flying Creatures',
+    subcategory: 'Early Birds',
+    family: 'Phorusrhacidae',
+    lastUpdated: 1770056850000
+  },
+  {
+    id: 'dickinsonia',
+    name: 'Dickinsonia',
+    scientificName: 'Dickinsonia costata',
+    period: 'Archean',
+    location: 'Australia, Russia, Ukraine',
+    length: '1.4 meters',
+    weight: 'Very light (flat body)',
+    diet: 'Absorber (absorbed nutrients)',
+    image: '/images/dickinsonia.webp',
+    description: `# Dickinsonia costata
+
+## Overview
+**Dickinsonia** is one of the most mysterious and ancient creatures ever found! Living during the **Ediacaran period** about **558-555 million years ago**, it was one of Earth's **earliest complex life forms**. This bizarre oval-shaped organism lived **before** the famous Cambrian Explosion and looks like nothing alive today—like a **quilted pancake** or **ribbed mat**!
+
+---
+
+## Taxonomy & Classification
+- **Kingdom:** Animalia (probably!)
+- **Phylum:** Unknown (debated)
+- **Period:** Ediacaran (Late Precambrian)
+- **Diet:** Absorber (external digestion)
+
+Scientists debated for decades whether Dickinsonia was an **animal, fungus, or something else entirely**!
+
+---
+
+## Physical Characteristics
+
+### Strange Body Plan
+- **Length:** Up to 1.4 meters (4.6 feet)
+- **Shape:** Oval, flat, quilted appearance
+- **Segments:** Rib-like segments radiating from center
+- **Thickness:** Only a few millimeters thick!
+
+### Unique Features
+- **No mouth, gut, or anus**
+- **No eyes or sensory organs**
+- **Bilaterally symmetrical** (like us!)
+- Had a **central groove** or ridge
+- Segments didn't match up across the midline
+
+---
+
+## How Did It Live?
+
+### Feeding Mystery
+Without a mouth or digestive system, how did Dickinsonia eat?
+- **Absorbed nutrients** directly through its body
+- May have **digested microbial mats** externally
+- Sat on the seafloor and "**ate**" what was beneath it
+- Left **feeding traces** in the sediment
+- Like a living **digestive blanket**!
+
+### Lifestyle
+- Lived on the **shallow seafloor**
+- Could **move slowly** across microbial mats
+- Left **trace fossils** showing movement
+- Probably lived in **colonies**
+
+---
+
+## The Great Debate
+
+### What Was Dickinsonia?
+Scientists argued for years:
+- **Animal?** (most now agree yes!)
+- **Giant protozoan?**
+- **Fungus?**
+- **Lichen?**
+- **Extinct kingdom** of life?
+
+### Proof It's an Animal
+In 2018, scientists found **cholesterol** in Dickinsonia fossils:
+- Cholesterol is an **animal molecule**
+- Proved Dickinsonia was an **animal**
+- One of the **oldest animals** ever found!
+
+---
+
+## The Ediacaran World
+
+### Before the Cambrian
+Dickinsonia lived in a very different world:
+- **No predators** (probably)
+- **Microbial mats** covered the seafloor
+- Soft-bodied creatures dominated
+- The "**Garden of Ediacara**"
+- Most Ediacaran life went **extinct**
+
+---
+
+## Fossil Preservation
+
+### How Fossils Formed
+Dickinsonia fossils are remarkably well-preserved:
+- **Buried quickly** by sediment
+- **Microbial mats** helped preservation
+- Found as **impressions** in sandstone
+- Some preserve **fine details**
+
+### Key Fossil Sites
+- **Ediacara Hills**, Australia (named after it!)
+- **White Sea**, Russia
+- **Ukraine**
+- **South Australia**
+
+---
+
+## Discovery History
+
+### Finding Ancient Life
+- First described in **1947** by Reg Sprigg
+- Named after **Ben Dickinson** (mining geologist)
+- Found in **Ediacara Hills**, South Australia
+- One of the first **Ediacaran fossils** recognized
+- Sparked study of **Precambrian life**
+
+---
+
+## Why Dickinsonia Matters
+
+### Scientific Importance
+Dickinsonia teaches us about:
+- The **origin of animals**
+- Life **before** the Cambrian Explosion
+- How complex life **evolved**
+- Ancient **ecosystems**
+- Earth's **earliest animal communities**
+
+---
+
+## Cool Facts
+
+- Dickinsonia is over **550 million years old**—older than dinosaurs by 300+ million years!
+- It's one of the **oldest animals** we've ever found
+- Had **no mouth, eyes, or brain**!
+- Could grow up to **1.4 meters (4.6 feet)** long
+- Scientists found actual **animal fat** in the fossils
+- It moved like a **living bathmat**
+- The Ediacaran period is named after where it was found
+- Dickinsonia went **extinct** before the Cambrian Explosion
+
+---
+
+*Dickinsonia represents one of evolution's earliest experiments with complex animal life—a bizarre, flat creature that thrived in a world we can barely imagine, over half a billion years ago!*`,
+    category: 'Marine Creatures',
+    subcategory: 'Invertebrates',
+    family: 'Dickinsoniidae',
+    lastUpdated: 1770057100000
+  },
+  {
+    id: 'orthoceras',
+    name: 'Orthoceras',
+    scientificName: 'Orthoceras regulare',
+    period: 'Ordovician',
+    location: 'Worldwide (Morocco, Sweden, North America)',
+    length: '14-30 cm (some up to 4.5 meters)',
+    weight: 'Unknown',
+    diet: 'Carnivore',
+    image: '/images/orthoceras.webp',
+    description: `# Orthoceras regulare
+
+## Overview
+**Orthoceras** was an ancient **straight-shelled nautiloid**—an early relative of today's squids and octopuses! Living from the **Ordovician to Triassic periods** (around **485-200 million years ago**), these jet-propelled hunters had long, cone-shaped shells and were among the **first sophisticated predators** in Earth's oceans. Their beautiful fossils are found worldwide and are incredibly common!
+
+---
+
+## Taxonomy & Classification
+- **Class:** Cephalopoda (squids, octopuses, nautiluses)
+- **Order:** Orthocerida
+- **Subclass:** Nautiloidea
+- **Diet:** Carnivore (small prey)
+
+Orthoceras was an early member of the **cephalopod** family—the brainy hunters of the sea!
+
+---
+
+## Physical Characteristics
+
+### The Shell
+- **Shape:** Long, straight cone
+- **Length:** Usually 14-30 cm, some up to **4.5 meters** (15 feet)!
+- **Chambers:** Divided into many compartments
+- **Pattern:** Visible growth lines and sutures
+
+### Body Design
+- **Soft body** lived in the largest chamber at the open end
+- Had **tentacles** for catching prey
+- **Large eyes** for finding food
+- **Siphuncle** (tube) ran through all chambers
+
+---
+
+## How They Worked
+
+### Buoyancy Control
+Orthoceras controlled its depth like a submarine:
+- **Empty chambers** filled with gas for buoyancy
+- **Siphuncle** could adjust gas and liquid
+- Could **rise or sink** in the water
+- Stayed horizontal while swimming
+
+### Jet Propulsion
+Like modern squids:
+- Squirted **water through siphon**
+- Moved **shell-first** through the water
+- Could **escape predators** quickly
+- Hunting was probably **ambush-style**
+
+---
+
+## Hunting and Diet
+
+### Predatory Lifestyle
+Orthoceras was a hunter:
+- Caught **small animals** with tentacles
+- Ate **trilobites**, worms, small fish
+- Used **sharp beak** to bite prey
+- Had **good eyesight** for hunting
+- Probably hunted at **night or dawn**
+
+---
+
+## The Ordovician Seas
+
+### Ocean Life
+During Orthoceras's peak:
+- Seas were **warm and shallow**
+- Life was concentrated in **oceans**
+- **No life on land** yet
+- Orthoceras was a **top predator**
+- Shared seas with trilobites, brachiopods, and early fish
+
+---
+
+## Fossil Record
+
+### Incredibly Common
+Orthoceras fossils are everywhere:
+- **Millions** have been found
+- Common in **Morocco** (black limestone)
+- Found on **every continent**
+- Often found in **groups**
+- Popular in **fossil collections**
+
+### Polished Fossils
+Many Orthoceras fossils are:
+- **Polished** to show internal structure
+- Made into **decorative items**
+- Used in **jewelry**
+- Displayed in **museums** worldwide
+- Often sold as **"fossil plates"**
+
+---
+
+## Long Success Story
+
+### 280 Million Years
+Orthocerids (straight nautiloids) thrived for ages:
+- Appeared in the **early Ordovician**
+- Dominated Paleozoic seas
+- Survived multiple **mass extinctions**
+- Finally died out in the **Triassic**
+- Replaced by **ammonites** and **modern nautiluses**
+
+---
+
+## Related to Modern Animals
+
+### Living Relatives
+Orthoceras is related to:
+- **Nautilus** (coiled shell, still alive!)
+- **Squid** (internal shell)
+- **Octopus** (no shell)
+- **Cuttlefish** (internal shell)
+
+All are **cephalopods**—the "head-footed" mollusks!
+
+---
+
+## Cool Facts
+
+- Orthoceras fossils are **over 400 million years old**!
+- Some species grew to **4.5 meters (15 feet)** long!
+- They could **jet-propel** themselves through the water
+- Had **multiple hearts** like modern cephalopods
+- Their shells show **growth rings** like tree rings
+- **Millions** of fossils have been found worldwide
+- You can buy polished Orthoceras fossils at **rock shops**
+- The name means "**straight horn**" in Greek
+- They survived for **280 million years**!
+
+---
+
+*Orthoceras represents the early success of the cephalopods—intelligent, jet-powered predators whose descendants would become the most sophisticated invertebrates on Earth!*`,
+    category: 'Marine Creatures',
+    subcategory: 'Invertebrates',
+    family: 'Orthoceratidae',
+    modelId: '4dfb7536146544878a9a914fabd1e6ae',
+    lastUpdated: 1770057050000
+  },
+  {
+    id: 'birkenia',
+    name: 'Birkenia',
+    scientificName: 'Birkenia elegans',
+    period: 'Silurian',
+    location: 'Scotland, Norway',
+    length: '10 cm',
+    weight: 'Very light',
+    diet: 'Filter feeder / Detritivore',
+    image: '/images/birkenia.webp',
+    description: `# Birkenia elegans
+
+## Overview
+**Birkenia** was a tiny **jawless fish** that swam in ancient Silurian seas about **430 million years ago**! At only **10 cm (4 inches)** long, this small but important fish was an **anaspid**—one of the early vertebrates that would eventually lead to all jawed fish and land animals. Despite having no jaws or paired fins, Birkenia was well-adapted to its ancient world!
+
+---
+
+## Taxonomy & Classification
+- **Class:** Anaspida (jawless fish)
+- **Superclass:** Agnatha (jawless vertebrates)
+- **Period:** Silurian
+- **Diet:** Filter feeder / Detritivore
+
+Birkenia was part of the **anaspids**, a group of jawless fish that thrived in the Silurian and Devonian.
+
+---
+
+## Physical Characteristics
+
+### Small Size
+- **Length:** About 10 cm (4 inches)
+- **Shape:** Slender, torpedo-shaped body
+- **Build:** Streamlined for swimming
+
+### Jawless Design
+- **No jaws**—had a simple mouth opening
+- **No paired fins** (pectoral or pelvic)
+- Had a **single nostril** on top of head
+- **Lateral eyes** on sides of head
+- Simple **gill openings** for breathing
+
+### Unique Features
+- **Rows of scales** along the body
+- A **dorsal fin** for stability
+- **Hypocercal tail** (lower lobe larger)
+- **Flexible body** for maneuvering
+
+---
+
+## How Birkenia Lived
+
+### Feeding
+Without jaws, Birkenia ate differently:
+- **Filter fed** on tiny particles
+- Sucked up **detritus** (dead organic matter)
+- May have eaten **algae** and microorganisms
+- Mouth worked like a **vacuum cleaner**
+- Lived near the **bottom** of shallow waters
+
+### Swimming
+Birkenia was an agile swimmer:
+- Used **side-to-side** body movements
+- **Hypocercal tail** helped it stay near the bottom
+- Could **maneuver** between plants and rocks
+- Probably swam in **schools** for protection
+
+---
+
+## The Silurian World
+
+### Ancient Seas
+During Birkenia's time:
+- **First land plants** were appearing
+- Seas had **giant sea scorpions** (eurypterids)
+- **Coral reefs** were growing
+- **Jawless fish** were common
+- **Jawed fish** were just evolving
+
+### Birkenia's Habitat
+- Lived in **shallow marine waters**
+- Found near **shores and lagoons**
+- Shared waters with **eurypterids**, **nautiloids**
+- Had to avoid **predators** like sea scorpions
+
+---
+
+## Importance in Evolution
+
+### Early Vertebrate
+Birkenia is important because:
+- Shows what **early fish** looked like
+- Helps us understand **vertebrate evolution**
+- Represents the **jawless fish** that came before us
+- Related to **all vertebrates** (including you!)
+
+### The Road to Jaws
+Jawless fish like Birkenia:
+- Were the **first vertebrates**
+- Some evolved **jaws** (most fish, amphibians, reptiles, mammals)
+- Others stayed **jawless** (lampreys, hagfish)
+- Birkenia's line eventually **died out**
+
+---
+
+## Fossil Discoveries
+
+### Scottish Fossils
+Birkenia fossils come from:
+- **Scotland** (primary location)
+- **Norway** (also found there)
+- Found in **Silurian rocks**
+- Often well-preserved with **scale details**
+
+### Discovery History
+- Described in the **1800s**
+- Named after **Birk** (a location in Scotland)
+- Species name "**elegans**" means "elegant"
+- Important for understanding **early fish**
+
+---
+
+## Living Relatives
+
+### Still Around Today
+Jawless fish still exist:
+- **Lampreys** (parasitic jawless fish)
+- **Hagfish** (deep-sea scavengers)
+- Both are **distant cousins** of Birkenia
+- But NOT direct descendants
+
+---
+
+## Cool Facts
+
+- Birkenia was only **10 cm (4 inches)** long—smaller than your hand!
+- It lived **430 million years ago**—before dinosaurs by 200 million years!
+- Had **no jaws**—couldn't bite or chew
+- No **paired fins**—couldn't steer like modern fish
+- The **hypocercal tail** is the opposite of a shark's tail
+- Found in **Scotland**—which was near the equator back then!
+- Related to **all animals with backbones**, including humans
+- One of the **earliest vertebrates** we have good fossils of
+
+---
+
+*Birkenia may have been small and jawless, but it represents an important chapter in the story of life—the early fish that would eventually give rise to sharks, bony fish, amphibians, reptiles, birds, mammals, and us!*`,
+    category: 'Marine Creatures',
+    subcategory: 'Prehistoric Fish',
+    family: 'Birkeniidae',
+    modelId: 'f6e7c7207bef44a98bdb6b3b89103876',
+    lastUpdated: 1770057000000
   }];
 
 export const searchCreatures = (searchQuery: string): SearchResult[] => {
