@@ -98,17 +98,20 @@ const categoryDescription = `Explore ${categoryName} from prehistoric times.`;
   }
 
   .subcategory-link {
-    background: var(--primary-color);
-    color: white;
+    background: var(--surface-elevated);
+    color: var(--text-color);
     padding: 0.75rem 1.5rem;
     border-radius: 999px;
     text-decoration: none;
-    transition: transform 0.3s ease;
+    border: 2px solid var(--card-border);
+    transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease;
   }
 
   .subcategory-link:hover {
     transform: translateY(-2px);
     background: var(--accent-color);
+    border-color: var(--accent-color);
+    color: white;
   }
 
   .creatures-grid {
