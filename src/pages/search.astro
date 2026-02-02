@@ -483,7 +483,7 @@ const allCreaturesData = creatures.map(creature => ({
     min-width: 2.75rem;
     height: 2.75rem;
     padding: 0 0.875rem;
-    border: none;
+    border: 2px solid var(--card-border);
     background: var(--card-bg);
     color: var(--primary-color);
     font-family: 'Nunito', sans-serif;
@@ -525,15 +525,17 @@ const allCreaturesData = creatures.map(creature => ({
   }
 
   :global(.pagination .current) {
-    background: var(--primary-color);
+    background: var(--accent-color);
     color: white;
-    box-shadow: 0 2px 8px rgba(44, 62, 80, 0.25);
+    border-color: var(--accent-color);
+    box-shadow: 0 2px 8px rgba(231, 76, 60, 0.3);
     cursor: default;
   }
 
   :global(.pagination a[disabled]) {
     background: var(--surface-elevated);
     color: var(--text-muted);
+    border-color: var(--card-border);
     cursor: not-allowed;
     box-shadow: none;
     opacity: 0.6;
@@ -543,21 +545,24 @@ const allCreaturesData = creatures.map(creature => ({
     transform: none;
     background: var(--surface-elevated);
     color: var(--text-muted);
+    border-color: var(--card-border);
   }
 
   /* Nav buttons - Prev/Next */
-  :global(.pagination .prev),
-  :global(.pagination .next) {
+  :global(.pagination .prev:not([disabled])),
+  :global(.pagination .next:not([disabled])) {
     padding: 0 1rem;
-    background: var(--primary-color);
+    background: var(--accent-color);
     color: white;
-    box-shadow: 0 2px 8px rgba(44, 62, 80, 0.2);
+    border-color: var(--accent-color);
+    box-shadow: 0 2px 8px rgba(231, 76, 60, 0.2);
   }
 
   :global(.pagination .prev:hover:not([disabled])),
   :global(.pagination .next:hover:not([disabled])) {
-    background: var(--accent-color);
-    box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
+    background: #c0392b;
+    border-color: #c0392b;
+    box-shadow: 0 4px 12px rgba(231, 76, 60, 0.4);
   }
 
   @media (max-width: 768px) {
