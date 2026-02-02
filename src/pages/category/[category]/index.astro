@@ -25,7 +25,7 @@ const totalCreatures = allCategoryCreatures.length;
 const totalPages = Math.ceil(totalCreatures / pageSize);
 const categoryCreatures = allCategoryCreatures.slice((page - 1) * pageSize, page * pageSize);
 
-const categoryImage = `/images/categories/${categoryName.toLowerCase().replace(/\s+/g, '-')}.jpg`;
+const categoryImage = `/images/categories/${categoryName.toLowerCase().replace(/\s+/g, '-')}.webp`;
 const categoryDescription = `Explore ${categoryName} from prehistoric times.`;
 ---
 
