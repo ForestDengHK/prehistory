@@ -3931,6 +3931,1050 @@ Jawless fish still exist:
     family: 'Birkeniidae',
     modelId: 'f6e7c7207bef44a98bdb6b3b89103876',
     lastUpdated: 1770057000000
+  },
+  {
+    id: 'charnia',
+    name: 'Charnia',
+    scientificName: 'Charnia masoni',
+    period: 'Proterozoic',
+    location: 'England, Canada, Australia, Russia',
+    length: 'Up to 2 meters',
+    weight: 'Very light (frond-like body)',
+    diet: 'Osmotroph (absorbed nutrients)',
+    image: '/images/charnia.webp',
+    description: `# Charnia masoni
+
+## Overview
+**Charnia** is one of the most important fossils ever discovered! This mysterious frond-shaped organism lived during the **Ediacaran period**, approximately **575 to 555 million years ago**, making it one of Earth's **oldest known complex life forms**. Charnia was the **first Precambrian fossil** ever recognized, revolutionizing our understanding of early life.
+
+---
+
+## Taxonomy & Classification
+- **Kingdom:** Unknown (possibly Animalia)
+- **Phylum:** Rangeomorpha
+- **Period:** Ediacaran (Late Precambrian)
+- **Diet:** Osmotroph (absorbed nutrients from seawater)
+
+Charnia belongs to the **Rangeomorpha**, an extinct group of organisms with unique fractal growth patterns found nowhere else in the history of life.
+
+---
+
+## Physical Characteristics
+
+### Strange Body Plan
+- **Height:** Up to 2 meters (6.5 feet) tall
+- **Shape:** Frond-like, resembling a feather or fern
+- **Structure:** Fractal branching pattern with quilted appearance
+- **Anchor:** Holdfast disc attached to the seafloor
+
+### Unique Features
+- **No mouth, gut, or internal organs**
+- **No eyes or sensory structures**
+- Leaf-like ridges branching alternately from a **zigzag central line**
+- **Fractal architecture** — branches subdivide into smaller and smaller units
+- Completely **sessile** (couldn't move)
+
+---
+
+## How Did It Live?
+
+### Feeding Mystery
+Without a mouth or digestive system, how did Charnia survive?
+- Absorbed **nutrients directly from seawater** (osmotrophy)
+- Lived in **deep water** below the photic zone
+- **Could not photosynthesize** — too deep for sunlight
+- Surface area maximized by fractal branching for nutrient absorption
+- Like a living **filter** extracting dissolved organic matter
+
+### Habitat
+- Lived on the **deep seafloor** (200-300+ meters deep)
+- Anchored by a **holdfast disc**
+- Communities grew together like underwater **gardens**
+- Well below wave action in calm, dark waters
+
+---
+
+## Historic Discovery
+
+### First Precambrian Fossil Recognized
+The story of Charnia's discovery changed paleontology forever:
+- Found in **1957** by schoolboy Roger Mason in Charnwood Forest, England
+- Named after **Charnwood Forest** in Leicestershire
+- **First fossil from Precambrian rocks** ever accepted by scientists
+- Proved that **complex life existed before the Cambrian**
+- Overturned the belief that Precambrian rocks had no fossils
+
+### Before This Discovery
+Scientists believed:
+- Complex life began **only in the Cambrian** (541 million years ago)
+- Precambrian rocks were **completely barren**
+- Charnia proved them **wrong**!
+
+---
+
+## Global Distribution
+
+### Found Worldwide
+Charnia fossils have been discovered in:
+- **Charnwood Forest**, England (type locality)
+- **Mistaken Point**, Newfoundland, Canada
+- **Ediacara Hills**, Australia
+- **White Sea**, Russia
+- **Siberia**
+
+The Newfoundland fossils are among the **best preserved** in the world.
+
+---
+
+## Scientific Mystery
+
+### What Was Charnia?
+Scientists still debate its classification:
+- **Not a plant** — lived too deep for photosynthesis
+- **Not a sea pen** — grows in opposite direction
+- **Not clearly an animal** — no animal characteristics
+- Possibly a member of an **extinct kingdom of life**
+- May represent a **failed evolutionary experiment**
+
+### The Rangeomorph Puzzle
+Charnia and its relatives (rangeomorphs) are unique:
+- **Fractal body plans** not seen in any living organisms
+- **Modular growth** unlike anything today
+- Went **completely extinct** — no descendants
+- Represent an **alternative pathway** life could have taken
+
+---
+
+## The Ediacaran World
+
+### A Different Earth
+Charnia lived in a world unlike anything today:
+- **No predators** (probably)
+- **Deep, dark oceans** with dissolved nutrients
+- Microbial mats on shallow seafloors
+- **Oxygen levels rising** but still low
+- The "**Garden of Ediacara**" — peaceful communities
+
+---
+
+## Why Charnia Matters
+
+### Scientific Importance
+Charnia teaches us about:
+- The **origin of complex life**
+- Life **before animals dominated**
+- Alternative **body plans** that went extinct
+- How life **explored different designs**
+- The history of **early evolution**
+
+---
+
+## Cool Facts
+
+- Charnia is over **575 million years old** — older than dinosaurs by 340+ million years!
+- It was the **first Precambrian fossil** ever recognized by scientists
+- Had **no mouth, brain, or muscles**!
+- Lived in **total darkness** on the deep seafloor
+- Its **fractal pattern** is mathematically similar to snowflakes
+- Named after a **schoolboy's discovery** in England
+- Could grow up to **2 meters tall** — taller than most humans!
+- Went **completely extinct** with no living relatives
+
+---
+
+*Charnia represents one of life's earliest experiments with complex organisms — a mysterious frond that changed our understanding of when complex life began and reminds us that evolution has explored many paths that no longer exist!*`,
+    category: 'Marine Creatures',
+    subcategory: 'Invertebrates',
+    family: 'Charniidae',
+    lastUpdated: Date.now()
+  },
+  {
+    id: 'tribrachidium',
+    name: 'Tribrachidium',
+    scientificName: 'Tribrachidium heraldicum',
+    period: 'Proterozoic',
+    location: 'Australia, Russia, Ukraine',
+    length: '3-40 mm diameter',
+    weight: 'Negligible',
+    diet: 'Suspension feeder',
+    image: '/images/tribrachidium.webp',
+    description: `# Tribrachidium heraldicum
+
+## Overview
+**Tribrachidium** is one of the strangest creatures to ever exist! Living during the **Ediacaran period** about **558-555 million years ago**, this bizarre disc-shaped organism had **three-fold symmetry** — a body plan found in **no living animal today**. It represents an evolutionary experiment that completely failed, leaving no descendants.
+
+---
+
+## Taxonomy & Classification
+- **Kingdom:** Animalia (uncertain)
+- **Phylum:** Trilobozoa (extinct)
+- **Period:** Ediacaran (Late Precambrian)
+- **Diet:** Suspension feeder
+
+Tribrachidium belongs to the **Trilobozoa**, an extinct group of organisms with three-fold symmetry — a body plan that **vanished entirely** from Earth.
+
+---
+
+## Physical Characteristics
+
+### Strange Body Plan
+- **Diameter:** 3 to 40 millimeters (coin-sized to golf ball-sized)
+- **Shape:** Hemispherical disc, like half a ball
+- **Symmetry:** **Tri-radial** (three-fold) — completely unique!
+- **Structure:** Three curved arms spiraling from center
+
+### Unique Features
+- **Three hooked ridges** ("arms") spiraling outward from center
+- Three **lobes** between the arms
+- Numerous **radial branching furrows** covering surface
+- **No mouth, gut, or anus** visible
+- No obvious sensory organs
+
+---
+
+## The Only Three-Fold Animal
+
+### A Unique Symmetry
+Tribrachidium's body plan is extraordinary:
+- Most animals are **bilateral** (two-fold, like humans)
+- Some are **radial** (five-fold, like starfish)
+- Tribrachidium had **three-fold** symmetry
+- This is **completely unknown** in any living animal phylum
+- Even echinoderms (starfish) are secretly bilateral underneath
+
+### An Evolutionary Dead End
+- This body plan **never succeeded**
+- No descendants survived past the Ediacaran
+- Nature's experiment with **three-fold symmetry failed**
+- We don't fully understand why
+
+---
+
+## How Did It Live?
+
+### Suspension Feeding
+Scientists used **computer simulations** to understand how Tribrachidium ate:
+- Water flowed over its body, guided by the three arms
+- Flow was directed toward three **depressions** between the arms
+- Water **slowed down** in these pits
+- Food particles **fell out of suspension**
+- Used **gravity settling** — a rare feeding mode!
+
+### Lifestyle
+- Lived on the **shallow seafloor**
+- Completely **immobile** (sessile)
+- Sat on **microbial mats**
+- Passively collected food from water currents
+
+---
+
+## Discovery & Classification
+
+### Scientific History
+- First described by **Martin Glaessner** in 1959
+- Found in the **Ediacara Hills**, South Australia
+- Named "Tribrachidium" meaning "three arms"
+- Classified in the extinct **Trilobozoa**
+
+### Related Organisms
+Tribrachidium had relatives with similar three-fold symmetry:
+- **Albumares** — similar disc shape
+- **Anfesta** — another trilobozoan
+- All went **completely extinct**
+
+---
+
+## Fossil Sites
+
+### Where Found
+Tribrachidium fossils come from:
+- **Ediacara Hills**, South Australia (type locality)
+- **White Sea**, Russia
+- **Ukraine**
+- All from **shallow marine environments**
+
+### Preservation
+- Found as **impressions** in sandstone
+- Preserved by rapid burial
+- Microbial mats helped preserve details
+
+---
+
+## Scientific Importance
+
+### What Tribrachidium Teaches Us
+- Evolution **experiments** with different body plans
+- Not all experiments **succeed**
+- Some **entire types** of organisms can go extinct
+- Early life was **more diverse** in body plans than today
+- The Ediacaran was a time of **evolutionary innovation**
+
+### Recent Research
+A 2015 study using **computational fluid dynamics**:
+- Simulated water flow around Tribrachidium
+- Confirmed it was a **suspension feeder**
+- Showed the three arms **directed water flow**
+- Proved it had an **active ecological role**
+
+---
+
+## The Ediacaran World
+
+### A Strange Time
+Tribrachidium lived in a world unlike today:
+- **No predators** (probably)
+- Microbial mats covered seafloors
+- Many **experimental body plans**
+- The "Garden of Ediacara"
+- Most Ediacaran life **went extinct**
+
+---
+
+## Cool Facts
+
+- Tribrachidium is over **555 million years old**!
+- Its **three-fold symmetry** is found in **no living animal**
+- About the size of a **coin to a golf ball**
+- Had **no mouth or digestive system** visible
+- Used **gravity** to catch food — very unusual!
+- Represents an **extinct body plan** that completely vanished
+- Scientists used **computer simulations** to figure out how it fed
+- It's one of the **strangest animals** ever discovered
+
+---
+
+*Tribrachidium reminds us that evolution is full of experiments — some succeed and give rise to all life we see today, while others, like this three-armed wonder, vanish entirely, leaving only fossils to tell their story!*`,
+    category: 'Marine Creatures',
+    subcategory: 'Invertebrates',
+    family: 'Tribrachidiidae',
+    lastUpdated: Date.now()
+  },
+  {
+    id: 'spriggina',
+    name: 'Spriggina',
+    scientificName: 'Spriggina floundersi',
+    period: 'Proterozoic',
+    location: 'Australia',
+    length: '2-3 cm',
+    weight: 'Negligible',
+    diet: 'Detritivore (probably)',
+    image: '/images/spriggina.webp',
+    description: `# Spriggina floundersi
+
+## Overview
+**Spriggina** is one of the most intriguing fossils from the **Ediacaran period**, living approximately **550-560 million years ago**. With its distinctive **horseshoe-shaped head** and **segmented body**, it has sparked decades of debate about whether it represents an early ancestor of arthropods or a completely unique form of life. Named after the geologist who discovered the Ediacara fauna, Spriggina is a key player in understanding early animal evolution.
+
+---
+
+## Taxonomy & Classification
+- **Kingdom:** Animalia (probable)
+- **Phylum:** Disputed (possibly early arthropod relative)
+- **Period:** Ediacaran (Late Precambrian)
+- **Diet:** Detritivore or deposit feeder (probable)
+
+Spriggina's classification remains **hotly debated** — it may be an early relative of arthropods, or something entirely unique to the Ediacaran.
+
+---
+
+## Physical Characteristics
+
+### Body Plan
+- **Length:** 2-3 centimeters (about 1 inch)
+- **Shape:** Elongated, worm-like body
+- **Head:** Distinctive **horseshoe-shaped** head shield
+- **Segments:** Approximately **40 body segments**
+
+### Key Features
+- **Clear head and body** distinction (cephalization)
+- **Bilateral symmetry** (like humans and most animals)
+- Segments arranged in a **V-pattern** or chevron
+- Segments on left and right **offset** (not perfectly aligned)
+- No visible legs, antennae, or appendages
+
+---
+
+## The Arthropod Question
+
+### Is It an Early Arthropod?
+Scientists have debated for decades:
+
+**Arguments FOR arthropod relationship:**
+- **Segmented body** like arthropods
+- **Head shield** similar to trilobites
+- **Bilateral symmetry**
+- Shows **cephalization** (distinct head)
+
+**Arguments AGAINST:**
+- Segments don't match true arthropod segments
+- **No appendages** (legs, antennae) preserved
+- May be an **Ediacaran unique** body plan
+- Could be **convergent evolution** (similar shape, different origin)
+
+### Current Thinking
+Most scientists now believe Spriggina:
+- Was probably an **early bilateral animal**
+- May or may not be related to arthropods
+- Could represent a **unique Ediacaran lineage**
+- Shows that segmentation evolved **very early**
+
+---
+
+## How Did It Live?
+
+### Lifestyle
+- Lived on the **shallow seafloor**
+- Probably **crawled** across microbial mats
+- Could **move** (unlike sessile Ediacaran organisms)
+- Head-first locomotion like worms
+
+### Feeding
+- Likely a **detritivore** — ate organic debris
+- May have **grazed on microbial mats**
+- Possibly a **deposit feeder**
+- No evidence of being a predator
+
+---
+
+## Discovery & Naming
+
+### Reg Sprigg's Legacy
+- Named after **Reg Sprigg** (1919-1994)
+- Sprigg discovered the **Ediacara fauna** in 1946
+- Found fossils in abandoned mines in South Australia
+- His discovery revealed **Precambrian complex life**
+- The **Ediacaran period** is named after his discovery site
+
+### The Fossil Site
+- Found in the **Ediacara Hills**, South Australia
+- Preserved in **sandstone**
+- Part of the famous **Ediacara fauna**
+- One of the most important fossil sites in the world
+
+---
+
+## Comparison to Other Ediacaran Life
+
+### Different from Most Ediacarans
+Spriggina stands out because:
+- It could **move** (most Ediacarans were sessile)
+- Has a **clear head** (many Ediacarans don't)
+- **Bilateral symmetry** (some Ediacarans had strange symmetries)
+- Looks more "**animal-like**" than many contemporaries
+
+### Similar to Arthropods
+Compared to later trilobites:
+- Similar **head shield** shape
+- Similar **segmentation**
+- But **no appendages** preserved
+- May be **coincidental similarity**
+
+---
+
+## Scientific Importance
+
+### What Spriggina Teaches Us
+- **Bilateral symmetry** evolved very early
+- **Segmentation** predates the Cambrian
+- **Cephalization** (distinct heads) is ancient
+- The **building blocks** of animal body plans are old
+- Evolution was already **experimenting** with familiar forms
+
+### The Big Questions
+- Is Spriggina a **true arthropod ancestor**?
+- Or an example of **convergent evolution**?
+- Did arthropod features evolve **multiple times**?
+- These questions are still being researched!
+
+---
+
+## The Ediacaran World
+
+### Spriggina's Environment
+- **Shallow seas** with sandy bottoms
+- **Microbial mats** covering the seafloor
+- **No hard-shelled predators** yet
+- A relatively **peaceful world**
+- The calm before the **Cambrian Explosion**
+
+---
+
+## Cool Facts
+
+- Spriggina is over **550 million years old**!
+- Only about **2-3 cm long** — smaller than your thumb
+- Named after **Reg Sprigg**, who discovered the Ediacara fauna
+- Has sparked **decades of scientific debate**
+- Its **horseshoe head** looks like a trilobite's but may not be related
+- Shows that **segmented animals** existed before the Cambrian
+- One of the few Ediacaran animals that could **move**
+- The **Ediacaran period** (635-541 million years ago) is named after where it was found
+
+---
+
+*Spriggina reminds us that some of the most important scientific questions remain unanswered — this small, segmented creature from over half a billion years ago continues to challenge our understanding of early animal evolution!*`,
+    category: 'Marine Creatures',
+    subcategory: 'Invertebrates',
+    family: 'Sprigginidae',
+    lastUpdated: Date.now()
+  },
+  {
+    id: 'wiwaxia',
+    name: 'Wiwaxia',
+    scientificName: 'Wiwaxia corrugata',
+    period: 'Cambrian',
+    location: 'Canada (Burgess Shale), China',
+    length: '2-5.5 cm',
+    weight: 'Negligible',
+    diet: 'Herbivore (grazed on microbial mats)',
+    image: '/images/wiwaxia.webp',
+    description: `# Wiwaxia corrugata
+
+## Overview
+**Wiwaxia** is one of the strangest creatures from the **Cambrian Explosion**, living approximately **508 million years ago**. This bizarre armored slug-like animal was covered in overlapping scales and tall defensive spines, making it look like a tiny underwater hedgehog or porcupine. Found primarily in the famous **Burgess Shale** of Canada, Wiwaxia has puzzled scientists for over a century about where it fits in the tree of life.
+
+---
+
+## Taxonomy & Classification
+- **Kingdom:** Animalia
+- **Phylum:** Mollusca (stem group, debated)
+- **Period:** Middle Cambrian (~508 million years ago)
+- **Diet:** Herbivore/Detritivore
+
+Wiwaxia's classification has been hotly debated—it may be an early relative of mollusks (slugs, snails, clams) based on its mouthparts and growth patterns.
+
+---
+
+## Physical Characteristics
+
+### Size & Shape
+- **Length:** 2 to 5.5 centimeters
+- **Shape:** Oval, bilaterally symmetrical
+- **Body:** Slug-like with flat underside for crawling
+- **No distinct head or tail** visible from above
+
+### Armor System
+Wiwaxia had an incredible defensive covering:
+- **Sclerites:** Scale-like plates arranged in about 50 rows covering the body
+- **Dorsal spines:** Two rows of 7-11 tall blade-like spines on its back
+- **Ribbed texture:** Each sclerite has striated, ribbed surface
+- Sclerites and spines inserted directly into the body wall
+
+### Possible Iridescence
+The ribbed surface of the sclerites has led scientists to speculate that Wiwaxia may have been **iridescent and colorful**, shimmering as it moved across the seafloor!
+
+---
+
+## Defense Against Predators
+
+### Spiny Protection
+- The long dorsal spines provided protection against predators
+- Fossils show **broken spines**, suggesting successful defense against attacks
+- Probably deterred predators like **Anomalocaris**
+- The sclerite armor protected the soft body underneath
+
+---
+
+## Feeding & Lifestyle
+
+### How It Ate
+- Had a **radula-like feeding apparatus** (similar to snails)
+- Two or three rows of backward-pointing teeth
+- Grazed on **microbial mats** on the seafloor
+- Scraped organic material from surfaces
+
+### Movement
+- Crawled slowly on its flat underside
+- Probably similar to how slugs and snails move today
+- Lived on the muddy Cambrian seafloor
+
+---
+
+## Discovery & History
+
+### Finding Wiwaxia
+- First described in **1899** by G.F. Matthew from a single spine
+- First complete specimen found in **1911** by Charles Walcott
+- Named after **Wiwaxia Peak** in the Canadian Rockies
+- Thousands of specimens now known from the Burgess Shale
+
+---
+
+## The Classification Debate
+
+### Mollusc or Annelid?
+Scientists argued for decades:
+- **Mollusc camp:** Mouthparts and body structure suggest slug relatives
+- **Annelid camp:** Scale-like covering resembles certain polychaete worms
+- **Current consensus:** Most evidence now supports mollusc affinity
+- Wiwaxia is likely a **stem-group mollusc**—an early branch before modern molluscs evolved
+
+---
+
+## The Cambrian World
+
+### Wiwaxia's Environment
+The Burgess Shale preserved an incredible ecosystem:
+- Lived alongside **Anomalocaris**, **Hallucigenia**, **Opabinia**
+- Microbial mats covered the seafloor
+- Mudslides occasionally buried and preserved these soft-bodied creatures
+- One of the best windows into Cambrian life
+
+---
+
+## Cool Facts
+
+- Wiwaxia may have been **shimmery and iridescent** like a tiny underwater disco ball!
+- Its broken spines in fossils prove it **survived predator attacks**
+- Scientists argued for **100+ years** about what it was related to
+- Named after a mountain peak, not a scientist
+- Could have up to **22 tall spines** on its back
+- One of the most **iconic Burgess Shale fossils**
+- Shows that mollusks once looked **very different** from today's snails and slugs
+
+---
+
+*Wiwaxia reminds us that early animal evolution produced incredible diversity—this spiny, armored slug-creature represents a time when mollusks were experimenting with body plans we can barely imagine today!*`,
+    category: 'Marine Creatures',
+    subcategory: 'Invertebrates',
+    family: 'Wiwaxiidae',
+    lastUpdated: Date.now()
+  },
+  {
+    id: 'pikaia',
+    name: 'Pikaia',
+    scientificName: 'Pikaia gracilens',
+    period: 'Cambrian',
+    location: 'Canada (Burgess Shale)',
+    length: '4-5 cm',
+    weight: 'Negligible',
+    diet: 'Filter feeder (probably)',
+    image: '/images/pikaia.webp',
+    description: `# Pikaia gracilens
+
+## Overview
+**Pikaia** is one of the most important fossils ever discovered—it may be one of our **earliest ancestors**! This small, leaf-shaped swimmer lived approximately **508 million years ago** during the Middle Cambrian period. Found in the famous **Burgess Shale** of Canada, Pikaia is celebrated as one of the earliest known **chordates**—the group that includes all animals with backbones, including humans!
+
+---
+
+## Taxonomy & Classification
+- **Kingdom:** Animalia
+- **Phylum:** Chordata
+- **Period:** Middle Cambrian (~508 million years ago)
+- **Diet:** Probably filter feeder or detritivore
+
+Pikaia belongs to the **chordates**, making it a distant relative of fish, amphibians, reptiles, birds, mammals—and you!
+
+---
+
+## Physical Characteristics
+
+### Size & Shape
+- **Length:** 4-5 centimeters (about 2 inches)
+- **Shape:** Leaf-shaped, laterally flattened
+- **Body:** Elongated and ribbon-like
+- **Color:** Probably translucent or pale
+
+### Key Chordate Features
+What makes Pikaia special:
+- **Notochord:** A flexible rod running along its back (precursor to the spine)
+- **Myomeres:** Visible segmented muscle blocks along its body
+- **Nerve cord:** Running above the notochord
+- **Small head** with possible sensory tentacles
+
+### Swimming Apparatus
+- Thin **fin-like structures** along body edges
+- **No paired fins** like modern fish
+- Swam by undulating its body side to side
+
+---
+
+## Why Pikaia Matters
+
+### Our Distant Ancestor?
+Pikaia holds a special place in evolutionary history:
+- One of the **earliest chordates** in the fossil record
+- Shows the **basic body plan** that would evolve into all vertebrates
+- The notochord would eventually become the **backbone** in later animals
+- Represents the **humble beginnings** of our entire lineage
+
+### Stephen Jay Gould's Famous Discussion
+In his book **"Wonderful Life" (1989)**, paleontologist Stephen Jay Gould used Pikaia to illustrate:
+- The role of **chance in evolution**
+- If Pikaia had gone extinct, vertebrates might never have evolved
+- We owe our existence to this tiny Cambrian swimmer surviving
+
+---
+
+## Lifestyle & Behavior
+
+### Swimming
+- Swam above the seafloor in the water column
+- Used **undulating body movements** like an eel
+- Probably a slow but steady swimmer
+- May have lived in **schools** for protection
+
+### Feeding
+- Exact diet unknown
+- Probably **filter fed** on tiny particles
+- May have eaten **organic debris**
+- Small size suggests microscopic food sources
+
+---
+
+## Discovery & Research
+
+### Finding Pikaia
+- First described by **Charles Walcott** in 1911
+- Named after **Pika Peak** in the Canadian Rockies
+- Over 60 specimens known from the Burgess Shale
+- Continues to be studied with new technology
+
+### Modern Reassessment
+Recent studies have refined our understanding:
+- Definitely a chordate, but exact position debated
+- May be related to modern **lancelets** (Branchiostoma)
+- Could be a **stem-group chordate** rather than direct ancestor
+- Still one of the earliest chordates known
+
+---
+
+## Comparison to Modern Relatives
+
+### Lancelets (Amphioxus)
+The closest living comparison to Pikaia:
+- Small, fish-like chordates without backbones
+- Have notochord, nerve cord, and myomeres
+- Filter feeders that burrow in sand
+- Give us a glimpse of what early chordates were like
+
+---
+
+## The Cambrian World
+
+### Pikaia's Environment
+In the Burgess Shale seas:
+- Swam alongside predators like **Anomalocaris**
+- Shared waters with **trilobites**, **Wiwaxia**, **Hallucigenia**
+- The seas were full of experimental body plans
+- Chordates were rare—most animals were arthropods or worms
+
+---
+
+## Cool Facts
+
+- Pikaia may be the **ancestor of all animals with backbones**—including you!
+- It was only about **5 cm long**—smaller than your finger
+- The notochord in Pikaia evolved into the **spinal column** in vertebrates
+- Named after a mountain peak, like many Burgess Shale animals
+- Stephen Jay Gould called it one of the most **important fossils** ever found
+- If Pikaia had gone extinct, there might be **no fish, dinosaurs, or humans**!
+- It was a tiny, unremarkable swimmer that changed the world
+
+---
+
+*Pikaia reminds us that the mightiest family trees can have the humblest beginnings—this small, simple swimmer from half a billion years ago may be the reason you exist today!*`,
+    category: 'Marine Creatures',
+    subcategory: 'Invertebrates',
+    family: 'Pikaiidae',
+    lastUpdated: Date.now()
+  },
+  {
+    id: 'olenoides',
+    name: 'Olenoides',
+    scientificName: 'Olenoides serratus',
+    period: 'Cambrian',
+    location: 'Canada (Burgess Shale), USA',
+    length: '5-8 cm',
+    weight: 'Light',
+    diet: 'Carnivore/Scavenger',
+    image: '/images/olenoides.webp',
+    description: `# Olenoides serratus
+
+## Overview
+**Olenoides serratus** is one of the most famous and scientifically important trilobites ever discovered! Living approximately **508 million years ago** during the Middle Cambrian, this trilobite is celebrated for its exceptional preservation in the **Burgess Shale**, where even its soft parts—legs, antennae, and gills—are preserved. While most trilobite fossils only show the hard shell, Olenoides gives us an unprecedented look at what these ancient arthropods really looked like.
+
+---
+
+## Taxonomy & Classification
+- **Kingdom:** Animalia
+- **Phylum:** Arthropoda
+- **Class:** Trilobita
+- **Period:** Middle Cambrian (~508 million years ago)
+- **Diet:** Carnivore/Scavenger
+
+Trilobites were among the most successful animals ever, surviving for **300 million years** before going extinct at the end of the Permian period.
+
+---
+
+## Physical Characteristics
+
+### Size & Shape
+- **Length:** 5-8 centimeters (2-3 inches)
+- **Body Plan:** Classic trilobite—three longitudinal lobes
+- **Segments:** Multiple thoracic segments with spiny edges
+- **Name meaning:** "serratus" refers to the **serrated (saw-toothed) edges**
+
+### The Three Lobes
+Like all trilobites, Olenoides had:
+- **Central axial lobe:** Running down the middle
+- **Two pleural lobes:** On either side
+- This three-part structure gave trilobites their name!
+
+### Exceptional Soft-Part Preservation
+The Burgess Shale specimens reveal:
+- **Legs:** Multiple pairs of biramous (two-branched) limbs
+- **Antennae:** Long sensory appendages at the front
+- **Gills:** Feathery gill branches attached to legs
+- **Gut:** Digestive tract sometimes visible
+- **Cerci:** Tail-like projections at the rear
+
+---
+
+## Why Olenoides Is Special
+
+### A Window Into Trilobite Anatomy
+Most trilobite fossils only preserve the hard exoskeleton. Olenoides shows us:
+- How trilobites **actually moved**
+- What their **legs looked like**
+- How they **breathed** through gills
+- Their **complete anatomy** for the first time
+
+### Scientific Breakthroughs
+Olenoides specimens have revealed:
+- Trilobite limbs had **two branches**—one for walking, one with gills
+- They had **many pairs of legs** (one per segment)
+- Antennae were used for **sensing the environment**
+- Leg structure shows they could **walk and swim**
+
+---
+
+## Lifestyle & Behavior
+
+### Hunting and Scavenging
+Evidence suggests Olenoides was a predator/scavenger:
+- **Gut contents** found in some specimens
+- Ate smaller animals and organic debris
+- Walked along the seafloor hunting
+- May have been an opportunistic feeder
+
+### Movement
+- Could **walk** on the seafloor using its many legs
+- May have been able to **swim** short distances
+- Antennae helped detect food and danger
+- Could probably **burrow** into sediment
+
+### Defense
+- Could **roll up** into a ball like a pillbug (enrollment)
+- Spiny margins may have deterred predators
+- Hard exoskeleton provided protection
+- Molted regularly as it grew
+
+---
+
+## The Burgess Shale
+
+### Exceptional Preservation
+Why are Burgess Shale trilobites so special?
+- **Anoxic conditions** prevented decay
+- **Rapid burial** by underwater mudslides
+- **Fine-grained sediment** captured tiny details
+- Preserved soft tissues almost never seen elsewhere
+
+### Olenoides' Neighbors
+Shared the seas with:
+- **Anomalocaris** (top predator that may have eaten trilobites)
+- **Wiwaxia**, **Hallucigenia**, **Opabinia**
+- One of the most diverse Cambrian communities known
+
+---
+
+## Trilobite Success Story
+
+### Masters of the Paleozoic
+Trilobites were incredibly successful:
+- First appeared **521 million years ago**
+- Survived for **300 million years**
+- Over **20,000 species** evolved
+- Lived in oceans worldwide
+- Went extinct **252 million years ago** in the Great Dying
+
+---
+
+## Cool Facts
+
+- Olenoides shows us what trilobites **really looked like** with all their legs and antennae!
+- The name means "**saw-toothed**" because of its spiny edges
+- Some specimens preserve the **gut contents**—showing what it ate
+- Trilobites could **roll into a ball** for protection, like modern pillbugs
+- Each leg had **two branches**—one for walking, one for breathing
+- Olenoides had **compound eyes** with many tiny lenses
+- Trilobites were among Earth's **first animals with complex eyes**
+- They molted their exoskeletons as they grew, like modern crabs
+
+---
+
+*Olenoides serratus gives us an unparalleled glimpse into the anatomy of trilobites—these iconic Cambrian creatures that dominated the oceans for hundreds of millions of years!*`,
+    category: 'Marine Creatures',
+    subcategory: 'Invertebrates',
+    family: 'Olenoididae',
+    lastUpdated: Date.now()
+  },
+  {
+    id: 'ottoia',
+    name: 'Ottoia',
+    scientificName: 'Ottoia prolifica',
+    period: 'Cambrian',
+    location: 'Canada (Burgess Shale), USA (Utah)',
+    length: '8 cm average',
+    weight: 'Light',
+    diet: 'Carnivore (predator and cannibal)',
+    image: '/images/ottoia.webp',
+    description: `# Ottoia prolifica
+
+## Overview
+**Ottoia** was a fearsome predatory worm that terrorized the Cambrian seafloor approximately **508 million years ago**. As the most abundant worm in the famous **Burgess Shale**, this priapulid (penis worm) used its terrifying tooth-covered proboscis to ambush prey from its burrow. Even more disturbing—Ottoia was a **cannibal** that regularly ate members of its own species!
+
+---
+
+## Taxonomy & Classification
+- **Kingdom:** Animalia
+- **Phylum:** Priapulida (penis worms)
+- **Period:** Middle Cambrian (~508 million years ago)
+- **Diet:** Carnivore (predator and cannibal)
+
+Ottoia is a **priapulid worm**, a group that still exists today. Modern priapulids are much rarer but share many features with their Cambrian ancestors.
+
+---
+
+## Physical Characteristics
+
+### Size & Shape
+- **Length:** Average 8 centimeters (about 3 inches)
+- **Body:** Elongated, segmented trunk
+- **Shape:** Worm-like with bilateral symmetry
+- **Variation:** Length and width varied with how contracted the animal was
+
+### The Terrifying Proboscis
+Ottoia's most distinctive feature:
+- **Eversible proboscis:** Could turn inside-out to grab prey
+- **Covered in hooks and teeth:** For gripping struggling victims
+- **Radial symmetry:** Circle of teeth around the mouth opening
+- Could be pulled back inside the body when not feeding
+
+### Body Structure
+- **Annulated trunk:** Ring-like segments along the body
+- **Muscular body wall:** For burrowing and movement
+- **No legs or appendages:** Moved by contracting body segments
+
+---
+
+## Hunting & Feeding
+
+### Ambush Predator
+Ottoia was a deadly hunter:
+- Lived in **U-shaped burrows** in the seafloor
+- Waited for prey to pass by
+- **Everted its proboscis** to grab victims
+- Hooks and teeth prevented escape
+- Dragged prey into the burrow to eat
+
+### Cannibal Behavior
+Fossil evidence shows:
+- Ottoia specimens found with **other Ottoia in their guts**
+- Cannibalism was **common** in this species
+- This behavior is also seen in **modern priapulids**
+- May have helped control population density
+
+### Diet
+Gut contents reveal Ottoia ate:
+- **Hyolithids** (small shelled animals)—often swallowed head-first
+- **Other worms**
+- **Its own species** (cannibalism)
+- Probably **any small animal** it could catch
+
+---
+
+## Abundance in the Cambrian
+
+### Most Common Worm
+Ottoia was incredibly successful:
+- **Over 80%** of priapulid fossils in the Burgess Shale
+- Accounts for **1.3%** of the entire Walcott Quarry community
+- **Thousands of specimens** discovered
+- One of the most common Burgess Shale animals
+
+### Death Assemblages
+One remarkable fossil shows:
+- **Nine Ottoia specimens** around an arthropod carcass
+- Suggests they gathered to **feed on dead animals**
+- Shows scavenging behavior alongside predation
+
+---
+
+## Burrowing Lifestyle
+
+### Underground Hunter
+- Created **U-shaped burrows** in muddy seafloor
+- Burrows provided protection from predators
+- Could ambush prey from concealment
+- Similar to how modern priapulids live
+
+### Trace Fossils
+- Ottoia burrows preserved as **trace fossils**
+- Show the tunnels they created
+- Evidence of their burrowing lifestyle
+
+---
+
+## Modern Relatives
+
+### Priapulids Today
+Modern priapulids are rare but similar:
+- Only about **20 species** alive today
+- Live in cold ocean waters
+- Same basic body plan as Ottoia
+- Also predatory with eversible proboscis
+- Also known to be **cannibalistic**
+
+### Living Fossils
+Priapulids have changed little in 500 million years:
+- Ottoia looks remarkably like modern species
+- Basic body plan very successful
+- Shows **evolutionary stasis** over vast time
+
+---
+
+## Discovery & Naming
+
+### Etymology
+- **Ottoia:** Named after Otto Pass in the Canadian Rockies
+- **prolifica:** Latin for "rich in offspring"—referring to the many specimens found
+
+### Scientific History
+- First described by **Charles Walcott** in 1911
+- One of his many Burgess Shale discoveries
+- Recent studies identified **two species**: O. prolifica and O. tricuspida
+
+---
+
+## Cool Facts
+
+- Ottoia was a **cannibal**—fossils show it ate its own kind!
+- Its proboscis was covered in **teeth and hooks** like a nightmare
+- One of the **most common** animals in the Burgess Shale
+- Could **turn its mouth inside-out** to grab prey
+- Modern priapulids are called "**penis worms**" due to their shape
+- Fossils show it **swallowed prey head-first**
+- Lived in **burrows** and ambushed passing animals
+- Has barely changed in **500 million years**—a true living fossil!
+
+---
+
+*Ottoia shows us that the Cambrian seafloor was a dangerous place—this cannibalistic, tooth-covered worm lurked in burrows waiting to grab anything that wandered too close!*`,
+    category: 'Marine Creatures',
+    subcategory: 'Invertebrates',
+    family: 'Ottoiidae',
+    lastUpdated: Date.now()
   }];
 
 export const searchCreatures = (searchQuery: string): SearchResult[] => {
